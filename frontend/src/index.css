@@ -1,0 +1,49 @@
+:root {
+	font-family: Calibri, Tahoma, sans-serif;
+  
+  /* https://webdesign.wustl.edu/foundations/colors/palette/ */
+  --primary-red: #a51417;
+  --primary-darkgrey: #3d3d3d;
+  --primary-lightgrey: #eeeeee;
+
+  --secondary-yellow: #ffcc00;
+  --secondary-turquoise: #2b8282;
+  --secondary-blue: #005f85;
+
+  --text-heading: #3d3d3d;
+  --text-paragraph: #555;
+  --text-white: #FFFFFF;
+
+  --link-default: #d01c29;
+  --link-hover: #a51417;
+  --link-active: #a51417;
+
+  --border-block: #c8c8c8;
+  --border-table: #dadada;
+  --border-separators: #c8c8c8;
+  --border-size: 1px;
+
+  --background-main: #FFFFFF;
+
+  /* font size */
+  --font-h1: 2.986rem;
+  --font-h2: 2.488rem;
+  --font-h3: 2.074rem;
+  --font-h4: 1.728rem;
+  --font-h5: 1.44rem;
+  --font-h6: 1rem;
+  --font-body: 1.2rem;
+  --font-disclaimer: 1rem;
+  --font-lead: 1.728rem;
+  --font-quote: 1.44rem;
+
+  /* font weight */
+  --font-weight-lead: 300;
+  --font-weight-headings: 600;
+  --font-weight-default: 400;
+}
+
+body {
+  margin: 0;
+}
+
