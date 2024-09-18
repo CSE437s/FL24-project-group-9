@@ -45,5 +45,52 @@
 
 body {
   margin: 0;
+  background-color: var(--background-main);
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--font-weight-headings);
+  color: var(--text-heading);
+}
+
+h1 {
+  font-size: var(--font-h1);
+}
+
+h2 {
+  font-size: var(--font-h2);
+}
+
+h3 {
+  font-size: var(--font-h3);
+}
+
+h4 {
+  font-size: var(--font-h4);
+}
+
+h5 {
+  font-size: var(--font-h5);
+}
+
+h6 {
+  font-size: var(--font-h6);
+}
+
+p {
+  font-size: var(--font-body);
+  color: var(--text-paragraph);
+}
+
+a {
+  color: var(--link-default);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--link-hover);
+}
+
+a:active {
+  color: var(--link-active);
+}
