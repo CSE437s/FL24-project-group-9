@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import HeaderBar from "../components/HeaderBar";
+import { HeaderBar } from "../components/HeaderBar";
 import StudentAPI from "../services/StudentAPI";
 import { Student } from "../models/Student";
 import './ProfilePage.css';
@@ -15,7 +15,7 @@ export default function ProfilePage() {
 
   return (
     <div>
-      <HeaderBar />
+      <HeaderBar isNavVisible={true}/>
       <div className="profile-page">
         {student ? (
           <div>

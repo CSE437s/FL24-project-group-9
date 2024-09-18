@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import HeaderBar from "../components/HeaderBar";
+import { HeaderBar } from "../components/HeaderBar";
 import { Term } from "../models/Course";
 import StudentAPI from "../services/StudentAPI";
 import { ScheduleRow } from "../components/ScheduleRow";
@@ -18,7 +18,7 @@ export default function DashboardPage() {
 
   return (
     <>
-      <HeaderBar />
+      <HeaderBar isNavVisible={true}/>
       <div className="dashboard-page">
         <h3>Courses Taken</h3>
         {taken.map((term) => (
