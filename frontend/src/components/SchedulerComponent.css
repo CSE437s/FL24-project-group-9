@@ -4,29 +4,29 @@
   justify-content: space-around;
 }
 
-.schedule-row {
-  box-sizing: border-box;
-  display: flex;
-  width: 482px;
-  gap: 5px;
-  padding: 10px;
-  border: var(--border-size) var(--border-table) solid;
-}
-
-.schedule-row div:nth-child(1) {
-  width: 80px;
-}
-
-.schedule-row div:nth-child(2) {
-  width: 350px;
-}
-
-.schedule-row div:nth-child(3) {
-  width: 20px;
-  text-align: center;
-}
-
 .schedule-draggable {
   min-height: calc(5 * 41.5px);
-  width: 482px;
+  max-width: 542px;
+  min-width: 522px;
+}
+
+.schedule-term {
+  padding: 0.5rem;
+}
+
+.term-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem 0;
+}
+
+.term-info {
+  color: var(--primary-red);
+  font-weight: var(--font-weight-headings);
+}
+
+.term-units {
+  color: var(--text-paragraph);
+  font-size: 0.9rem;
 }

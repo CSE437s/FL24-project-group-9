@@ -1,4 +1,4 @@
-import HeaderBar from "../components/HeaderBar";
+import { HeaderBar } from "../components/HeaderBar";
 
 export default function LoginPage() {
   return (

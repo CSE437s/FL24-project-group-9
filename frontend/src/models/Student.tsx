@@ -1,11 +1,12 @@
-import { Course } from "./Course";
+import { Term } from "./Course";
 
 export type Student = {
   id: string;
   name: string;
   email: string;
   major: string;
+  minor: string;
   year: string;
-  taken: Course[];
-  recommended: Course[];
+  taken: Term[];
+  recommended: Term[];
 };
