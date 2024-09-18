@@ -1,9 +1,13 @@
+export type Term = {
+  id: string,
+  term: string;
+  courses: Course[];
+};
+
 export type Course = {
   id: string;
   code: string;
   department: string;
-  term: string;
   title: string;
-  year: number;
   credits: number;
 };
