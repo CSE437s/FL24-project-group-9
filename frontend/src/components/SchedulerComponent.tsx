@@ -87,8 +87,10 @@ export const ScheduleBlock = () => {
       <DragDropContext onDragEnd={handleDragDrop}>
         <div className="recommended-block">
           {recommended.map((term) => (
-            <div key={term.id}>
-              <h4>{term.term}</h4>
+            <div key={term.id} className="schedule-term">
+              <div className="term-header">
+                <span className="term-info">{term.term}</span>
+              </div>
               <ScheduleDraggable
                 courses={term.courses}
                 droppableId={`recommended-${term.id}`}
@@ -98,8 +100,11 @@ export const ScheduleBlock = () => {
         </div>
         <div className="selected-block">
           {selected.map((term) => (
-            <div key={term.id}>
-              <div className="term-header"><h4>{term.term}</h4><span>Total Units: {getTotalUnits(term)}</span></div>
+            <div key={term.id} className="schedule-term">
+              <div className="term-header">
+                <span className="term-info">{term.term}</span>
+                <span className="term-units">Total Units: {getTotalUnits(term)}</span>
+              </div>
               <ScheduleDraggable
                 courses={term.courses}
                 droppableId={`selected-${term.id}`}

@@ -5,12 +5,13 @@
   --primary-red: #a51417;
   --primary-darkgrey: #3d3d3d;
   --primary-lightgrey: #eeeeee;
+  --primary-beige: #FAF7EF;
 
   --secondary-yellow: #ffcc00;
   --secondary-turquoise: #2b8282;
   --secondary-blue: #005f85;
 
-  --text-heading: #3d3d3d;
+  --text-headings: #3d3d3d;
   --text-paragraph: #555;
   --text-white: #FFFFFF;
 
@@ -50,7 +51,8 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: var(--font-weight-headings);
-  color: var(--text-heading);
+  color: var(--text-headings);
+  margin: 1rem 0;
 }
 
 h1 {
@@ -93,4 +95,14 @@ a:hover {
 
 a:active {
   color: var(--link-active);
+}
+
+button {
+  font-size: var(--font-body);
+  color: var(--text-white);
+  background-color: var(--primary-red);
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
 }

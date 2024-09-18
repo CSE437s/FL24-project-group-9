@@ -3,6 +3,7 @@ import HeaderBar from "../components/HeaderBar";
 import { Term } from "../models/Course";
 import StudentAPI from "../services/StudentAPI";
 import { ScheduleRow } from "../components/ScheduleRow";
+import './DashboardPage.css';
 
 export default function DashboardPage() {
   const [taken, setTaken] = useState<Term[]>([]);
@@ -16,9 +17,9 @@ export default function DashboardPage() {
   }, []);
 
   return (
-    <div className="dashboard-page">
+    <>
       <HeaderBar />
-      <div>
+      <div className="dashboard-page">
         <h3>Courses Taken</h3>
         {taken.map((term) => (
           <div key={term.id}>
@@ -38,6 +39,6 @@ export default function DashboardPage() {
           </div>
         ))}
       </div>
-    </div>
+    </>
   )
 }

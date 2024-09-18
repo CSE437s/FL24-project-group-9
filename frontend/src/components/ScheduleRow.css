@@ -1,0 +1,35 @@
+.schedule-row {
+  box-sizing: border-box;
+  display: flex;
+  width: 522px;
+  gap: 5px;
+  padding: 10px;
+  border: var(--border-size) var(--border-table) solid;
+}
+
+.schedule-row .undo-button {
+  display: flex;
+  align-items: center;
+}
+
+.schedule-row .undo-button:hover svg {
+  fill: var(--primary-red);
+}
+
+.schedule-row svg {
+  cursor: pointer;
+  width: 14px;
+}
+
+.schedule-row div:nth-last-child(3) {
+  width: 80px;
+}
+
+.schedule-row div:nth-last-child(2) {
+  width: 350px;
+}
+
+.schedule-row div:last-child {
+  width: 60px;
+  text-align: center;
+}

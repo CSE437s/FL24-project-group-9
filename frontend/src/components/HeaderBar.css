@@ -1,6 +1,28 @@
 .header-bar {
-  background-color: var(--primary-red);
-  padding: 2rem;
-  font-size: var(--font-h3);
-  color: var(--text-white);
+  background-color: var(--primary-beige);
+  padding: 1.25rem 2rem;
+  border-bottom: 5px solid var(--primary-red);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-bar .logo {
+  height: 50px;
+}
+
+.header-bar .logo:hover {
+  cursor: pointer;
+}
+
+.header-bar nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.header-bar nav a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
 }
