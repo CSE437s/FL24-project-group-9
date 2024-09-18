@@ -1,5 +1,4 @@
 import { Course } from '../models/Course'
-import './ScheduleBlock.css'
 
 interface ScheduleRowProps {
   course: Course;
