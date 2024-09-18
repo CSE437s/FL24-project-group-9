@@ -1,9 +1,14 @@
 import HeaderBar from "../components/HeaderBar";
+import { ScheduleBlock } from "../components/ScheduleBlock";
+import './SchedulerPage.css'
 
-export default function ProfilePage() {
+export default function SchedulerPage() {
   return (
-    <div className="scheduler-page">
+    <>
       <HeaderBar />
-    </div>
-  )
+      <div className="scheduler-page">
+        <ScheduleBlock />
+      </div>
+    </>
+  );
 }
