@@ -1,4 +1,4 @@
-import { Course } from "./Course";
+import { Term } from "./Course";
 
 export type Student = {
   id: string;
@@ -6,6 +6,6 @@ export type Student = {
   email: string;
   major: string;
   year: string;
-  taken: Course[];
-  recommended: Course[];
+  taken: Term[];
+  recommended: Term[];
 };

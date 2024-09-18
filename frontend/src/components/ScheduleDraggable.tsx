@@ -5,9 +5,21 @@ import { ScheduleRow } from './ScheduleRow';
 interface ScheduleDraggableProps {
   courses: Course[];
   droppableId: string;
+  handleUndo: (courseId: string, termId: string) => void;
 }
 
-export const ScheduleDraggable: React.FC<ScheduleDraggableProps> = ({courses, droppableId}) => {
+export const ScheduleDraggable: React.FC<ScheduleDraggableProps> = ({courses, droppableId, handleUndo}) => {
+  const canUndo = droppableId.indexOf('selected') !== -1;
+  
+  const handleUndoClick = (course: Course) => {
+    if (!canUndo) {
+      return;
+    }
+
+    const selectedTermId = droppableId.split('-')[1];
+    handleUndo(course.id, selectedTermId);
+  }
+
   return (
     <Droppable droppableId={droppableId}>
       {(provided) => (
@@ -16,7 +28,10 @@ export const ScheduleDraggable: React.FC<ScheduleDraggableProps> = ({courses, dr
               <Draggable key={course.id} draggableId={course.id.toString()} index={index}>
                 {(provided) => (
                   <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                    <ScheduleRow course={course} />
+                    <ScheduleRow
+                      course={course}
+                      canUndo={canUndo}
+                      handleUndoClick={handleUndoClick}/>
                   </div>
                 )}
               </Draggable>

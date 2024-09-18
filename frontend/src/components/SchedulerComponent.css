@@ -7,26 +7,42 @@
 .schedule-row {
   box-sizing: border-box;
   display: flex;
-  width: 482px;
+  min-width: 522px;
   gap: 5px;
   padding: 10px;
   border: var(--border-size) var(--border-table) solid;
 }
 
-.schedule-row div:nth-child(1) {
+.schedule-row .undo-button {
+  display: flex;
+  align-items: center;
+}
+
+.schedule-row svg {
+  cursor: pointer;
+  width: 14px;
+}
+
+.schedule-row div:nth-last-child(3) {
   width: 80px;
 }
 
-.schedule-row div:nth-child(2) {
+.schedule-row div:nth-last-child(2) {
   width: 350px;
 }
 
-.schedule-row div:nth-child(3) {
-  width: 20px;
+.schedule-row div:last-child {
+  width: 60px;
   text-align: center;
 }
 
 .schedule-draggable {
   min-height: calc(5 * 41.5px);
-  width: 482px;
+  min-width: 542px;
+}
+
+.term-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
