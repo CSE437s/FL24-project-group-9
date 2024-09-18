@@ -1,0 +1,6 @@
+.header-bar {
+  background-color: var(--primary-red);
+  padding: 2rem;
+  font-size: var(--font-h3);
+  color: var(--text-white);
+}

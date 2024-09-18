@@ -1,0 +1,68 @@
+{
+  "id": "1",
+  "name": "John Doe",
+  "email": "john.doe@wustl.edu",
+  "year": "05-2026",
+  "major": "Computer Science",
+  "minor": "Mathematics",
+  "career": "Software Engineer",
+  "interests": ["Machine Learning", "Data Science", "Web Development"],
+  "taken": [
+    {
+      "id": "1",
+      "department": "CSE",
+      "code": "131",
+      "title": "Introduction to Computer Science",
+      "term": "1",
+      "year": 2023,
+      "credits": 3
+    },
+    {
+      "id": "2",
+      "department": "CSE",
+      "code": "247",
+      "title": "Data Structures and Algorithms",
+      "term": "1",
+      "year": 2023,
+      "credits": 3
+    },
+    {
+      "id": "3",
+      "department": "CSE",
+      "code": "332",
+      "title": "Object-Oriented Software Development",
+      "term": "2",
+      "year": 2024,
+      "credits": 3
+    }
+  ],
+  "recommended": [
+    {
+      "id": "4",
+      "department": "CSE",
+      "code": "132",
+      "title": "Introduction to Computer Engineering",
+      "term": "1",
+      "year": 2024,
+      "credits": 3
+    },
+    {
+      "id": "5",
+      "department": "CSE",
+      "code": "247R",
+      "title": "Data Structures and Algorithms Seminar",
+      "term": "1",
+      "year": 2024,
+      "credits": 3
+    },
+    {
+      "id": "6",
+      "department": "CSE",
+      "code": "438",
+      "title": "Software Engineering Workshop",
+      "term": "2",
+      "year": 2025,
+      "credits": 3
+    }
+  ]
+}
