@@ -1,5 +1,5 @@
 import HeaderBar from "../components/HeaderBar";
-import { ScheduleBlock } from "../components/ScheduleBlock";
+import { ScheduleBlock } from "../components/SchedulerComponent";
 import './SchedulerPage.css'
 
 export default function SchedulerPage() {

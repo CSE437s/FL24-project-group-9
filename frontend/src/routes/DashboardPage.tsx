@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import HeaderBar from "../components/HeaderBar";
 import { Course } from "../models/Course";
 import StudentAPI from "../services/StudentAPI";
-import { ScheduleBlock } from "../components/ScheduleBlock";
+import { ScheduleRow } from "../components/ScheduleRow";
 
 export default function DashboardPage() {
   const [courses, setCourses] = useState<Course[]>([]);
@@ -20,9 +20,13 @@ export default function DashboardPage() {
       <HeaderBar />
       <div>
         <h3>Courses Taken</h3>
-        <ScheduleBlock courses={courses} />
+        {courses.map((course) => (
+          <ScheduleRow key={course.id} course={course} />
+        ))}
         <h3>Recommended</h3>
-        <ScheduleBlock courses={recommendations} />
+        {recommendations.map((course) => (
+          <ScheduleRow key={course.id} course={course} />
+        ))}
       </div>
     </div>
   )
