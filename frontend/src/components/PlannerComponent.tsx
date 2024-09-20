@@ -83,7 +83,7 @@ export const PlannerComponent = () => {
   }
 
   return (
-    <div className="schedule-block">
+    <div className="planner-component">
       <DragDropContext onDragEnd={handleDragDrop}>
         <div className="recommended-block">
           {recommended.map((term) => (

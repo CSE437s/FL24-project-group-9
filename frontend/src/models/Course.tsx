@@ -11,4 +11,5 @@ export type Course = {
   description?: string;
   title: string;
   credits: number;
+  url?: string;
 };

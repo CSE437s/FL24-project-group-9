@@ -2,3 +2,44 @@
   padding: 2rem;
   min-height: calc(100vh - 95px - 56px - 4rem);
 }
+
+.academic-summary {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  column-gap: 5rem;
+}
+
+.academic-summary h4 {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.academic-summary h4 button {
+  background: none;
+  border: none;
+  color: var(--primary-red);
+  font-size: var(--font-h6);
+  font-weight: var(--font-weight-headings);
+  margin-left: 1rem;
+  padding: 0;
+}
+
+.academic-summary h4 button:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
+}
+
+.academic-summary h4 button:focus {
+  outline: none;
+}
+
+.academic-info {
+  padding: 2rem 0;
+}
+
+.academic-info p span,
+.profile-info p span {
+  color: var(--primary-black);
+}
