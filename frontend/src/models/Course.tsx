@@ -8,6 +8,7 @@ export type Course = {
   id: string;
   code: string;
   department: string;
+  description?: string;
   title: string;
   credits: number;
 };

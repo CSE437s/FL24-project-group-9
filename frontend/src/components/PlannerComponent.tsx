@@ -1,7 +1,7 @@
-import { Term } from '../models/Course'
-import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { useEffect, useState } from 'react';
-import StudentAPI from '../services/StudentAPI';
+import { DragDropContext, DropResult } from "react-beautiful-dnd";
+import { Term } from '../models/Course'
+import PlannerAPI from '../services/PlannerAPI';
 import { ScheduleDraggable } from './ScheduleDraggable';
 import './PlannerComponent.css'
 
@@ -11,11 +11,11 @@ export const PlannerComponent = () => {
   const [selected, setSelected] = useState<Term[]>([]);
 
   useEffect(() => {
-    StudentAPI.getStudent().then((student) => {
-      setRecommended(student.recommended);
-      setRecommendedStatic(JSON.parse(JSON.stringify(student.recommended)));
+    PlannerAPI.getPlanner().then((plan) => {
+      setRecommended(plan.recommended);
+      setRecommendedStatic(JSON.parse(JSON.stringify(plan.recommended)));
 
-      const selectedTerms = student.recommended.map((term) => {
+      const selectedTerms = plan.recommended.map((term) => {
         return {
           id: term.id,
           term: term.term,

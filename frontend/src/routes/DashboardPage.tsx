@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { HeaderBar } from "../components/HeaderBar";
 import { Term } from "../models/Course";
-import StudentAPI from "../services/StudentAPI";
+import PlannerAPI from "../services/PlannerAPI";
 import { ScheduleRow } from "../components/ScheduleRow";
 import { FooterBar } from "../components/FooterBar";
 import './DashboardPage.css';
@@ -11,9 +11,9 @@ export default function DashboardPage() {
   const [recommended, setRecommended] = useState<Term[]>([]);
 
   useEffect(() => {
-    StudentAPI.getStudent().then((student) => {
-      setTaken(student.taken);
-      setRecommended(student.recommended);
+    PlannerAPI.getPlanner().then((plan) => {
+      setTaken(plan.taken);
+      setRecommended(plan.recommended);
     });
   }, []);
 
