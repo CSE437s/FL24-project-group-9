@@ -3,6 +3,7 @@ import { HeaderBar } from "../components/HeaderBar";
 import StudentAPI from "../services/StudentAPI";
 import { Student } from "../models/Student";
 import './ProfilePage.css';
+import { FooterBar } from "../components/FooterBar";
 
 export default function ProfilePage() {
   const [student, setStudent] = useState<Student | null>(null);
@@ -14,7 +15,7 @@ export default function ProfilePage() {
   }, []);
 
   return (
-    <div>
+    <>
       <HeaderBar isNavVisible={true}/>
       <div className="profile-page">
         {student ? (
@@ -28,6 +29,7 @@ export default function ProfilePage() {
           <p>Loading...</p>
         )}
       </div>
-    </div>
+      <FooterBar />
+    </>
   )
 }

@@ -1,3 +1,4 @@
+import { FooterBar } from "../components/FooterBar";
 import { HeaderBar } from "../components/HeaderBar";
 import { ScheduleBlock } from "../components/SchedulerComponent";
 import './SchedulerPage.css'
@@ -21,6 +22,7 @@ export default function SchedulerPage() {
           <button onClick={handleSave}>Save Schedule</button>
         </div>
       </div>
+      <FooterBar />
     </>
   );
 }

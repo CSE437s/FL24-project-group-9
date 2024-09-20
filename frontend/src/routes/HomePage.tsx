@@ -1,3 +1,4 @@
+import { FooterBar } from "../components/FooterBar";
 import { HeaderBar } from "../components/HeaderBar";
 import './HomePage.css';
 
@@ -15,9 +16,7 @@ export default function HomePage() {
           <button onClick={() => window.location.href = '/profile'}>Get Started</button>
         </section>
       </div>
-      <footer>
-        <p>&copy; WashU 2024</p>
-      </footer>
+      <FooterBar />
     </>
   )
 }

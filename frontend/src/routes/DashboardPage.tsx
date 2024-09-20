@@ -4,6 +4,7 @@ import { Term } from "../models/Course";
 import StudentAPI from "../services/StudentAPI";
 import { ScheduleRow } from "../components/ScheduleRow";
 import './DashboardPage.css';
+import { FooterBar } from "../components/FooterBar";
 
 export default function DashboardPage() {
   const [taken, setTaken] = useState<Term[]>([]);
@@ -39,6 +40,7 @@ export default function DashboardPage() {
           </div>
         ))}
       </div>
+      <FooterBar />
     </>
   )
 }
