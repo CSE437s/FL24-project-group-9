@@ -1,9 +1,9 @@
-.scheduler-page {
+.planner-page {
   padding: 2rem;
   min-height: calc(100vh - 95px - 56px - 4rem);
 }
 
-.scheduler-buttons {
+.planner-buttons {
   display: flex;
   align-items: center;
   justify-content: space-around;

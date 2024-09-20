@@ -3,9 +3,9 @@ import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { useEffect, useState } from 'react';
 import StudentAPI from '../services/StudentAPI';
 import { ScheduleDraggable } from './ScheduleDraggable';
-import './SchedulerComponent.css'
+import './PlannerComponent.css'
 
-export const ScheduleBlock = () => {
+export const PlannerComponent = () => {
   const [recommendedStatic, setRecommendedStatic] = useState<Term[]>([]);
   const [recommended, setRecommended] = useState<Term[]>([]);
   const [selected, setSelected] = useState<Term[]>([]);

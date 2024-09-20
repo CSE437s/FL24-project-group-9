@@ -1,9 +1,9 @@
 import { FooterBar } from "../components/FooterBar";
 import { HeaderBar } from "../components/HeaderBar";
-import { ScheduleBlock } from "../components/SchedulerComponent";
-import './SchedulerPage.css'
+import { PlannerComponent } from "../components/PlannerComponent";
+import './PlannerPage.css'
 
-export default function SchedulerPage() {
+export default function PlannerPage() {
   const handleBack = () => {
     window.location.href = '/profile';
   }
@@ -15,9 +15,9 @@ export default function SchedulerPage() {
   return (
     <>
       <HeaderBar isNavVisible={true}/>
-      <div className="scheduler-page">
-        <ScheduleBlock />
-        <div className="scheduler-buttons">
+      <div className="planner-page">
+        <PlannerComponent />
+        <div className="planner-buttons">
           <button onClick={handleBack}>Back to Profile</button>
           <button onClick={handleSave}>Save Schedule</button>
         </div>

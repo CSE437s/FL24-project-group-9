@@ -3,8 +3,8 @@ import { HeaderBar } from "../components/HeaderBar";
 import { Term } from "../models/Course";
 import StudentAPI from "../services/StudentAPI";
 import { ScheduleRow } from "../components/ScheduleRow";
-import './DashboardPage.css';
 import { FooterBar } from "../components/FooterBar";
+import './DashboardPage.css';
 
 export default function DashboardPage() {
   const [taken, setTaken] = useState<Term[]>([]);
