@@ -2,6 +2,7 @@ import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginPage from './routes/LoginPage';
 import HomePage from './routes/HomePage';
+import ProfileEditPage from './routes/ProfileEditPage';
 import ProfilePage from './routes/ProfilePage';
 import PlannerPage from './routes/PlannerPage';
 import DashboardPage from './routes/DashboardPage';
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginPage />,
+  },
+  {
+    path: "/profile/edit",
+    element: <ProfileEditPage />,
   },
   {
     path: "/profile",

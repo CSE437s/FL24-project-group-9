@@ -1,0 +1,49 @@
+.profile-edit-page {
+  padding: 2rem;
+  min-height: calc(100vh - 95px - 56px - 4rem);
+}
+
+.academic-info p > label {
+  color: var(--primary-black);
+  width: 100px;
+  text-align: right;
+}
+
+.academic-info p {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.academic-info p input[type="text"],
+.academic-info p input[type="month"],
+.academic-info p select {
+  box-sizing: border-box;
+  width: 250px;
+  font-size: var(--font-h6);
+  padding: 0.25rem 0.5rem;
+  overflow-x: scroll;
+}
+
+.interests-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 1rem;
+}
+
+.interests > label {
+  align-self: flex-start;
+}
+
+.interests-input div {
+  display: flex;
+  width: 100%;
+}
+
+.interests-input input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+  font-size: 1rem;
+}

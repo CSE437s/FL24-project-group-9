@@ -22,7 +22,8 @@ export default function ProfilePage() {
     });
   }, []);
 
-  const handleEditAcademic = () => {
+  const handleEdit = () => {
+    window.location.href = '/profile/edit';
   }
 
   return (
@@ -41,7 +42,7 @@ export default function ProfilePage() {
           )}
         </section>
         <section className="academic-summary">
-          <h4>Academic Summary<button onClick={handleEditAcademic}>Edit</button></h4>
+          <h4>Academic Summary<button onClick={handleEdit}>Edit</button></h4>
           <div className="academic-history">
             {taken.map((term) => (
               <div key={term.id}>
@@ -51,6 +52,7 @@ export default function ProfilePage() {
                 ))}
               </div>
             ))}
+            {taken.length === 0 ? <h4>No Courses Added</h4> : <></>}
           </div>
           <div className="academic-info">
             {student ? (

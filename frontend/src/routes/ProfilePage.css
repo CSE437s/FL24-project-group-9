@@ -43,3 +43,7 @@
 .profile-info p span {
   color: var(--primary-black);
 }
+
+.academic-history {
+  min-width: 522px;
+}
