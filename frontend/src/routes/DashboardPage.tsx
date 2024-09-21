@@ -22,7 +22,9 @@ export default function DashboardPage() {
         <h3>Current Schedule</h3>
         {selected.map((term) => (
           <div key={term.id}>
-            <h4>{term.term}</h4>
+            <div className="term-header">
+              <span className="term-info">{term.term}</span>
+            </div>
             {term.courses.map((course) => (
               <ScheduleRow key={course.id} course={course} />
             ))}
