@@ -1,5 +1,5 @@
 .profile-page {
-  padding: 2rem;
+  padding: 2rem 3rem;
   min-height: calc(100vh - 95px - 56px - 4rem);
 }
 
@@ -7,7 +7,7 @@
   display: flex;
   width: 100%;
   flex-wrap: wrap;
-  column-gap: 5rem;
+  column-gap: 6rem;
 }
 
 .academic-summary h4 {
@@ -35,7 +35,7 @@
   outline: none;
 }
 
-.academic-info {
+.profile-page .academic-info {
   padding: 2rem 0;
 }
 
