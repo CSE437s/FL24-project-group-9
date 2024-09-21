@@ -35,10 +35,6 @@
   outline: none;
 }
 
-.profile-page .academic-info {
-  padding: 2rem 0;
-}
-
 .academic-info p span,
 .profile-info p span {
   color: var(--primary-black);

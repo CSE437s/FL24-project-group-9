@@ -29,7 +29,7 @@ export const PlannerComponent: React.FC<PlannerComponentProps> = ({selected, set
 
       setSelected(selectedTerms);
     });
-  }, []);
+  }, [setSelected]);
 
   const handleDragDrop = (result: DropResult) => {
     const { source, destination } = result;
