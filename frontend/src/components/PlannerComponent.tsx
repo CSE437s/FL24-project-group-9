@@ -3,6 +3,7 @@ import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { Term } from '../models/Course'
 import PlannerAPI from '../services/PlannerAPI';
 import { ScheduleDraggable } from './ScheduleDraggable';
+import { utils } from '../utils';
 import './PlannerComponent.css'
 
 interface PlannerComponentProps {
@@ -82,10 +83,6 @@ export const PlannerComponent: React.FC<PlannerComponentProps> = ({selected, set
     setSelected([...selected]);
   }
 
-  const getTotalUnits = (term: Term) => {
-    return term.courses.reduce((acc, course) => acc + course.credits, 0);
-  }
-
   return (
     <div className="planner-component">
       <DragDropContext onDragEnd={handleDragDrop}>
@@ -107,7 +104,7 @@ export const PlannerComponent: React.FC<PlannerComponentProps> = ({selected, set
             <div key={term.id} className="schedule-term">
               <div className="term-header">
                 <span className="term-info">{term.term}</span>
-                <span className="term-units">Total Units: {getTotalUnits(term)}</span>
+                <span className="term-units">Total Units: {utils.getTotalUnits(term)}</span>
               </div>
               <ScheduleDraggable
                 courses={term.courses}

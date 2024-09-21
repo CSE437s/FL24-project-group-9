@@ -1,5 +1,9 @@
 import { Term } from "./models/Course";
 
+const getTotalUnits = (term: Term) => {
+  return term.courses.reduce((acc, course) => acc + course.credits, 0);
+}
+
 const sortTerms = (terms: string[]): string[] => {
   return terms.sort((a, b) => {
     const [seasonA, yearA] = a.split(' ');
@@ -43,6 +47,7 @@ const sortTermObjects = (terms: Term[]): Term[] => {
 };
 
 export const utils = {
+  getTotalUnits,
   sortTerms,
   sortTermObjects
 };
