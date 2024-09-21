@@ -1,21 +1,34 @@
 import { API_URL } from './config.tsx'
 import { Planner } from '../models/Planner.tsx';
+import { Term } from '../models/Course.tsx';
 import data from './data/planner.json'
 
 async function getPlanner(): Promise<Planner> {
   return data;
 }
 
-async function updateSelectedPlan(planner: Planner): Promise<Planner> {
+async function updateTakenPlan(term: Term[]): Promise<Planner> {
   const options = {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({planner}),
+    body: JSON.stringify({term}),
   }
-  const response = await fetch(`${API_URL}/api/planner/`, options)
+  const response = await fetch(`${API_URL}/api/planner/taken`, options)
   return response.json()
 }
 
-export default { getPlanner, updateSelectedPlan }
+async function updateSelectedPlan(term: Term[]): Promise<Planner> {
+  const options = {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({term}),
+  }
+  const response = await fetch(`${API_URL}/api/planner/selected`, options)
+  return response.json()
+}
+
+export default { getPlanner, updateTakenPlan, updateSelectedPlan }

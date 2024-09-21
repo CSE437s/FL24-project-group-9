@@ -5,10 +5,14 @@ import PlannerAPI from '../services/PlannerAPI';
 import { ScheduleDraggable } from './ScheduleDraggable';
 import './PlannerComponent.css'
 
-export const PlannerComponent = () => {
+interface PlannerComponentProps {
+  selected: Term[];
+  setSelected: (selected: Term[]) => void;
+}
+
+export const PlannerComponent: React.FC<PlannerComponentProps> = ({selected, setSelected}) => {
   const [recommendedStatic, setRecommendedStatic] = useState<Term[]>([]);
   const [recommended, setRecommended] = useState<Term[]>([]);
-  const [selected, setSelected] = useState<Term[]>([]);
 
   useEffect(() => {
     PlannerAPI.getPlanner().then((plan) => {

@@ -97,6 +97,11 @@ export default function ProfileEditPage() {
   }
 
   const handleSave = () => {
+    if (student) {
+      StudentAPI.updateStudent(student);
+    }
+
+    PlannerAPI.updateTakenPlan(taken);
   }
 
   const addCourse = () => {
