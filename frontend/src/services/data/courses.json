@@ -1,0 +1,65 @@
+[
+  {
+    "id": "1",
+    "department": "CSE",
+    "code": "131",
+    "title": "Introduction to Computer Science",
+    "credits": 3
+  },
+  {
+    "id": "2",
+    "department": "CSE",
+    "code": "247",
+    "title": "Data Structures and Algorithms",
+    "credits": 3
+  },
+  {
+    "id": "3",
+    "department": "CSE",
+    "code": "247R",
+    "title": "Data Structures and Algorithms Seminar",
+    "credits": 1
+  },
+  {
+    "id": "4",
+    "department": "CSE",
+    "code": "132",
+    "title": "Introduction to Computer Engineering",
+    "credits": 3
+  },
+  {
+    "id": "5",
+    "department": "CSE",
+    "code": "332",
+    "title": "Object-Oriented Software Development",
+    "credits": 3
+  },
+  {
+    "id": "6",
+    "department": "CSE",
+    "code": "437",
+    "title": "Software Engineering Workshop",
+    "credits": 3
+  },
+  {
+    "id": "7",
+    "department": "CSE",
+    "code": "438",
+    "title": "Mobile Application Development",
+    "credits": 3
+  },
+  {
+    "id": "8",
+    "department": "CSE",
+    "code": "473",
+    "title": "Introduction to Computer Networks",
+    "credits": 3
+  },
+  {
+    "id": "9",
+    "department": "CSE",
+    "code": "450",
+    "title": "Video Game Programming",
+    "credits": 3
+  }
+]

@@ -1,0 +1,15 @@
+.planner-page {
+  padding: 2rem 3rem;
+  min-height: calc(100vh - 95px - 56px - 4rem);
+}
+
+.planner-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 1.5rem;
+}
+
+.planner-buttons button {
+  margin: 1rem;
+}
