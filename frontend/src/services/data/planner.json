@@ -1,0 +1,194 @@
+{
+  "taken": [
+    {
+      "id": "1",
+      "term": "Fall 2024",
+      "courses": [
+        {
+          "id": "1",
+          "department": "CSE",
+          "code": "131",
+          "title": "Introduction to Computer Science",
+          "credits": 3
+        },
+        {
+          "id": "2",
+          "department": "CSE",
+          "code": "247",
+          "title": "Data Structures and Algorithms",
+          "credits": 3
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "term": "Spring 2025",
+      "courses": [
+        {
+          "id": "3",
+          "department": "CSE",
+          "code": "247R",
+          "title": "Data Structures and Algorithms Seminar",
+          "credits": 1
+        }
+      ]
+    }
+  ],
+  "recommended": [
+    {
+      "id": "3",
+      "term": "Fall 2025",
+      "courses": [
+        {
+          "id": "4",
+          "department": "CSE",
+          "code": "132",
+          "title": "Introduction to Computer Engineering",
+          "credits": 3
+        },
+        {
+          "id": "5",
+          "department": "CSE",
+          "code": "332",
+          "title": "Object-Oriented Software Development",
+          "credits": 3
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "term": "Spring 2026",
+      "courses": [
+          {
+            "id": "6",
+            "department": "CSE",
+            "code": "437",
+            "title": "Software Engineering Workshop",
+            "credits": 3
+          }
+      ]
+    },
+    {
+      "id": "5",
+      "term": "Fall 2026",
+      "courses": [
+        {
+          "id": "7",
+          "department": "CSE",
+          "code": "438",
+          "title": "Mobile Application Development",
+          "credits": 3
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "term": "Spring 2027",
+      "courses": [
+        {
+          "id": "8",
+          "department": "CSE",
+          "code": "473",
+          "title": "Introduction to Computer Networks",
+          "credits": 3
+        },
+        {
+          "id": "9",
+          "department": "CSE",
+          "code": "450",
+          "title": "Video Game Programming",
+          "credits": 3
+        }
+      ]
+    }
+  ],
+  "selected": [
+    {
+      "id": "3",
+      "term": "Fall 2025",
+      "courses": [
+        {
+          "id": "4",
+          "department": "CSE",
+          "code": "132",
+          "title": "Introduction to Computer Engineering",
+          "credits": 3
+        },
+        {
+          "id": "5",
+          "department": "CSE",
+          "code": "332",
+          "title": "Object-Oriented Software Development",
+          "credits": 3
+        },
+        {
+          "id": "1",
+          "department": "CSE",
+          "code": "131",
+          "title": "Introduction to Computer Science",
+          "credits": 3
+        },
+        {
+          "id": "2",
+          "department": "CSE",
+          "code": "247",
+          "title": "Data Structures and Algorithms",
+          "credits": 3
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "term": "Spring 2026",
+      "courses": [
+        {
+          "id": "6",
+          "department": "CSE",
+          "code": "437",
+          "title": "Software Engineering Workshop",
+          "credits": 3
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "term": "Fall 2026",
+      "courses": [
+        {
+          "id": "7",
+          "department": "CSE",
+          "code": "438",
+          "title": "Mobile Application Development",
+          "credits": 3
+        },
+        {
+          "id": "3",
+          "department": "CSE",
+          "code": "247R",
+          "title": "Data Structures and Algorithms Seminar",
+          "credits": 1
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "term": "Spring 2027",
+      "courses": [
+        {
+          "id": "8",
+          "department": "CSE",
+          "code": "473",
+          "title": "Introduction to Computer Networks",
+          "credits": 3
+        },
+        {
+          "id": "9",
+          "department": "CSE",
+          "code": "450",
+          "title": "Video Game Programming",
+          "credits": 3
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "1",
+  "name": "John Doe",
+  "email": "john.doe@wustl.edu",
+  "year": "2026-05",
+  "major": "Computer Science",
+  "minor": "Mathematics",
+  "career": "Software Engineer",
+  "interests": ["Machine Learning", "Data Science", "Web Development"]
+}

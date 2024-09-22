@@ -7,12 +7,14 @@
   border: var(--border-size) var(--border-table) solid;
 }
 
-.schedule-row .undo-button {
+.schedule-row .undo-button,
+.schedule-row .remove-button {
   display: flex;
   align-items: center;
 }
 
-.schedule-row .undo-button:hover svg {
+.schedule-row .undo-button:hover svg,
+.schedule-row .remove-button:hover svg {
   fill: var(--primary-red);
 }
 
@@ -21,15 +23,15 @@
   width: 14px;
 }
 
-.schedule-row div:nth-last-child(3) {
+.schedule-row .course-code {
   width: 80px;
 }
 
-.schedule-row div:nth-last-child(2) {
+.schedule-row .course-title {
   width: 350px;
 }
 
-.schedule-row div:last-child {
+.schedule-row .course-units {
   width: 60px;
   text-align: center;
 }

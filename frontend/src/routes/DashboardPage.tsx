@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
 import { HeaderBar } from "../components/HeaderBar";
 import { Term } from "../models/Course";
-import StudentAPI from "../services/StudentAPI";
+import PlannerAPI from "../services/PlannerAPI";
 import { ScheduleRow } from "../components/ScheduleRow";
+import { FooterBar } from "../components/FooterBar";
 import './DashboardPage.css';
 
 export default function DashboardPage() {
-  const [taken, setTaken] = useState<Term[]>([]);
-  const [recommended, setRecommended] = useState<Term[]>([]);
+  const [selected, setSelected] = useState<Term[]>([]);
 
   useEffect(() => {
-    StudentAPI.getStudent().then((student) => {
-      setTaken(student.taken);
-      setRecommended(student.recommended);
+    PlannerAPI.getPlanner().then((plan) => {
+      setSelected(plan.selected);
     });
   }, []);
 
@@ -20,25 +19,19 @@ export default function DashboardPage() {
     <>
       <HeaderBar isNavVisible={true}/>
       <div className="dashboard-page">
-        <h3>Courses Taken</h3>
-        {taken.map((term) => (
+        <h3>Current Schedule</h3>
+        {selected.map((term) => (
           <div key={term.id}>
-            <h4>{term.term}</h4>
-            {term.courses.map((course) => (
-              <ScheduleRow key={course.id} course={course} />
-            ))}
-          </div>
-        ))}
-        <h3>Recommended</h3>
-        {recommended.map((term) => (
-          <div key={term.id}>
-            <h4>{term.term}</h4>
+            <div className="term-header">
+              <span className="term-info">{term.term}</span>
+            </div>
             {term.courses.map((course) => (
               <ScheduleRow key={course.id} course={course} />
             ))}
           </div>
         ))}
       </div>
+      <FooterBar />
     </>
   )
 }

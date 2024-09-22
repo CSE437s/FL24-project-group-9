@@ -16,7 +16,7 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({isNavVisible}) => {
       {isNavVisible &&
         <nav>
           <a href="/profile">Profile</a>
-          <a href="/scheduler">Scheduler</a>
+          <a href="/planner">Planner</a>
           <a href="/dashboard">Dashboard</a>
         </nav>
       }

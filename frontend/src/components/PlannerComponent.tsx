@@ -1,21 +1,26 @@
-import { Term } from '../models/Course'
-import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { useEffect, useState } from 'react';
-import StudentAPI from '../services/StudentAPI';
+import { DragDropContext, DropResult } from "react-beautiful-dnd";
+import { Term } from '../models/Course'
+import PlannerAPI from '../services/PlannerAPI';
 import { ScheduleDraggable } from './ScheduleDraggable';
-import './SchedulerComponent.css'
+import { utils } from '../utils';
+import './PlannerComponent.css'
 
-export const ScheduleBlock = () => {
+interface PlannerComponentProps {
+  selected: Term[];
+  setSelected: (selected: Term[]) => void;
+}
+
+export const PlannerComponent: React.FC<PlannerComponentProps> = ({selected, setSelected}) => {
   const [recommendedStatic, setRecommendedStatic] = useState<Term[]>([]);
   const [recommended, setRecommended] = useState<Term[]>([]);
-  const [selected, setSelected] = useState<Term[]>([]);
 
   useEffect(() => {
-    StudentAPI.getStudent().then((student) => {
-      setRecommended(student.recommended);
-      setRecommendedStatic(JSON.parse(JSON.stringify(student.recommended)));
+    PlannerAPI.getPlanner().then((plan) => {
+      setRecommended(plan.recommended);
+      setRecommendedStatic(JSON.parse(JSON.stringify(plan.recommended)));
 
-      const selectedTerms = student.recommended.map((term) => {
+      const selectedTerms = plan.recommended.map((term) => {
         return {
           id: term.id,
           term: term.term,
@@ -25,7 +30,7 @@ export const ScheduleBlock = () => {
 
       setSelected(selectedTerms);
     });
-  }, []);
+  }, [setSelected]);
 
   const handleDragDrop = (result: DropResult) => {
     const { source, destination } = result;
@@ -78,12 +83,8 @@ export const ScheduleBlock = () => {
     setSelected([...selected]);
   }
 
-  const getTotalUnits = (term: Term) => {
-    return term.courses.reduce((acc, course) => acc + course.credits, 0);
-  }
-
   return (
-    <div className="schedule-block">
+    <div className="planner-component">
       <DragDropContext onDragEnd={handleDragDrop}>
         <div className="recommended-block">
           {recommended.map((term) => (
@@ -103,7 +104,7 @@ export const ScheduleBlock = () => {
             <div key={term.id} className="schedule-term">
               <div className="term-header">
                 <span className="term-info">{term.term}</span>
-                <span className="term-units">Total Units: {getTotalUnits(term)}</span>
+                <span className="term-units">Total Units: {utils.getTotalUnits(term)}</span>
               </div>
               <ScheduleDraggable
                 courses={term.courses}

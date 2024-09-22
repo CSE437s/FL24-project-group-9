@@ -28,10 +28,10 @@ export const ScheduleDraggable: React.FC<ScheduleDraggableProps> = ({courses, dr
               <Draggable key={course.id} draggableId={course.id.toString()} index={index}>
                 {(provided) => (
                   <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                    <ScheduleRow
-                      course={course}
-                      canUndo={canUndo}
-                      handleUndoClick={handleUndoClick}/>
+                    {canUndo ?
+                      <ScheduleRow course={course} handleUndoClick={handleUndoClick}/> : 
+                      <ScheduleRow course={course} />
+      }
                   </div>
                 )}
               </Draggable>
