@@ -58,7 +58,7 @@ coverage.xml
 .settings/
 
 # macOS files
-.DS_Store
+**/.DS_Store
 
 # Pytest cache
 .cache/
