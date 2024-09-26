@@ -7,6 +7,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Node.js dependencies
 node_modules
 dist
 dist-ssr
@@ -16,7 +17,7 @@ dist-ssr
 .vscode/*
 !.vscode/extensions.json
 .idea
-**/.DS_Store
+.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
@@ -24,3 +25,40 @@ dist-ssr
 *.sw?
 .env
 
+# Python / Django
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.log
+*.pot
+*.pyc
+*.egg-info/
+.eggs/
+*.egg
+.env
+
+# Static files
+staticfiles/
+media/
+
+# Coverage reports
+htmlcov/
+coverage.xml
+.coverage
+.coverage.*
+
+# Django migrations
+*/migrations/*.py
+*/migrations/*.pyc
+
+# VS Code settings
+.settings/
+
+# macOS files
+.DS_Store
+
+# Pytest cache
+.cache/
