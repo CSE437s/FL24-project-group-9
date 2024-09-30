@@ -4,7 +4,7 @@ import { Term } from '../models/Course'
 import PlannerAPI from '../services/PlannerAPI';
 import { ScheduleDraggable } from './ScheduleDraggable';
 import { utils } from '../utils';
-import './PlannerComponent.css'
+import './css/PlannerComponent.css'
 
 interface PlannerComponentProps {
   selected: Term[];

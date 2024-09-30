@@ -1,7 +1,7 @@
 .planner-component {
   display: flex;
   padding: 10px;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 .schedule-draggable {

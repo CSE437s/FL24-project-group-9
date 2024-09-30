@@ -8,7 +8,7 @@ import { HeaderBar } from "../components/HeaderBar";
 import { FooterBar } from "../components/FooterBar";
 import { ScheduleRow } from "../components/ScheduleRow";
 import { utils } from "../utils";
-import './ProfileEditPage.css';
+import './css/ProfileEditPage.css';
 
 const MAJORS = [
   'Computer Science',

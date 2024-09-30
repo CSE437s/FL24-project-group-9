@@ -6,7 +6,7 @@ import PlannerAPI from "../services/PlannerAPI";
 import { HeaderBar } from "../components/HeaderBar";
 import { FooterBar } from "../components/FooterBar";
 import { ScheduleRow } from "../components/ScheduleRow";
-import './ProfilePage.css';
+import './css/ProfilePage.css';
 
 export default function ProfilePage() {
   const [student, setStudent] = useState<Student | null>(null);

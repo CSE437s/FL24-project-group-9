@@ -1,16 +1,17 @@
 import { useState } from "react";
 import { FooterBar } from "../components/FooterBar";
 import { HeaderBar } from "../components/HeaderBar";
-import './LoginPage.css'
+import './css/LoginPage.css'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [emailEntered, setEmailEntered] = useState(false)
   const [userExisted, setUserExisted] = useState(false)
+  const [message, setMessage] = useState('')
 
   const checkUser = () => {
     // TODO: call from API
-    setUserExisted(true)
+    setUserExisted(false)
   }
 
   const handleEmailEntered = (event: React.FormEvent) => {
@@ -20,17 +21,20 @@ export default function LoginPage() {
   }
 
   const handleBack = () => {
+    setMessage('')
     setEmailEntered(false)
     setUserExisted(false)
   }
 
   const handleLogin = (event: React.FormEvent) => {
     event.preventDefault()
-    window.location.href = '/profile'
+    setMessage('wrong password, please try again')
+    // window.location.href = '/profile'
   }
 
   const handleSignUp = (event: React.FormEvent) => {
     event.preventDefault()
+    setMessage('')
     window.location.href = '/profile'
   }
 
@@ -98,6 +102,7 @@ export default function LoginPage() {
             </form>
           </div>}
         </section>
+        <div className="login-message">{message}</div>
       </div>
       <FooterBar />
     </>

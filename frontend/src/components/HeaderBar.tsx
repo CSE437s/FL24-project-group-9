@@ -1,5 +1,5 @@
 import logo from '../assets/logo.svg'
-import './HeaderBar.css'
+import './css/HeaderBar.css'
 
 interface HeaderBarProps {
   isNavVisible?: boolean;
