@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useAuthContext } from '../context/useAuthContext';
+import { useAuthContext } from '../context/useContext';
 import logo from '../assets/logo.svg'
 import './css/HeaderBar.css'
 

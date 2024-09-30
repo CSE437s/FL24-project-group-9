@@ -9,6 +9,7 @@ import DashboardPage from './routes/DashboardPage';
 import ProtectedRoute from './routes/ProtectedRoute';
 import { AuthProvider } from './context/AuthContext';
 import './index.css'
+import { AcademicDataProvider } from './context/AcademicDataContext';
 
 const router = createBrowserRouter([
   {
@@ -59,6 +60,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <AuthProvider>
-    <RouterProvider router={router} />
+    <AcademicDataProvider>
+      <RouterProvider router={router} />
+    </AcademicDataProvider>
   </AuthProvider>
 )
