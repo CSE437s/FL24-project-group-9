@@ -1,8 +1,21 @@
+import { useNavigate } from "react-router-dom";
 import { FooterBar } from "../components/FooterBar";
 import { HeaderBar } from "../components/HeaderBar";
-import './HomePage.css';
+import { useAuthContext } from "../context/useContext";
+import './css/HomePage.css';
 
 export default function HomePage() {
+  const { isLoggedIn } = useAuthContext();
+  const navigate = useNavigate();
+
+  const handleGetStarted = () => {
+    if (isLoggedIn) {
+      navigate('/profile');
+      return;
+    }
+    navigate('/login');
+  }
+
   return (
     <>
       <HeaderBar />
@@ -12,8 +25,7 @@ export default function HomePage() {
           <p>CoursePlanner is a tool to help you plan your college courses.</p>
         </header>
         <section className="home-body">
-          {/* TODO: redirect to login */}
-          <button onClick={() => window.location.href = '/profile'}>Get Started</button>
+          <button onClick={handleGetStarted}>Get Started</button>
         </section>
       </div>
       <FooterBar />

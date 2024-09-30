@@ -1,61 +1,21 @@
 import { useEffect, useState } from "react";
 import { Student } from "../models/Student";
 import { Course, Term } from "../models/Course";
-import CoursesAPI from "../services/CoursesAPI";
 import StudentAPI from "../services/StudentAPI";
 import PlannerAPI from "../services/PlannerAPI";
+import { useAcademicDataContext } from "../context/useContext";
 import { HeaderBar } from "../components/HeaderBar";
 import { FooterBar } from "../components/FooterBar";
 import { ScheduleRow } from "../components/ScheduleRow";
 import { utils } from "../utils";
-import './ProfileEditPage.css';
-
-const MAJORS = [
-  'Computer Science',
-  'Electrical Engineering',
-  'Mechanical Engineering',
-  'Civil Engineering',
-  'Chemical Engineering',
-  'Biomedical Engineering',
-  'Business Administration',
-  'Economics',
-  'Psychology',
-  'Biology',
-  'Mathematics',
-];
-
-const INTERESTS = [
-  'Artificial Intelligence',
-  'Machine Learning',
-  'Data Science',
-  'Web Development',
-  'Mobile Development',
-  'Cybersecurity',
-  'Cloud Computing',
-  'Internet of Things',
-  'Blockchain',
-  'Game Development'
-];
-
-const SEMESTERS = [
-  'Fall 2023',
-  'Spring 2024',
-  'Fall 2024',
-  'Spring 2025',
-  'Fall 2025',
-  'Spring 2026',
-  'Fall 2026',
-  'Spring 2027',
-  'Fall 2027',
-  'Spring 2028',
-];
+import './css/ProfileEditPage.css';
 
 export default function ProfileEditPage() {
+  const { courses, majors, minors, semesters } = useAcademicDataContext()
   const [student, setStudent] = useState<Student | null>(null);
   const [taken, setTaken] = useState<Term[]>([]);
-  const [courses, setCourses] = useState<Course[]>([]);
-  const [newCourse, setNewCourse] = useState('');
-  const [newSemester, setNewSemester] = useState(SEMESTERS[0]);
+  const [newCourse, setNewCourse] = useState(courses[0].id);
+  const [newSemester, setNewSemester] = useState(semesters[0]);
 
   useEffect(() => {
     StudentAPI.getStudent().then((student) => {
@@ -64,11 +24,6 @@ export default function ProfileEditPage() {
   
     PlannerAPI.getPlanner().then((plan) => {
       setTaken(plan.taken);
-    });
-
-    CoursesAPI.getAllCourses().then((courses) => {
-      setCourses(courses);
-      setNewCourse(courses[0].id);
     });
   }, []);
 
@@ -81,20 +36,20 @@ export default function ProfileEditPage() {
     }
   }
 
-  const handleCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const interest = e.target.id.replace('interest-', '');
+  // const handleCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const interest = e.target.id.replace('interest-', '');
 
-    if (!student) {
-      return;
-    }
+  //   if (!student) {
+  //     return;
+  //   }
 
-    if (e.target.checked) {
-      setStudent({...student, interests: [...student.interests ?? [], INTERESTS[parseInt(interest)]]});
-    }
-    else {
-      setStudent({...student, interests: student.interests?.filter((item) => item !== INTERESTS[parseInt(interest)])});
-    }
-  }
+  //   if (e.target.checked) {
+  //     setStudent({...student, interests: [...student.interests ?? [], interests[parseInt(interest)]]});
+  //   }
+  //   else {
+  //     setStudent({...student, interests: student.interests?.filter((item) => item !== interests[parseInt(interest)])});
+  //   }
+  // }
 
   const handleSave = () => {
     if (student) {
@@ -154,7 +109,7 @@ export default function ProfileEditPage() {
                   value={newSemester}
                   onChange={e => setNewSemester(e.target.value)}
                 >
-                  {SEMESTERS.map((semester, index) => (
+                  {semesters.map((semester, index) => (
                     <option key={index} value={semester}>{semester}</option>
                   ))}
                 </select>
@@ -184,7 +139,7 @@ export default function ProfileEditPage() {
                     defaultValue={student.major}
                     onChange={e => setStudent({...student, major: e.target.value})}
                   >
-                    { MAJORS.map((major, index) => <option key={index} value={major}>{major}</option>) }
+                    { majors.map((major, index) => <option key={index} value={major}>{major}</option>) }
                   </select>
                 </p>
                 <p>
@@ -193,8 +148,7 @@ export default function ProfileEditPage() {
                     defaultValue={student.minor}
                     onChange={e => setStudent({...student, minor: e.target.value})}
                   >
-                    {/* TODO: change to minors */}
-                    { MAJORS.map((minor, index) => <option key={index} value={minor}>{minor}</option>) }
+                    { minors.map((minor, index) => <option key={index} value={minor}>{minor}</option>) }
                   </select>
                 </p>
                 <p>
@@ -211,10 +165,10 @@ export default function ProfileEditPage() {
                     onChange={e => setStudent({...student, career: e.target.value})}
                   />
                 </p>
-                <div className="interests">
+                {/* <div className="interests">
                   <label>Interests:</label>
                   <div className="interests-input">
-                    {INTERESTS.map((interest, index) => (
+                    {interests.map((interest, index) => (
                       <div key={index}>
                         <input
                           type="checkbox" id={`interest-${index}`}
@@ -225,7 +179,7 @@ export default function ProfileEditPage() {
                       </div>
                     ))}
                   </div>
-                </div>
+                </div> */}
               </>
             ) : <></>}
           </div>

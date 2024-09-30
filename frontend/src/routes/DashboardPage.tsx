@@ -4,7 +4,7 @@ import { Term } from "../models/Course";
 import PlannerAPI from "../services/PlannerAPI";
 import { ScheduleRow } from "../components/ScheduleRow";
 import { FooterBar } from "../components/FooterBar";
-import './DashboardPage.css';
+import './css/DashboardPage.css';
 
 export default function DashboardPage() {
   const [selected, setSelected] = useState<Term[]>([]);
