@@ -1,4 +1,4 @@
-import './FooterBar.css'
+import './css/FooterBar.css'
 
 export const FooterBar = () => {
   return (
