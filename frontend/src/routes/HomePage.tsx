@@ -1,17 +1,19 @@
+import { useNavigate } from "react-router-dom";
 import { FooterBar } from "../components/FooterBar";
 import { HeaderBar } from "../components/HeaderBar";
-import { useAuthContext } from "../context/AuthContext";
+import { useAuthContext } from "../context/useAuthContext";
 import './css/HomePage.css';
 
 export default function HomePage() {
   const { isLoggedIn } = useAuthContext();
+  const navigate = useNavigate();
 
   const handleGetStarted = () => {
     if (isLoggedIn) {
-      window.location.href = '/profile';
+      navigate('/profile');
       return;
     }
-    window.location.href = '/login';
+    navigate('/login');
   }
 
   return (

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Term } from "../models/Course";
 import { FooterBar } from "../components/FooterBar";
 import { HeaderBar } from "../components/HeaderBar";
@@ -7,15 +8,16 @@ import PlannerAPI from "../services/PlannerAPI";
 import './css/PlannerPage.css'
 
 export default function PlannerPage() {
+  const navigate = useNavigate();
   const [selected, setSelected] = useState<Term[]>([]);
 
   const handleBack = () => {
-    window.location.href = '/profile';
+    navigate('/profile');
   }
 
   const handleSave = () => {
     PlannerAPI.updateSelectedPlan(selected);
-    window.location.href = '/dashboard';
+    navigate('/dashboard');
   }
 
   return (

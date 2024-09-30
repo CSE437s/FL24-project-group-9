@@ -22,6 +22,10 @@
   gap: 1.5rem;
 }
 
+.header-bar nav a {
+  cursor: pointer;
+}
+
 .header-bar nav a:hover {
   text-decoration: underline;
   text-underline-offset: 0.25rem;

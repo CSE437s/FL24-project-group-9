@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../context/useAuthContext";
 import { FooterBar } from "../components/FooterBar";
 import { HeaderBar } from "../components/HeaderBar";
 import './css/LoginPage.css'
 
 export default function LoginPage() {
+  const { isLoggedIn, login, signup } = useAuthContext()
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState('')
   const [emailEntered, setEmailEntered] = useState(false)
   const [userExisted, setUserExisted] = useState(false)
@@ -11,7 +16,7 @@ export default function LoginPage() {
 
   const checkUser = () => {
     // TODO: call from API
-    setUserExisted(false)
+    setUserExisted(true)
   }
 
   const handleEmailEntered = (event: React.FormEvent) => {
@@ -29,14 +34,20 @@ export default function LoginPage() {
   const handleLogin = (event: React.FormEvent) => {
     event.preventDefault()
     setMessage('wrong password, please try again')
-    // window.location.href = '/profile'
+    login()
   }
 
   const handleSignUp = (event: React.FormEvent) => {
     event.preventDefault()
     setMessage('')
-    window.location.href = '/profile'
+    signup()
   }
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/profile');
+    }
+  }, [isLoggedIn, navigate]);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { createContext, useState, ReactNode, useContext } from 'react';
+import { createContext, useState, ReactNode } from 'react';
 
 interface AuthContextType {
   isLoggedIn: boolean;
@@ -23,8 +23,4 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-const useAuthContext = () => {
-  return useContext(AuthContext)!;
-}
-
-export { AuthContext, AuthProvider, useAuthContext };
+export { AuthContext, AuthProvider };

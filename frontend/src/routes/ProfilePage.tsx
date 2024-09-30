@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Student } from "../models/Student";
 import { Term } from "../models/Course";
 import StudentAPI from "../services/StudentAPI";
@@ -9,6 +10,7 @@ import { ScheduleRow } from "../components/ScheduleRow";
 import './css/ProfilePage.css';
 
 export default function ProfilePage() {
+  const navigate = useNavigate();
   const [student, setStudent] = useState<Student | null>(null);
   const [taken, setTaken] = useState<Term[]>([]);
 
@@ -23,7 +25,7 @@ export default function ProfilePage() {
   }, []);
 
   const handleEdit = () => {
-    window.location.href = '/profile/edit';
+    navigate('/profile/edit');
   }
 
   return (
