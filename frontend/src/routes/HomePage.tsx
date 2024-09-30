@@ -12,8 +12,7 @@ export default function HomePage() {
           <p>CoursePlanner is a tool to help you plan your college courses.</p>
         </header>
         <section className="home-body">
-          {/* TODO: redirect to login */}
-          <button onClick={() => window.location.href = '/profile'}>Get Started</button>
+          <button onClick={() => window.location.href = '/login'}>Get Started</button>
         </section>
       </div>
       <FooterBar />
