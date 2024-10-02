@@ -16,7 +16,7 @@ export default function LoginPage() {
 
   const checkUser = () => {
     // TODO: call from API
-    setUserExisted(true)
+    setUserExisted(false)
   }
 
   const handleEmailEntered = (event: React.FormEvent) => {
