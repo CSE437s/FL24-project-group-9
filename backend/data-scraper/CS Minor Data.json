@@ -1,0 +1,18 @@
+[
+    {
+        "title": "Computer Science",
+        "school": "McKelvey School of Engineering",
+        "type": [
+            "Minor"
+        ],
+        "required_courses": [
+            "CSE 131",
+            "CSE 132",
+            "CSE 247",
+            "CSE 332S",
+            "CSE 361S"
+        ],
+        "required_units": 15,
+        "code": "E81"
+    }
+]

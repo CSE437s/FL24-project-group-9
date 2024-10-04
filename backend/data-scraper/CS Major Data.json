@@ -1,0 +1,25 @@
+[
+    {
+        "title": "Applied Science: Computer Science",
+        "school": "McKelvey School of Engineering",
+        "type": [
+            "Bachelor of Science"
+        ],
+        "required_courses": [
+            "CSE 131",
+            "CSE 132",
+            "CSE 247",
+            "CSE 332S",
+            "CSE 347",
+            "CSE 361S",
+            "CSE 240",
+            "Math 131",
+            "Math 132",
+            "Math 233",
+            "Math 309",
+            "Math 3200"
+        ],
+        "required_units": 120,
+        "code": "E81"
+    }
+]
