@@ -31,7 +31,7 @@ class CourseScraper:
     def export_data(self, programs_list: list):
         """Export data to json file."""
         with open(
-            "C:/Users/sameg/OneDrive/Documents/GitHub/FL24-project-group-9/backend/data-scraper/washu_program_data.json",
+            "C:/Users/sameg/OneDrive/Documents/GitHub/FL24-project-group-9/backend/data-scraper/washu_minor_data.json",
             "w+",
             encoding="utf-8",
         ) as output_file:
@@ -58,24 +58,23 @@ class CourseScraper:
             program_type = []
             if program.find("span", class_="program-type-item minor"):
                 program_type.append("Minor")
-            if program.find("span", class_="program-type-item bachelor-of-arts"):
-                program_type.append("Bachelor of Arts")
-            if program.find("span", class_="program-type-item bachelor-of-science-in-business-administration"):
-                program_type.append("Bachelor of Science in Business Administration")
-            if program.find("span", class_="program-type-item bachelor-of-science"):
-                program_type.append("Bachelor of Science")
-            if program.find("span", class_="program-type-item bachelor-of-fine-arts"):
-                program_type.append("Bachelor of Fine Arts")
+            # if program.find("span", class_="program-type-item bachelor-of-arts"):
+            #     program_type.append("Bachelor of Arts")
+            # if program.find("span", class_="program-type-item bachelor-of-science-in-business-administration"):
+            #     program_type.append("Bachelor of Science in Business Administration")
+            # if program.find("span", class_="program-type-item bachelor-of-science"):
+            #     program_type.append("Bachelor of Science")
+            # if program.find("span", class_="program-type-item bachelor-of-fine-arts"):
+            #     program_type.append("Bachelor of Fine Arts")
             if program_title:
                 program_info["title"] = program_title.text.strip()#.replace("\u00a0", " ")
             if program_school:
                 program_info["school"] = program_school.text.strip()#.replace("\u00a0", " ")
             if program_type:
                 program_info["type"] = program_type    
-                
-            programs_list.append(program_info)    
+                programs_list.append(program_info)
+             
         return programs_list
-
 
 URL = "https://admissions.wustl.edu/academics/majors-and-programs/"
 
