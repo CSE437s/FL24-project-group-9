@@ -1,8 +1,9 @@
-from rest_framework.views import APIView
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework import status
-from rest_framework import generics
-from database.models import Student, Course, Department, Semester, Major, Minor
+from rest_framework.viewsets import ReadOnlyModelViewSet, ModelViewSet
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from api.models import Student, Course, Department, Semester, Major, Minor
 from .serializers import (
     StudentSerializer,
     CourseSerializer,
@@ -13,107 +14,71 @@ from .serializers import (
 )
 
 
-# CBV for API Overview
-class ApiOverview(APIView):
-    def get(self, request):
-        api_urls = {
-            "GET Student": "/student/<str:pk>/",
-            "CREATE Student": "/student/",
-            "UPDATE Student": "/student/<str:pk>/",
-            "DELETE Student": "/student/<str:pk>/",
-            "GET All Courses": "/courses/",
-            "GET Course Detail": "/course/<str:pk>/",
-            "GET All Departments": "/departments/",
-            "GET Department Detail": "/department/<str:pk>/",
-            "GET Semesters": "/semesters/",
-            "UPDATE Semester": "/semester/<str:pk>/",
-            "GET All Majors": "/majors/",
-            "GET Major Detail": "/major/<str:pk>/",
-            "GET All Minors": "/minors/",
-            "GET Minor Detail": "/minor/<str:pk>/",
-        }
-        return Response(api_urls)
+@api_view(["GET"])
+def api_overview(request):
+    api_urls = {
+        # Auth Endpoints
+        "Login": "/auth/login/",
+        "Token Refresh": "/auth/login/refresh/",
+        "Register": "/auth/register/",
+        "Change Password": "/auth/change_password/<int:pk>/",
+        "Update Profile": "/auth/update_profile/<int:pk>/",
+        "Logout": "/auth/logout/",
+        # Student Endpoints
+        "GET Student": "/student/<str:pk>/",
+        "CREATE Student": "/student/",
+        "UPDATE Student": "/student/<str:pk>/",
+        "DELETE Student": "/student/<str:pk>/",
+        # Course Endpoints
+        "GET All Courses": "/courses/",
+        "GET Course Detail": "/courses/<str:pk>/",
+        # Department Endpoints
+        "GET All Departments": "/departments/",
+        "GET Department Detail": "/departments/<str:pk>/",
+        # Semester Endpoints
+        "GET All Semesters": "/semesters/",
+        "UPDATE Semester": "/semesters/<str:pk>/",
+        # Major Endpoints
+        "GET All Majors": "/majors/",
+        "GET Major Detail": "/majors/<str:pk>/",
+        # Minor Endpoints
+        "GET All Minors": "/minors/",
+        "GET Minor Detail": "/minors/<str:pk>/",
+    }
+    return Response(api_urls)
 
 
-# Students API (List and Retrieve)
-class StudentAPI(generics.ListCreateAPIView):
-    queryset = Student.objects.all()
+class StudentViewSet(ModelViewSet):
     serializer_class = StudentSerializer
-
-
-class StudentDetailAPI(generics.RetrieveUpdateDestroyAPIView):
     queryset = Student.objects.all()
-    serializer_class = StudentSerializer
+    permission_classes = (IsAuthenticated,)
 
 
-# Courses API (List and Retrieve)
-class CourseAPI(generics.ListCreateAPIView):
-    queryset = Course.objects.all()
+class CourseViewSet(ReadOnlyModelViewSet):
     serializer_class = CourseSerializer
+    queryset = Course.objects.all()
+    permission_classes = (IsAuthenticated,)
 
 
-class CourseDetailAPI(APIView):
-    def get(self, request, pk):
-        course = Course.objects.get(pk=pk)
-        serializer = CourseSerializer(course, many=False)
-        return Response(serializer.data)
-
-
-# Departments API (List and Retrieve)
-class DepartmentAPI(generics.ListCreateAPIView):
-    queryset = Department.objects.all()
+class DepartmentViewSet(ReadOnlyModelViewSet):
     serializer_class = DepartmentSerializer
+    queryset = Department.objects.all()
+    permission_classes = (IsAuthenticated,)
 
 
-class DepartmentDetailAPI(APIView):
-    def get(self, request, pk):
-        department = Department.objects.get(pk=pk)
-        serializer = DepartmentSerializer(department, many=False)
-        return Response(serializer.data)
-
-
-# Semesters API (List, Retrieve, and Update)
-class SemesterAPI(generics.ListCreateAPIView):
-    queryset = Semester.objects.all()
-    serializer_class = SemesterSerializer
-
-
-class SemesterDetailAPI(APIView):
-    def get(self, request, pk):
-        semester = Semester.objects.get(pk=pk)
-        serializer = SemesterSerializer(semester, many=False)
-        return Response(serializer.data)
-
-    def put(self, request, pk):
-        semester = Semester.objects.get(pk=pk)
-        serializer = SemesterSerializer(instance=semester, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-# Majors API (List and Retrieve)
-class MajorAPI(generics.ListCreateAPIView):
-    queryset = Major.objects.all()
+class MajorViewSet(ReadOnlyModelViewSet):
     serializer_class = MajorSerializer
+    queryset = Major.objects.all()
+    permission_classes = (IsAuthenticated,)
 
 
-class MajorDetailAPI(APIView):
-    def get(self, request, pk):
-        major = Major.objects.get(pk=pk)
-        serializer = MajorSerializer(major, many=False)
-        return Response(serializer.data)
-
-
-# Minors API (List and Retrieve)
-class MinorAPI(generics.ListCreateAPIView):
-    queryset = Minor.objects.all()
+class MinorViewSet(ReadOnlyModelViewSet):
     serializer_class = MinorSerializer
+    queryset = Minor.objects.all()
+    permission_classes = (IsAuthenticated,)
 
 
-class MinorDetailAPI(APIView):
-    def get(self, request, pk):
-        minor = Minor.objects.get(pk=pk)
-        serializer = MinorSerializer(minor, many=False)
-        return Response(serializer.data)
+class SemesterViewSet(ModelViewSet):
+    serializer_class = SemesterSerializer
+    queryset = Semester.objects.all()
+    permission_classes = (IsAuthenticated,)
