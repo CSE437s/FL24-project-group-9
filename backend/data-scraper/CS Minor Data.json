@@ -1,6 +1,5 @@
 [
     {
-        "id": "000001",
         "name": "Computer Science",
         "required_courses": [
             "CSE 131",
