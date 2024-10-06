@@ -38,7 +38,7 @@ class CourseScraper:
             output_file.write(json.dumps(programs_list, indent=4))
             print(f"{len(programs_list)} courses exported to file")
 
-    def create_programs_list(self) -> list:
+    def create_programs_list(self, str: pType) -> list:
 
         """Return the list of majors and minors from the page."""
         print("Creating majors and minors list...")
@@ -56,16 +56,17 @@ class CourseScraper:
             print(program_title)
             program_school = program.find("a", class_="school")
             program_type = []
+            if pType = "major"
             if program.find("span", class_="program-type-item minor"):
                 program_type.append("Minor")
-            # if program.find("span", class_="program-type-item bachelor-of-arts"):
-            #     program_type.append("Bachelor of Arts")
-            # if program.find("span", class_="program-type-item bachelor-of-science-in-business-administration"):
-            #     program_type.append("Bachelor of Science in Business Administration")
-            # if program.find("span", class_="program-type-item bachelor-of-science"):
-            #     program_type.append("Bachelor of Science")
-            # if program.find("span", class_="program-type-item bachelor-of-fine-arts"):
-            #     program_type.append("Bachelor of Fine Arts")
+            if program.find("span", class_="program-type-item bachelor-of-arts"):
+                program_type.append("Bachelor of Arts")
+            if program.find("span", class_="program-type-item bachelor-of-science-in-business-administration"):
+                program_type.append("Bachelor of Science in Business Administration")
+            if program.find("span", class_="program-type-item bachelor-of-science"):
+                program_type.append("Bachelor of Science")
+            if program.find("span", class_="program-type-item bachelor-of-fine-arts"):
+                program_type.append("Bachelor of Fine Arts")
             if program_title:
                 program_info["title"] = program_title.text.strip()#.replace("\u00a0", " ")
             if program_school:
@@ -75,7 +76,7 @@ class CourseScraper:
                 programs_list.append(program_info)
              
         return programs_list
-
+    
 URL = "https://admissions.wustl.edu/academics/majors-and-programs/"
 
 scraper = CourseScraper(URL)
