@@ -28,17 +28,26 @@ class CourseScraper:
         """Initialize attributes of class."""
         self.url = base_url
 
-    def export_data(self, programs_list: list):
+    def export_data(self, programs_list: list, pType):
         """Export data to json file."""
-        with open(
-            "C:/Users/sameg/OneDrive/Documents/GitHub/FL24-project-group-9/backend/data-scraper/washu_minor_data.json",
-            "w+",
-            encoding="utf-8",
-        ) as output_file:
-            output_file.write(json.dumps(programs_list, indent=4))
-            print(f"{len(programs_list)} courses exported to file")
+        if pType.lower() == "major":
+            with open(
+                "C:/Users/sameg/OneDrive/Documents/GitHub/FL24-project-group-9/backend/data-scraper/washu_major_data.json",
+                "w+",
+                encoding="utf-8",
+            ) as output_file:
+                output_file.write(json.dumps(programs_list, indent=4))
+                print(f"{len(programs_list)} courses exported to file")
+        elif pType.lower() == "minor":
+            with open(
+                "C:/Users/sameg/OneDrive/Documents/GitHub/FL24-project-group-9/backend/data-scraper/washu_minor_data.json",
+                "w+",
+                encoding="utf-8",
+            ) as output_file:
+                output_file.write(json.dumps(programs_list, indent=4))
+                print(f"{len(programs_list)} courses exported to file")
 
-    def create_programs_list(self, str: pType) -> list:
+    def create_programs_list(self, pType) -> list:
 
         """Return the list of majors and minors from the page."""
         print("Creating majors and minors list...")
@@ -56,17 +65,18 @@ class CourseScraper:
             print(program_title)
             program_school = program.find("a", class_="school")
             program_type = []
-            if pType = "major"
-            if program.find("span", class_="program-type-item minor"):
-                program_type.append("Minor")
-            if program.find("span", class_="program-type-item bachelor-of-arts"):
-                program_type.append("Bachelor of Arts")
-            if program.find("span", class_="program-type-item bachelor-of-science-in-business-administration"):
-                program_type.append("Bachelor of Science in Business Administration")
-            if program.find("span", class_="program-type-item bachelor-of-science"):
-                program_type.append("Bachelor of Science")
-            if program.find("span", class_="program-type-item bachelor-of-fine-arts"):
-                program_type.append("Bachelor of Fine Arts")
+            if pType.lower() == "major":
+                if program.find("span", class_="program-type-item bachelor-of-arts"):
+                    program_type.append("Bachelor of Arts")
+                if program.find("span", class_="program-type-item bachelor-of-science-in-business-administration"):
+                    program_type.append("Bachelor of Science in Business Administration")
+                if program.find("span", class_="program-type-item bachelor-of-science"):
+                    program_type.append("Bachelor of Science")
+                if program.find("span", class_="program-type-item bachelor-of-fine-arts"):
+                    program_type.append("Bachelor of Fine Arts")
+            elif pType.lower() == "minor":
+                if program.find("span", class_="program-type-item minor"):
+                    program_type.append("Minor")
             if program_title:
                 program_info["title"] = program_title.text.strip()#.replace("\u00a0", " ")
             if program_school:
@@ -80,5 +90,7 @@ class CourseScraper:
 URL = "https://admissions.wustl.edu/academics/majors-and-programs/"
 
 scraper = CourseScraper(URL)
-programs_data_list = scraper.create_programs_list()
-scraper.export_data(programs_data_list)
+programs_data_list = scraper.create_programs_list("major")
+scraper.export_data(programs_data_list, "major")
+programs_data_list = scraper.create_programs_list("minor")
+scraper.export_data(programs_data_list, "minor")
