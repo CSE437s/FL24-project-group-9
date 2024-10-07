@@ -1,0 +1,774 @@
+[
+    {
+        "title": "Accounting",
+        "school": "Olin Business School",
+        "type": [
+            "Bachelor of Science in Business Administration"
+        ]
+    },
+    {
+        "title": "African & African-American Studies",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "American Culture Studies",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Ancient Studies",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Anthropology",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Anthropology: Global Health & Environment",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Applied Linguistics",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Applied Mathematics",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Applied Science: Chemical Engineering",
+        "school": "McKelvey School of Engineering",
+        "type": [
+            "Bachelor of Science"
+        ]
+    },
+    {
+        "title": "Applied Science: Computer Science",
+        "school": "McKelvey School of Engineering",
+        "type": [
+            "Bachelor of Science"
+        ]
+    },
+    {
+        "title": "Applied Science: Electrical Engineering",
+        "school": "McKelvey School of Engineering",
+        "type": [
+            "Bachelor of Science"
+        ]
+    },
+    {
+        "title": "Applied Science: Systems Science & Engineering",
+        "school": "McKelvey School of Engineering",
+        "type": [
+            "Bachelor of Science"
+        ]
+    },
+    {
+        "title": "Arabic",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Archaeology",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Architecture",
+        "school": "Sam Fox School of Design & Visual Arts",
+        "type": [
+            "Bachelor of Arts",
+            "Bachelor of Science"
+        ]
+    },
+    {
+        "title": "Art",
+        "school": "Sam Fox School of Design & Visual Arts",
+        "type": [
+            "Bachelor of Arts",
+            "Bachelor of Fine Arts"
+        ]
+    },
+    {
+        "title": "Art History & Archaeology",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Art: Painting",
+        "school": "Sam Fox School of Design & Visual Arts",
+        "type": [
+            "Bachelor of Fine Arts"
+        ]
+    },
+    {
+        "title": "Art: Photography",
+        "school": "Sam Fox School of Design & Visual Arts",
+        "type": [
+            "Bachelor of Fine Arts"
+        ]
+    },
+    {
+        "title": "Art: Printmaking",
+        "school": "Sam Fox School of Design & Visual Arts",
+        "type": [
+            "Bachelor of Fine Arts"
+        ]
+    },
+    {
+        "title": "Art: Sculpture",
+        "school": "Sam Fox School of Design & Visual Arts",
+        "type": [
+            "Bachelor of Fine Arts"
+        ]
+    },
+    {
+        "title": "Art: Time-Based + Media Art",
+        "school": "Sam Fox School of Design & Visual Arts",
+        "type": [
+            "Bachelor of Fine Arts"
+        ]
+    },
+    {
+        "title": "Astrophysics",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Biology",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Biology: Ecology/Evolution",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Biology: Genomics/Computational",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Biology: Microbiology",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Biology: Molecular/Biochemistry",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Biology: Neuroscience",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Biomedical Engineering",
+        "school": "McKelvey School of Engineering",
+        "type": [
+            "Bachelor of Science"
+        ]
+    },
+    {
+        "title": "Business & Computer Science",
+        "school": "McKelvey School of Engineering",
+        "type": [
+            "Bachelor of Science"
+        ]
+    },
+    {
+        "title": "Chemical Engineering",
+        "school": "McKelvey School of Engineering",
+        "type": [
+            "Bachelor of Science"
+        ]
+    },
+    {
+        "title": "Chemistry",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Chemistry: Biochemistry",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Classics",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Communication Design",
+        "school": "Sam Fox School of Design & Visual Arts",
+        "type": [
+            "Bachelor of Fine Arts"
+        ]
+    },
+    {
+        "title": "Comparative Literature & Thought",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Computer Engineering",
+        "school": "McKelvey School of Engineering",
+        "type": [
+            "Bachelor of Science"
+        ]
+    },
+    {
+        "title": "Computer Science",
+        "school": "McKelvey School of Engineering",
+        "type": [
+            "Bachelor of Science"
+        ]
+    },
+    {
+        "title": "Computer Science + Economics",
+        "school": "McKelvey School of Engineering",
+        "type": [
+            "Bachelor of Science"
+        ]
+    },
+    {
+        "title": "Computer Science + Mathematics",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Science"
+        ]
+    },
+    {
+        "title": "Dance",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Data Science",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Science"
+        ]
+    },
+    {
+        "title": "Design",
+        "school": "Sam Fox School of Design & Visual Arts",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Design: Communication",
+        "school": "Sam Fox School of Design & Visual Arts",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Design: Fashion",
+        "school": "Sam Fox School of Design & Visual Arts",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Drama",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Earth, Environmental, & Planetary Sciences",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Earth, Environmental, & Planetary Sciences: Earth Science",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Earth, Environmental, & Planetary Sciences: Environmental Science",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Earth, Environmental, & Planetary Sciences: Planetary Science",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "East Asian Languages & Cultures",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Economics",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Economics & Computer Science",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Economics & Strategy",
+        "school": "Olin Business School",
+        "type": [
+            "Bachelor of Science in Business Administration"
+        ]
+    },
+    {
+        "title": "Educational Studies",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Electrical Engineering",
+        "school": "McKelvey School of Engineering",
+        "type": [
+            "Bachelor of Science"
+        ]
+    },
+    {
+        "title": "Elementary Education",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "English Literature",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "English Literature: Creative Writing",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Entrepreneurship",
+        "school": "Olin Business School",
+        "type": [
+            "Bachelor of Science in Business Administration"
+        ]
+    },
+    {
+        "title": "Environmental Analysis",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Environmental Biology",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Environmental Engineering",
+        "school": "McKelvey School of Engineering",
+        "type": [
+            "Bachelor of Science"
+        ]
+    },
+    {
+        "title": "Environmental Policy",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Fashion Design",
+        "school": "Sam Fox School of Design & Visual Arts",
+        "type": [
+            "Bachelor of Fine Arts"
+        ]
+    },
+    {
+        "title": "Film & Media Studies",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Finance",
+        "school": "Olin Business School",
+        "type": [
+            "Bachelor of Science in Business Administration"
+        ]
+    },
+    {
+        "title": "French",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Germanic Languages & Literatures",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Global Studies: Development",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Global Studies: Eurasian",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Global Studies: European",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Global Studies: Global Cultural Studies",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Global Studies: International Affairs",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Health Care Management",
+        "school": "Olin Business School",
+        "type": [
+            "Bachelor of Science in Business Administration"
+        ]
+    },
+    {
+        "title": "Hebrew",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "History",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Italian",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Jewish, Islamic, & Middle Eastern Studies",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Latin American Studies",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Linguistics",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Marketing",
+        "school": "Olin Business School",
+        "type": [
+            "Bachelor of Science in Business Administration"
+        ]
+    },
+    {
+        "title": "Mathematical Sciences",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Mathematics",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Mathematics & Economics",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Mechanical Engineering",
+        "school": "McKelvey School of Engineering",
+        "type": [
+            "Bachelor of Science"
+        ]
+    },
+    {
+        "title": "Middle School Education",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Music",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Organization & Strategic Management",
+        "school": "Olin Business School",
+        "type": [
+            "Bachelor of Science in Business Administration"
+        ]
+    },
+    {
+        "title": "Philosophy",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Philosophy-Neuroscience-Psychology: Cognitive Neuroscience",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Philosophy-Neuroscience-Psychology: Language, Cognition & Culture",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Philosophy: Law and Policy",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Philosophy: Philosophy Of Science",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Philosophy: Research Focus",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Physics",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Political Science",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Psychological & Brain Sciences",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Psychology & Brain Sciences: Cognitive Neuroscience",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Public Health & Society",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Religious Studies",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Romance Languages & Literatures",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Secondary Education",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Sociology",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Spanish",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Statistics",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    },
+    {
+        "title": "Supply Chain, Operations, & Technology",
+        "school": "Olin Business School",
+        "type": [
+            "Bachelor of Science in Business Administration"
+        ]
+    },
+    {
+        "title": "Systems Science and Engineering",
+        "school": "McKelvey School of Engineering",
+        "type": [
+            "Bachelor of Science"
+        ]
+    },
+    {
+        "title": "Women, Gender, & Sexuality Studies",
+        "school": "Arts & Sciences",
+        "type": [
+            "Bachelor of Arts"
+        ]
+    }
+]
