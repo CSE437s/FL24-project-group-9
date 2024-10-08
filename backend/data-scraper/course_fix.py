@@ -17,20 +17,23 @@ courses_list = []
 def create_courses_list():
     for x in range(len(df)):
         course_info = {}
-        concat_title = df['title'][x].split(' ', 4)
+        concat_title = df['title'][x].split(' ', 3)
         concat_units = df['credits'][x].split(' ', 3)
         dept_code = concat_title[0]
         course_code = concat_title[1] + " " + concat_title[2]
-        course_name = concat_title[3]
+        course_name = df['title'][x].split(concat_title[2], 1)[1]
         course_url = df['link'][x]
-        if df['credits'][x].split(' ', 3)[1]
-        course_units = df['credits'][x].split(' ', 3)[1]
+        if ' ' in df['credits']:
+            course_units = df['credits'][x].split(' ', 3)[1]
+        else:
+            course_units = "0"
         course_description = df['description'][x]
         
         course_info["course_code"] = course_code
         course_info["course_name"] = course_name
         course_info["dept_code"] = dept_code
-        course_info["units"] = course_units
+        if course_units:
+            course_info["units"] = course_units
         course_info["url"] = course_url
         course_info["description"] = course_description
         
