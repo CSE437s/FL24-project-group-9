@@ -1,0 +1,191 @@
+{
+  "computer_science_major_requirements": {
+    "core_courses": {
+      "total_units": 21,
+      "courses": [
+        {
+          "code": "CSE 131",
+          "title": "Introduction to Computer Science",
+          "units": 3
+        },
+        {
+          "code": "CSE 132",
+          "title": "Introduction to Computer Engineering",
+          "units": 3
+        },
+        {
+          "code": "CSE 240 or Math 310",
+          "title": "Logic and Discrete Mathematics Foundations for Higher Mathematics",
+          "units": 3
+        },
+        {
+          "code": "CSE 247",
+          "title": "Data Structures and Algorithms",
+          "units": 3
+        },
+        {
+          "code": "CSE 332S",
+          "title": "Object-Oriented Software Development Laboratory",
+          "units": 3
+        },
+        {
+          "code": "CSE 347",
+          "title": "Analysis of Algorithms",
+          "units": 3
+        },
+        {
+          "code": "CSE 361S",
+          "title": "Introduction to Systems Software",
+          "units": 3
+        }
+      ],
+      "passing_grade": "C- or better"
+    },
+    "systems_requirement": {
+      "total_units": 3,
+      "courses": [
+        {
+          "code": "CSE 422S",
+          "title": "Operating Systems Organization",
+          "units": 3
+        },
+        {
+          "code": "CSE 425S",
+          "title": "Programming Systems and Languages",
+          "units": 3
+        },
+        {
+          "code": "CSE 431S",
+          "title": "Translation of Computer Languages",
+          "units": 3
+        },
+        {
+          "code": "CSE 433S",
+          "title": "Introduction to Computer Security",
+          "units": 3
+        },
+        {
+          "code": "CSE 434S",
+          "title": "Reverse Engineering and Malware Analysis",
+          "units": 3
+        },
+        {
+          "code": "CSE 473S",
+          "title": "Introduction to Computer Networks",
+          "units": 3
+        }
+      ]
+    },
+    "methods_requirement": {
+      "total_units": 3,
+      "courses": [
+        {
+          "code": "CSE 256A",
+          "title": "Introduction to Human-Centered Design",
+          "units": 3
+        },
+        {
+          "code": "CSE 411A",
+          "title": "AI and Society",
+          "units": 3
+        },
+        {
+          "code": "CSE 412A",
+          "title": "Introduction to Artificial Intelligence",
+          "units": 3
+        },
+        {
+          "code": "CSE 416A",
+          "title": "Analysis of Network Data",
+          "units": 3
+        },
+        {
+          "code": "CSE 417T",
+          "title": "Introduction to Machine Learning",
+          "units": 3
+        },
+        {
+          "code": "ESE 417",
+          "title": "Introduction to Machine Learning and Pattern Recognition",
+          "units": 3
+        },
+        {
+          "code": "CSE 442T",
+          "title": "Introduction to Cryptography",
+          "units": 3
+        },
+        {
+          "code": "CSE 457A",
+          "title": "Introduction to Visualization",
+          "units": 3
+        },
+        {
+          "code": "CSE 468T",
+          "title": "Introduction to Quantum Computing",
+          "units": 3
+        }
+      ]
+    },
+    "technical_electives": {
+      "total_units": 15,
+      "description": "15 additional units (5 courses) of CSE Technical Electives",
+      "requirements": [
+        "At least two courses must be CSE classroom courses at the 400-level or higher.",
+        "Courses taken in other departments must have significant technical computing content."
+      ]
+    },
+    "math_requirements": {
+      "total_units": 15,
+      "courses": [
+        {
+          "code": "Math 131",
+          "title": "Calculus I",
+          "units": 3
+        },
+        {
+          "code": "Math 132",
+          "title": "Calculus II",
+          "units": 3
+        },
+        {
+          "code": "Math 233",
+          "title": "Calculus III",
+          "units": 3
+        },
+        {
+          "code": "Math 309 or ESE 318",
+          "title": "Matrix Algebra or Engineering Mathematics A",
+          "units": 3
+        },
+        {
+          "code": "ESE 326 or Math 3200 or Math 3211 or DAT 120 & DAT 121",
+          "title": "Probability and Statistics for Engineering or equivalent",
+          "units": 3
+        }
+      ]
+    },
+    "additional_departmental_requirements": {
+      "total_units": 32,
+      "courses": [
+        {
+          "code": "CWP 100",
+          "title": "College Writing I",
+          "units": 3
+        },
+        {
+          "code": "Engr 310",
+          "title": "Technical Writing",
+          "units": 3
+        },
+        {
+          "description": "Natural Sciences electives",
+          "units": 8
+        },
+        {
+          "description": "Humanities and Social Sciences electives",
+          "units": 18
+        }
+      ]
+    }
+  }
+}

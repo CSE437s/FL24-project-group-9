@@ -32,7 +32,7 @@ class CourseScraper:
     def export_data(self, courses_list: list):
         """Export data to json file."""
         with open(
-            "./data-scraper/washu_courses_data.json",
+            "./courses_data.json",
             "w+",
             encoding="utf-8",
         ) as output_file:
@@ -42,7 +42,6 @@ class CourseScraper:
     def create_courses_list(self) -> list:
         """Return the list of courses from the page."""
         print("Creating courses list...")
-        # self.driver.get(self.url)
         page = requests.get(self.url)
         time.sleep(2)  # Wait for the page to load
 
@@ -82,5 +81,5 @@ class CourseScraper:
 URL = "https://bulletin.wustl.edu/undergrad/engineering/computerscience/#courses"
 
 scraper = CourseScraper(URL)
-courses_data_list = scraper.create_courses_list()
-scraper.export_data(courses_data_list)
+data_list = scraper.create_courses_list()
+scraper.export_data(data_list)
