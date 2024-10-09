@@ -1,23 +1,47 @@
 import { createContext, useState, ReactNode } from 'react';
+import AuthAPI from '../services/AuthAPI';
 
 interface AuthContextType {
-  isLoggedIn: boolean;
-  login: () => void;
-  logout: () => void;
-  signup: () => void;
+  bearerToken: string;
+  login: (email: string, password: string) => Promise<boolean>;
+  logout: () => Promise<boolean>;
+  register: (email: string, password: string, firstName: string, lastName: string) => Promise<boolean>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [bearerToken, setBearerToken] = useState('');
 
-  const login = () => setIsLoggedIn(true);
-  const logout = () => setIsLoggedIn(false);
-  const signup = () => setIsLoggedIn(true);
+  const login = async (email: string, password: string): Promise<boolean> => {
+    const response = await AuthAPI.login(email, password)
+    if (response.access) {
+      setBearerToken(response.access)
+      return true
+    }
+    setBearerToken('')
+    return false
+  }
+  const logout = async (): Promise<boolean> => {
+    const response = await AuthAPI.logout();
+    if (response) {
+      setBearerToken('')
+      return true
+    }
+    return false
+  };
+  const register = async (email: string, password: string, firstName: string, lastName: string): Promise<boolean> => {
+    const response = await AuthAPI.register(email, password, firstName, lastName);
+    if (response) {
+      setBearerToken(response.access)
+      return true
+    }
+    setBearerToken('')
+    return false
+  };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout, signup }}>
+    <AuthContext.Provider value={{ bearerToken, login, logout, register }}>
       {children}
     </AuthContext.Provider>
   );

@@ -70,7 +70,7 @@
 
 .profile-edit-page .academic-history button {
   font-size: var(--font-h6);
-  width: 125px;
-  margin-left: calc(100% - 125px);
+  width: 150px;
+  margin-left: calc(100% - 150px);
   text-align: center;
 }

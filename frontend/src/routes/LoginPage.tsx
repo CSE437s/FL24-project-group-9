@@ -5,11 +5,18 @@ import { FooterBar } from "../components/FooterBar";
 import { HeaderBar } from "../components/HeaderBar";
 import './css/LoginPage.css'
 
+interface AuthUser {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+}
+
 export default function LoginPage() {
-  const { isLoggedIn, login, signup } = useAuthContext()
+  const { bearerToken, login, register } = useAuthContext()
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState('')
+  const [user, setUser] = useState<AuthUser>({email: '', password: '', firstName: '', lastName: ''})
   const [emailEntered, setEmailEntered] = useState(false)
   const [userExisted, setUserExisted] = useState(false)
   const [message, setMessage] = useState('')
@@ -31,23 +38,35 @@ export default function LoginPage() {
     setUserExisted(false)
   }
 
-  const handleLogin = (event: React.FormEvent) => {
+  const handleLogin = async (event: React.FormEvent) => {
     event.preventDefault()
+    if (!user) return
+    const response = await login(user.email, user.password)
+    if (response) {
+      setMessage('')
+      navigate('/profile')
+      return
+    }
     setMessage('wrong password, please try again')
-    login()
   }
 
-  const handleSignUp = (event: React.FormEvent) => {
+  const handleRegister = async (event: React.FormEvent) => {
     event.preventDefault()
-    setMessage('')
-    signup()
+    if (!user) return
+    const response = await register(user.email, user.password, user.firstName, user.lastName)
+    if (response) {
+      setMessage('')
+      navigate('/profile')
+      return
+    }
+    setMessage('something went wrong, please try again')
   }
 
   useEffect(() => {
-    if (isLoggedIn) {
+    if (bearerToken) {
       navigate('/profile');
     }
-  }, [isLoggedIn, navigate]);
+  }, [bearerToken, navigate]);
 
   return (
     <>
@@ -60,8 +79,8 @@ export default function LoginPage() {
             <form onSubmit={handleEmailEntered}>
               <div className="input-wrapper">
                 <label htmlFor="email">Enter your WUSTL email</label>
-                <input type="email" value={email} pattern=".+@wustl\.edu"
-                  onChange={(e) => setEmail(e.target.value)}
+                <input type="email" value={user.email} pattern=".+@wustl\.edu"
+                  onChange={(e) => setUser((prev) => ({ ...prev, email: e.target.value }))}
                   required
                 />
               </div>
@@ -71,22 +90,25 @@ export default function LoginPage() {
           {emailEntered && !userExisted &&
           <div>
             <h2>Create your Account</h2>
-            <form onSubmit={handleSignUp}>
+            <form onSubmit={handleRegister}>
               <div className="input-wrapper">
                 <label htmlFor="email">Email</label>
-                <input type="email" value ={email} disabled />
+                <input type="email" value ={user.email} disabled />
               </div>
               <div className="input-wrapper">
                 <label htmlFor="password">Create a Password</label>
-                <input type="password" minLength={8} required />
+                <input type="password" minLength={8} value={user.password} required
+                  onChange={(e) => setUser((prev) => ({ ...prev, password: e.target.value }))} />
               </div>
               <div className="input-wrapper">
                 <label htmlFor="first-name">First Name</label>
-                <input type="text" required />
+                <input type="text" value={user.firstName} required
+                  onChange={(e) => setUser((prev) => ({ ...prev, firstName: e.target.value }))} />
               </div>
               <div className="input-wrapper">
                 <label htmlFor="last-name">Last Name</label>
-                <input type="text" required />
+                <input type="text" value={user.lastName} required
+                  onChange={(e) => setUser((prev) => ({ ...prev, lastName: e.target.value }))} />
               </div>
               <div className="action-btns">
                 <button type="button" onClick={handleBack}>Back</button>
@@ -100,11 +122,12 @@ export default function LoginPage() {
             <form onSubmit={handleLogin}>
               <div className="input-wrapper">
                 <label htmlFor="email">Email</label>
-                <input type="email" value ={email} disabled />
+                <input type="email" value ={user.email} disabled />
               </div>
               <div className="input-wrapper">
                 <label htmlFor="password">Enter your Password</label>
-                <input type="password" required/>
+                <input type="password" minLength={8} value={user.password} required
+                  onChange={(e) => setUser((prev) => ({ ...prev, password: e.target.value }))}/>
               </div>
               <div className="action-btns">
                 <button type="button" onClick={handleBack}>Back</button>

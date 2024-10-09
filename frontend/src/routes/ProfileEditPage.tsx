@@ -3,7 +3,7 @@ import { Student } from "../models/Student";
 import { Course, Term } from "../models/Course";
 import StudentAPI from "../services/StudentAPI";
 import PlannerAPI from "../services/PlannerAPI";
-import { useAcademicDataContext } from "../context/useContext";
+import { useAcademicDataContext, useAuthContext } from "../context/useContext";
 import { HeaderBar } from "../components/HeaderBar";
 import { FooterBar } from "../components/FooterBar";
 import { ScheduleRow } from "../components/ScheduleRow";
@@ -12,20 +12,21 @@ import './css/ProfileEditPage.css';
 
 export default function ProfileEditPage() {
   const { courses, majors, minors, semesters } = useAcademicDataContext()
+  const { bearerToken } = useAuthContext();
   const [student, setStudent] = useState<Student | null>(null);
   const [taken, setTaken] = useState<Term[]>([]);
-  const [newCourse, setNewCourse] = useState(courses[0].id);
+  const [newCourse, setNewCourse] = useState(courses[0]?.id);
   const [newSemester, setNewSemester] = useState(semesters[0]);
 
   useEffect(() => {
-    StudentAPI.getStudent().then((student) => {
+    StudentAPI.getStudent(bearerToken).then((student) => {
       setStudent(student);
     });
   
     PlannerAPI.getPlanner().then((plan) => {
       setTaken(plan.taken);
     });
-  }, []);
+  }, [bearerToken]);
 
   const handleRemoveClick = (term: Term, course: Course) => {
     term.courses = term.courses.filter((c) => c.id !== course.id);
@@ -53,7 +54,7 @@ export default function ProfileEditPage() {
 
   const handleSave = () => {
     if (student) {
-      StudentAPI.updateStudent(student);
+      StudentAPI.updateStudent(bearerToken, student);
     }
 
     PlannerAPI.updateTakenPlan(taken);

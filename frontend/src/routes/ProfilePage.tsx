@@ -7,22 +7,24 @@ import PlannerAPI from "../services/PlannerAPI";
 import { HeaderBar } from "../components/HeaderBar";
 import { FooterBar } from "../components/FooterBar";
 import { ScheduleRow } from "../components/ScheduleRow";
+import { useAuthContext } from "../context/useContext";
 import './css/ProfilePage.css';
 
 export default function ProfilePage() {
   const navigate = useNavigate();
+  const { bearerToken } = useAuthContext();
   const [student, setStudent] = useState<Student | null>(null);
   const [taken, setTaken] = useState<Term[]>([]);
 
   useEffect(() => {
-    StudentAPI.getStudent().then((student) => {
+    StudentAPI.getStudent(bearerToken).then((student) => {
       setStudent(student);
     });
   
     PlannerAPI.getPlanner().then((plan) => {
       setTaken(plan.taken);
     });
-  }, []);
+  }, [bearerToken]);
 
   const handleEdit = () => {
     navigate('/profile/edit');
@@ -36,7 +38,7 @@ export default function ProfilePage() {
           <h3>Welcome to CoursePlanner</h3>
           {student ? (
             <div className="profile-info">
-              <p><span>Name:</span> {student.name}</p>
+              <p><span>Name:</span> {student.firstname} {student.lastname}</p>
               <p><span>Email:</span> {student.email}</p>
             </div>
           ) : (

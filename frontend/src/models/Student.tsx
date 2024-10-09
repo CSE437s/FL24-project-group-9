@@ -1,6 +1,7 @@
 export type Student = {
   id: string;
-  name: string;
+  firstname: string;
+  lastname: string;
   email: string;
   major: string;
   minor: string;

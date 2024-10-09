@@ -1,6 +1,6 @@
 import { API_URL } from './config.tsx'
 
-async function getAllMajors(bearerToken: string): Promise<string[]> {
+async function getAllDepartments(bearerToken: string): Promise<string[]> {
   const options = {
     method: 'GET',
     headers: {
@@ -8,11 +8,11 @@ async function getAllMajors(bearerToken: string): Promise<string[]> {
       'Authorization': `Bearer ${bearerToken}`
     },
   }
-  const response = await fetch(`${API_URL}/api/majors/`, options)
+  const response = await fetch(`${API_URL}/api/departments/`, options)
   return await response.json();
 }
 
-async function getMajorById(bearerToken: string, id: string): Promise<string[]> {
+async function getDepartmentById(bearerToken: string, id: string): Promise<string[]> {
   const options = {
     method: 'GET',
     headers: {
@@ -20,8 +20,8 @@ async function getMajorById(bearerToken: string, id: string): Promise<string[]> 
       'Authorization': `Bearer ${bearerToken}`
     },
   }
-  const response = await fetch(`${API_URL}/api/majors/${id}/`, options)
+  const response = await fetch(`${API_URL}/api/departments/${id}/`, options)
   return await response.json();
 }
 
-export default { getAllMajors, getMajorById }
+export default { getAllDepartments, getDepartmentById }
