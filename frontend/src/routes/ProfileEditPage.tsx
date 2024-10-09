@@ -37,21 +37,6 @@ export default function ProfileEditPage() {
     }
   }
 
-  // const handleCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const interest = e.target.id.replace('interest-', '');
-
-  //   if (!student) {
-  //     return;
-  //   }
-
-  //   if (e.target.checked) {
-  //     setStudent({...student, interests: [...student.interests ?? [], interests[parseInt(interest)]]});
-  //   }
-  //   else {
-  //     setStudent({...student, interests: student.interests?.filter((item) => item !== interests[parseInt(interest)])});
-  //   }
-  // }
-
   const handleSave = () => {
     if (student) {
       StudentAPI.updateStudent(bearerToken, student);
@@ -166,21 +151,6 @@ export default function ProfileEditPage() {
                     onChange={e => setStudent({...student, career: e.target.value})}
                   />
                 </p>
-                {/* <div className="interests">
-                  <label>Interests:</label>
-                  <div className="interests-input">
-                    {interests.map((interest, index) => (
-                      <div key={index}>
-                        <input
-                          type="checkbox" id={`interest-${index}`}
-                          checked={student.interests?.includes(interest)}
-                          onChange={handleCheckbox}
-                        />
-                        <label htmlFor={`interest-${index}`}>{interest}</label>
-                      </div>
-                    ))}
-                  </div>
-                </div> */}
               </>
             ) : <></>}
           </div>

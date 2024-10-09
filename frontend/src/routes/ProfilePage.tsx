@@ -67,7 +67,6 @@ export default function ProfilePage() {
                 <p><span>Minor:</span> {student.minor}</p>
                 <p><span>Graduation:</span> {student.year}</p>
                 <p><span>Career:</span> {student.career}</p>
-                <p><span>Interests:</span> {student.interests?.join(', ')}</p>
               </>
             ) : <></>}
           </div>

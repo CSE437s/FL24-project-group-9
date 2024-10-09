@@ -7,5 +7,4 @@ export type Student = {
   minor: string;
   year: string;
   career?: string;
-  interests?: string[];
 };
