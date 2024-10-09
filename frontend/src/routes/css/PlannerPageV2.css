@@ -1,0 +1,55 @@
+.planner-page {
+  padding: 2rem 3rem;
+  min-height: calc(100vh - 95px - 56px - 4rem);
+  display: flex;
+  justify-content: space-around;
+}
+
+.planner-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 1.5rem;
+}
+
+.planner-buttons button {
+  margin: 1rem;
+}
+
+.term-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0 0.5rem;
+}
+
+.term-info {
+  font-size: var(--font-body);
+  color: var(--primary-red);
+  font-weight: var(--font-weight-headings);
+}
+
+.term-units {
+  color: var(--text-paragraph);
+  font-size: var(--font-h6);;
+}
+
+.add-course p {
+  display: flex;
+}
+
+.add-course select {
+  flex-grow: 1;
+  box-sizing: border-box;
+  width: 300px;
+  font-size: var(--font-h6);
+  padding: 0.25rem 0.5rem;
+  overflow-x: scroll;
+  font-family: inherit;
+}
+
+.add-course p > label {
+  font-size: var(--font-body);
+  color: var(--primary-black);
+  width: 100px;
+}

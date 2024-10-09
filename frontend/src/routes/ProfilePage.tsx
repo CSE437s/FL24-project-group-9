@@ -6,6 +6,7 @@ import StudentAPI from "../services/StudentAPI";
 import PlannerAPI from "../services/PlannerAPI";
 import { HeaderBar } from "../components/HeaderBar";
 import { FooterBar } from "../components/FooterBar";
+import { TermHeader } from "../components/TermHeader";
 import { ScheduleRow } from "../components/ScheduleRow";
 import { useAuthContext } from "../context/useContext";
 import './css/ProfilePage.css';
@@ -46,13 +47,11 @@ export default function ProfilePage() {
           )}
         </section>
         <section className="academic-summary">
-          <h4>Academic Summary<button onClick={handleEdit}>Edit</button></h4>
+          <h4>Academic Summary<button className="secondary" onClick={handleEdit}>Edit</button></h4>
           <div className="academic-history">
             {taken.map((term) => (
               <div key={term.id}>
-                <div className="term-header">
-                  <span className="term-info">{term.term}</span>
-                </div>
+                <TermHeader term={term} />
                 {term.courses.map((course) => (
                   <ScheduleRow key={course.id} course={course} />
                 ))}

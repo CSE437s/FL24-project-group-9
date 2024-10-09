@@ -5,11 +5,11 @@ import { useAuthContext } from "../context/useContext";
 import './css/HomePage.css';
 
 export default function HomePage() {
-  const { isLoggedIn } = useAuthContext();
+  const { bearerToken } = useAuthContext();
   const navigate = useNavigate();
 
   const handleGetStarted = () => {
-    if (isLoggedIn) {
+    if (bearerToken) {
       navigate('/profile');
       return;
     }

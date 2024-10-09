@@ -6,6 +6,7 @@ import PlannerAPI from "../services/PlannerAPI";
 import { useAcademicDataContext, useAuthContext } from "../context/useContext";
 import { HeaderBar } from "../components/HeaderBar";
 import { FooterBar } from "../components/FooterBar";
+import { TermHeader } from "../components/TermHeader";
 import { ScheduleRow } from "../components/ScheduleRow";
 import { utils } from "../utils";
 import './css/ProfileEditPage.css';
@@ -75,7 +76,7 @@ export default function ProfileEditPage() {
       <HeaderBar isNavVisible={true}/>
       <div className="profile-edit-page">
         <section className="academic-summary">
-          <h4>Academic Summary<button onClick={handleSave}>Save</button></h4>
+          <h4>Academic Summary<button className="secondary" onClick={handleSave}>Save</button></h4>
           <div className="academic-history">
             <div className="history-input">
               <p>
@@ -104,9 +105,7 @@ export default function ProfileEditPage() {
             <button type="button" onClick={addCourse}>Add Course</button>
             {taken.map((term) => (
               <div key={term.id}>
-                <div className="term-header">
-                  <span className="term-info">{term.term}</span>
-                </div>
+                <TermHeader term={term} />
                 {term.courses.map((course) => (
                   <ScheduleRow key={`${term.id} ${course.id}`}
                     course={course}

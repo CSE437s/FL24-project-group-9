@@ -2,3 +2,17 @@
   padding: 2rem 3rem;
   min-height: calc(100vh - 95px - 56px - 4rem);
 }
+
+.dashboard-page .schedule {
+  display: flex;
+  gap: 100px;
+}
+
+.dashboard-page .schedule h4 {
+  display: flex;
+  width: 100%;
+}
+
+.dashboard-page .schedule h4 button.secondary {
+  margin-left: auto;
+}

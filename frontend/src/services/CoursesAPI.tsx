@@ -10,7 +10,7 @@ async function getAllCourses(bearerToken: string): Promise<Course[]> {
     },
   }
   const response = await fetch(`${API_URL}/api/courses/`, options)
-  return await response.json();
+  return await response.json()
 }
 
 async function getCourseById(bearerToken: string, id: string): Promise<Course> {

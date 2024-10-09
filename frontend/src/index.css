@@ -107,3 +107,22 @@ button {
   padding: 10px 20px;
   cursor: pointer;
 }
+
+button.secondary {
+  background: none;
+  border: none;
+  color: var(--primary-red);
+  font-size: var(--font-h6);
+  font-weight: var(--font-weight-headings);
+  margin-left: 1rem;
+  padding: 0;
+}
+
+button.secondary:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
+}
+
+button.secondary:focus {
+  outline: none;
+}

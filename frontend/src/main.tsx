@@ -4,7 +4,7 @@ import LoginPage from './routes/LoginPage';
 import HomePage from './routes/HomePage';
 import ProfileEditPage from './routes/ProfileEditPage';
 import ProfilePage from './routes/ProfilePage';
-import PlannerPage from './routes/PlannerPage';
+import PlannerPageV2 from './routes/PlannerPageV2';
 import DashboardPage from './routes/DashboardPage';
 import ProtectedRoute from './routes/ProtectedRoute';
 import { AuthProvider } from './context/AuthContext';
@@ -40,7 +40,7 @@ const router = createBrowserRouter([
     path: "/planner",
     element: (
       <ProtectedRoute>
-        <PlannerPage />
+        <PlannerPageV2 />
       </ProtectedRoute>
     ),
   },
