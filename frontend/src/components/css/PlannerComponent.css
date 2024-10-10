@@ -13,21 +13,3 @@
 .schedule-term {
   padding: 0.5rem;
 }
-
-.term-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 1rem 0 0.5rem;
-}
-
-.term-info {
-  font-size: var(--font-body);
-  color: var(--primary-red);
-  font-weight: var(--font-weight-headings);
-}
-
-.term-units {
-  color: var(--text-paragraph);
-  font-size: var(--font-h6);
-}
