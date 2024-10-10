@@ -59,13 +59,13 @@
       "id": "4",
       "term": "Spring 2026",
       "courses": [
-          {
-            "id": "6",
-            "department": "CSE",
-            "code": "437",
-            "title": "Software Engineering Workshop",
-            "credits": 3
-          }
+        {
+          "id": "6",
+          "department": "CSE",
+          "code": "437",
+          "title": "Software Engineering Workshop",
+          "credits": 3
+        }
       ]
     },
     {
