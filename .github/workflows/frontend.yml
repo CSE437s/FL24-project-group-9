@@ -3,13 +3,13 @@ name: Frontend CI
 on:
   push:
     branches:
-      - main
+      - $default-branch
   pull_request:
     branches:
-      - main
+      - $default-branch
 
 jobs:
-  lint-and-test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
