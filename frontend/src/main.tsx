@@ -1,35 +1,37 @@
 import { createRoot } from 'react-dom/client'
-import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
-import LoginPage from './routes/LoginPage';
-import HomePage from './routes/HomePage';
-import ProfileEditPage from './routes/ProfileEditPage';
-import ProfilePage from './routes/ProfilePage';
-import PlannerPage from './routes/PlannerPage';
-import DashboardPage from './routes/DashboardPage';
-import ProtectedRoute from './routes/ProtectedRoute';
-import { AuthProvider } from './context/AuthContext';
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
+
+import { AcademicDataProvider } from './context/AcademicDataContext'
+import { AuthProvider } from './context/AuthContext'
+import DashboardPage from './routes/DashboardPage'
+import HomePage from './routes/HomePage'
+import LoginPage from './routes/LoginPage'
+import PlannerPage from './routes/PlannerPage'
+import ProfileEditPage from './routes/ProfileEditPage'
+import ProfilePage from './routes/ProfilePage'
+import ProtectedRoute from './routes/ProtectedRoute'
+
 import './index.css'
-import { AcademicDataProvider } from './context/AcademicDataContext';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <HomePage />,
   },
   {
-    path: "/login",
+    path: '/login',
     element: <LoginPage />,
   },
   {
-    path: "/profile/edit",
+    path: '/profile/edit',
     element: (
-    <ProtectedRoute>
-      <ProfileEditPage />
-    </ProtectedRoute>
+      <ProtectedRoute>
+        <ProfileEditPage />
+      </ProtectedRoute>
     ),
   },
   {
-    path: "/profile",
+    path: '/profile',
     element: (
       <ProtectedRoute>
         <ProfilePage />
@@ -37,7 +39,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/planner",
+    path: '/planner',
     element: (
       <ProtectedRoute>
         <PlannerPage />
@@ -45,7 +47,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/dashboard",
+    path: '/dashboard',
     element: (
       <ProtectedRoute>
         <DashboardPage />
@@ -53,10 +55,10 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "*",
+    path: '*',
     element: <Navigate to="/" />,
-  }
-]);
+  },
+])
 
 createRoot(document.getElementById('root')!).render(
   <AuthProvider>

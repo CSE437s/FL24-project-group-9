@@ -1,9 +1,10 @@
-import { API_URL } from './config.tsx'
-import { Course } from '../models/Course.tsx';
+import { Course } from '../models/Course.tsx'
+
 import data from './data/courses.json'
+import { API_URL } from './config.tsx'
 
 async function getAllCourses(): Promise<Course[]> {
-  return data;
+  return data
 }
 
 async function getCourseById(id: string): Promise<Course> {
