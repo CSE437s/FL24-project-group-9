@@ -1,22 +1,23 @@
-import { Navigate } from 'react-router-dom';
-import { useAuthContext } from '../context/useContext';
-import { HeaderBar } from '../components/HeaderBar';
-import { SpinnerComponent } from '../components/SpinnerComponent';
+import { Navigate } from 'react-router-dom'
+
+import { HeaderBar } from '../components/HeaderBar'
+import { SpinnerComponent } from '../components/SpinnerComponent'
+import { useAuthContext } from '../context/useContext'
 
 const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
-  const { loading, bearerToken } = useAuthContext();
+  const { loading, bearerToken } = useAuthContext()
 
   if (loading) {
     return (
       <>
         <HeaderBar isNavVisible={true} />
-        <SpinnerComponent messages={[""]} />
+        <SpinnerComponent messages={['']} />
       </>
     )
   }
 
   if (!bearerToken) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/login" />
   }
 
   return children

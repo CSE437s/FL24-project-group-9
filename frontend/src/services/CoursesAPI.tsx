@@ -1,12 +1,13 @@
+import { Course } from '../models/Course.tsx'
+
 import { API_URL } from './config.tsx'
-import { Course } from '../models/Course.tsx';
 
 async function getAllCourses(bearerToken: string): Promise<Course[]> {
   const options = {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${bearerToken}`
+      Authorization: `Bearer ${bearerToken}`,
     },
   }
   const response = await fetch(`${API_URL}/api/courses/`, options)
@@ -18,7 +19,7 @@ async function getCourseById(bearerToken: string, id: string): Promise<Course> {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${bearerToken}`
+      Authorization: `Bearer ${bearerToken}`,
     },
   }
   const response = await fetch(`${API_URL}/api/courses/${id}/`, options)

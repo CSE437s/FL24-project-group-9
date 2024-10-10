@@ -5,11 +5,11 @@ async function getAllSemesters(bearerToken: string): Promise<string[]> {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${bearerToken}`
+      Authorization: `Bearer ${bearerToken}`,
     },
   }
   const response = await fetch(`${API_URL}/api/semesters/`, options)
-  return await response.json();
+  return await response.json()
 }
 
 export default { getAllSemesters }

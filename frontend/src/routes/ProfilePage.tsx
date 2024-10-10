@@ -1,30 +1,34 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Student } from "../models/Student";
-import StudentAPI from "../services/StudentAPI";
-import { HeaderBar } from "../components/HeaderBar";
-import { FooterBar } from "../components/FooterBar";
-import { SpinnerComponent } from "../components/SpinnerComponent";
-import { useAuthContext } from "../context/useContext";
-import './css/ProfilePage.css';
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+import { FooterBar } from '../components/FooterBar'
+import { HeaderBar } from '../components/HeaderBar'
+import { SpinnerComponent } from '../components/SpinnerComponent'
+import { useAuthContext } from '../context/useContext'
+import { Student } from '../models/Student'
+import StudentAPI from '../services/StudentAPI'
+
+import './css/ProfilePage.css'
 
 export default function ProfilePage() {
   const navigate = useNavigate()
-  const { bearerToken } = useAuthContext();
+  const { bearerToken } = useAuthContext()
   const [student, setStudent] = useState<Student | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     setTimeout(() => {
-      StudentAPI.getStudent(bearerToken).then((student) => {
-        setStudent(student)
-        setLoading(false)
-      }).catch((err) => {
-        console.error(err)
-        setLoading(false)
-      })
+      StudentAPI.getStudent(bearerToken)
+        .then((student) => {
+          setStudent(student)
+          setLoading(false)
+        })
+        .catch((err) => {
+          console.error(err)
+          setLoading(false)
+        })
     }, 10000)
-  }, [bearerToken]);
+  }, [bearerToken])
 
   const handleEdit = () => {
     navigate('/profile/edit')
@@ -34,7 +38,7 @@ export default function ProfilePage() {
     return (
       <>
         <HeaderBar isNavVisible={true} />
-        <SpinnerComponent messages={["Loading student info..."]} />
+        <SpinnerComponent messages={['Loading student info...']} />
         <FooterBar />
       </>
     )
@@ -59,17 +63,34 @@ export default function ProfilePage() {
         <section className="profile-summary">
           <h3>Welcome to CoursePlanner</h3>
           <div className="profile-info">
-            <p><span>Name:</span> {student.firstname} {student.lastname}</p>
-            <p><span>Email:</span> {student.email}</p>
+            <p>
+              <span>Name:</span> {student.firstname} {student.lastname}
+            </p>
+            <p>
+              <span>Email:</span> {student.email}
+            </p>
           </div>
         </section>
         <section className="academic-summary">
-          <h4>Academic Summary<button className="secondary" onClick={handleEdit}>Edit</button></h4>
+          <h4>
+            Academic Summary
+            <button className="secondary" onClick={handleEdit}>
+              Edit
+            </button>
+          </h4>
           <div className="academic-info">
-            <p><span>Major:</span> {student.major}</p>
-            <p><span>Minor:</span> {student.minor}</p>
-            <p><span>Graduation:</span> {student.year}</p>
-            <p><span>Career:</span> {student.career}</p>
+            <p>
+              <span>Major:</span> {student.major}
+            </p>
+            <p>
+              <span>Minor:</span> {student.minor}
+            </p>
+            <p>
+              <span>Graduation:</span> {student.year}
+            </p>
+            <p>
+              <span>Career:</span> {student.career}
+            </p>
           </div>
         </section>
       </div>

@@ -8,17 +8,22 @@ import { useAuthContext } from '../context/useContext'
 import './css/LoginPage.css'
 
 interface AuthUser {
-  email: string;
-  password: string;
-  firstName: string;
-  lastName: string;
+  email: string
+  password: string
+  firstName: string
+  lastName: string
 }
 
 export default function LoginPage() {
   const { bearerToken, login, register } = useAuthContext()
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const [user, setUser] = useState<AuthUser>({ email: '', password: '', firstName: '', lastName: '' })
+  const [user, setUser] = useState<AuthUser>({
+    email: '',
+    password: '',
+    firstName: '',
+    lastName: '',
+  })
   const [emailEntered, setEmailEntered] = useState(false)
   const [userExisted, setUserExisted] = useState(false)
   const [message, setMessage] = useState('')
@@ -55,7 +60,12 @@ export default function LoginPage() {
   const handleRegister = async (event: React.FormEvent) => {
     event.preventDefault()
     if (!user) return
-    const response = await register(user.email, user.password, user.firstName, user.lastName)
+    const response = await register(
+      user.email,
+      user.password,
+      user.firstName,
+      user.lastName
+    )
     if (response) {
       setMessage('')
       navigate('/profile')
@@ -66,30 +76,36 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (bearerToken) {
-      navigate('/profile');
+      navigate('/profile')
     }
-  }, [bearerToken, navigate]);
+  }, [bearerToken, navigate])
 
   return (
     <>
       <HeaderBar />
       <div className="login-page">
         <section className="login-body">
-          {!emailEntered &&
+          {!emailEntered && (
             <div>
               <h2>Login or Create your Account</h2>
               <form onSubmit={handleEmailEntered}>
                 <div className="input-wrapper">
                   <label htmlFor="email">Enter your WUSTL email</label>
-                  <input type="email" value={user.email} pattern=".+@wustl\.edu"
-                    onChange={(e) => setUser((prev) => ({ ...prev, email: e.target.value }))}
+                  <input
+                    type="email"
+                    value={user.email}
+                    pattern=".+@wustl\.edu"
+                    onChange={(e) =>
+                      setUser((prev) => ({ ...prev, email: e.target.value }))
+                    }
                     required
                   />
                 </div>
                 <button type="submit">Continue</button>
               </form>
-            </div>}
-          {emailEntered && !userExisted &&
+            </div>
+          )}
+          {emailEntered && !userExisted && (
             <div>
               <h2>Create your Account</h2>
               <form onSubmit={handleRegister}>
@@ -99,26 +115,51 @@ export default function LoginPage() {
                 </div>
                 <div className="input-wrapper">
                   <label htmlFor="password">Create a Password</label>
-                  <input type="password" minLength={8} value={user.password} required
-                    onChange={(e) => setUser((prev) => ({ ...prev, password: e.target.value }))} />
+                  <input
+                    type="password"
+                    minLength={8}
+                    value={user.password}
+                    required
+                    onChange={(e) =>
+                      setUser((prev) => ({ ...prev, password: e.target.value }))
+                    }
+                  />
                 </div>
                 <div className="input-wrapper">
                   <label htmlFor="first-name">First Name</label>
-                  <input type="text" value={user.firstName} required
-                    onChange={(e) => setUser((prev) => ({ ...prev, firstName: e.target.value }))} />
+                  <input
+                    type="text"
+                    value={user.firstName}
+                    required
+                    onChange={(e) =>
+                      setUser((prev) => ({
+                        ...prev,
+                        firstName: e.target.value,
+                      }))
+                    }
+                  />
                 </div>
                 <div className="input-wrapper">
                   <label htmlFor="last-name">Last Name</label>
-                  <input type="text" value={user.lastName} required
-                    onChange={(e) => setUser((prev) => ({ ...prev, lastName: e.target.value }))} />
+                  <input
+                    type="text"
+                    value={user.lastName}
+                    required
+                    onChange={(e) =>
+                      setUser((prev) => ({ ...prev, lastName: e.target.value }))
+                    }
+                  />
                 </div>
                 <div className="action-btns">
-                  <button type="button" onClick={handleBack}>Back</button>
+                  <button type="button" onClick={handleBack}>
+                    Back
+                  </button>
                   <button type="submit">Sign Up</button>
                 </div>
               </form>
-            </div>}
-          {emailEntered && userExisted &&
+            </div>
+          )}
+          {emailEntered && userExisted && (
             <div>
               <h2>Welcome back!</h2>
               <form onSubmit={handleLogin}>
@@ -128,15 +169,25 @@ export default function LoginPage() {
                 </div>
                 <div className="input-wrapper">
                   <label htmlFor="password">Enter your Password</label>
-                  <input type="password" minLength={8} value={user.password} required
-                    onChange={(e) => setUser((prev) => ({ ...prev, password: e.target.value }))} />
+                  <input
+                    type="password"
+                    minLength={8}
+                    value={user.password}
+                    required
+                    onChange={(e) =>
+                      setUser((prev) => ({ ...prev, password: e.target.value }))
+                    }
+                  />
                 </div>
                 <div className="action-btns">
-                  <button type="button" onClick={handleBack}>Back</button>
+                  <button type="button" onClick={handleBack}>
+                    Back
+                  </button>
                   <button type="submit">Login</button>
                 </div>
               </form>
-            </div>}
+            </div>
+          )}
         </section>
         <div className="login-message">{message}</div>
       </div>

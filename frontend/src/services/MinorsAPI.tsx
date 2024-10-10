@@ -5,23 +5,26 @@ async function getAllMinors(bearerToken: string): Promise<string[]> {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${bearerToken}`
+      Authorization: `Bearer ${bearerToken}`,
     },
   }
   const response = await fetch(`${API_URL}/api/minors/`, options)
-  return await response.json();
+  return await response.json()
 }
 
-async function getMinorById(bearerToken: string, id: string): Promise<string[]> {
+async function getMinorById(
+  bearerToken: string,
+  id: string
+): Promise<string[]> {
   const options = {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${bearerToken}`
+      Authorization: `Bearer ${bearerToken}`,
     },
   }
   const response = await fetch(`${API_URL}/api/minors/${id}/`, options)
-  return await response.json();
+  return await response.json()
 }
 
 export default { getAllMinors, getMinorById }

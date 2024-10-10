@@ -7,13 +7,13 @@ import { useAuthContext } from '../context/useContext'
 import './css/HomePage.css'
 
 export default function HomePage() {
-  const { bearerToken } = useAuthContext();
-  const navigate = useNavigate();
+  const { bearerToken } = useAuthContext()
+  const navigate = useNavigate()
 
   const handleGetStarted = () => {
     if (bearerToken) {
-      navigate('/profile');
-      return;
+      navigate('/profile')
+      return
     }
     navigate('/login')
   }

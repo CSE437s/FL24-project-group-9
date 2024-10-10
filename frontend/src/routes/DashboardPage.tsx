@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Term } from "../models/Course";
-import PlannerAPI from "../services/PlannerAPI";
-import { ScheduleRow } from "../components/ScheduleRow";
-import { HeaderBar } from "../components/HeaderBar";
-import { FooterBar } from "../components/FooterBar";
-import { TermHeader } from "../components/TermHeader";
-import { SpinnerComponent } from "../components/SpinnerComponent";
-import './css/DashboardPage.css';
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+import { FooterBar } from '../components/FooterBar'
+import { HeaderBar } from '../components/HeaderBar'
+import { ScheduleRow } from '../components/ScheduleRow'
+import { SpinnerComponent } from '../components/SpinnerComponent'
+import { TermHeader } from '../components/TermHeader'
+import { Term } from '../models/Course'
+import PlannerAPI from '../services/PlannerAPI'
+
+import './css/DashboardPage.css'
 
 export default function DashboardPage() {
   const navigate = useNavigate()
@@ -20,8 +22,8 @@ export default function DashboardPage() {
       setTaken(plan.taken)
       setSelected(plan.selected)
       setLoading(false)
-    });
-  }, []);
+    })
+  }, [])
 
   const handleEdit = () => {
     navigate('/dashboard/edit')
@@ -35,7 +37,7 @@ export default function DashboardPage() {
     return (
       <>
         <HeaderBar isNavVisible={true} />
-        <SpinnerComponent messages={["Loading your schedule..."]} />
+        <SpinnerComponent messages={['Loading your schedule...']} />
         <FooterBar />
       </>
     )
@@ -48,7 +50,12 @@ export default function DashboardPage() {
         <h3>Your Schedule</h3>
         <div className="schedule">
           <div className="history">
-            <h4>History <button className="secondary" onClick={handleEdit}>Edit History</button></h4>
+            <h4>
+              History{' '}
+              <button className="secondary" onClick={handleEdit}>
+                Edit History
+              </button>
+            </h4>
             {taken.map((term) => (
               <div key={term.id}>
                 <TermHeader term={term} />
@@ -60,7 +67,12 @@ export default function DashboardPage() {
             {taken.length === 0 ? <h4>No Courses Added</h4> : <></>}
           </div>
           <div className="planned">
-            <h4><span>Upcoming Courses</span><button className="secondary" onClick={handleGenerate}>Generate new Schedule</button></h4>
+            <h4>
+              <span>Upcoming Courses</span>
+              <button className="secondary" onClick={handleGenerate}>
+                Generate new Schedule
+              </button>
+            </h4>
             {selected.map((term) => (
               <div key={term.id}>
                 <TermHeader term={term} />

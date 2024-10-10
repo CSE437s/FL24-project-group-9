@@ -1,15 +1,17 @@
 import { createRoot } from 'react-dom/client'
-import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
-import LoginPage from './routes/LoginPage';
-import HomePage from './routes/HomePage';
-import ProfileEditPage from './routes/ProfileEditPage';
-import ProfilePage from './routes/ProfilePage';
-import PlannerPageV2 from './routes/PlannerPageV2';
-import DashboardEditPage from './routes/DashboardEditPage';
-import DashboardPage from './routes/DashboardPage';
-import ProtectedRoute from './routes/ProtectedRoute';
-import { AuthProvider } from './context/AuthContext';
-import { AcademicDataProvider } from './context/AcademicDataContext';
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
+
+import { AcademicDataProvider } from './context/AcademicDataContext'
+import { AuthProvider } from './context/AuthContext'
+import DashboardEditPage from './routes/DashboardEditPage'
+import DashboardPage from './routes/DashboardPage'
+import HomePage from './routes/HomePage'
+import LoginPage from './routes/LoginPage'
+import PlannerPageV2 from './routes/PlannerPageV2'
+import ProfileEditPage from './routes/ProfileEditPage'
+import ProfilePage from './routes/ProfilePage'
+import ProtectedRoute from './routes/ProtectedRoute'
+
 import './index.css'
 
 const router = createBrowserRouter([
@@ -46,7 +48,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/dashboard/edit",
+    path: '/dashboard/edit',
     element: (
       <ProtectedRoute>
         <DashboardEditPage />
@@ -54,7 +56,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/dashboard",
+    path: '/dashboard',
     element: (
       <ProtectedRoute>
         <DashboardPage />

@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react'
 import { DragDropContext, DropResult } from 'react-beautiful-dnd'
 
 import { Term } from '../models/Course'
-import PlannerAPI from '../services/PlannerAPI';
-import { ScheduleDraggable } from './ScheduleDraggable';
-import { TermHeader } from './TermHeader';
+import PlannerAPI from '../services/PlannerAPI'
+
+import { ScheduleDraggable } from './ScheduleDraggable'
+import { TermHeader } from './TermHeader'
+
 import './css/PlannerComponent.css'
 
 interface PlannerComponentProps {
@@ -120,10 +122,10 @@ export const PlannerComponent: React.FC<PlannerComponentProps> = ({
                 droppableId={`selected-${term.id}`}
                 handleUndo={handleUndo}
               />
-            </div >
+            </div>
           ))}
-        </div >
-      </DragDropContext >
-    </div >
+        </div>
+      </DragDropContext>
+    </div>
   )
 }

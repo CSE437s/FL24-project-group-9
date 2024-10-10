@@ -5,23 +5,26 @@ async function getAllDepartments(bearerToken: string): Promise<string[]> {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${bearerToken}`
+      Authorization: `Bearer ${bearerToken}`,
     },
   }
   const response = await fetch(`${API_URL}/api/departments/`, options)
-  return await response.json();
+  return await response.json()
 }
 
-async function getDepartmentById(bearerToken: string, id: string): Promise<string[]> {
+async function getDepartmentById(
+  bearerToken: string,
+  id: string
+): Promise<string[]> {
   const options = {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${bearerToken}`
+      Authorization: `Bearer ${bearerToken}`,
     },
   }
   const response = await fetch(`${API_URL}/api/departments/${id}/`, options)
-  return await response.json();
+  return await response.json()
 }
 
 export default { getAllDepartments, getDepartmentById }
