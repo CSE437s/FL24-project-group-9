@@ -3,8 +3,8 @@
   min-height: var(--min-height-container);
 }
 
-.profile-edit-page input[type="text"],
-.profile-edit-page input[type="month"],
+.profile-edit-page input[type='text'],
+.profile-edit-page input[type='month'],
 .profile-edit-page select {
   box-sizing: border-box;
   width: 20rem;
@@ -54,7 +54,7 @@
   width: 100%;
 }
 
-.interests-input input[type="checkbox"] {
+.interests-input input[type='checkbox'] {
   width: 1rem;
   height: 1rem;
   margin-right: 0.5rem;

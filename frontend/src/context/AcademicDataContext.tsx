@@ -13,7 +13,9 @@ interface AcademicDataContextType {
   semesters: string[];
 }
 
-const AcademicDataContext = createContext<AcademicDataContextType | undefined>(undefined);
+const AcademicDataContext = createContext<AcademicDataContextType | undefined>(
+  undefined
+)
 
 const AcademicDataProvider = ({ children }: { children: ReactNode }) => {
   const { bearerToken } = useAuthContext();
@@ -35,7 +37,7 @@ const AcademicDataProvider = ({ children }: { children: ReactNode }) => {
     <AcademicDataContext.Provider value={{ courses, majors, minors, semesters }}>
       {children}
     </AcademicDataContext.Provider>
-  );
-};
+  )
+}
 
-export { AcademicDataContext, AcademicDataProvider };
+export { AcademicDataContext, AcademicDataProvider }

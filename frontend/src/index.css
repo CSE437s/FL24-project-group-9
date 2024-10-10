@@ -1,11 +1,11 @@
 :root {
   font-family: 'Source Sans Pro', sans-serif;
-  
+
   /* https://webdesign.wustl.edu/foundations/colors/palette/ */
   --primary-red: #a51417;
   --primary-darkgrey: #3d3d3d;
   --primary-lightgrey: #eeeeee;
-  --primary-beige: #FAF7EF;
+  --primary-beige: #faf7ef;
   --primary-black: #000000;
 
   --secondary-yellow: #ffcc00;
@@ -14,7 +14,7 @@
 
   --text-headings: #3d3d3d;
   --text-paragraph: #555;
-  --text-white: #FFFFFF;
+  --text-white: #ffffff;
 
   --link-default: #d01c29;
   --link-hover: #a51417;
@@ -25,7 +25,7 @@
   --border-separators: #c8c8c8;
   --border-size: 1px;
 
-  --background-main: #FFFFFF;
+  --background-main: #ffffff;
 
   /* font size */
   --font-h1: 2.986rem;
@@ -53,7 +53,12 @@ body {
   background-color: var(--background-main);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: var(--font-weight-headings);
   color: var(--text-headings);
   margin: 1rem 0;

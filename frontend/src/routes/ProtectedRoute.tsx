@@ -9,7 +9,7 @@ const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
   if (loading) {
     return (
       <>
-        <HeaderBar isNavVisible={true}/>
+        <HeaderBar isNavVisible={true} />
         <SpinnerComponent messages={[""]} />
       </>
     )
@@ -19,7 +19,7 @@ const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
     return <Navigate to="/login" />;
   }
 
-  return children;
-};
+  return children
+}
 
-export default ProtectedRoute;
+export default ProtectedRoute

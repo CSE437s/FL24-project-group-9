@@ -33,7 +33,7 @@ export default function ProfilePage() {
   if (loading) {
     return (
       <>
-        <HeaderBar isNavVisible={true}/>
+        <HeaderBar isNavVisible={true} />
         <SpinnerComponent messages={["Loading student info..."]} />
         <FooterBar />
       </>
@@ -43,18 +43,18 @@ export default function ProfilePage() {
   if (!student) {
     return (
       <>
-        <HeaderBar isNavVisible={true}/>
+        <HeaderBar isNavVisible={true} />
         <div className="profile-page">
           <h4>No info available, please try again later.</h4>
         </div>
-        <FooterBar/>
+        <FooterBar />
       </>
     )
   }
 
   return (
     <>
-      <HeaderBar isNavVisible={true}/>
+      <HeaderBar isNavVisible={true} />
       <div className="profile-page">
         <section className="profile-summary">
           <h3>Welcome to CoursePlanner</h3>

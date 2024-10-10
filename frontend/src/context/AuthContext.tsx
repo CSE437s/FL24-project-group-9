@@ -9,7 +9,7 @@ interface AuthContextType {
   register: (email: string, password: string, firstName: string, lastName: string) => Promise<boolean>;
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [bearerToken, setBearerToken] = useState('');
@@ -44,7 +44,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (response.access) {
       localStorage.setItem('access_token', response.access);
       localStorage.setItem('refresh_token', response.refresh);
-        
+
       setBearerToken(response.access)
       return true
     }
@@ -75,7 +75,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     <AuthContext.Provider value={{ bearerToken, loading, login, logout, register }}>
       {children}
     </AuthContext.Provider>
-  );
-};
+  )
+}
 
-export { AuthContext, AuthProvider };
+export { AuthContext, AuthProvider }

@@ -1,5 +1,5 @@
-import { API_URL } from './config.tsx'
 import { Student } from '../models/Student.tsx'
+import { API_URL } from './config.tsx';
 
 async function getStudent(bearerToken: string): Promise<Student> {
   const options = {
@@ -21,7 +21,7 @@ async function updateStudent(bearerToken: string, student: Student): Promise<Stu
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${bearerToken}`
     },
-    body: JSON.stringify({student}),
+    body: JSON.stringify({ student }),
   }
   const response = await fetch(`${API_URL}/api/student/`, options)
   return response.json()

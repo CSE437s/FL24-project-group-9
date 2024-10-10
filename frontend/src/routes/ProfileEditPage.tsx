@@ -25,7 +25,7 @@ export default function ProfileEditPage() {
 
   return (
     <>
-      <HeaderBar isNavVisible={true}/>
+      <HeaderBar isNavVisible={true} />
       <div className="profile-edit-page">
         {student ? (
           <section className="academic-summary">
@@ -35,32 +35,32 @@ export default function ProfileEditPage() {
                 <label>Major:</label>
                 <select
                   defaultValue={student.major}
-                  onChange={e => setStudent({...student, major: e.target.value})}
+                  onChange={e => setStudent({ ...student, major: e.target.value })}
                 >
-                  { majors.map((major, index) => <option key={index} value={major}>{major}</option>) }
+                  {majors.map((major, index) => <option key={index} value={major}>{major}</option>)}
                 </select>
               </p>
               <p>
                 <label>Minor:</label>
                 <select
                   defaultValue={student.minor}
-                  onChange={e => setStudent({...student, minor: e.target.value})}
+                  onChange={e => setStudent({ ...student, minor: e.target.value })}
                 >
-                  { minors.map((minor, index) => <option key={index} value={minor}>{minor}</option>) }
+                  {minors.map((minor, index) => <option key={index} value={minor}>{minor}</option>)}
                 </select>
               </p>
               <p>
                 <label>Graduation:</label>
                 <input type="month"
                   value={student.year}
-                  onChange={e => setStudent({...student, year: e.target.value})}
+                  onChange={e => setStudent({ ...student, year: e.target.value })}
                 />
               </p>
               <p>
                 <label>Career:</label>
                 <input type="text"
                   value={student.career}
-                  onChange={e => setStudent({...student, career: e.target.value})}
+                  onChange={e => setStudent({ ...student, career: e.target.value })}
                 />
               </p>
             </div>

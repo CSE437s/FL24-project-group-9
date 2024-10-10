@@ -34,7 +34,7 @@ export default function DashboardPage() {
   if (loading) {
     return (
       <>
-        <HeaderBar isNavVisible={true}/>
+        <HeaderBar isNavVisible={true} />
         <SpinnerComponent messages={["Loading your schedule..."]} />
         <FooterBar />
       </>
@@ -43,7 +43,7 @@ export default function DashboardPage() {
 
   return (
     <>
-      <HeaderBar isNavVisible={true}/>
+      <HeaderBar isNavVisible={true} />
       <div className="dashboard-page">
         <h3>Your Schedule</h3>
         <div className="schedule">
