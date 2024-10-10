@@ -3,14 +3,13 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ReadOnlyModelViewSet, ModelViewSet
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from api.models import Student, Course, Department, Semester, Major, Minor
+from api.models import Student, Course, Department, Semester, Program
 from .serializers import (
     StudentSerializer,
     CourseSerializer,
     DepartmentSerializer,
     SemesterSerializer,
-    MajorSerializer,
-    MinorSerializer,
+    ProgramSerializer,
 )
 
 
@@ -66,15 +65,9 @@ class DepartmentViewSet(ReadOnlyModelViewSet):
     permission_classes = (IsAuthenticated,)
 
 
-class MajorViewSet(ReadOnlyModelViewSet):
-    serializer_class = MajorSerializer
-    queryset = Major.objects.all()
-    permission_classes = (IsAuthenticated,)
-
-
-class MinorViewSet(ReadOnlyModelViewSet):
-    serializer_class = MinorSerializer
-    queryset = Minor.objects.all()
+class ProgramViewSet(ReadOnlyModelViewSet):
+    serializer_class = ProgramSerializer
+    queryset = Program.objects.all()
     permission_classes = (IsAuthenticated,)
 
 

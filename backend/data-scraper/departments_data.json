@@ -1,0 +1,306 @@
+[
+  {
+    "department": "African and African-American Studies",
+    "url": "http://afas.wustl.edu/"
+  },
+  {
+    "department": "American Culture Studies",
+    "url": "http://amcs.wustl.edu/"
+  },
+  {
+    "department": "Anthropology",
+    "url": "https://anthropology.wustl.edu/"
+  },
+  {
+    "department": "Archaeology",
+    "url": "https://arthistory.wustl.edu/"
+  },
+  {
+    "department": "Art History and Archaeology",
+    "url": "http://arthistory.artsci.wustl.edu/"
+  },
+  {
+    "department": "Biology",
+    "url": "http://wubio.wustl.edu/"
+  },
+  {
+    "department": "Center for the Humanities",
+    "url": "https://humanities.wustl.edu/"
+  },
+  {
+    "department": "Chemistry",
+    "url": "http://www.chemistry.wustl.edu/"
+  },
+  {
+    "department": "Classics",
+    "url": "https://classics.artsci.wustl.edu/"
+  },
+  {
+    "department": "College Writing Program",
+    "url": "https://collegewriting.wustl.edu/"
+  },
+  {
+    "department": "Comparative Literature and Thought",
+    "url": "http://complit.wustl.edu/"
+  },
+  {
+    "department": "Earth, Environmental, and Planetary Sciences",
+    "url": "https://eeps.wustl.edu/"
+  },
+  {
+    "department": "East Asian Languages and Cultures",
+    "url": "https://ealc.wustl.edu/"
+  },
+  {
+    "department": "Economics",
+    "url": "https://economics.wustl.edu/"
+  },
+  {
+    "department": "Education",
+    "url": "https://education.wustl.edu/"
+  },
+  {
+    "department": "English",
+    "url": "http://english.wustl.edu/"
+  },
+  {
+    "department": "Environmental Studies",
+    "url": "http://enst.wustl.edu/"
+  },
+  {
+    "department": "Film and Media Studies",
+    "url": "https://fms.wustl.edu/"
+  },
+  {
+    "department": "Germanic Languages and Literatures",
+    "url": "http://german.wustl.edu/"
+  },
+  {
+    "department": "Global Studies",
+    "url": "https://globalstudies.wustl.edu/"
+  },
+  {
+    "department": "History",
+    "url": "http://history.wustl.edu/"
+  },
+  {
+    "department": "Humanities Digital Workshop",
+    "url": "http://hdw.wustl.edu/"
+  },
+  {
+    "department": "Institute of Materials Science and Engineering",
+    "url": "http://imse.wustl.edu/"
+  },
+  {
+    "department": "Interdisciplinary Project in the Humanities",
+    "url": "https://iph.wustl.edu/"
+  },
+  {
+    "department": "Jewish, Islamic, and Middle Eastern Studies",
+    "url": "https://jimes.wustl.edu/"
+  },
+  {
+    "department": "John C. Danforth Center on Religion and Politics",
+    "url": "http://rap.wustl.edu/"
+  },
+  {
+    "department": "Latin American Studies",
+    "url": "http://lasprogram.wustl.edu/"
+  },
+  {
+    "department": "Linguistics",
+    "url": "https://linguistics.wustl.edu/"
+  },
+  {
+    "department": "Mathematics",
+    "url": "https://math.wustl.edu/"
+  },
+  {
+    "department": "Music",
+    "url": "http://music.wustl.edu/"
+  },
+  {
+    "department": "Performing Arts",
+    "url": "http://pad.wustl.edu/"
+  },
+  {
+    "department": "Philosophy",
+    "url": "http://philosophy.wustl.edu/"
+  },
+  {
+    "department": "Philosophy-Neuroscience-Psychology",
+    "url": "https://pnp.wustl.edu/"
+  },
+  {
+    "department": "Physics",
+    "url": "http://www.physics.wustl.edu/"
+  },
+  {
+    "department": "Political Science",
+    "url": "http://polisci.wustl.edu/"
+  },
+  {
+    "department": "Psychological & Brain Sciences",
+    "url": "https://psych.wustl.edu/"
+  },
+  {
+    "department": "Public Health & Society",
+    "url": "https://publichealthandsociety.wustl.edu/"
+  },
+  {
+    "department": "Religious Studies",
+    "url": "http://religiousstudies.wustl.edu/"
+  },
+  {
+    "department": "Romance Languages and Literatures",
+    "url": "http://rll.wustl.edu/"
+  },
+  {
+    "department": "Sociology",
+    "url": "https://sociology.wustl.edu/"
+  },
+  {
+    "department": "Statistics and Data Science",
+    "url": "https://sds.wustl.edu/"
+  },
+  {
+    "department": "Women, Gender, and Sexuality Studies",
+    "url": "https://wgss.wustl.edu/"
+  },
+  {
+    "department": "Biomedical Engineering",
+    "url": "https://bme.wustl.edu/index.html"
+  },
+  {
+    "department": "Computer Science & Engineering",
+    "url": "https://cse.wustl.edu/index.html"
+  },
+  {
+    "department": "Division of Engineering Education",
+    "url": "https://engineering.wustl.edu/education/index.html"
+  },
+  {
+    "department": "Electrical & Systems Engineering",
+    "url": "https://ese.wustl.edu/index.html"
+  },
+  {
+    "department": "Energy, Environmental & Chemical Engineering",
+    "url": "https://eece.wustl.edu/index.html"
+  },
+  {
+    "department": "Mechanical Engineering & Materials Science",
+    "url": "https://mems.wustl.edu/index.html"
+  },
+  {
+    "department": "Sever Institute",
+    "url": "https://sever.wustl.edu/index.html"
+  },
+  {
+    "department": "Technology & Leadership Center",
+    "url": "https://tlcenter.wustl.edu/"
+  },
+  {
+    "department": "College of Architecture",
+    "url": "https://samfoxschool.wustl.edu/academics/college-of-architecture"
+  },
+  {
+    "department": "College of Art",
+    "url": "https://samfoxschool.wustl.edu/academics/college-of-art"
+  },
+  {
+    "department": "Anesthesiology",
+    "url": "https://anesthesiology.wustl.edu/"
+  },
+  {
+    "department": "Biochemistry and Molecular Biophysics",
+    "url": "https://biochem.wustl.edu/"
+  },
+  {
+    "department": "Cell Biology and Physiology",
+    "url": "http://cellbiology.wustl.edu/"
+  },
+  {
+    "department": "Developmental Biology, Edward Mallinckrodt Dept. of",
+    "url": "https://developmentalbiology.wustl.edu/"
+  },
+  {
+    "department": "Emergency Medicine",
+    "url": "https://emergencymedicine.wustl.edu/"
+  },
+  {
+    "department": "Genetics, James S. McDonnell Dept. of",
+    "url": "http://genetics.wustl.edu/"
+  },
+  {
+    "department": "Medicine, John T. Milliken Dept. of",
+    "url": "https://internalmedicine.wustl.edu/"
+  },
+  {
+    "department": "Molecular Microbiology",
+    "url": "https://microbiology.wustl.edu/"
+  },
+  {
+    "department": "Neurology",
+    "url": "https://neuro.wustl.edu/"
+  },
+  {
+    "department": "Neuroscience",
+    "url": "https://neuroscience.wustl.edu/"
+  },
+  {
+    "department": "Neurosurgery",
+    "url": "https://neurosurgery.wustl.edu/"
+  },
+  {
+    "department": "Obstetrics and Gynecology",
+    "url": "https://obgyn.wustl.edu/"
+  },
+  {
+    "department": "Ophthalmology and Visual Sciences, John F. Hardesty, MD, Dept. of",
+    "url": "https://ophthalmology.wustl.edu/"
+  },
+  {
+    "department": "Orthopaedic Surgery",
+    "url": "https://www.ortho.wustl.edu/"
+  },
+  {
+    "department": "Otolaryngology",
+    "url": "https://oto.wustl.edu/"
+  },
+  {
+    "department": "Pathology and Immunology",
+    "url": "https://pathology.wustl.edu/"
+  },
+  {
+    "department": "Pediatrics, Edward Mallinckrodt Dept. of",
+    "url": "http://pediatrics.wustl.edu/"
+  },
+  {
+    "department": "Psychiatry",
+    "url": "https://psychiatry.wustl.edu/"
+  },
+  {
+    "department": "Radiation Oncology",
+    "url": "https://radonc.wustl.edu/"
+  },
+  {
+    "department": "Radiology, Mallinckrodt Institute of",
+    "url": "https://www.mir.wustl.edu/"
+  },
+  {
+    "department": "Surgery, Mary Culver Dept. of",
+    "url": "https://surgery.wustl.edu/"
+  },
+  {
+    "department": "Audiology and Communication Sciences",
+    "url": "https://pacs.wustl.edu/"
+  },
+  {
+    "department": "Occupational Therapy",
+    "url": "https://ot.wustl.edu/"
+  },
+  {
+    "department": "Physical Therapy",
+    "url": "https://pt.wustl.edu/"
+  }
+]
