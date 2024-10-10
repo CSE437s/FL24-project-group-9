@@ -23,11 +23,16 @@ jobs:
 
     - name: Install Poetry
       run: |
+        cd backend
         python -m pip install --upgrade pip
         pip install poetry
 
     - name: Install dependencies
-      run: poetry install
+      run: |
+        cd backend
+        poetry install
 
     - name: Run tests
-      run: poetry run pytest
+      run: |
+        cd backend
+        poetry run pytest
