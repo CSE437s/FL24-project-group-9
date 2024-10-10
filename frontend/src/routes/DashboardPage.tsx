@@ -1,31 +1,44 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { HeaderBar } from "../components/HeaderBar";
 import { Term } from "../models/Course";
 import PlannerAPI from "../services/PlannerAPI";
 import { ScheduleRow } from "../components/ScheduleRow";
+import { HeaderBar } from "../components/HeaderBar";
 import { FooterBar } from "../components/FooterBar";
-import './css/DashboardPage.css';
 import { TermHeader } from "../components/TermHeader";
+import { SpinnerComponent } from "../components/SpinnerComponent";
+import './css/DashboardPage.css';
 
 export default function DashboardPage() {
-  const navigate = useNavigate();
-  const [taken, setTaken] = useState<Term[]>([]);
-  const [selected, setSelected] = useState<Term[]>([]);
+  const navigate = useNavigate()
+  const [taken, setTaken] = useState<Term[]>([])
+  const [selected, setSelected] = useState<Term[]>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     PlannerAPI.getPlanner().then((plan) => {
-      setTaken(plan.taken);
-      setSelected(plan.selected);
+      setTaken(plan.taken)
+      setSelected(plan.selected)
+      setLoading(false)
     });
   }, []);
 
   const handleEdit = () => {
-    navigate('/profile/edit');
+    navigate('/dashboard/edit')
   }
 
   const handleGenerate = () => {
-    navigate('/planner/');
+    navigate('/planner/')
+  }
+
+  if (loading) {
+    return (
+      <>
+        <HeaderBar isNavVisible={true}/>
+        <SpinnerComponent messages={["Loading your schedule..."]} />
+        <FooterBar />
+      </>
+    )
   }
 
   return (
@@ -44,6 +57,7 @@ export default function DashboardPage() {
                 ))}
               </div>
             ))}
+            {taken.length === 0 ? <h4>No Courses Added</h4> : <></>}
           </div>
           <div className="planned">
             <h4><span>Upcoming Courses</span><button className="secondary" onClick={handleGenerate}>Generate new Schedule</button></h4>

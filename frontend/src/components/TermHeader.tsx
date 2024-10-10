@@ -9,8 +9,8 @@ interface TermHeaderProps {
 export const TermHeader: React.FC<TermHeaderProps> = ({term}) => {
   return (
     <div className="term-header">
-    <span className="term-info">{term.term}</span>
-    <span className="term-units">Total Units: {utils.getTotalUnits(term)}</span>
-  </div>
+      <span className="term-info">{term.term}</span>
+      <span className="term-units">Total Units: {utils.getTotalUnits(term)}</span>
+    </div>
   )
 }

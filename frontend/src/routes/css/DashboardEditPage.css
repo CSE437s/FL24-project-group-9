@@ -1,18 +1,31 @@
-.planner-page {
+.dashboard-edit-page {
   padding: 2rem 3rem;
   min-height: var(--min-height-container);
-  display: flex;
-  column-gap: 6rem;
 }
 
-.planner-buttons {
+.dashboard-edit-page .course-summary {
+  display: flex;
+  column-gap: 5rem;
+}
+
+.dashboard-edit-page .course-summary h4 {
+  display: flex;
+  width: 100%;
+}
+
+.dashboard-edit-page .course-summary h4 button.secondary {
+  margin-left: auto;
+}
+
+
+.edit-buttons {
   display: flex;
   align-items: center;
   justify-content: space-around;
   margin: 1.5rem;
 }
 
-.planner-buttons button {
+.edit-buttons button {
   margin: 1rem;
 }
 

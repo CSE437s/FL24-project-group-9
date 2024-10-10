@@ -6,6 +6,7 @@ import { FooterBar } from "../components/FooterBar";
 import { HeaderBar } from "../components/HeaderBar";
 import { TermHeader } from "../components/TermHeader";
 import { ScheduleDraggableV2 } from "../components/ScheduleDraggableV2";
+import { SpinnerComponent } from "../components/SpinnerComponent";
 import { useAcademicDataContext } from "../context/useContext";
 import PlannerAPI from "../services/PlannerAPI";
 import './css/PlannerPageV2.css'
@@ -16,21 +17,25 @@ export default function PlannerPageV2() {
   const [selected, setSelected] = useState<Term[]>([]);
   const [newCourse, setNewCourse] = useState(courses[0]?.id);
   const [newSemester, setNewSemester] = useState(semesters[0]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    PlannerAPI.getPlanner().then((plan) => {
-      setSelected(plan.recommended);
-    });
+    setTimeout(() => {
+      PlannerAPI.getPlanner().then((plan) => {
+        setSelected(plan.recommended)
+        setLoading(false)
+      })
+    }, 10000)
   }, []);
 
   const handleSave = () => {
-    PlannerAPI.updateSelectedPlan(selected);
-    navigate('/dashboard');
+    PlannerAPI.updateSelectedPlan(selected)
+    navigate('/dashboard')
   }
 
   const handleRemoveClick = (term: Term, course: Course) => {
-    term.courses = term.courses.filter((c) => c.id !== course.id);
-    setSelected([...selected]);
+    term.courses = term.courses.filter((c) => c.id !== course.id)
+    setSelected([...selected])
   }
 
   const handleDragDrop = (result: DropResult) => {
@@ -77,58 +82,77 @@ export default function PlannerPageV2() {
     }
   }
 
+  if (loading) {
+    return (
+      <>
+        <HeaderBar isNavVisible={true} />
+        <SpinnerComponent messages={["Generating recommended schedule"]} />
+        <FooterBar />
+      </>
+    )
+  }
+
   return (
     <>
       <HeaderBar isNavVisible={true}/>
       <div className="planner-page">
-        <div className="add-course">
-          <h4>Add Course</h4>
-          <p>
-            <label>Course:</label>
-            <select
-              defaultValue={newCourse}
-              onChange={e => setNewCourse(e.target.value)}
-            >
-              {courses.map((course, index) => (
-                <option key={index} value={course.id}>{course.department} {course.code} - {course.title}</option>
-              ))}
-            </select>
-          </p>
-          <p>
-            <label>Semester:</label>
-            <select
-              value={newSemester}
-              onChange={e => setNewSemester(e.target.value)}
-            >
-              {semesters.map((semester, index) => (
-                <option key={index} value={semester}>{semester}</option>
-              ))}
-            </select>
-          </p>
-          <div>
-            <button type="button" onClick={addCourse}>Add Course</button>
-          </div>
-        </div>
-        <div className="planner-component">
-          <h4>Recommened Schedule</h4>
-          <DragDropContext onDragEnd={handleDragDrop}>
-            <div className="selected-block">
-              {selected.map((term) => (
-                <div key={term.id} className="schedule-term">
-                  <TermHeader term={term} />
-                  <ScheduleDraggableV2
-                    term={term}
-                    droppableId={`selected-${term.id}`}
-                    handleRemoveClick={handleRemoveClick}
-                  />
-                </div>
-              ))}
+        {selected.length !== 0 && (
+          <>
+          <div className="planner-component">
+            <h4>Recommended Schedule</h4>
+            <p>Add or remove courses from your upcoming schedule</p>
+            <DragDropContext onDragEnd={handleDragDrop}>
+              <div className="selected-block">
+                {selected.map((term) => (
+                  <div key={term.id} className="schedule-term">
+                    <TermHeader term={term} />
+                    <ScheduleDraggableV2
+                      term={term}
+                      droppableId={`selected-${term.id}`}
+                      handleRemoveClick={handleRemoveClick}
+                    />
+                  </div>
+                ))}
+              </div>
+            </DragDropContext>
+            <div className="planner-buttons">
+              <button onClick={handleSave}>Save Schedule</button>
             </div>
-          </DragDropContext>
-          <div className="planner-buttons">
-            <button onClick={handleSave}>Save Schedule</button>
           </div>
-        </div>
+          <div className="add-course">
+            <h4>Add Course</h4>
+            <p>
+              <label>Course:</label>
+              <select
+                defaultValue={newCourse}
+                onChange={e => setNewCourse(e.target.value)}
+              >
+                {courses.map((course, index) => (
+                  <option key={index} value={course.id}>{course.department} {course.code} - {course.title}</option>
+                ))}
+              </select>
+            </p>
+            <p>
+              <label>Semester:</label>
+              <select
+                value={newSemester}
+                onChange={e => setNewSemester(e.target.value)}
+              >
+                {semesters.map((semester, index) => (
+                  <option key={index} value={semester}>{semester}</option>
+                ))}
+              </select>
+            </p>
+            <div className="planner-buttons">
+              <button type="button" onClick={addCourse}>Add Course</button>
+            </div>
+          </div>
+          </>)}
+        {selected.length === 0 && (
+          <section className="no-courses">
+            <h4>Unable to generate recommended schedule at this time</h4>
+            <p>Please try again later</p>
+          </section>)}
       </div>
       <FooterBar />
     </>

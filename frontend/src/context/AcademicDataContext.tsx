@@ -23,10 +23,12 @@ const AcademicDataProvider = ({ children }: { children: ReactNode }) => {
   const [semesters, setSemesters] = useState<string[]>([]);
 
   useEffect(() => {
-    CoursesAPI.getAllCourses(bearerToken).then(setCourses);
-    MajorsAPI.getAllMajors(bearerToken).then(setMajors);
-    MinorsAPI.getAllMinors(bearerToken).then(setMinors);
-    SemestersAPI.getAllSemesters(bearerToken).then(setSemesters);
+    if (bearerToken) {
+      CoursesAPI.getAllCourses(bearerToken).then(setCourses);
+      MajorsAPI.getAllMajors(bearerToken).then(setMajors);
+      MinorsAPI.getAllMinors(bearerToken).then(setMinors);
+      SemestersAPI.getAllSemesters(bearerToken).then(setSemesters);
+    }
   }, [bearerToken]);
 
   return (

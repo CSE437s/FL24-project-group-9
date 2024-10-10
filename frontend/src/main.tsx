@@ -5,11 +5,12 @@ import HomePage from './routes/HomePage';
 import ProfileEditPage from './routes/ProfileEditPage';
 import ProfilePage from './routes/ProfilePage';
 import PlannerPageV2 from './routes/PlannerPageV2';
+import DashboardEditPage from './routes/DashboardEditPage';
 import DashboardPage from './routes/DashboardPage';
 import ProtectedRoute from './routes/ProtectedRoute';
 import { AuthProvider } from './context/AuthContext';
-import './index.css'
 import { AcademicDataProvider } from './context/AcademicDataContext';
+import './index.css'
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,14 @@ const router = createBrowserRouter([
       <ProtectedRoute>
         <PlannerPageV2 />
       </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/dashboard/edit",
+    element: (
+    <ProtectedRoute>
+      <DashboardEditPage />
+    </ProtectedRoute>
     ),
   },
   {

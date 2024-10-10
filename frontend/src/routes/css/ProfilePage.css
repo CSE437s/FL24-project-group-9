@@ -1,6 +1,6 @@
 .profile-page {
   padding: 2rem 3rem;
-  min-height: calc(100vh - 95px - 56px - 4rem);
+  min-height: var(--min-height-container);
 }
 
 .academic-summary {
@@ -19,8 +19,4 @@
 .academic-info p span,
 .profile-info p span {
   color: var(--primary-black);
-}
-
-.academic-history {
-  min-width: 522px;
 }

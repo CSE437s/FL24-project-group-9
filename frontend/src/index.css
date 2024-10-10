@@ -43,6 +43,9 @@
   --font-weight-lead: 300;
   --font-weight-headings: 600;
   --font-weight-default: 400;
+
+  /* body component min height */
+  --min-height-container: calc(100vh - 2.5rem - 3rem - 0.25rem - 2rem - 1.5rem - 4rem);
 }
 
 body {
@@ -103,8 +106,8 @@ button {
   color: var(--text-white);
   background-color: var(--primary-red);
   border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
   cursor: pointer;
 }
 
