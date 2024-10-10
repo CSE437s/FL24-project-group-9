@@ -30,7 +30,7 @@ jobs:
       run: |
         cd frontend
         npm run lint
-    
+
     - name: Build application
       run: |
         cd frontend

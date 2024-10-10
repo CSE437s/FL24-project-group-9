@@ -10,7 +10,6 @@ import PlannerAPI from '../services/PlannerAPI'
 import StudentAPI from '../services/StudentAPI'
 
 import './css/ProfilePage.css'
-import './DashboardPage.css'
 
 export default function ProfilePage() {
   const navigate = useNavigate()
