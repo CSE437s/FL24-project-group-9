@@ -3,9 +3,9 @@ import { DragDropContext, DropResult } from 'react-beautiful-dnd'
 
 import { Term } from '../models/Course'
 import PlannerAPI from '../services/PlannerAPI'
-import { utils } from '../utils'
 
 import { ScheduleDraggable } from './ScheduleDraggable'
+import { TermHeader } from './TermHeader'
 
 import './css/PlannerComponent.css'
 
@@ -104,9 +104,7 @@ export const PlannerComponent: React.FC<PlannerComponentProps> = ({
         <div className="recommended-block">
           {recommended.map((term) => (
             <div key={term.id} className="schedule-term">
-              <div className="term-header">
-                <span className="term-info">{term.term}</span>
-              </div>
+              <TermHeader term={term} />
               <ScheduleDraggable
                 courses={term.courses}
                 droppableId={`recommended-${term.id}`}
@@ -118,12 +116,7 @@ export const PlannerComponent: React.FC<PlannerComponentProps> = ({
         <div className="selected-block">
           {selected.map((term) => (
             <div key={term.id} className="schedule-term">
-              <div className="term-header">
-                <span className="term-info">{term.term}</span>
-                <span className="term-units">
-                  Total Units: {utils.getTotalUnits(term)}
-                </span>
-              </div>
+              <TermHeader term={term} />
               <ScheduleDraggable
                 courses={term.courses}
                 droppableId={`selected-${term.id}`}

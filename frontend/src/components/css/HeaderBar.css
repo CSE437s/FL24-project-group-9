@@ -1,7 +1,7 @@
 .header-bar {
   background-color: var(--primary-beige);
   padding: 1.25rem 2rem;
-  border-bottom: 5px solid var(--primary-red);
+  border-bottom: 0.25rem solid var(--primary-red);
 
   display: flex;
   justify-content: space-between;
@@ -9,7 +9,7 @@
 }
 
 .header-bar .logo {
-  height: 50px;
+  height: 3rem;
 }
 
 .header-bar .logo:hover {

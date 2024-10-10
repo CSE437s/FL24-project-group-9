@@ -1,14 +1,28 @@
 import { Course } from '../models/Course.tsx'
 
-import data from './data/courses.json'
 import { API_URL } from './config.tsx'
 
-async function getAllCourses(): Promise<Course[]> {
-  return data
+async function getAllCourses(bearerToken: string): Promise<Course[]> {
+  const options = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${bearerToken}`,
+    },
+  }
+  const response = await fetch(`${API_URL}/api/courses/`, options)
+  return await response.json()
 }
 
-async function getCourseById(id: string): Promise<Course> {
-  const response = await fetch(`${API_URL}/api/courses/${id}`)
+async function getCourseById(bearerToken: string, id: string): Promise<Course> {
+  const options = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${bearerToken}`,
+    },
+  }
+  const response = await fetch(`${API_URL}/api/courses/${id}/`, options)
   return await response.json()
 }
 

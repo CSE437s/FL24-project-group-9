@@ -1,21 +1,33 @@
 import { Student } from '../models/Student.tsx'
 
-import data from './data/student.json'
 import { API_URL } from './config.tsx'
 
-async function getStudent(): Promise<Student> {
-  return data
+async function getStudent(bearerToken: string): Promise<Student> {
+  const options = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${bearerToken}`,
+    },
+  }
+  const response = await fetch(`${API_URL}/api/student`, options)
+  console.log(await response.json())
+  return await response.json()
 }
 
-async function updateStudent(student: Student): Promise<Student> {
+async function updateStudent(
+  bearerToken: string,
+  student: Student
+): Promise<Student> {
   const options = {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
+      Authorization: `Bearer ${bearerToken}`,
     },
     body: JSON.stringify({ student }),
   }
-  const response = await fetch(`${API_URL}/api/student/${student.id}`, options)
+  const response = await fetch(`${API_URL}/api/student/`, options)
   return response.json()
 }
 

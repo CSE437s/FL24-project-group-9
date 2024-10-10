@@ -23,7 +23,6 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({ isNavVisible }) => {
       {isNavVisible && (
         <nav>
           <a onClick={() => navigate('/profile')}>Profile</a>
-          <a onClick={() => navigate('/planner')}>Planner</a>
           <a onClick={() => navigate('/dashboard')}>Dashboard</a>
           <a onClick={logout}>Logout</a>
         </nav>
