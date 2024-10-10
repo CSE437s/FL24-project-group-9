@@ -1,6 +1,6 @@
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
-from django.contrib.auth.models import User
+from api.models import Student
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
 
@@ -18,7 +18,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
 
 class RegisterSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(
-        required=True, validators=[UniqueValidator(queryset=User.objects.all())]
+        required=True, validators=[UniqueValidator(queryset=Student.objects.all())]
     )
 
     password = serializers.CharField(
@@ -27,7 +27,7 @@ class RegisterSerializer(serializers.ModelSerializer):
     password2 = serializers.CharField(write_only=True, required=True)
 
     class Meta:
-        model = User
+        model = Student
         fields = (
             "username",
             "password",
@@ -50,7 +50,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         return attrs
 
     def create(self, validated_data):
-        user = User.objects.create(
+        user = Student.objects.create(
             username=validated_data["username"],
             email=validated_data["email"],
             first_name=validated_data["first_name"],
@@ -71,7 +71,7 @@ class ChangePasswordSerializer(serializers.ModelSerializer):
     old_password = serializers.CharField(write_only=True, required=True)
 
     class Meta:
-        model = User
+        model = Student
         fields = ("old_password", "password", "password2")
 
     def validate(self, attrs):
@@ -108,7 +108,7 @@ class UpdateUserSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(required=True)
 
     class Meta:
-        model = User
+        model = Student
         fields = ("username", "first_name", "last_name", "email")
         extra_kwargs = {
             "first_name": {"required": True},
@@ -117,7 +117,7 @@ class UpdateUserSerializer(serializers.ModelSerializer):
 
     def validate_email(self, value):
         user = self.context["request"].user
-        if User.objects.exclude(pk=user.pk).filter(email=value).exists():
+        if Student.objects.exclude(pk=user.pk).filter(email=value).exists():
             raise serializers.ValidationError(
                 {"email": "This email is already in use."}
             )
@@ -125,7 +125,7 @@ class UpdateUserSerializer(serializers.ModelSerializer):
 
     def validate_username(self, value):
         user = self.context["request"].user
-        if User.objects.exclude(pk=user.pk).filter(username=value).exists():
+        if Student.objects.exclude(pk=user.pk).filter(username=value).exists():
             raise serializers.ValidationError(
                 {"username": "This username is already in use."}
             )

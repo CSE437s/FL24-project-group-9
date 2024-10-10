@@ -1,1684 +1,983 @@
 [
-    {
-        "Major": "Accounting",
-        "School": [
-            "Olin Business School"
-        ],
-        "Program Type": [
-            "Bachelor of Science in Business Administration",
-            "Minor"
-        ],
-        "Program URL": "http://bulletin.wustl.edu/undergrad/business/#acct"
-    },
-    {
-        "Major": "Aerospace Engineering",
-        "School": [
-            "McKelvey School of Engineering"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://mems.wustl.edu/academics/undergraduate/Minors.html"
-    },
-    {
-        "Major": "African & African-American Studies",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://afas.wustl.edu/undergraduate"
-    },
-    {
-        "Major": "American Culture Studies",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://amcs.wustl.edu/undergraduate"
-    },
-    {
-        "Major": "Ancient Studies",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://classics.wustl.edu/undergraduate"
-    },
-    {
-        "Major": "Anthropology",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://anthropology.wustl.edu/major-and-minor"
-    },
-    {
-        "Major": "Anthropology: Global Health & Environment",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://anthropology.wustl.edu/major-and-minor#anchor-group-11425"
-    },
-    {
-        "Major": "Applied Linguistics",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://education.wustl.edu/undergraduate"
-    },
-    {
-        "Major": "Applied Mathematics",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "https://math.wustl.edu/major-and-minor-details"
-    },
-    {
-        "Major": "Applied Microeconomics",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "http://bulletin.wustl.edu/undergrad/artsci/economics/#minors"
-    },
-    {
-        "Major": "Applied Physics & Electrical Engineering",
-        "School": [
-            "McKelvey School of Engineering"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://ese.wustl.edu/academics/undergraduate-programs/index.html"
-    },
-    {
-        "Major": "Applied Science: Chemical Engineering",
-        "School": [
-            "McKelvey School of Engineering"
-        ],
-        "Program Type": [
-            "Bachelor of Science"
-        ],
-        "Program URL": "https://eece.wustl.edu/academics/undergraduate-programs/BS-in-Applied-Science-Chemical-Engineering.html"
-    },
-    {
-        "Major": "Applied Science: Computer Science",
-        "School": [
-            "McKelvey School of Engineering"
-        ],
-        "Program Type": [
-            "Bachelor of Science"
-        ],
-        "Program URL": "https://cse.wustl.edu/academics/undergraduate/minors.html"
-    },
-    {
-        "Major": "Applied Science: Electrical Engineering",
-        "School": [
-            "McKelvey School of Engineering"
-        ],
-        "Program Type": [
-            "Bachelor of Science"
-        ],
-        "Program URL": "https://ese.wustl.edu/academics/undergraduate-programs/Electrical-Engineering.html"
-    },
-    {
-        "Major": "Applied Science: Systems Science & Engineering",
-        "School": [
-            "McKelvey School of Engineering"
-        ],
-        "Program Type": [
-            "Bachelor of Science"
-        ],
-        "Program URL": "https://ese.wustl.edu/academics/undergraduate-programs/Systems-Science-Engineering.html"
-    },
-    {
-        "Major": "Arabic",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://jimes.wustl.edu/major-minor-requirements"
-    },
-    {
-        "Major": "Archaeology",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "http://bulletin.wustl.edu/undergrad/artsci/archaeology/#text"
-    },
-    {
-        "Major": "Architectural History & Theory",
-        "School": [
-            "Sam Fox School of Design & Visual Arts"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://samfoxschool.wustl.edu/academics/college-of-architecture/minors/architectural-history-theory"
-    },
-    {
-        "Major": "Architecture",
-        "School": [
-            "Sam Fox School of Design & Visual Arts"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://samfoxschool.wustl.edu/academics/college-of-architecture/minors/architecture"
-    },
-    {
-        "Major": "Architecture",
-        "School": [
-            "Sam Fox School of Design & Visual Arts"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Bachelor of Science"
-        ],
-        "Program URL": "https://samfoxschool.wustl.edu/academics/college-of-architecture/bs-ba-in-architecture"
-    },
-    {
-        "Major": "Art",
-        "School": [
-            "Sam Fox School of Design & Visual Arts"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://samfoxschool.wustl.edu/academics/college-of-art/minors/studio-art "
-    },
-    {
-        "Major": "Art",
-        "School": [
-            "Sam Fox School of Design & Visual Arts"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Bachelor of Fine Arts"
-        ],
-        "Program URL": "https://samfoxschool.wustl.edu/academics/college-of-art/bfa-ba-in-studio-art-and-design"
-    },
-    {
-        "Major": "Art History & Archaeology",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://arthistory.artsci.wustl.edu/undergraduate#"
-    },
-    {
-        "Major": "Art: Painting",
-        "School": [
-            "Sam Fox School of Design & Visual Arts"
-        ],
-        "Program Type": [
-            "Bachelor of Fine Arts"
-        ],
-        "Program URL": "https://samfoxschool.wustl.edu/academics/college-of-art/bfa-ba-in-studio-art-and-design/studio-art"
-    },
-    {
-        "Major": "Art: Photography",
-        "School": [
-            "Sam Fox School of Design & Visual Arts"
-        ],
-        "Program Type": [
-            "Bachelor of Fine Arts"
-        ],
-        "Program URL": "https://samfoxschool.wustl.edu/academics/college-of-art/bfa-ba-in-studio-art-and-design/studio-art"
-    },
-    {
-        "Major": "Art: Printmaking",
-        "School": [
-            "Sam Fox School of Design & Visual Arts"
-        ],
-        "Program Type": [
-            "Bachelor of Fine Arts"
-        ],
-        "Program URL": "https://samfoxschool.wustl.edu/academics/college-of-art/bfa-ba-in-studio-art-and-design/studio-art"
-    },
-    {
-        "Major": "Art: Sculpture",
-        "School": [
-            "Sam Fox School of Design & Visual Arts"
-        ],
-        "Program Type": [
-            "Bachelor of Fine Arts"
-        ],
-        "Program URL": "https://samfoxschool.wustl.edu/academics/college-of-art/bfa-ba-in-studio-art-and-design/studio-art"
-    },
-    {
-        "Major": "Art: Time-Based + Media Art",
-        "School": [
-            "Sam Fox School of Design & Visual Arts"
-        ],
-        "Program Type": [
-            "Bachelor of Fine Arts"
-        ],
-        "Program URL": "https://samfoxschool.wustl.edu/academics/college-of-art/bfa-ba-in-studio-art-and-design/studio-art"
-    },
-    {
-        "Major": "Asian American Studies",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://artsci.wustl.edu/asian-american-studies-minor"
-    },
-    {
-        "Major": "Astrophysics",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "http://bulletin.wustl.edu/undergrad/artsci/physics/#majors"
-    },
-    {
-        "Major": "Astrophysics & Astroparticle Physics",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "http://bulletin.wustl.edu/undergrad/artsci/physics/#minors"
-    },
-    {
-        "Major": "Beyond Boundaries",
-        "School": [],
-        "Program Type": [],
-        "Program URL": "https://beyondboundaries.wustl.edu/"
-    },
-    {
-        "Major": "Bioinformatics",
-        "School": [
-            "Arts & Sciences",
-            "McKelvey School of Engineering"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://cse.wustl.edu/academics/undergraduate/minors.html"
-    },
-    {
-        "Major": "Biology",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://biology.wustl.edu/major-requirements-related-programs"
-    },
-    {
-        "Major": "Biology: Ecology/Evolution",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "https://biology.wustl.edu/major-requirements-related-programs"
-    },
-    {
-        "Major": "Biology: Genomics/Computational",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "https://biology.wustl.edu/major-requirements-related-programs"
-    },
-    {
-        "Major": "Biology: Microbiology",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "https://biology.wustl.edu/major-requirements-related-programs"
-    },
-    {
-        "Major": "Biology: Molecular/Biochemistry",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "https://biology.wustl.edu/major-requirements-related-programs"
-    },
-    {
-        "Major": "Biology: Neuroscience",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "https://biology.wustl.edu/major-requirements-related-programs"
-    },
-    {
-        "Major": "Biomedical Data Science",
-        "School": [
-            "McKelvey School of Engineering"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://bme.wustl.edu/academics/undergraduate-programs/biomedical-data-science-minor.html"
-    },
-    {
-        "Major": "Biomedical Engineering",
-        "School": [
-            "McKelvey School of Engineering"
-        ],
-        "Program Type": [
-            "Bachelor of Science"
-        ],
-        "Program URL": "https://bme.wustl.edu/academics/undergraduate-programs/bs-biomedical-engineering.html"
-    },
-    {
-        "Major": "Biomedical Physics",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "http://bulletin.wustl.edu/undergrad/artsci/physics/#minors"
-    },
-    {
-        "Major": "Business & Computer Science",
-        "School": [
-            "McKelvey School of Engineering",
-            "Olin Business School"
-        ],
-        "Program Type": [
-            "Bachelor of Science"
-        ],
-        "Program URL": "https://cse.wustl.edu/academics/undergraduate/BS-Business-Computer-Science.html"
-    },
-    {
-        "Major": "Business of Analytics",
-        "School": [
-            "Olin Business School"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "http://bulletin.wustl.edu/undergrad/business/#analytics"
-    },
-    {
-        "Major": "Business of the Arts",
-        "School": [
-            "Olin Business School"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "http://bulletin.wustl.edu/undergrad/business/#arts"
-    },
-    {
-        "Major": "Chemical Engineering",
-        "School": [
-            "McKelvey School of Engineering"
-        ],
-        "Program Type": [
-            "Bachelor of Science"
-        ],
-        "Program URL": "https://eece.wustl.edu/academics/undergraduate-programs/BS-in-Chemical-Engineering.html"
-    },
-    {
-        "Major": "Chemistry",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://chemistry.wustl.edu/majorminor-requirements"
-    },
-    {
-        "Major": "Chemistry: Biochemistry",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "https://chemistry.wustl.edu/majorminor-requirements"
-    },
-    {
-        "Major": "Children\u2019s Studies",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://humanities.wustl.edu/children%E2%80%99s-studies/minor-requirements"
-    },
-    {
-        "Major": "Classics",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://classics.wustl.edu/undergraduate"
-    },
-    {
-        "Major": "Communication Design",
-        "School": [
-            "Sam Fox School of Design & Visual Arts"
-        ],
-        "Program Type": [
-            "Bachelor of Fine Arts"
-        ],
-        "Program URL": "https://samfoxschool.wustl.edu/academics/college-of-art/bfa-ba-in-studio-art-and-design/communication-design"
-    },
-    {
-        "Major": "Comparative Literature & Thought",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://complitandthought.wustl.edu/major-minor-requirements"
-    },
-    {
-        "Major": "Computer Engineering",
-        "School": [
-            "McKelvey School of Engineering"
-        ],
-        "Program Type": [
-            "Bachelor of Science"
-        ],
-        "Program URL": "https://cse.wustl.edu/academics/undergraduate/BS-Computer-Engineering.html"
-    },
-    {
-        "Major": "Computer Science",
-        "School": [
-            "McKelvey School of Engineering"
-        ],
-        "Program Type": [
-            "Bachelor of Science",
-            "Minor"
-        ],
-        "Program URL": "https://cse.wustl.edu/academics/undergraduate/BS-Computer-Science.html"
-    },
-    {
-        "Major": "Computer Science + Economics",
-        "School": [
-            "McKelvey School of Engineering"
-        ],
-        "Program Type": [
-            "Bachelor of Science"
-        ],
-        "Program URL": "https://cse.wustl.edu/academics/undergraduate/BS-Computer-Science-Economics.html"
-    },
-    {
-        "Major": "Computer Science + Mathematics",
-        "School": [
-            "Arts & Sciences",
-            "McKelvey School of Engineering"
-        ],
-        "Program Type": [
-            "Bachelor of Science"
-        ],
-        "Program URL": "https://cse.wustl.edu/academics/undergraduate/BS-Computer-Science-Math.html"
-    },
-    {
-        "Major": "Creative Practice for Social Change",
-        "School": [
-            "Sam Fox School of Design & Visual Arts"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://samfoxschool.wustl.edu/collaborations/socially-engaged-practice/minor-in-creative-practice-for-social-change"
-    },
-    {
-        "Major": "Dance",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "http://bulletin.wustl.edu/undergrad/artsci/dance/#text"
-    },
-    {
-        "Major": "Data Science",
-        "School": [
-            "Arts & Sciences",
-            "McKelvey School of Engineering"
-        ],
-        "Program Type": [
-            "Bachelor of Science"
-        ],
-        "Program URL": "https://cse.wustl.edu/academics/undergraduate/BS-Data-Science.html"
-    },
-    {
-        "Major": "Data Science in the Humanities",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://iph.wustl.edu/minor-data-science-humanities"
-    },
-    {
-        "Major": "Design",
-        "School": [
-            "Sam Fox School of Design & Visual Arts"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "https://samfoxschool.wustl.edu/academics/college-of-art/bfa-ba-in-studio-art-and-design"
-    },
-    {
-        "Major": "Design",
-        "School": [
-            "Sam Fox School of Design & Visual Arts"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://samfoxschool.wustl.edu/academics/college-of-art/minors/design"
-    },
-    {
-        "Major": "Design: Communication",
-        "School": [
-            "Sam Fox School of Design & Visual Arts"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "https://samfoxschool.wustl.edu/academics/college-of-art/bfa-ba-in-studio-art-and-design/communication-design"
-    },
-    {
-        "Major": "Design: Fashion",
-        "School": [
-            "Sam Fox School of Design & Visual Arts"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "https://samfoxschool.wustl.edu/academics/college-of-art/bfa-ba-in-studio-art-and-design/fashion-design"
-    },
-    {
-        "Major": "Drama",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "http://bulletin.wustl.edu/undergrad/artsci/drama/#text"
-    },
-    {
-        "Major": "Earth, Environmental, & Planetary Sciences",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://eps.wustl.edu/"
-    },
-    {
-        "Major": "Earth, Environmental, & Planetary Sciences: Earth Science",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://eeps.wustl.edu/majors-minors"
-    },
-    {
-        "Major": "Earth, Environmental, & Planetary Sciences: Environmental Science",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://eeps.wustl.edu/majors-minors"
-    },
-    {
-        "Major": "Earth, Environmental, & Planetary Sciences: Geospatial Science",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://eeps.wustl.edu/majors-minors"
-    },
-    {
-        "Major": "Earth, Environmental, & Planetary Sciences: Planetary Science",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "https://eeps.wustl.edu/majors-minors"
-    },
-    {
-        "Major": "East Asian Languages & Cultures",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://eas.wustl.edu/undergraduate"
-    },
-    {
-        "Major": "Economics",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "http://bulletin.wustl.edu/undergrad/artsci/economics/#majors"
-    },
-    {
-        "Major": "Economics & Computer Science",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "http://bulletin.wustl.edu/undergrad/artsci/economics/#majors"
-    },
-    {
-        "Major": "Economics & Strategy",
-        "School": [
-            "Olin Business School"
-        ],
-        "Program Type": [
-            "Bachelor of Science in Business Administration"
-        ],
-        "Program URL": "http://bulletin.wustl.edu/undergrad/business/#econandstrategy"
-    },
-    {
-        "Major": "Educational Studies",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://education.wustl.edu/undergraduate"
-    },
-    {
-        "Major": "Electrical Engineering",
-        "School": [
-            "McKelvey School of Engineering"
-        ],
-        "Program Type": [
-            "Bachelor of Science",
-            "Minor"
-        ],
-        "Program URL": "https://ese.wustl.edu/academics/undergraduate-programs/Electrical-Engineering.html"
-    },
-    {
-        "Major": "Elementary Education",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "https://education.wustl.edu/undergraduate"
-    },
-    {
-        "Major": "Energy Engineering",
-        "School": [
-            "McKelvey School of Engineering"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://eece.wustl.edu/academics/undergraduate-programs/minors.html"
-    },
-    {
-        "Major": "English",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://english.wustl.edu/english-major"
-    },
-    {
-        "Major": "English Literature",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "https://english.wustl.edu/english-major"
-    },
-    {
-        "Major": "English Literature: Creative Writing",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "https://english.wustl.edu/english-major"
-    },
-    {
-        "Major": "Entrepreneurship",
-        "School": [
-            "Olin Business School"
-        ],
-        "Program Type": [
-            "Bachelor of Science in Business Administration"
-        ],
-        "Program URL": "http://bulletin.wustl.edu/undergrad/business/#entrepreneur"
-    },
-    {
-        "Major": "Environmental Analysis",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://enst.wustl.edu/academic-requirements"
-    },
-    {
-        "Major": "Environmental Biology",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "https://biology.wustl.edu/major-requirements-related-programs#anchor-group-11732"
-    },
-    {
-        "Major": "Environmental Engineering",
-        "School": [
-            "McKelvey School of Engineering"
-        ],
-        "Program Type": [
-            "Bachelor of Science",
-            "Minor"
-        ],
-        "Program URL": "https://eece.wustl.edu/academics/undergraduate-programs/BS-in-Environmental-Engineering.html"
-    },
-    {
-        "Major": "Environmental Policy",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "https://enst.wustl.edu/undergraduate-programs"
-    },
-    {
-        "Major": "Fashion Design",
-        "School": [
-            "Sam Fox School of Design & Visual Arts"
-        ],
-        "Program Type": [
-            "Bachelor of Fine Arts"
-        ],
-        "Program URL": "https://samfoxschool.wustl.edu/academics/college-of-art/bfa-ba-in-studio-art-and-design/fashion-design"
-    },
-    {
-        "Major": "Film & Media Studies",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://fms.wustl.edu/undergraduate"
-    },
-    {
-        "Major": "Finance",
-        "School": [
-            "Olin Business School"
-        ],
-        "Program Type": [
-            "Bachelor of Science in Business Administration",
-            "Minor"
-        ],
-        "Program URL": "http://bulletin.wustl.edu/undergrad/business/#text"
-    },
-    {
-        "Major": "French",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://rll.wustl.edu/degree-details-and-requirements#anchor-group-9516"
-    },
-    {
-        "Major": "General Business",
-        "School": [
-            "Olin Business School"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "http://bulletin.wustl.edu/undergrad/business/#minor_genbus"
-    },
-    {
-        "Major": "General Economics",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "http://bulletin.wustl.edu/undergrad/artsci/economics/#minors"
-    },
-    {
-        "Major": "German",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://german.wustl.edu/major-minor-requirements"
-    },
-    {
-        "Major": "Germanic Languages & Literatures",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "http://bulletin.wustl.edu/undergrad/artsci/german/#majors"
-    },
-    {
-        "Major": "Global Film & Media Studies",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://fms.artsci.wustl.edu/minor"
-    },
-    {
-        "Major": "Global Studies: Development",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "https://ias.wustl.edu/undergraduate"
-    },
-    {
-        "Major": "Global Studies: Eurasian",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "https://ias.wustl.edu/undergraduate"
-    },
-    {
-        "Major": "Global Studies: European",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "https://ias.wustl.edu/undergraduate"
-    },
-    {
-        "Major": "Global Studies: Global Cultural Studies",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "https://ias.wustl.edu/undergraduate"
-    },
-    {
-        "Major": "Global Studies: International Affairs",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "https://ias.wustl.edu/undergraduate"
-    },
-    {
-        "Major": "Health Care Management",
-        "School": [
-            "Olin Business School"
-        ],
-        "Program Type": [
-            "Bachelor of Science in Business Administration",
-            "Minor"
-        ],
-        "Program URL": "https://bulletin.wustl.edu/undergrad/business/#majors"
-    },
-    {
-        "Major": "Hebrew",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://jimes.wustl.edu/major-minor-requirements"
-    },
-    {
-        "Major": "History",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://history.wustl.edu/major-minor-requirements"
-    },
-    {
-        "Major": "Human-Computer Interaction",
-        "School": [
-            "McKelvey School of Engineering",
-            "Sam Fox School of Design & Visual Arts"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "http://www.hci-washu.site/"
-    },
-    {
-        "Major": "International Business",
-        "School": [
-            "Olin Business School"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "http://bulletin.wustl.edu/undergrad/business/#minors"
-    },
-    {
-        "Major": "Italian",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://rll.wustl.edu/degree-details-and-requirements#anchor-group-9516"
-    },
-    {
-        "Major": "Jazz Studies",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://music.wustl.edu/undergraduate#dotted-line"
-    },
-    {
-        "Major": "Jewish, Islamic, & Middle Eastern Studies",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://jimes.wustl.edu/major-minor-requirements"
-    },
-    {
-        "Major": "Landscape Architecture",
-        "School": [
-            "Sam Fox School of Design & Visual Arts"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://samfoxschool.wustl.edu/academics/college-of-architecture/minors/landscape-architecture"
-    },
-    {
-        "Major": "Latin American Studies",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://lasprogram.wustl.edu/undergraduate"
-    },
-    {
-        "Major": "Leadership",
-        "School": [
-            "Olin Business School"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://olin.wustl.edu/EN-US/academic-programs/bs-business-administration/academics/Pages/options-for-nonBSBAs.aspx"
-    },
-    {
-        "Major": "Legal Studies",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://artsci.wustl.edu/explore-academics/legal-studies-minor"
-    },
-    {
-        "Major": "Linguistics",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://linguistics.wustl.edu/about"
-    },
-    {
-        "Major": "Managerial Economics",
-        "School": [
-            "Olin Business School"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://economics.wustl.edu/undergraduate/minor"
-    },
-    {
-        "Major": "Marketing",
-        "School": [
-            "Olin Business School"
-        ],
-        "Program Type": [
-            "Bachelor of Science in Business Administration",
-            "Minor"
-        ],
-        "Program URL": "http://bulletin.wustl.edu/undergrad/business/#mktg"
-    },
-    {
-        "Major": "Materials Science & Engineering",
-        "School": [
-            "McKelvey School of Engineering"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://mems.wustl.edu/academics/undergraduate/Minors.html"
-    },
-    {
-        "Major": "Mathematical Sciences",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "https://math.wustl.edu/major-and-minor-details"
-    },
-    {
-        "Major": "Mathematics",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://math.wustl.edu/major-and-minor-details"
-    },
-    {
-        "Major": "Mathematics & Economics",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "https://math.wustl.edu/major-and-minor-details#anchor-group-11173"
-    },
-    {
-        "Major": "Mechanical Engineering",
-        "School": [
-            "McKelvey School of Engineering"
-        ],
-        "Program Type": [
-            "Bachelor of Science",
-            "Minor"
-        ],
-        "Program URL": "https://mems.wustl.edu/academics/undergraduate/BS-Mechanical-Engineering.html"
-    },
-    {
-        "Major": "Mechatronics",
-        "School": [
-            "McKelvey School of Engineering"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://ese.wustl.edu/academics/undergraduate-programs/index.html"
-    },
-    {
-        "Major": "Medical Humanities",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://humanities.wustl.edu/medical-humanities-minor-requirements"
-    },
-    {
-        "Major": "Medieval & Renaissance Studies",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "http://bulletin.wustl.edu/undergrad/artsci/medievalandrenaissancestudies/#text"
-    },
-    {
-        "Major": "Middle School Education",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "https://education.wustl.edu/undergraduate"
-    },
-    {
-        "Major": "Music",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://music.wustl.edu/undergraduate#dotted-line"
-    },
-    {
-        "Major": "Nanoscale Science & Engineering",
-        "School": [
-            "McKelvey School of Engineering"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://eece.wustl.edu/academics/undergraduate-programs/minors.html"
-    },
-    {
-        "Major": "Organization & Strategic Management",
-        "School": [
-            "Olin Business School"
-        ],
-        "Program Type": [
-            "Bachelor of Science in Business Administration",
-            "Minor"
-        ],
-        "Program URL": "http://bulletin.wustl.edu/undergrad/business/#organization"
-    },
-    {
-        "Major": "Philosophy",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://philosophy.wustl.edu/major-and-minor-requirements"
-    },
-    {
-        "Major": "Philosophy-Neuroscience-Psychology",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://pnp.wustl.edu/major-minor-requirements"
-    },
-    {
-        "Major": "Philosophy-Neuroscience-Psychology: Cognitive Neuroscience",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "https://pnp.wustl.edu/major-minor-requirements"
-    },
-    {
-        "Major": "Philosophy-Neuroscience-Psychology: Language, Cognition & Culture",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "https://pnp.wustl.edu/major-minor-requirements"
-    },
-    {
-        "Major": "Philosophy: Law and Policy",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "https://philosophy.wustl.edu/major-and-minor-requirements"
-    },
-    {
-        "Major": "Philosophy: Philosophy Of Science",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://philosophy.wustl.edu/major-and-minor-requirements"
-    },
-    {
-        "Major": "Philosophy: Research Focus",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "https://philosophy.wustl.edu/major-and-minor-requirements"
-    },
-    {
-        "Major": "Physics",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "http://bulletin.wustl.edu/undergrad/artsci/physics/#majors"
-    },
-    {
-        "Major": "Political Science",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://polisci.wustl.edu/undergraduate-program-requirements"
-    },
-    {
-        "Major": "PreHealth",
-        "School": [],
-        "Program Type": [],
-        "Program URL": "https://prehealth.wustl.edu/"
-    },
-    {
-        "Major": "Psychological & Brain Sciences",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://psych.wustl.edu/undergraduate-program"
-    },
-    {
-        "Major": "Psychology & Brain Sciences: Cognitive Neuroscience",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "https://psych.wustl.edu/undergraduate-program"
-    },
-    {
-        "Major": "Public Health & Society",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://publichealthandsociety.wustl.edu/"
-    },
-    {
-        "Major": "Quantum Engineering",
-        "School": [
-            "McKelvey School of Engineering"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://bulletin.wustl.edu/undergrad/engineering/electrical-and-systems/minor-quantum-engineering/"
-    },
-    {
-        "Major": "Religion & Politics",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://rap.wustl.edu/undergrad/"
-    },
-    {
-        "Major": "Religious Studies",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://religiousstudies.wustl.edu/major-minor-requirements#intro"
-    },
-    {
-        "Major": "Robotics",
-        "School": [
-            "McKelvey School of Engineering"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://ese.wustl.edu/academics/undergraduate-programs/index.html"
-    },
-    {
-        "Major": "Romance Languages & Literatures",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "https://rll.wustl.edu/degree-details-and-requirements#anchor-group-9516"
-    },
-    {
-        "Major": "Russian Language & Literature",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://artsci.wustl.edu/russian-language-and-literature-minor#generic-intro"
-    },
-    {
-        "Major": "Secondary Education",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts"
-        ],
-        "Program URL": "https://education.wustl.edu/undergraduate"
-    },
-    {
-        "Major": "Sociology",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://sociology.wustl.edu/major-minor-requirements"
-    },
-    {
-        "Major": "South Asian Language & Civilization",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://jimes.wustl.edu/major-minor-requirements"
-    },
-    {
-        "Major": "Spanish",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://rll.wustl.edu/degree-details-and-requirements#anchor-group-9516"
-    },
-    {
-        "Major": "Speech & Hearing Sciences",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://pacs.wustl.edu/programs/minor-speech-and-hearing-sciences/"
-    },
-    {
-        "Major": "Statistics",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://sds.wustl.edu/"
-    },
-    {
-        "Major": "Strategy",
-        "School": [
-            "Olin Business School"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "http://bulletin.wustl.edu/undergrad/business/#minor_strategy"
-    },
-    {
-        "Major": "Supply Chain, Operations, & Technology",
-        "School": [
-            "Olin Business School"
-        ],
-        "Program Type": [
-            "Bachelor of Science in Business Administration",
-            "Minor"
-        ],
-        "Program URL": "http://bulletin.wustl.edu/undergrad/business/#oscm"
-    },
-    {
-        "Major": "Systems Science and Engineering",
-        "School": [
-            "McKelvey School of Engineering"
-        ],
-        "Program Type": [
-            "Bachelor of Science",
-            "Minor"
-        ],
-        "Program URL": "https://ese.wustl.edu/academics/undergraduate-programs/Systems-Science-Engineering.html"
-    },
-    {
-        "Major": "Text & Tradition",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://artsci.wustl.edu/text-tradition"
-    },
-    {
-        "Major": "The Business of Entertainment",
-        "School": [
-            "Olin Business School"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "http://bulletin.wustl.edu/undergrad/business/#minor_entertainment"
-    },
-    {
-        "Major": "The Business of Social Impact",
-        "School": [
-            "Olin Business School"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "http://bulletin.wustl.edu/undergrad/business/#minor_social_impact"
-    },
-    {
-        "Major": "The Business of Sports",
-        "School": [
-            "Olin Business School"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "http://bulletin.wustl.edu/undergrad/business/#minor_sports"
-    },
-    {
-        "Major": "Urban Design",
-        "School": [
-            "Sam Fox School of Design & Visual Arts"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://samfoxschool.wustl.edu/academics/college-of-architecture/minors/urban-design"
-    },
-    {
-        "Major": "Women, Gender, & Sexuality Studies",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Bachelor of Arts",
-            "Minor"
-        ],
-        "Program URL": "https://wgss.wustl.edu/major-minor-requirements"
-    },
-    {
-        "Major": "World Music, Dance, & Theater",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "http://bulletin.wustl.edu/undergrad/artsci/performingarts/#minors"
-    },
-    {
-        "Major": "Writing",
-        "School": [
-            "Arts & Sciences"
-        ],
-        "Program Type": [
-            "Minor"
-        ],
-        "Program URL": "https://english.wustl.edu/english-minor"
-    }
+  {
+    "program": "Accounting",
+    "schools": ["Olin Business School"],
+    "type": ["Bachelor of Science in Business Administration", "Minor"],
+    "url": "http://bulletin.wustl.edu/undergrad/business/#acct"
+  },
+  {
+    "program": "Aerospace Engineering",
+    "schools": ["McKelvey School of Engineering"],
+    "type": ["Minor"],
+    "url": "https://mems.wustl.edu/academics/undergraduate/Minors.html"
+  },
+  {
+    "program": "African & African-American Studies",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://afas.wustl.edu/undergraduate"
+  },
+  {
+    "program": "American Culture Studies",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://amcs.wustl.edu/undergraduate"
+  },
+  {
+    "program": "Ancient Studies",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://classics.wustl.edu/undergraduate"
+  },
+  {
+    "program": "Anthropology",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://anthropology.wustl.edu/major-and-minor"
+  },
+  {
+    "program": "Anthropology: Global Health & Environment",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://anthropology.wustl.edu/major-and-minor#anchor-group-11425"
+  },
+  {
+    "program": "Applied Linguistics",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://education.wustl.edu/undergraduate"
+  },
+  {
+    "program": "Applied Mathematics",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts"],
+    "url": "https://math.wustl.edu/major-and-minor-details"
+  },
+  {
+    "program": "Applied Microeconomics",
+    "schools": ["Arts & Sciences"],
+    "type": ["Minor"],
+    "url": "http://bulletin.wustl.edu/undergrad/artsci/economics/#minors"
+  },
+  {
+    "program": "Applied Physics & Electrical Engineering",
+    "schools": ["McKelvey School of Engineering"],
+    "type": ["Minor"],
+    "url": "https://ese.wustl.edu/academics/undergraduate-programs/index.html"
+  },
+  {
+    "program": "Applied Science: Chemical Engineering",
+    "schools": ["McKelvey School of Engineering"],
+    "type": ["Bachelor of Science"],
+    "url": "https://eece.wustl.edu/academics/undergraduate-programs/BS-in-Applied-Science-Chemical-Engineering.html"
+  },
+  {
+    "program": "Applied Science: Computer Science",
+    "schools": ["McKelvey School of Engineering"],
+    "type": ["Bachelor of Science"],
+    "url": "https://cse.wustl.edu/academics/undergraduate/minors.html"
+  },
+  {
+    "program": "Applied Science: Electrical Engineering",
+    "schools": ["McKelvey School of Engineering"],
+    "type": ["Bachelor of Science"],
+    "url": "https://ese.wustl.edu/academics/undergraduate-programs/Electrical-Engineering.html"
+  },
+  {
+    "program": "Applied Science: Systems Science & Engineering",
+    "schools": ["McKelvey School of Engineering"],
+    "type": ["Bachelor of Science"],
+    "url": "https://ese.wustl.edu/academics/undergraduate-programs/Systems-Science-Engineering.html"
+  },
+  {
+    "program": "Arabic",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://jimes.wustl.edu/major-minor-requirements"
+  },
+  {
+    "program": "Archaeology",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "http://bulletin.wustl.edu/undergrad/artsci/archaeology/#text"
+  },
+  {
+    "program": "Architectural History & Theory",
+    "schools": ["Sam Fox School of Design & Visual Arts"],
+    "type": ["Minor"],
+    "url": "https://samfoxschool.wustl.edu/academics/college-of-architecture/minors/architectural-history-theory"
+  },
+  {
+    "program": "Architecture",
+    "schools": ["Sam Fox School of Design & Visual Arts"],
+    "type": ["Minor"],
+    "url": "https://samfoxschool.wustl.edu/academics/college-of-architecture/minors/architecture"
+  },
+  {
+    "program": "Architecture",
+    "schools": ["Sam Fox School of Design & Visual Arts"],
+    "type": ["Bachelor of Arts", "Bachelor of Science"],
+    "url": "https://samfoxschool.wustl.edu/academics/college-of-architecture/bs-ba-in-architecture"
+  },
+  {
+    "program": "Art",
+    "schools": ["Sam Fox School of Design & Visual Arts"],
+    "type": ["Minor"],
+    "url": "https://samfoxschool.wustl.edu/academics/college-of-art/minors/studio-art "
+  },
+  {
+    "program": "Art",
+    "schools": ["Sam Fox School of Design & Visual Arts"],
+    "type": ["Bachelor of Arts", "Bachelor of Fine Arts"],
+    "url": "https://samfoxschool.wustl.edu/academics/college-of-art/bfa-ba-in-studio-art-and-design"
+  },
+  {
+    "program": "Art History & Archaeology",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://arthistory.artsci.wustl.edu/undergraduate#"
+  },
+  {
+    "program": "Art: Painting",
+    "schools": ["Sam Fox School of Design & Visual Arts"],
+    "type": ["Bachelor of Fine Arts"],
+    "url": "https://samfoxschool.wustl.edu/academics/college-of-art/bfa-ba-in-studio-art-and-design/studio-art"
+  },
+  {
+    "program": "Art: Photography",
+    "schools": ["Sam Fox School of Design & Visual Arts"],
+    "type": ["Bachelor of Fine Arts"],
+    "url": "https://samfoxschool.wustl.edu/academics/college-of-art/bfa-ba-in-studio-art-and-design/studio-art"
+  },
+  {
+    "program": "Art: Printmaking",
+    "schools": ["Sam Fox School of Design & Visual Arts"],
+    "type": ["Bachelor of Fine Arts"],
+    "url": "https://samfoxschool.wustl.edu/academics/college-of-art/bfa-ba-in-studio-art-and-design/studio-art"
+  },
+  {
+    "program": "Art: Sculpture",
+    "schools": ["Sam Fox School of Design & Visual Arts"],
+    "type": ["Bachelor of Fine Arts"],
+    "url": "https://samfoxschool.wustl.edu/academics/college-of-art/bfa-ba-in-studio-art-and-design/studio-art"
+  },
+  {
+    "program": "Art: Time-Based + Media Art",
+    "schools": ["Sam Fox School of Design & Visual Arts"],
+    "type": ["Bachelor of Fine Arts"],
+    "url": "https://samfoxschool.wustl.edu/academics/college-of-art/bfa-ba-in-studio-art-and-design/studio-art"
+  },
+  {
+    "program": "Asian American Studies",
+    "schools": ["Arts & Sciences"],
+    "type": ["Minor"],
+    "url": "https://artsci.wustl.edu/asian-american-studies-minor"
+  },
+  {
+    "program": "Astrophysics",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts"],
+    "url": "http://bulletin.wustl.edu/undergrad/artsci/physics/#majors"
+  },
+  {
+    "program": "Astrophysics & Astroparticle Physics",
+    "schools": ["Arts & Sciences"],
+    "type": ["Minor"],
+    "url": "http://bulletin.wustl.edu/undergrad/artsci/physics/#minors"
+  },
+  {
+    "program": "Beyond Boundaries",
+    "schools": [],
+    "type": [],
+    "url": "https://beyondboundaries.wustl.edu/"
+  },
+  {
+    "program": "Bioinformatics",
+    "schools": ["Arts & Sciences", "McKelvey School of Engineering"],
+    "type": ["Minor"],
+    "url": "https://cse.wustl.edu/academics/undergraduate/minors.html"
+  },
+  {
+    "program": "Biology",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://biology.wustl.edu/major-requirements-related-programs"
+  },
+  {
+    "program": "Biology: Ecology/Evolution",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts"],
+    "url": "https://biology.wustl.edu/major-requirements-related-programs"
+  },
+  {
+    "program": "Biology: Genomics/Computational",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts"],
+    "url": "https://biology.wustl.edu/major-requirements-related-programs"
+  },
+  {
+    "program": "Biology: Microbiology",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts"],
+    "url": "https://biology.wustl.edu/major-requirements-related-programs"
+  },
+  {
+    "program": "Biology: Molecular/Biochemistry",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts"],
+    "url": "https://biology.wustl.edu/major-requirements-related-programs"
+  },
+  {
+    "program": "Biology: Neuroscience",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts"],
+    "url": "https://biology.wustl.edu/major-requirements-related-programs"
+  },
+  {
+    "program": "Biomedical Data Science",
+    "schools": ["McKelvey School of Engineering"],
+    "type": ["Minor"],
+    "url": "https://bme.wustl.edu/academics/undergraduate-programs/biomedical-data-science-minor.html"
+  },
+  {
+    "program": "Biomedical Engineering",
+    "schools": ["McKelvey School of Engineering"],
+    "type": ["Bachelor of Science"],
+    "url": "https://bme.wustl.edu/academics/undergraduate-programs/bs-biomedical-engineering.html"
+  },
+  {
+    "program": "Biomedical Physics",
+    "schools": ["Arts & Sciences"],
+    "type": ["Minor"],
+    "url": "http://bulletin.wustl.edu/undergrad/artsci/physics/#minors"
+  },
+  {
+    "program": "Business & Computer Science",
+    "schools": ["McKelvey School of Engineering", "Olin Business School"],
+    "type": ["Bachelor of Science"],
+    "url": "https://cse.wustl.edu/academics/undergraduate/BS-Business-Computer-Science.html"
+  },
+  {
+    "program": "Business of Analytics",
+    "schools": ["Olin Business School"],
+    "type": ["Minor"],
+    "url": "http://bulletin.wustl.edu/undergrad/business/#analytics"
+  },
+  {
+    "program": "Business of the Arts",
+    "schools": ["Olin Business School"],
+    "type": ["Minor"],
+    "url": "http://bulletin.wustl.edu/undergrad/business/#arts"
+  },
+  {
+    "program": "Chemical Engineering",
+    "schools": ["McKelvey School of Engineering"],
+    "type": ["Bachelor of Science"],
+    "url": "https://eece.wustl.edu/academics/undergraduate-programs/BS-in-Chemical-Engineering.html"
+  },
+  {
+    "program": "Chemistry",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://chemistry.wustl.edu/majorminor-requirements"
+  },
+  {
+    "program": "Chemistry: Biochemistry",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts"],
+    "url": "https://chemistry.wustl.edu/majorminor-requirements"
+  },
+  {
+    "program": "Children\u2019s Studies",
+    "schools": ["Arts & Sciences"],
+    "type": ["Minor"],
+    "url": "https://humanities.wustl.edu/children%E2%80%99s-studies/minor-requirements"
+  },
+  {
+    "program": "Classics",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://classics.wustl.edu/undergraduate"
+  },
+  {
+    "program": "Communication Design",
+    "schools": ["Sam Fox School of Design & Visual Arts"],
+    "type": ["Bachelor of Fine Arts"],
+    "url": "https://samfoxschool.wustl.edu/academics/college-of-art/bfa-ba-in-studio-art-and-design/communication-design"
+  },
+  {
+    "program": "Comparative Literature & Thought",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://complitandthought.wustl.edu/major-minor-requirements"
+  },
+  {
+    "program": "Computer Engineering",
+    "schools": ["McKelvey School of Engineering"],
+    "type": ["Bachelor of Science"],
+    "url": "https://cse.wustl.edu/academics/undergraduate/BS-Computer-Engineering.html"
+  },
+  {
+    "program": "Computer Science",
+    "schools": ["McKelvey School of Engineering"],
+    "type": ["Bachelor of Science", "Minor"],
+    "url": "https://cse.wustl.edu/academics/undergraduate/BS-Computer-Science.html"
+  },
+  {
+    "program": "Computer Science + Economics",
+    "schools": ["McKelvey School of Engineering"],
+    "type": ["Bachelor of Science"],
+    "url": "https://cse.wustl.edu/academics/undergraduate/BS-Computer-Science-Economics.html"
+  },
+  {
+    "program": "Computer Science + Mathematics",
+    "schools": ["Arts & Sciences", "McKelvey School of Engineering"],
+    "type": ["Bachelor of Science"],
+    "url": "https://cse.wustl.edu/academics/undergraduate/BS-Computer-Science-Math.html"
+  },
+  {
+    "program": "Creative Practice for Social Change",
+    "schools": ["Sam Fox School of Design & Visual Arts"],
+    "type": ["Minor"],
+    "url": "https://samfoxschool.wustl.edu/collaborations/socially-engaged-practice/minor-in-creative-practice-for-social-change"
+  },
+  {
+    "program": "Dance",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "http://bulletin.wustl.edu/undergrad/artsci/dance/#text"
+  },
+  {
+    "program": "Data Science",
+    "schools": ["Arts & Sciences", "McKelvey School of Engineering"],
+    "type": ["Bachelor of Science"],
+    "url": "https://cse.wustl.edu/academics/undergraduate/BS-Data-Science.html"
+  },
+  {
+    "program": "Data Science in the Humanities",
+    "schools": ["Arts & Sciences"],
+    "type": ["Minor"],
+    "url": "https://iph.wustl.edu/minor-data-science-humanities"
+  },
+  {
+    "program": "Design",
+    "schools": ["Sam Fox School of Design & Visual Arts"],
+    "type": ["Bachelor of Arts"],
+    "url": "https://samfoxschool.wustl.edu/academics/college-of-art/bfa-ba-in-studio-art-and-design"
+  },
+  {
+    "program": "Design",
+    "schools": ["Sam Fox School of Design & Visual Arts"],
+    "type": ["Minor"],
+    "url": "https://samfoxschool.wustl.edu/academics/college-of-art/minors/design"
+  },
+  {
+    "program": "Design: Communication",
+    "schools": ["Sam Fox School of Design & Visual Arts"],
+    "type": ["Bachelor of Arts"],
+    "url": "https://samfoxschool.wustl.edu/academics/college-of-art/bfa-ba-in-studio-art-and-design/communication-design"
+  },
+  {
+    "program": "Design: Fashion",
+    "schools": ["Sam Fox School of Design & Visual Arts"],
+    "type": ["Bachelor of Arts"],
+    "url": "https://samfoxschool.wustl.edu/academics/college-of-art/bfa-ba-in-studio-art-and-design/fashion-design"
+  },
+  {
+    "program": "Drama",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "http://bulletin.wustl.edu/undergrad/artsci/drama/#text"
+  },
+  {
+    "program": "Earth, Environmental, & Planetary Sciences",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://eps.wustl.edu/"
+  },
+  {
+    "program": "Earth, Environmental, & Planetary Sciences: Earth Science",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://eeps.wustl.edu/majors-minors"
+  },
+  {
+    "program": "Earth, Environmental, & Planetary Sciences: Environmental Science",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://eeps.wustl.edu/majors-minors"
+  },
+  {
+    "program": "Earth, Environmental, & Planetary Sciences: Geospatial Science",
+    "schools": ["Arts & Sciences"],
+    "type": ["Minor"],
+    "url": "https://eeps.wustl.edu/majors-minors"
+  },
+  {
+    "program": "Earth, Environmental, & Planetary Sciences: Planetary Science",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts"],
+    "url": "https://eeps.wustl.edu/majors-minors"
+  },
+  {
+    "program": "East Asian Languages & Cultures",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://eas.wustl.edu/undergraduate"
+  },
+  {
+    "program": "Economics",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts"],
+    "url": "http://bulletin.wustl.edu/undergrad/artsci/economics/#majors"
+  },
+  {
+    "program": "Economics & Computer Science",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts"],
+    "url": "http://bulletin.wustl.edu/undergrad/artsci/economics/#majors"
+  },
+  {
+    "program": "Economics & Strategy",
+    "schools": ["Olin Business School"],
+    "type": ["Bachelor of Science in Business Administration"],
+    "url": "http://bulletin.wustl.edu/undergrad/business/#econandstrategy"
+  },
+  {
+    "program": "Educational Studies",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://education.wustl.edu/undergraduate"
+  },
+  {
+    "program": "Electrical Engineering",
+    "schools": ["McKelvey School of Engineering"],
+    "type": ["Bachelor of Science", "Minor"],
+    "url": "https://ese.wustl.edu/academics/undergraduate-programs/Electrical-Engineering.html"
+  },
+  {
+    "program": "Elementary Education",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts"],
+    "url": "https://education.wustl.edu/undergraduate"
+  },
+  {
+    "program": "Energy Engineering",
+    "schools": ["McKelvey School of Engineering"],
+    "type": ["Minor"],
+    "url": "https://eece.wustl.edu/academics/undergraduate-programs/minors.html"
+  },
+  {
+    "program": "English",
+    "schools": ["Arts & Sciences"],
+    "type": ["Minor"],
+    "url": "https://english.wustl.edu/english-major"
+  },
+  {
+    "program": "English Literature",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts"],
+    "url": "https://english.wustl.edu/english-major"
+  },
+  {
+    "program": "English Literature: Creative Writing",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts"],
+    "url": "https://english.wustl.edu/english-major"
+  },
+  {
+    "program": "Entrepreneurship",
+    "schools": ["Olin Business School"],
+    "type": ["Bachelor of Science in Business Administration"],
+    "url": "http://bulletin.wustl.edu/undergrad/business/#entrepreneur"
+  },
+  {
+    "program": "Environmental Analysis",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://enst.wustl.edu/academic-requirements"
+  },
+  {
+    "program": "Environmental Biology",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts"],
+    "url": "https://biology.wustl.edu/major-requirements-related-programs#anchor-group-11732"
+  },
+  {
+    "program": "Environmental Engineering",
+    "schools": ["McKelvey School of Engineering"],
+    "type": ["Bachelor of Science", "Minor"],
+    "url": "https://eece.wustl.edu/academics/undergraduate-programs/BS-in-Environmental-Engineering.html"
+  },
+  {
+    "program": "Environmental Policy",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts"],
+    "url": "https://enst.wustl.edu/undergraduate-programs"
+  },
+  {
+    "program": "Fashion Design",
+    "schools": ["Sam Fox School of Design & Visual Arts"],
+    "type": ["Bachelor of Fine Arts"],
+    "url": "https://samfoxschool.wustl.edu/academics/college-of-art/bfa-ba-in-studio-art-and-design/fashion-design"
+  },
+  {
+    "program": "Film & Media Studies",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://fms.wustl.edu/undergraduate"
+  },
+  {
+    "program": "Finance",
+    "schools": ["Olin Business School"],
+    "type": ["Bachelor of Science in Business Administration", "Minor"],
+    "url": "http://bulletin.wustl.edu/undergrad/business/#text"
+  },
+  {
+    "program": "French",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://rll.wustl.edu/degree-details-and-requirements#anchor-group-9516"
+  },
+  {
+    "program": "General Business",
+    "schools": ["Olin Business School"],
+    "type": ["Minor"],
+    "url": "http://bulletin.wustl.edu/undergrad/business/#minor_genbus"
+  },
+  {
+    "program": "General Economics",
+    "schools": ["Arts & Sciences"],
+    "type": ["Minor"],
+    "url": "http://bulletin.wustl.edu/undergrad/artsci/economics/#minors"
+  },
+  {
+    "program": "German",
+    "schools": ["Arts & Sciences"],
+    "type": ["Minor"],
+    "url": "https://german.wustl.edu/major-minor-requirements"
+  },
+  {
+    "program": "Germanic Languages & Literatures",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts"],
+    "url": "http://bulletin.wustl.edu/undergrad/artsci/german/#majors"
+  },
+  {
+    "program": "Global Film & Media Studies",
+    "schools": ["Arts & Sciences"],
+    "type": ["Minor"],
+    "url": "https://fms.artsci.wustl.edu/minor"
+  },
+  {
+    "program": "Global Studies: Development",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts"],
+    "url": "https://ias.wustl.edu/undergraduate"
+  },
+  {
+    "program": "Global Studies: Eurasian",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts"],
+    "url": "https://ias.wustl.edu/undergraduate"
+  },
+  {
+    "program": "Global Studies: European",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts"],
+    "url": "https://ias.wustl.edu/undergraduate"
+  },
+  {
+    "program": "Global Studies: Global Cultural Studies",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts"],
+    "url": "https://ias.wustl.edu/undergraduate"
+  },
+  {
+    "program": "Global Studies: International Affairs",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts"],
+    "url": "https://ias.wustl.edu/undergraduate"
+  },
+  {
+    "program": "Health Care Management",
+    "schools": ["Olin Business School"],
+    "type": ["Bachelor of Science in Business Administration", "Minor"],
+    "url": "https://bulletin.wustl.edu/undergrad/business/#majors"
+  },
+  {
+    "program": "Hebrew",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://jimes.wustl.edu/major-minor-requirements"
+  },
+  {
+    "program": "History",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://history.wustl.edu/major-minor-requirements"
+  },
+  {
+    "program": "Human-Computer Interaction",
+    "schools": [
+      "McKelvey School of Engineering",
+      "Sam Fox School of Design & Visual Arts"
+    ],
+    "type": ["Minor"],
+    "url": "http://www.hci-washu.site/"
+  },
+  {
+    "program": "International Business",
+    "schools": ["Olin Business School"],
+    "type": ["Minor"],
+    "url": "http://bulletin.wustl.edu/undergrad/business/#minors"
+  },
+  {
+    "program": "Italian",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://rll.wustl.edu/degree-details-and-requirements#anchor-group-9516"
+  },
+  {
+    "program": "Jazz Studies",
+    "schools": ["Arts & Sciences"],
+    "type": ["Minor"],
+    "url": "https://music.wustl.edu/undergraduate#dotted-line"
+  },
+  {
+    "program": "Jewish, Islamic, & Middle Eastern Studies",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://jimes.wustl.edu/major-minor-requirements"
+  },
+  {
+    "program": "Landscape Architecture",
+    "schools": ["Sam Fox School of Design & Visual Arts"],
+    "type": ["Minor"],
+    "url": "https://samfoxschool.wustl.edu/academics/college-of-architecture/minors/landscape-architecture"
+  },
+  {
+    "program": "Latin American Studies",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://lasprogram.wustl.edu/undergraduate"
+  },
+  {
+    "program": "Leadership",
+    "schools": ["Olin Business School"],
+    "type": ["Minor"],
+    "url": "https://olin.wustl.edu/EN-US/academic-programs/bs-business-administration/academics/Pages/options-for-nonBSBAs.aspx"
+  },
+  {
+    "program": "Legal Studies",
+    "schools": ["Arts & Sciences"],
+    "type": ["Minor"],
+    "url": "https://artsci.wustl.edu/explore-academics/legal-studies-minor"
+  },
+  {
+    "program": "Linguistics",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://linguistics.wustl.edu/about"
+  },
+  {
+    "program": "Managerial Economics",
+    "schools": ["Olin Business School"],
+    "type": ["Minor"],
+    "url": "https://economics.wustl.edu/undergraduate/minor"
+  },
+  {
+    "program": "Marketing",
+    "schools": ["Olin Business School"],
+    "type": ["Bachelor of Science in Business Administration", "Minor"],
+    "url": "http://bulletin.wustl.edu/undergrad/business/#mktg"
+  },
+  {
+    "program": "Materials Science & Engineering",
+    "schools": ["McKelvey School of Engineering"],
+    "type": ["Minor"],
+    "url": "https://mems.wustl.edu/academics/undergraduate/Minors.html"
+  },
+  {
+    "program": "Mathematical Sciences",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts"],
+    "url": "https://math.wustl.edu/major-and-minor-details"
+  },
+  {
+    "program": "Mathematics",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://math.wustl.edu/major-and-minor-details"
+  },
+  {
+    "program": "Mathematics & Economics",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts"],
+    "url": "https://math.wustl.edu/major-and-minor-details#anchor-group-11173"
+  },
+  {
+    "program": "Mechanical Engineering",
+    "schools": ["McKelvey School of Engineering"],
+    "type": ["Bachelor of Science", "Minor"],
+    "url": "https://mems.wustl.edu/academics/undergraduate/BS-Mechanical-Engineering.html"
+  },
+  {
+    "program": "Mechatronics",
+    "schools": ["McKelvey School of Engineering"],
+    "type": ["Minor"],
+    "url": "https://ese.wustl.edu/academics/undergraduate-programs/index.html"
+  },
+  {
+    "program": "Medical Humanities",
+    "schools": ["Arts & Sciences"],
+    "type": ["Minor"],
+    "url": "https://humanities.wustl.edu/medical-humanities-minor-requirements"
+  },
+  {
+    "program": "Medieval & Renaissance Studies",
+    "schools": ["Arts & Sciences"],
+    "type": ["Minor"],
+    "url": "http://bulletin.wustl.edu/undergrad/artsci/medievalandrenaissancestudies/#text"
+  },
+  {
+    "program": "Middle School Education",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts"],
+    "url": "https://education.wustl.edu/undergraduate"
+  },
+  {
+    "program": "Music",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://music.wustl.edu/undergraduate#dotted-line"
+  },
+  {
+    "program": "Nanoscale Science & Engineering",
+    "schools": ["McKelvey School of Engineering"],
+    "type": ["Minor"],
+    "url": "https://eece.wustl.edu/academics/undergraduate-programs/minors.html"
+  },
+  {
+    "program": "Organization & Strategic Management",
+    "schools": ["Olin Business School"],
+    "type": ["Bachelor of Science in Business Administration", "Minor"],
+    "url": "http://bulletin.wustl.edu/undergrad/business/#organization"
+  },
+  {
+    "program": "Philosophy",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://philosophy.wustl.edu/major-and-minor-requirements"
+  },
+  {
+    "program": "Philosophy-Neuroscience-Psychology",
+    "schools": ["Arts & Sciences"],
+    "type": ["Minor"],
+    "url": "https://pnp.wustl.edu/major-minor-requirements"
+  },
+  {
+    "program": "Philosophy-Neuroscience-Psychology: Cognitive Neuroscience",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts"],
+    "url": "https://pnp.wustl.edu/major-minor-requirements"
+  },
+  {
+    "program": "Philosophy-Neuroscience-Psychology: Language, Cognition & Culture",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts"],
+    "url": "https://pnp.wustl.edu/major-minor-requirements"
+  },
+  {
+    "program": "Philosophy: Law and Policy",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts"],
+    "url": "https://philosophy.wustl.edu/major-and-minor-requirements"
+  },
+  {
+    "program": "Philosophy: Philosophy Of Science",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://philosophy.wustl.edu/major-and-minor-requirements"
+  },
+  {
+    "program": "Philosophy: Research Focus",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts"],
+    "url": "https://philosophy.wustl.edu/major-and-minor-requirements"
+  },
+  {
+    "program": "Physics",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "http://bulletin.wustl.edu/undergrad/artsci/physics/#majors"
+  },
+  {
+    "program": "Political Science",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://polisci.wustl.edu/undergraduate-program-requirements"
+  },
+  {
+    "program": "PreHealth",
+    "schools": [],
+    "type": [],
+    "url": "https://prehealth.wustl.edu/"
+  },
+  {
+    "program": "Psychological & Brain Sciences",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://psych.wustl.edu/undergraduate-program"
+  },
+  {
+    "program": "Psychology & Brain Sciences: Cognitive Neuroscience",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts"],
+    "url": "https://psych.wustl.edu/undergraduate-program"
+  },
+  {
+    "program": "Public Health & Society",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://publichealthandsociety.wustl.edu/"
+  },
+  {
+    "program": "Quantum Engineering",
+    "schools": ["McKelvey School of Engineering"],
+    "type": ["Minor"],
+    "url": "https://bulletin.wustl.edu/undergrad/engineering/electrical-and-systems/minor-quantum-engineering/"
+  },
+  {
+    "program": "Religion & Politics",
+    "schools": ["Arts & Sciences"],
+    "type": ["Minor"],
+    "url": "https://rap.wustl.edu/undergrad/"
+  },
+  {
+    "program": "Religious Studies",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://religiousstudies.wustl.edu/major-minor-requirements#intro"
+  },
+  {
+    "program": "Robotics",
+    "schools": ["McKelvey School of Engineering"],
+    "type": ["Minor"],
+    "url": "https://ese.wustl.edu/academics/undergraduate-programs/index.html"
+  },
+  {
+    "program": "Romance Languages & Literatures",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts"],
+    "url": "https://rll.wustl.edu/degree-details-and-requirements#anchor-group-9516"
+  },
+  {
+    "program": "Russian Language & Literature",
+    "schools": ["Arts & Sciences"],
+    "type": ["Minor"],
+    "url": "https://artsci.wustl.edu/russian-language-and-literature-minor#generic-intro"
+  },
+  {
+    "program": "Secondary Education",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts"],
+    "url": "https://education.wustl.edu/undergraduate"
+  },
+  {
+    "program": "Sociology",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://sociology.wustl.edu/major-minor-requirements"
+  },
+  {
+    "program": "South Asian Language & Civilization",
+    "schools": ["Arts & Sciences"],
+    "type": ["Minor"],
+    "url": "https://jimes.wustl.edu/major-minor-requirements"
+  },
+  {
+    "program": "Spanish",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://rll.wustl.edu/degree-details-and-requirements#anchor-group-9516"
+  },
+  {
+    "program": "Speech & Hearing Sciences",
+    "schools": ["Arts & Sciences"],
+    "type": ["Minor"],
+    "url": "https://pacs.wustl.edu/programs/minor-speech-and-hearing-sciences/"
+  },
+  {
+    "program": "Statistics",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://sds.wustl.edu/"
+  },
+  {
+    "program": "Strategy",
+    "schools": ["Olin Business School"],
+    "type": ["Minor"],
+    "url": "http://bulletin.wustl.edu/undergrad/business/#minor_strategy"
+  },
+  {
+    "program": "Supply Chain, Operations, & Technology",
+    "schools": ["Olin Business School"],
+    "type": ["Bachelor of Science in Business Administration", "Minor"],
+    "url": "http://bulletin.wustl.edu/undergrad/business/#oscm"
+  },
+  {
+    "program": "Systems Science and Engineering",
+    "schools": ["McKelvey School of Engineering"],
+    "type": ["Bachelor of Science", "Minor"],
+    "url": "https://ese.wustl.edu/academics/undergraduate-programs/Systems-Science-Engineering.html"
+  },
+  {
+    "program": "Text & Tradition",
+    "schools": ["Arts & Sciences"],
+    "type": ["Minor"],
+    "url": "https://artsci.wustl.edu/text-tradition"
+  },
+  {
+    "program": "The Business of Entertainment",
+    "schools": ["Olin Business School"],
+    "type": ["Minor"],
+    "url": "http://bulletin.wustl.edu/undergrad/business/#minor_entertainment"
+  },
+  {
+    "program": "The Business of Social Impact",
+    "schools": ["Olin Business School"],
+    "type": ["Minor"],
+    "url": "http://bulletin.wustl.edu/undergrad/business/#minor_social_impact"
+  },
+  {
+    "program": "The Business of Sports",
+    "schools": ["Olin Business School"],
+    "type": ["Minor"],
+    "url": "http://bulletin.wustl.edu/undergrad/business/#minor_sports"
+  },
+  {
+    "program": "Urban Design",
+    "schools": ["Sam Fox School of Design & Visual Arts"],
+    "type": ["Minor"],
+    "url": "https://samfoxschool.wustl.edu/academics/college-of-architecture/minors/urban-design"
+  },
+  {
+    "program": "Women, Gender, & Sexuality Studies",
+    "schools": ["Arts & Sciences"],
+    "type": ["Bachelor of Arts", "Minor"],
+    "url": "https://wgss.wustl.edu/major-minor-requirements"
+  },
+  {
+    "program": "World Music, Dance, & Theater",
+    "schools": ["Arts & Sciences"],
+    "type": ["Minor"],
+    "url": "http://bulletin.wustl.edu/undergrad/artsci/performingarts/#minors"
+  },
+  {
+    "program": "Writing",
+    "schools": ["Arts & Sciences"],
+    "type": ["Minor"],
+    "url": "https://english.wustl.edu/english-minor"
+  }
 ]
