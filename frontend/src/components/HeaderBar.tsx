@@ -1,6 +1,8 @@
-import { useNavigate } from 'react-router-dom';
-import { useAuthContext } from '../context/useContext';
+import { useNavigate } from 'react-router-dom'
+
 import logo from '../assets/logo.svg'
+import { useAuthContext } from '../context/useContext'
+
 import './css/HeaderBar.css'
 
 interface HeaderBarProps {
@@ -8,11 +10,11 @@ interface HeaderBarProps {
 }
 
 export const HeaderBar: React.FC<HeaderBarProps> = ({isNavVisible}) => {
-  const { logout } = useAuthContext();
-  const navigate = useNavigate();
+  const { logout } = useAuthContext()
+  const navigate = useNavigate()
 
   const handleLogoClick = () => {
-    navigate('/');
+    navigate('/')
   }
 
   return (

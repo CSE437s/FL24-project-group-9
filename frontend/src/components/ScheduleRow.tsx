@@ -1,4 +1,5 @@
 import { Course } from '../models/Course'
+
 import './css/ScheduleRow.css'
 
 interface ScheduleRowProps {
@@ -24,5 +25,5 @@ export const ScheduleRow: React.FC<ScheduleRowProps> = ({course, handleUndoClick
         </div>
       }
     </div>
-  );
+  )
 }

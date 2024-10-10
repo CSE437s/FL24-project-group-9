@@ -1,10 +1,11 @@
-import { API_URL } from './config.tsx'
-import { Planner } from '../models/Planner.tsx';
-import { Term } from '../models/Course.tsx';
+import { Term } from '../models/Course.tsx'
+import { Planner } from '../models/Planner.tsx'
+
 import data from './data/planner.json'
+import { API_URL } from './config.tsx'
 
 async function getPlanner(): Promise<Planner> {
-  return data;
+  return data
 }
 
 async function updateTakenPlan(term: Term[]): Promise<Planner> {

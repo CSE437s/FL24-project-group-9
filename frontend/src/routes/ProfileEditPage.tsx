@@ -1,38 +1,40 @@
-import { useEffect, useState } from "react";
-import { Student } from "../models/Student";
-import { Course, Term } from "../models/Course";
-import StudentAPI from "../services/StudentAPI";
-import PlannerAPI from "../services/PlannerAPI";
-import { useAcademicDataContext } from "../context/useContext";
-import { HeaderBar } from "../components/HeaderBar";
-import { FooterBar } from "../components/FooterBar";
-import { ScheduleRow } from "../components/ScheduleRow";
-import { utils } from "../utils";
-import './css/ProfileEditPage.css';
+import { useEffect, useState } from "react"
+
+import { FooterBar } from "../components/FooterBar"
+import { HeaderBar } from "../components/HeaderBar"
+import { ScheduleRow } from "../components/ScheduleRow"
+import { useAcademicDataContext } from "../context/useContext"
+import { Course, Term } from "../models/Course"
+import { Student } from "../models/Student"
+import PlannerAPI from "../services/PlannerAPI"
+import StudentAPI from "../services/StudentAPI"
+import { utils } from "../utils"
+
+import './css/ProfileEditPage.css'
 
 export default function ProfileEditPage() {
   const { courses, majors, minors, semesters } = useAcademicDataContext()
-  const [student, setStudent] = useState<Student | null>(null);
-  const [taken, setTaken] = useState<Term[]>([]);
-  const [newCourse, setNewCourse] = useState(courses[0].id);
-  const [newSemester, setNewSemester] = useState(semesters[0]);
+  const [student, setStudent] = useState<Student | null>(null)
+  const [taken, setTaken] = useState<Term[]>([])
+  const [newCourse, setNewCourse] = useState(courses[0].id)
+  const [newSemester, setNewSemester] = useState(semesters[0])
 
   useEffect(() => {
     StudentAPI.getStudent().then((student) => {
-      setStudent(student);
-    });
+      setStudent(student)
+    })
   
     PlannerAPI.getPlanner().then((plan) => {
-      setTaken(plan.taken);
-    });
-  }, []);
+      setTaken(plan.taken)
+    })
+  }, [])
 
   const handleRemoveClick = (term: Term, course: Course) => {
-    term.courses = term.courses.filter((c) => c.id !== course.id);
-    setTaken([...taken]);
+    term.courses = term.courses.filter((c) => c.id !== course.id)
+    setTaken([...taken])
 
     if (term.courses.length === 0) {
-      setTaken(taken.filter((t) => t.id !== term.id));
+      setTaken(taken.filter((t) => t.id !== term.id))
     }
   }
 
@@ -53,15 +55,15 @@ export default function ProfileEditPage() {
 
   const handleSave = () => {
     if (student) {
-      StudentAPI.updateStudent(student);
+      StudentAPI.updateStudent(student)
     }
 
-    PlannerAPI.updateTakenPlan(taken);
+    PlannerAPI.updateTakenPlan(taken)
   }
 
   const addCourse = () => {
-    const term = taken.find((term) => term.term === newSemester);
-    const course = courses.find((course) => course.id === newCourse);
+    const term = taken.find((term) => term.term === newSemester)
+    const course = courses.find((course) => course.id === newCourse)
 
     if(!course) {
       return
@@ -69,10 +71,10 @@ export default function ProfileEditPage() {
 
     if (term) {
       if (term.courses.find((c) => c.id === course.id)) {
-        return;
+        return
       }
-      term.courses.push(course);
-      setTaken([...taken]);
+      term.courses.push(course)
+      setTaken([...taken])
     }
     else {
       const newTerm = {
@@ -80,7 +82,7 @@ export default function ProfileEditPage() {
         term: newSemester,
         courses: [course]
       }
-      setTaken(utils.sortTermObjects([...taken, newTerm]));
+      setTaken(utils.sortTermObjects([...taken, newTerm]))
     }
   }
 

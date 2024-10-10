@@ -1,6 +1,8 @@
-import { Draggable, Droppable } from 'react-beautiful-dnd';
+import { Draggable, Droppable } from 'react-beautiful-dnd'
+
 import { Course } from '../models/Course'
-import { ScheduleRow } from './ScheduleRow';
+
+import { ScheduleRow } from './ScheduleRow'
 
 interface ScheduleDraggableProps {
   courses: Course[];
@@ -9,15 +11,15 @@ interface ScheduleDraggableProps {
 }
 
 export const ScheduleDraggable: React.FC<ScheduleDraggableProps> = ({courses, droppableId, handleUndo}) => {
-  const canUndo = droppableId.indexOf('selected') !== -1;
+  const canUndo = droppableId.indexOf('selected') !== -1
   
   const handleUndoClick = (course: Course) => {
     if (!canUndo) {
-      return;
+      return
     }
 
-    const selectedTermId = droppableId.split('-')[1];
-    handleUndo(course.id, selectedTermId);
+    const selectedTermId = droppableId.split('-')[1]
+    handleUndo(course.id, selectedTermId)
   }
 
   return (
@@ -40,5 +42,5 @@ export const ScheduleDraggable: React.FC<ScheduleDraggableProps> = ({courses, dr
         </div>
       )}
     </Droppable>
-  );
+  )
 }

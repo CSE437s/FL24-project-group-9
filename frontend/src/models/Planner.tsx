@@ -1,4 +1,4 @@
-import { Term } from "./Course";
+import { Term } from "./Course"
 
 export type Planner = {
   taken: Term[];

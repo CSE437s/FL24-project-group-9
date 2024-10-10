@@ -1,7 +1,7 @@
 import data from './data/minors.json'
 
 async function getAllMinors(): Promise<string[]> {
-  return data;
+  return data
 }
 
 export default { getAllMinors }

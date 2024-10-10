@@ -1,15 +1,17 @@
 import { createRoot } from 'react-dom/client'
-import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
-import LoginPage from './routes/LoginPage';
-import HomePage from './routes/HomePage';
-import ProfileEditPage from './routes/ProfileEditPage';
-import ProfilePage from './routes/ProfilePage';
-import PlannerPage from './routes/PlannerPage';
-import DashboardPage from './routes/DashboardPage';
-import ProtectedRoute from './routes/ProtectedRoute';
-import { AuthProvider } from './context/AuthContext';
+import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom"
+
+import { AcademicDataProvider } from './context/AcademicDataContext'
+import { AuthProvider } from './context/AuthContext'
+import DashboardPage from './routes/DashboardPage'
+import HomePage from './routes/HomePage'
+import LoginPage from './routes/LoginPage'
+import PlannerPage from './routes/PlannerPage'
+import ProfileEditPage from './routes/ProfileEditPage'
+import ProfilePage from './routes/ProfilePage'
+import ProtectedRoute from './routes/ProtectedRoute'
+
 import './index.css'
-import { AcademicDataProvider } from './context/AcademicDataContext';
 
 const router = createBrowserRouter([
   {
@@ -56,7 +58,7 @@ const router = createBrowserRouter([
     path: "*",
     element: <Navigate to="/" />,
   }
-]);
+])
 
 createRoot(document.getElementById('root')!).render(
   <AuthProvider>

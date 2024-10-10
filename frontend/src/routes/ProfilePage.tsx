@@ -1,31 +1,33 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Student } from "../models/Student";
-import { Term } from "../models/Course";
-import StudentAPI from "../services/StudentAPI";
-import PlannerAPI from "../services/PlannerAPI";
-import { HeaderBar } from "../components/HeaderBar";
-import { FooterBar } from "../components/FooterBar";
-import { ScheduleRow } from "../components/ScheduleRow";
-import './css/ProfilePage.css';
+import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
+
+import { FooterBar } from "../components/FooterBar"
+import { HeaderBar } from "../components/HeaderBar"
+import { ScheduleRow } from "../components/ScheduleRow"
+import { Term } from "../models/Course"
+import { Student } from "../models/Student"
+import PlannerAPI from "../services/PlannerAPI"
+import StudentAPI from "../services/StudentAPI"
+
+import './css/ProfilePage.css'
 
 export default function ProfilePage() {
-  const navigate = useNavigate();
-  const [student, setStudent] = useState<Student | null>(null);
-  const [taken, setTaken] = useState<Term[]>([]);
+  const navigate = useNavigate()
+  const [student, setStudent] = useState<Student | null>(null)
+  const [taken, setTaken] = useState<Term[]>([])
 
   useEffect(() => {
     StudentAPI.getStudent().then((student) => {
-      setStudent(student);
-    });
+      setStudent(student)
+    })
   
     PlannerAPI.getPlanner().then((plan) => {
-      setTaken(plan.taken);
-    });
-  }, []);
+      setTaken(plan.taken)
+    })
+  }, [])
 
   const handleEdit = () => {
-    navigate('/profile/edit');
+    navigate('/profile/edit')
   }
 
   return (

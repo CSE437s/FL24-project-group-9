@@ -1,9 +1,10 @@
-import { API_URL } from './config.tsx'
 import { Student } from '../models/Student.tsx'
+
 import data from './data/student.json'
+import { API_URL } from './config.tsx'
 
 async function getStudent(): Promise<Student> {
-  return data;
+  return data
 }
 
 async function updateStudent(student: Student): Promise<Student> {

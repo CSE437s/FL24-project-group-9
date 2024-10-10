@@ -1,19 +1,21 @@
-import { useNavigate } from "react-router-dom";
-import { FooterBar } from "../components/FooterBar";
-import { HeaderBar } from "../components/HeaderBar";
-import { useAuthContext } from "../context/useContext";
-import './css/HomePage.css';
+import { useNavigate } from "react-router-dom"
+
+import { FooterBar } from "../components/FooterBar"
+import { HeaderBar } from "../components/HeaderBar"
+import { useAuthContext } from "../context/useContext"
+
+import './css/HomePage.css'
 
 export default function HomePage() {
-  const { isLoggedIn } = useAuthContext();
-  const navigate = useNavigate();
+  const { isLoggedIn } = useAuthContext()
+  const navigate = useNavigate()
 
   const handleGetStarted = () => {
     if (isLoggedIn) {
-      navigate('/profile');
-      return;
+      navigate('/profile')
+      return
     }
-    navigate('/login');
+    navigate('/login')
   }
 
   return (

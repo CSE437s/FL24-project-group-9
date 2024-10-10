@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuthContext } from "../context/useContext";
-import { FooterBar } from "../components/FooterBar";
-import { HeaderBar } from "../components/HeaderBar";
+import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
+
+import { FooterBar } from "../components/FooterBar"
+import { HeaderBar } from "../components/HeaderBar"
+import { useAuthContext } from "../context/useContext"
+
 import './css/LoginPage.css'
 
 export default function LoginPage() {
   const { isLoggedIn, login, signup } = useAuthContext()
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const [email, setEmail] = useState('')
   const [emailEntered, setEmailEntered] = useState(false)
@@ -45,9 +47,9 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (isLoggedIn) {
-      navigate('/profile');
+      navigate('/profile')
     }
-  }, [isLoggedIn, navigate]);
+  }, [isLoggedIn, navigate])
 
   return (
     <>
