@@ -82,7 +82,7 @@ class Command(BaseCommand):
         Student.objects.create(
             first_name="John",
             last_name="Doe",
-            email="john.doe@test.com",
+            email="john.doe@wustl.com",
             joined="2020-01-01",
             grad="2024-01-01",
             career="Software Engineer",
