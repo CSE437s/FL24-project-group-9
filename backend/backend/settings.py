@@ -147,4 +147,4 @@ SIMPLE_JWT = {
     "BLACKLIST_AFTER_ROTATION": True,
 }
 
-# AUTH_USER_MODEL = ""
+AUTH_USER_MODEL = "api.Student"

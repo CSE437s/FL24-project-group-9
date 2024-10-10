@@ -40,7 +40,7 @@ class ProgramScraper:
             print(f"{len(programs_list)} programs exported to file")
 
     def create_programs_list(self) -> list:
-        """Return the list of programss from the page."""
+        """Return the list of programs from the page."""
         print("Creating programs list...")
         page = requests.get(self.url)
         time.sleep(2)  # Wait for the page to load
@@ -84,10 +84,10 @@ class ProgramScraper:
                         program_types.append(program_map[key])
 
             program_data = {
-                "Major": program_name,
-                "School": schools,
-                "Program Type": program_types,
-                "Program URL": program_url,
+                "program": program_name,
+                "schools": schools,
+                "type": program_types,
+                "url": program_url,
             }
 
             program_list.append(program_data)

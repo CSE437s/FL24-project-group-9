@@ -4,6 +4,7 @@ import json
 import time
 import requests
 from bs4 import BeautifulSoup
+from course_data_transformation import transform_data
 
 
 class CourseScraper:
@@ -72,8 +73,8 @@ class CourseScraper:
                 course_info["credits"] = course_credits.text.strip().replace(
                     "\u00a0", " "
                 )
-
-            courses_list.append(course_info)
+            transformed_course_info = transform_data(course_info)
+            courses_list.append(transformed_course_info)
 
         return courses_list
 
