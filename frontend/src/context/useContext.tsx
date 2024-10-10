@@ -14,9 +14,11 @@ const useAuthContext = () => {
 const useAcademicDataContext = () => {
   const context = useContext(AcademicDataContext)
   if (!context) {
-    throw new Error('useAcademicData must be used within an AcademicDataProvider')
+    throw new Error(
+      'useAcademicData must be used within an AcademicDataProvider'
+    )
   }
   return context
 }
 
-export { useAcademicDataContext,useAuthContext }
+export { useAcademicDataContext, useAuthContext }

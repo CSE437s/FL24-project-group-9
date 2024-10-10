@@ -11,9 +11,9 @@ async function updateStudent(student: Student): Promise<Student> {
   const options = {
     method: 'PUT',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify({student}),
+    body: JSON.stringify({ student }),
   }
   const response = await fetch(`${API_URL}/api/student/${student.id}`, options)
   return response.json()

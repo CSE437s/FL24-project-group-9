@@ -1,4 +1,4 @@
-import { createContext, ReactNode,useEffect, useState } from 'react'
+import { createContext, ReactNode, useEffect, useState } from 'react'
 
 import { Course } from '../models/Course'
 import CoursesAPI from '../services/CoursesAPI'
@@ -8,14 +8,16 @@ import MinorsAPI from '../services/MinorsAPI'
 import SemestersAPI from '../services/SemestersAPI'
 
 interface AcademicDataContextType {
-  courses: Course[];
-  majors: string[];
-  minors: string[];
-  semesters: string[];
-  interests: string[];
+  courses: Course[]
+  majors: string[]
+  minors: string[]
+  semesters: string[]
+  interests: string[]
 }
 
-const AcademicDataContext = createContext<AcademicDataContextType | undefined>(undefined)
+const AcademicDataContext = createContext<AcademicDataContextType | undefined>(
+  undefined
+)
 
 const AcademicDataProvider = ({ children }: { children: ReactNode }) => {
   const [courses, setCourses] = useState<Course[]>([])
@@ -33,7 +35,9 @@ const AcademicDataProvider = ({ children }: { children: ReactNode }) => {
   }, [])
 
   return (
-    <AcademicDataContext.Provider value={{ courses, majors, minors, semesters, interests }}>
+    <AcademicDataContext.Provider
+      value={{ courses, majors, minors, semesters, interests }}
+    >
       {children}
     </AcademicDataContext.Provider>
   )

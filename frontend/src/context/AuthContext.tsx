@@ -1,10 +1,10 @@
-import { createContext, ReactNode,useState } from 'react'
+import { createContext, ReactNode, useState } from 'react'
 
 interface AuthContextType {
-  isLoggedIn: boolean;
-  login: () => void;
-  logout: () => void;
-  signup: () => void;
+  isLoggedIn: boolean
+  login: () => void
+  logout: () => void
+  signup: () => void
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)

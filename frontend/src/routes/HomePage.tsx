@@ -1,8 +1,8 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from 'react-router-dom'
 
-import { FooterBar } from "../components/FooterBar"
-import { HeaderBar } from "../components/HeaderBar"
-import { useAuthContext } from "../context/useContext"
+import { FooterBar } from '../components/FooterBar'
+import { HeaderBar } from '../components/HeaderBar'
+import { useAuthContext } from '../context/useContext'
 
 import './css/HomePage.css'
 

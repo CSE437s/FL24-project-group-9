@@ -1,4 +1,4 @@
-import { Term } from "./models/Course"
+import { Term } from './models/Course'
 
 const getTotalUnits = (term: Term) => {
   return term.courses.reduce((acc, course) => acc + course.credits, 0)
@@ -49,5 +49,5 @@ const sortTermObjects = (terms: Term[]): Term[] => {
 export const utils = {
   getTotalUnits,
   sortTerms,
-  sortTermObjects
+  sortTermObjects,
 }

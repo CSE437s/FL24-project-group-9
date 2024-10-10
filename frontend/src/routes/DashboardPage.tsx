@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from 'react'
 
-import { FooterBar } from "../components/FooterBar"
-import { HeaderBar } from "../components/HeaderBar"
-import { ScheduleRow } from "../components/ScheduleRow"
-import { Term } from "../models/Course"
-import PlannerAPI from "../services/PlannerAPI"
+import { FooterBar } from '../components/FooterBar'
+import { HeaderBar } from '../components/HeaderBar'
+import { ScheduleRow } from '../components/ScheduleRow'
+import { Term } from '../models/Course'
+import PlannerAPI from '../services/PlannerAPI'
 
 import './css/DashboardPage.css'
 
@@ -19,7 +19,7 @@ export default function DashboardPage() {
 
   return (
     <>
-      <HeaderBar isNavVisible={true}/>
+      <HeaderBar isNavVisible={true} />
       <div className="dashboard-page">
         <h3>Current Schedule</h3>
         {selected.map((term) => (
