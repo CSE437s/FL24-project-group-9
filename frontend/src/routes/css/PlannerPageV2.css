@@ -1,0 +1,37 @@
+.planner-page {
+  padding: 2rem 3rem;
+  min-height: var(--min-height-container);
+  display: flex;
+  column-gap: 6rem;
+}
+
+.planner-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 1.5rem;
+}
+
+.planner-buttons button {
+  margin: 1rem;
+}
+
+.add-course p {
+  display: flex;
+}
+
+.add-course select {
+  flex-grow: 1;
+  box-sizing: border-box;
+  width: 20rem;
+  font-size: var(--font-h6);
+  padding: 0.25rem 0.5rem;
+  overflow-x: scroll;
+  font-family: inherit;
+}
+
+.add-course p > label {
+  font-size: var(--font-body);
+  color: var(--primary-black);
+  width: 6rem;
+}

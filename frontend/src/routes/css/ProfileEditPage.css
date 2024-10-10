@@ -1,25 +1,17 @@
 .profile-edit-page {
   padding: 2rem 3rem;
-  min-height: calc(100vh - 95px - 56px - 4rem);
+  min-height: var(--min-height-container);
 }
 
-.profile-edit-page input[type="text"],
-.profile-edit-page input[type="month"],
+.profile-edit-page input[type='text'],
+.profile-edit-page input[type='month'],
 .profile-edit-page select {
   box-sizing: border-box;
-  width: 300px;
+  width: 20rem;
   font-size: var(--font-h6);
   padding: 0.25rem 0.5rem;
   overflow-x: scroll;
   font-family: inherit;
-}
-
-.history-input p {
-  display: flex;
-}
-
-.history-input select {
-  flex-grow: 1;
 }
 
 .academic-info p,
@@ -39,7 +31,7 @@
 .academic-info p > label,
 .academic-summary p > label,
 .interests > label {
-  width: 100px;
+  width: 6rem;
 }
 
 .academic-summary p > label {
@@ -62,7 +54,7 @@
   width: 100%;
 }
 
-.interests-input input[type="checkbox"] {
+.interests-input input[type='checkbox'] {
   width: 1rem;
   height: 1rem;
   margin-right: 0.5rem;
@@ -70,7 +62,7 @@
 
 .profile-edit-page .academic-history button {
   font-size: var(--font-h6);
-  width: 125px;
-  margin-left: calc(100% - 125px);
+  width: 10rem;
+  margin-left: calc(100% - 10rem);
   text-align: center;
 }

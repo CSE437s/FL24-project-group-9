@@ -1,7 +1,7 @@
 import data from './data/interests.json'
 
 async function getAllInterests(): Promise<string[]> {
-  return data;
+  return data
 }
 
 export default { getAllInterests }
