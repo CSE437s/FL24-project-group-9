@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -44,10 +47,16 @@ INSTALLED_APPS = [
     "corsheaders",
     "django_filters",
     "rest_framework_simplejwt.token_blacklist",
+    "django.contrib.sites",
+    "allauth",
+    "allauth.account",
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "corsheaders.middleware.CorsMiddleware",
@@ -96,20 +105,20 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
-    },
-]
+# AUTH_PASSWORD_VALIDATORS = [
+#     {
+#         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+#     },
+#     {
+#         "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+#     },
+#     {
+#         "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+#     },
+#     {
+#         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+#     },
+# ]
 
 
 # Internationalization
@@ -136,15 +145,63 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 REST_FRAMEWORK = {
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ],
 }
 
 SIMPLE_JWT = {
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=15),
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=180),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=50),
     "ROTATE_REFRESH_TOKENS": True,
     "BLACKLIST_AFTER_ROTATION": True,
+    "UPDATE_LAST_LOGIN": True,
+    "ALGORITHM": "HS256",
+    "VERIFYING_KEY": None,
+    "AUDIENCE": None,
+    "ISSUER": None,
+    "JWK_URL": None,
+    "LEEWAY": 0,
+    "AUTH_HEADER_TYPES": ("Bearer",),
+    "AUTH_HEADER_NAME": "HTTP_AUTHORIZATION",
+    "USER_ID_FIELD": "id",
+    "USER_ID_CLAIM": "user_id",
+    "USER_AUTHENTICATION_RULE": "rest_framework_simplejwt.authentication.default_user_authentication_rule",
+    "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
+    "TOKEN_TYPE_CLAIM": "token_type",
+    "TOKEN_USER_CLASS": "rest_framework_simplejwt.models.TokenUser",
+    "JTI_CLAIM": "jti",
+    # "SLIDING_TOKEN_REFRESH_EXP_CLAIM": "refresh_exp",
+    # "SLIDING_TOKEN_LIFETIME": timedelta(days=30),
+    # "SLIDING_TOKEN_REFRESH_LIFETIME": timedelta(days=1),
+    # "SLIDING_TOKEN_REFRESH_LIFETIME": timedelta(days=1),
+    # "SLIDING_TOKEN_LIFETIME": timedelta(days=30),
+    # "SLIDING_TOKEN_REFRESH_LIFETIME_LATE_USER": timedelta(days=1),
+    # "SLIDING_TOKEN_LIFETIME_LATE_USER": timedelta(days=30),
 }
 
 AUTH_USER_MODEL = "api.Student"
+
+# # Email Verification Settings
+# # EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# # EMAIL_HOST = "smtp.gmail.com"
+# # EMAIL_PORT = 587
+# # EMAIL_USE_TLS = True
+# # EMAIL_HOST_USER = "your-email@gmail.com"
+# # EMAIL_HOST_PASSWORD = "your-email-password"
+# # DEFAULT_FROM_EMAIL = "your-email@gmail.com"
+
+# # ACCOUNT_AUTHENTICATION_METHOD = "email"
+# ACCOUNT_EMAIL_REQUIRED = True
+# # ACCOUNT_USERNAME_REQUIRED = False
+# ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+# ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
+# ACCOUNT_UNIQUE_EMAIL = True
+# ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False
+
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+)

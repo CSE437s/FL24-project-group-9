@@ -20,10 +20,12 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from api.views import api_overview
+from django.views.generic.base import RedirectView
 
 urlpatterns = [
     path("", api_overview, name="api-overview"),
     path("admin/", admin.site.urls),
+    path("admin", RedirectView.as_view(url="admin/", permanent=True)),
     path("auth/", include("auth.urls")),
     path("api/", include("api.urls")),
 ]

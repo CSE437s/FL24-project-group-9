@@ -1,19 +1,28 @@
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
-from api.models import Student
+from api.models import Student, Semester
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
+from datetime import date
 
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
-
     @classmethod
     def get_token(cls, user):
-        token = super(CustomTokenObtainPairSerializer, cls).get_token(user)
+        token = super().get_token(user)
 
-        # Add custom claims
+        token["id"] = user.id
         token["email"] = user.email
+
         return token
+
+    def validate(self, attrs):
+        data = super().validate(attrs)
+
+        data["id"] = self.user.id
+        data["email"] = self.user.email
+
+        return data
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -29,10 +38,9 @@ class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
         fields = (
-            "username",
+            "email",
             "password",
             "password2",
-            "email",
             "first_name",
             "last_name",
         )
@@ -51,11 +59,26 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user = Student.objects.create(
-            username=validated_data["username"],
             email=validated_data["email"],
             first_name=validated_data["first_name"],
             last_name=validated_data["last_name"],
         )
+        for idx in range(5):
+            if idx == 0:
+                Semester.objects.create(
+                    student=user, name=f"Fall {date.today().year + idx}"
+                )
+            elif idx == 4:
+                Semester.objects.create(
+                    student=user, name=f"Spring {date.today().year + idx}"
+                )
+            else:
+                Semester.objects.create(
+                    student=user, name=f"Spring {date.today().year + idx}"
+                )
+                Semester.objects.create(
+                    student=user, name=f"Fall {date.today().year + idx}"
+                )
 
         user.set_password(validated_data["password"])
         user.save()
@@ -99,51 +122,6 @@ class ChangePasswordSerializer(serializers.ModelSerializer):
             )
 
         instance.set_password(validated_data["password"])
-        instance.save()
-
-        return instance
-
-
-class UpdateUserSerializer(serializers.ModelSerializer):
-    email = serializers.EmailField(required=True)
-
-    class Meta:
-        model = Student
-        fields = ("username", "first_name", "last_name", "email")
-        extra_kwargs = {
-            "first_name": {"required": True},
-            "last_name": {"required": True},
-        }
-
-    def validate_email(self, value):
-        user = self.context["request"].user
-        if Student.objects.exclude(pk=user.pk).filter(email=value).exists():
-            raise serializers.ValidationError(
-                {"email": "This email is already in use."}
-            )
-        return value
-
-    def validate_username(self, value):
-        user = self.context["request"].user
-        if Student.objects.exclude(pk=user.pk).filter(username=value).exists():
-            raise serializers.ValidationError(
-                {"username": "This username is already in use."}
-            )
-        return value
-
-    def update(self, instance, validated_data):
-        user = self.context["request"].user
-
-        if user.pk != instance.pk:
-            raise serializers.ValidationError(
-                {"authorize": "You dont have permission for this user."}
-            )
-
-        instance.first_name = validated_data["first_name"]
-        instance.last_name = validated_data["last_name"]
-        instance.email = validated_data["email"]
-        instance.username = validated_data["username"]
-
         instance.save()
 
         return instance
