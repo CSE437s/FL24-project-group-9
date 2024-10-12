@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from datetime import date
 
 
 # Create your models here.
@@ -47,14 +48,18 @@ class Program(models.Model):
 
 
 class Student(AbstractUser):
-    joined = models.DateField(null=True, blank=True)
-    grad = models.DateField(null=True, blank=True)
+    email = models.EmailField(unique=True)
+    joined = models.IntegerField(default=date.today().year, blank=True)
+    grad = models.IntegerField(default=date.today().year + 4, blank=True)
     programs = models.ManyToManyField(Program, blank=True)
     career = models.CharField(max_length=255, blank=True)
     required_units = models.PositiveIntegerField(blank=True, null=True)
     interests = models.TextField(blank=True)
-    password = models.CharField(max_length=128, blank=True, null=True)
-    username = models.CharField(max_length=255, unique=True, null=True)
+    password = models.CharField(max_length=128, blank=True, default="")
+    username = models.CharField(max_length=150, unique=True, blank=True, null=True)
+
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = []
 
     def __str__(self):
         return self.email
@@ -65,7 +70,7 @@ class Semester(models.Model):
     name = models.CharField(max_length=255)
     planned_credits = models.PositiveIntegerField(default=15)
     planned_courses = models.ManyToManyField(Course, blank=True)
-    isCompleted = models.BooleanField()
+    isCompleted = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
