@@ -82,12 +82,13 @@ class Command(BaseCommand):
         Student.objects.create(
             first_name="John",
             last_name="Doe",
-            email="john.doe@wustl.com",
+            email="john.doe@wustl.edu",
             joined=2020,
             grad=2024,
             career="Software Engineer",
             required_units=120,
             interests="Machine Learning, AI",
+            password="12345",
         )
         self.stdout.write(self.style.SUCCESS("Student Database seeded successfully."))
 
