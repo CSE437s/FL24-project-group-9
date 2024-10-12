@@ -94,3 +94,9 @@ To access the database dashboard at `http://127.0.0.1:8000/admin/`, create super
 ```
 poetry run python3 manage.py createsuperuser
 ```
+
+To seed data into the database:
+
+```
+poetry run python3 manage.py seed_data
+```
