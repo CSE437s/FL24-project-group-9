@@ -5,6 +5,7 @@ from auth.views import (
     LogoutView,
     CustomTokenObtainPairView,
     ValidateTokenView,
+    CheckUserExistView,
 )
 from rest_framework_simplejwt.views import TokenRefreshView
 from django.views.generic.base import RedirectView
@@ -31,5 +32,10 @@ urlpatterns = [
     path(
         "validate_token/",
         RedirectView.as_view(url="validate_token", permanent=True),
+    ),
+    path("user_exist", CheckUserExistView.as_view(), name="auth_user_exist"),
+    path(
+        "user_exist/",
+        RedirectView.as_view(url="user_exist", permanent=True),
     ),
 ]

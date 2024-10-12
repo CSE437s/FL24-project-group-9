@@ -100,3 +100,26 @@ class ValidateTokenView(APIView):
                 {"valid": False, "message": "Token is invalid or has expired."},
                 status=status.HTTP_401_UNAUTHORIZED,
             )
+
+
+class CheckUserExistView(APIView):
+    permission_classes = (AllowAny,)
+
+    def get(self, request):
+        email = request.data.get("email")
+        if not email:
+            return Response(
+                {"error": "Email is required."}, status=status.HTTP_400_BAD_REQUEST
+            )
+
+        is_user_exist = Student.objects.filter(email=email).exists()
+        if is_user_exist:
+            return Response(
+                {"exist": True, "message": "User with this email exists."},
+                status=status.HTTP_200_OK,
+            )
+        else:
+            return Response(
+                {"exist": False, "message": "User with this email does not exist."},
+                status=status.HTTP_200_OK,
+            )
