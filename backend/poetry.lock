@@ -384,16 +384,6 @@ python-jose = ["python-jose (==3.3.0)"]
 test = ["cryptography", "freezegun", "pytest", "pytest-cov", "pytest-django", "pytest-xdist", "tox"]
 
 [[package]]
-name = "drf-flex-fields"
-version = "1.0.2"
-description = "Flexible, dynamic fields and nested resources for Django REST Framework serializers."
-optional = false
-python-versions = "*"
-files = [
-    {file = "drf-flex-fields-1.0.2.tar.gz", hash = "sha256:48139eeff0b1232fc05a9f353c3c2b570b225985043dedda6ab0d5e8b7a1d7af"},
-]
-
-[[package]]
 name = "filelock"
 version = "3.16.1"
 description = "A platform independent file lock."
@@ -800,4 +790,4 @@ test = ["covdefaults (>=2.3)", "coverage (>=7.2.7)", "coverage-enable-subprocess
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "ac2230ac911c336c78f61f8c572f223ec8ec724718f34b67ebe1124c774dfa0f"
+content-hash = "31c993fa8bc046ac9c965e933e9f5137e99f932c5fa97b18f4713d39bd8a400f"

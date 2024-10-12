@@ -38,7 +38,7 @@ export default function DashboardPage() {
         <div className="schedule">
           <div className="history">
             <h4>
-              History{' '}
+              History
               <button className="secondary" onClick={handleEdit}>
                 Edit History
               </button>

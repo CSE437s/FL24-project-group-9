@@ -23,10 +23,9 @@ export default function ProfileEditPage() {
 
   const handleSave = () => {
     if (student) {
-      StudentAPI.updateStudent(bearerToken, student).then((student) => {
-        console.log(student)
+      StudentAPI.updateStudent(bearerToken, student).then(() => {
+        navigate('/profile')
       })
-      navigate('/profile')
     }
   }
 

@@ -27,7 +27,7 @@ export default function ProfilePage() {
           console.error(err)
           setLoading(false)
         })
-    }, 200) // TODO: remove this intentional delay
+    }, 100) // TODO: remove this intentional delay
   }, [bearerToken])
 
   const handleEdit = () => {
@@ -80,7 +80,7 @@ export default function ProfilePage() {
           </h4>
           <div className="academic-info">
             <p>
-              <span>Programs:</span> {student.programs.join(', ')}
+              <span>Programs:</span> {student.programs[0].name}
             </p>
             <p>
               <span>Graduation:</span> {student.grad}

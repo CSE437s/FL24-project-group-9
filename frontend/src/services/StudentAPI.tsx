@@ -24,10 +24,10 @@ async function updateStudent(
       'Content-Type': 'application/json',
       Authorization: `Bearer ${bearerToken}`,
     },
-    body: JSON.stringify({ student }),
+    body: JSON.stringify(student),
   }
   const response = await fetch(`${API_URL}/api/student/0/`, options)
-  return response.json()
+  return await response.json()
 }
 
 export default { getStudent, updateStudent }

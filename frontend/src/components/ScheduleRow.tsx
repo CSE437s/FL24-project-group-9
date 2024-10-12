@@ -26,11 +26,9 @@ export const ScheduleRow: React.FC<ScheduleRowProps> = ({
           </svg>
         </div>
       )}
-      <div className="course-code">
-        {course.department} {course.code}
-      </div>
+      <div className="course-code">{course.code.substring(3)}</div>
       <div className="course-title">{course.title}</div>
-      <div className="course-units">{course.credits} Units</div>
+      <div className="course-units">{course.units} Units</div>
       {handleRemoveClick && (
         <div
           className="remove-button"

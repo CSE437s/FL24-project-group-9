@@ -41,10 +41,13 @@ async function register(
   return await response.json()
 }
 
-async function logout(): Promise<boolean> {
+async function logout(bearerToken: string): Promise<boolean> {
   const options = {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${bearerToken}`,
+    },
   }
   const response = await fetch(`${API_URL}/api/logout/`, options)
   return response.ok

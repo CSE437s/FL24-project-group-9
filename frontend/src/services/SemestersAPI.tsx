@@ -24,13 +24,13 @@ async function updateSemester(
       'Content-Type': 'application/json',
       Authorization: `Bearer ${bearerToken}`,
     },
-    body: JSON.stringify({ semester }),
+    body: JSON.stringify(semester),
   }
   const response = await fetch(
-    `${API_URL}/api/semesters/${semester.id}`,
+    `${API_URL}/api/semesters/${semester.id}?expand=planned_courses`,
     options
   )
-  return response.json()
+  return await response.json()
 }
 
 export default { getAllSemesters, updateSemester }

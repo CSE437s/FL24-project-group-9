@@ -91,7 +91,9 @@ class ValidateTokenView(APIView):
             )
 
         try:
-            AccessToken(token)
+            access_token = AccessToken(token)
+            user_id = access_token["user_id"]
+            Student.objects.get(id=user_id)
             return Response(
                 {"valid": True, "message": "Token is valid."}, status=status.HTTP_200_OK
             )

@@ -17,6 +17,10 @@
   margin-left: auto;
 }
 
+.dashboard-edit-page .course-history {
+  box-sizing: border-box;
+  min-width: 522px;
+}
 
 .edit-buttons {
   display: flex;
@@ -43,7 +47,7 @@
   font-family: inherit;
 }
 
-.add-course p > label {
+.add-course p>label {
   font-size: var(--font-body);
   color: var(--primary-black);
   width: 6rem;
