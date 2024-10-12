@@ -4,21 +4,19 @@ import { useNavigate } from 'react-router-dom'
 import { FooterBar } from '../components/FooterBar'
 import { HeaderBar } from '../components/HeaderBar'
 import { PlannerComponent } from '../components/PlannerComponent'
-import { Term } from '../models/Course'
-import PlannerAPI from '../services/PlannerAPI'
+import { Semester } from '../models/Semester'
 
 import './css/PlannerPage.css'
 
 export default function PlannerPage() {
   const navigate = useNavigate()
-  const [selected, setSelected] = useState<Term[]>([])
+  const [selected, setSelected] = useState<Semester[]>([])
 
   const handleBack = () => {
     navigate('/profile')
   }
 
   const handleSave = () => {
-    PlannerAPI.updateSelectedPlan(selected)
     navigate('/dashboard')
   }
 

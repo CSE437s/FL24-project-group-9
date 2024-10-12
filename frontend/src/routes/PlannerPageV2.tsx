@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { DragDropContext, DropResult } from 'react-beautiful-dnd'
 import { useNavigate } from 'react-router-dom'
 
@@ -8,36 +8,27 @@ import { ScheduleDraggableV2 } from '../components/ScheduleDraggableV2'
 import { SpinnerComponent } from '../components/SpinnerComponent'
 import { TermHeader } from '../components/TermHeader'
 import { useAcademicDataContext } from '../context/useContext'
-import { Course, Term } from '../models/Course'
-import PlannerAPI from '../services/PlannerAPI'
+import { Course } from '../models/Course'
+import { Semester } from '../models/Semester'
 
 import './css/PlannerPageV2.css'
 
 export default function PlannerPageV2() {
   const navigate = useNavigate()
-  const { courses, semesters } = useAcademicDataContext()
-  const [selected, setSelected] = useState<Term[]>([])
+  const { courses, semesters, updateSemester } = useAcademicDataContext()
   const [newCourse, setNewCourse] = useState(courses[0]?.id)
-  const [newSemester, setNewSemester] = useState(semesters[0])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    setTimeout(() => {
-      PlannerAPI.getPlanner().then((plan) => {
-        setSelected(plan.recommended)
-        setLoading(false)
-      })
-    }, 10000)
-  }, [])
+  const [newSemester, setNewSemester] = useState(semesters[0]?.id)
+  const [loading] = useState(true)
 
   const handleSave = () => {
-    PlannerAPI.updateSelectedPlan(selected)
     navigate('/dashboard')
   }
 
-  const handleRemoveClick = (term: Term, course: Course) => {
-    term.courses = term.courses.filter((c) => c.id !== course.id)
-    setSelected([...selected])
+  const handleRemoveClick = (semester: Semester, course: Course) => {
+    semester.planned_courses = semester.planned_courses.filter(
+      (c) => c.id !== course.id
+    )
+    updateSemester(semester)
   }
 
   const handleDragDrop = (result: DropResult) => {
@@ -54,38 +45,44 @@ export default function PlannerPageV2() {
       return
     }
 
-    const sourceTermId = source.droppableId.split('-')[1]
-    const destinationTermId = destination.droppableId.split('-')[1]
+    const sourceSemesterId = Number(source.droppableId)
+    const destinationSemesterId = Number(destination.droppableId)
 
-    const sourceTerm = selected.find((term) => term.id === sourceTermId)
-    const destinationTerm = selected.find(
-      (term) => term.id === destinationTermId
+    const sourceSemester = semesters.find(
+      (semester) => semester.id === sourceSemesterId
+    )
+    const destinationSemester = semesters.find(
+      (semester) => semester.id === destinationSemesterId
     )
 
-    if (!sourceTerm || !destinationTerm) {
+    if (!sourceSemester || !destinationSemester) {
       return
     }
 
-    const [movedCourse] = sourceTerm.courses.splice(source.index, 1)
-    destinationTerm.courses.splice(destination.index, 0, movedCourse)
+    const [movedCourse] = sourceSemester.planned_courses.splice(source.index, 1)
+    destinationSemester.planned_courses.splice(
+      destination.index,
+      0,
+      movedCourse
+    )
 
-    setSelected([...selected])
+    updateSemester(sourceSemester)
   }
 
   const addCourse = () => {
-    const term = selected.find((term) => term.term === newSemester)
+    const semester = semesters.find((semester) => semester.id === newSemester)
     const course = courses.find((course) => course.id === newCourse)
 
     if (!course) {
       return
     }
 
-    if (term) {
-      if (term.courses.find((c) => c.id === course.id)) {
+    if (semester) {
+      if (semester.planned_courses.find((c) => c.id === course.id)) {
         return
       }
-      term.courses.push(course)
-      setSelected([...selected])
+      semester.planned_courses.push(course)
+      updateSemester(semester)
     }
   }
 
@@ -103,19 +100,19 @@ export default function PlannerPageV2() {
     <>
       <HeaderBar isNavVisible={true} />
       <div className="planner-page">
-        {selected.length !== 0 && (
+        {semesters.length !== 0 && (
           <>
             <div className="planner-component">
               <h4>Recommended Schedule</h4>
               <p>Add or remove courses from your upcoming schedule</p>
               <DragDropContext onDragEnd={handleDragDrop}>
                 <div className="selected-block">
-                  {selected.map((term) => (
-                    <div key={term.id} className="schedule-term">
-                      <TermHeader term={term} />
+                  {semesters.map((semester) => (
+                    <div key={semester.id} className="schedule-term">
+                      <TermHeader semester={semester} />
                       <ScheduleDraggableV2
-                        term={term}
-                        droppableId={`selected-${term.id}`}
+                        term={semester}
+                        droppableId={`${semester.id}`}
                         handleRemoveClick={handleRemoveClick}
                       />
                     </div>
@@ -132,11 +129,11 @@ export default function PlannerPageV2() {
                 <label>Course:</label>
                 <select
                   defaultValue={newCourse}
-                  onChange={(e) => setNewCourse(e.target.value)}
+                  onChange={(e) => setNewCourse(Number(e.target.value))}
                 >
                   {courses.map((course, index) => (
                     <option key={index} value={course.id}>
-                      {course.department} {course.code} - {course.title}
+                      {course.code} - {course.title}
                     </option>
                   ))}
                 </select>
@@ -145,11 +142,11 @@ export default function PlannerPageV2() {
                 <label>Semester:</label>
                 <select
                   value={newSemester}
-                  onChange={(e) => setNewSemester(e.target.value)}
+                  onChange={(e) => setNewSemester(Number(e.target.value))}
                 >
                   {semesters.map((semester, index) => (
-                    <option key={index} value={semester}>
-                      {semester}
+                    <option key={index} value={semester.id}>
+                      {semester.name}
                     </option>
                   ))}
                 </select>
@@ -162,7 +159,7 @@ export default function PlannerPageV2() {
             </div>
           </>
         )}
-        {selected.length === 0 && (
+        {semesters.length === 0 && (
           <section className="no-courses">
             <h4>Unable to generate recommended schedule at this time</h4>
             <p>Please try again later</p>

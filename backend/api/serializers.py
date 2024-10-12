@@ -5,13 +5,13 @@ from api.models import Student, Course, Department, Semester, Program
 class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
-        read_only_fields = "__all__"
+        fields = "__all__"
 
 
 class DepartmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Department
-        read_only_fields = "__all__"
+        fields = "__all__"
 
 
 class SemesterSerializer(serializers.ModelSerializer):
@@ -24,7 +24,7 @@ class SemesterSerializer(serializers.ModelSerializer):
 class ProgramSerializer(serializers.ModelSerializer):
     class Meta:
         model = Program
-        read_only_fields = "__all__"
+        fields = "__all__"
 
 
 class StudentSerializer(serializers.ModelSerializer):

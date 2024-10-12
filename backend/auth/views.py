@@ -83,7 +83,7 @@ class LogoutView(APIView):
 class ValidateTokenView(APIView):
     permission_classes = (AllowAny,)
 
-    def get(self, request):
+    def post(self, request):
         token = request.data.get("token")
         if not token:
             return Response(
@@ -105,7 +105,7 @@ class ValidateTokenView(APIView):
 class CheckUserExistView(APIView):
     permission_classes = (AllowAny,)
 
-    def get(self, request):
+    def post(self, request):
         email = request.data.get("email")
         if not email:
             return Response(

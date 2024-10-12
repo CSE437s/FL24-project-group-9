@@ -24,13 +24,9 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const token = localStorage.getItem('access_token')
     if (token) {
-      fetch('http://localhost:8000/api/majors/', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-        .then((response) => {
-          if (!response.ok) {
+      AuthAPI.validateToken(token)
+        .then((isValid) => {
+          if (!isValid) {
             setBearerToken('')
             localStorage.removeItem('access_token')
             localStorage.removeItem('refresh_token')

@@ -10,8 +10,7 @@ async function getStudent(bearerToken: string): Promise<Student> {
       Authorization: `Bearer ${bearerToken}`,
     },
   }
-  const response = await fetch(`${API_URL}/api/student`, options)
-  console.log(await response.json())
+  const response = await fetch(`${API_URL}/api/student/`, options)
   return await response.json()
 }
 
@@ -27,7 +26,7 @@ async function updateStudent(
     },
     body: JSON.stringify({ student }),
   }
-  const response = await fetch(`${API_URL}/api/student/`, options)
+  const response = await fetch(`${API_URL}/api/student/0/`, options)
   return response.json()
 }
 

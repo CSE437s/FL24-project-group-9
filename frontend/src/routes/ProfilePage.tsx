@@ -27,7 +27,7 @@ export default function ProfilePage() {
           console.error(err)
           setLoading(false)
         })
-    }, 10000)
+    }, 200) // TODO: remove this intentional delay
   }, [bearerToken])
 
   const handleEdit = () => {
@@ -64,7 +64,7 @@ export default function ProfilePage() {
           <h3>Welcome to CoursePlanner</h3>
           <div className="profile-info">
             <p>
-              <span>Name:</span> {student.firstname} {student.lastname}
+              <span>Name:</span> {student.first_name} {student.last_name}
             </p>
             <p>
               <span>Email:</span> {student.email}
@@ -80,13 +80,10 @@ export default function ProfilePage() {
           </h4>
           <div className="academic-info">
             <p>
-              <span>Major:</span> {student.major}
+              <span>Programs:</span> {student.programs.join(', ')}
             </p>
             <p>
-              <span>Minor:</span> {student.minor}
-            </p>
-            <p>
-              <span>Graduation:</span> {student.year}
+              <span>Graduation:</span> {student.grad}
             </p>
             <p>
               <span>Career:</span> {student.career}

@@ -1,6 +1,8 @@
+import { Department } from '../models/Department.tsx'
+
 import { API_URL } from './config.tsx'
 
-async function getAllDepartments(bearerToken: string): Promise<string[]> {
+async function getAllDepartments(bearerToken: string): Promise<Department[]> {
   const options = {
     method: 'GET',
     headers: {
@@ -15,7 +17,7 @@ async function getAllDepartments(bearerToken: string): Promise<string[]> {
 async function getDepartmentById(
   bearerToken: string,
   id: string
-): Promise<string[]> {
+): Promise<Department> {
   const options = {
     method: 'GET',
     headers: {
