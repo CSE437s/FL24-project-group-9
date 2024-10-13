@@ -1,37 +1,13 @@
 .planner-page {
   padding: 2rem 3rem;
   min-height: var(--min-height-container);
+}
+
+.planner-page h4 {
   display: flex;
-  column-gap: 6rem;
+  width: 30rem;
 }
 
-.planner-buttons {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  margin: 1.5rem;
-}
-
-.planner-buttons button {
-  margin: 1rem;
-}
-
-.planner-page .add-course p {
-  display: flex;
-}
-
-.planner-page .add-course select {
-  flex-grow: 1;
-  box-sizing: border-box;
-  width: 22rem;
-  font-size: var(--font-h6);
-  padding: 0.25rem 0.5rem;
-  overflow-x: scroll;
-  font-family: inherit;
-}
-
-.planner-page .add-course p>label {
-  font-size: var(--font-body);
-  color: var(--primary-black);
-  width: 6rem;
+.planner-page h4 button.secondary {
+  margin-left: auto;
 }

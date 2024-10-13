@@ -8,6 +8,7 @@
   --primary-beige: #faf7ef;
   --primary-black: #000000;
 
+  --secondary-red: #a51416d0;
   --secondary-yellow: #ffcc00;
   --secondary-turquoise: #2b8282;
   --secondary-blue: #005f85;
@@ -116,7 +117,8 @@ button {
   cursor: pointer;
 }
 
-button.secondary {
+button.secondary,
+.button-secondary {
   background: none;
   border: none;
   color: var(--primary-red);
@@ -124,13 +126,21 @@ button.secondary {
   font-weight: var(--font-weight-headings);
   margin-left: 1rem;
   padding: 0;
+  cursor: pointer;
 }
 
-button.secondary:hover {
+button.secondary:hover,
+.button-secondary:hover {
   text-decoration: underline;
   text-underline-offset: 0.25rem;
 }
 
-button.secondary:focus {
+button.secondary:focus,
+.button-secondary:focus {
   outline: none;
+}
+
+button:disabled {
+  background-color: var(--secondary-red);
+  cursor: not-allowed;
 }

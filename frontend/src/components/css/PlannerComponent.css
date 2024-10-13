@@ -1,0 +1,26 @@
+.planner-component {
+  display: flex;
+  column-gap: 6rem;
+  flex-wrap: wrap;
+}
+
+.planner-component .add-course p {
+  display: flex;
+  width: 30rem;
+}
+
+.planner-component .add-course select {
+  flex-grow: 1;
+  box-sizing: border-box;
+  font-size: var(--font-h6);
+  padding: 0.25rem 0.5rem;
+  overflow-x: scroll;
+  width: calc(100% - 6rem);
+  font-family: inherit;
+}
+
+.planner-component .add-course p>label {
+  font-size: var(--font-body);
+  color: var(--primary-black);
+  width: 6rem;
+}
