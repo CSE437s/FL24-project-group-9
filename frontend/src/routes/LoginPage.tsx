@@ -30,6 +30,7 @@ export default function LoginPage() {
   const [userExisted, setUserExisted] = useState(false)
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState(false)
+  const [loginLoading, setLoginLoading] = useState(false)
 
   const checkUser = async () => {
     setLoading(true)
@@ -38,7 +39,7 @@ export default function LoginPage() {
         setUserExisted(response.exist)
         setLoading(false)
       })
-    }, 200) // TODO: remove this intentional delay
+    }, 100) // TODO: remove this intentional delay
   }
 
   const handleEmailEntered = (event: React.FormEvent) => {
@@ -53,16 +54,22 @@ export default function LoginPage() {
     setUserExisted(false)
   }
 
-  const handleLogin = async (event: React.FormEvent) => {
+  const handleLogin = (event: React.FormEvent) => {
     event.preventDefault()
     if (!user) return
-    const response = await login(user.email, user.password)
-    if (response) {
-      setMessage('')
-      navigate('/profile')
-      return
-    }
-    setMessage('wrong password, please try again')
+    setLoginLoading(true)
+    login(user.email, user.password)
+      .then((response) => {
+        if (response) {
+          setMessage('')
+          navigate('/profile')
+          return
+        }
+        setMessage('wrong password, please try again')
+      })
+      .finally(() => {
+        setLoginLoading(false)
+      })
   }
 
   const handleRegister = async (event: React.FormEvent) => {
@@ -122,7 +129,7 @@ export default function LoginPage() {
             <input type="email" value={user.email} disabled />
           </div>
           <button type="submit" disabled>
-            <ClipLoader size={20} color={'#ffffff'} />
+            <ClipLoader size={'0.8rem'} color={'#ffffff'} />
           </button>
         </form>
       </div>
@@ -200,12 +207,23 @@ export default function LoginPage() {
               }
             />
           </div>
-          <div className="action-btns">
-            <button type="button" onClick={handleBack}>
-              Back
-            </button>
-            <button type="submit">Login</button>
-          </div>
+          {loginLoading ? (
+            <div className="action-btns">
+              <button type="button" disabled>
+                Back
+              </button>
+              <button type="submit" disabled>
+                <ClipLoader size={'0.8rem'} color={'#ffffff'} />
+              </button>
+            </div>
+          ) : (
+            <div className="action-btns">
+              <button type="button" onClick={handleBack}>
+                Back
+              </button>
+              <button type="submit">Login</button>
+            </div>
+          )}
         </form>
       </div>
     )

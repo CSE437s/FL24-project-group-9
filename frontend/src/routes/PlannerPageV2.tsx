@@ -6,7 +6,6 @@ import { FooterBar } from '../components/FooterBar'
 import { HeaderBar } from '../components/HeaderBar'
 import { ScheduleDraggableV2 } from '../components/ScheduleDraggableV2'
 import { SpinnerComponent } from '../components/SpinnerComponent'
-import { TermHeader } from '../components/TermHeader'
 import { useAcademicDataContext } from '../context/useContext'
 import { Semester } from '../models/Semester'
 
@@ -14,7 +13,7 @@ import './css/PlannerPageV2.css'
 
 export default function PlannerPageV2() {
   const navigate = useNavigate()
-  const { loading, courses, semesters, updateSemester } =
+  const { academicLoading, courses, semesters, updateSemester } =
     useAcademicDataContext()
   const [newCourse, setNewCourse] = useState(courses[0]?.id)
   const [newSemester, setNewSemester] = useState(semesters[0]?.id)
@@ -85,7 +84,7 @@ export default function PlannerPageV2() {
     }
   }
 
-  if (loading) {
+  if (academicLoading) {
     return (
       <>
         <HeaderBar isNavVisible={true} />
@@ -113,7 +112,12 @@ export default function PlannerPageV2() {
       <HeaderBar isNavVisible={true} />
       <div className="planner-page">
         <div className="planner-component">
-          <h4>Recommended Schedule</h4>
+          <h4>
+            Recommended Schedule
+            <button onClick={handleSave} className="secondary">
+              Save
+            </button>
+          </h4>
           <p>Add or remove courses from your upcoming schedule</p>
           <DragDropContext onDragEnd={handleDragDrop}>
             <div className="selected-block">
@@ -121,20 +125,15 @@ export default function PlannerPageV2() {
                 semesters
                   .filter((semesters) => !semesters.isCompleted)
                   .map((semester) => (
-                    <div key={semester.id} className="schedule-term">
-                      <TermHeader semester={semester} />
-                      <ScheduleDraggableV2
-                        semester={semester}
-                        droppableId={`${semester.id}`}
-                        handleRemoveClick={handleRemoveClick}
-                      />
-                    </div>
+                    <ScheduleDraggableV2
+                      key={semester.id}
+                      droppableId={semester.id.toString()}
+                      semester={semester}
+                      handleRemoveClick={handleRemoveClick}
+                    />
                   ))}
             </div>
           </DragDropContext>
-          <div className="planner-buttons">
-            <button onClick={handleSave}>Save Schedule</button>
-          </div>
         </div>
         <div className="add-course">
           <h4>Add Course</h4>

@@ -1,10 +1,10 @@
 import { useState } from 'react'
+import { DragDropContext, DropResult } from 'react-beautiful-dnd'
 import { useNavigate } from 'react-router-dom'
 
 import { FooterBar } from '../components/FooterBar'
 import { HeaderBar } from '../components/HeaderBar'
-import { ScheduleRow } from '../components/ScheduleRow'
-import { TermHeader } from '../components/TermHeader'
+import { ScheduleDraggableV2 } from '../components/ScheduleDraggableV2'
 import { useAcademicDataContext } from '../context/useContext'
 import { Semester } from '../models/Semester'
 
@@ -30,6 +30,44 @@ export default function DashboardEditPage() {
     navigate('/dashboard')
   }
 
+  const handleDragDrop = (result: DropResult) => {
+    const { source, destination } = result
+
+    if (!destination) {
+      return
+    }
+
+    if (
+      source.index === destination.index &&
+      source.droppableId === destination.droppableId
+    ) {
+      return
+    }
+
+    const sourceSemesterId = Number(source.droppableId)
+    const destinationSemesterId = Number(destination.droppableId)
+
+    const sourceSemester = semesters.find(
+      (semester) => semester.id === sourceSemesterId
+    )
+    const destinationSemester = semesters.find(
+      (semester) => semester.id === destinationSemesterId
+    )
+
+    if (!sourceSemester || !destinationSemester) {
+      return
+    }
+
+    const [movedCourse] = sourceSemester.planned_courses.splice(source.index, 1)
+    destinationSemester.planned_courses.splice(
+      destination.index,
+      0,
+      movedCourse
+    )
+
+    updateSemester(sourceSemester)
+  }
+
   const addCourse = () => {
     const curSemester = semesters.find((s) => s.id === newSemester)
     if (curSemester) {
@@ -45,7 +83,6 @@ export default function DashboardEditPage() {
     <>
       <HeaderBar isNavVisible={true} />
       <div className="dashboard-edit-page">
-        <h3>Edit Course History</h3>
         <section className="course-summary">
           <div className="course-history">
             <h4>
@@ -54,23 +91,22 @@ export default function DashboardEditPage() {
                 Save
               </button>
             </h4>
-            {semesters
-              .filter((semester) => semester.isCompleted)
-              .map((semester) => (
-                <div key={semester.id}>
-                  <TermHeader semester={semester} />
-                  {semester.planned_courses.map((courseId) => (
-                    <ScheduleRow
-                      key={`${semester.id} ${courseId}`}
-                      courseId={courseId}
-                      handleRemoveClick={() =>
-                        handleRemoveClick(semester, courseId)
-                      }
-                    />
-                  ))}
-                </div>
-              ))}
-            {semesters.length === 0 ? <h4>No Courses Added</h4> : <></>}
+            <p>Add or remove courses from your previous schedule</p>
+            <DragDropContext onDragEnd={handleDragDrop}>
+              <div className="selected-block">
+                {semesters &&
+                  semesters
+                    .filter((semesters) => semesters.isCompleted)
+                    .map((semester) => (
+                      <ScheduleDraggableV2
+                        key={semester.id}
+                        droppableId={semester.id.toString()}
+                        semester={semester}
+                        handleRemoveClick={handleRemoveClick}
+                      />
+                    ))}
+              </div>
+            </DragDropContext>
           </div>
           <div className="add-course">
             <h4>Add a Course</h4>

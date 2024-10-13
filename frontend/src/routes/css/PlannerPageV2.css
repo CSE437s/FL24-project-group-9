@@ -3,17 +3,16 @@
   min-height: var(--min-height-container);
   display: flex;
   column-gap: 6rem;
+  flex-wrap: wrap;
 }
 
-.planner-buttons {
+.planner-page h4 {
   display: flex;
-  align-items: center;
-  justify-content: space-around;
-  margin: 1.5rem;
+  width: 100%;
 }
 
-.planner-buttons button {
-  margin: 1rem;
+.planner-page h4 button.secondary {
+  margin-left: auto;
 }
 
 .planner-page .add-course p {

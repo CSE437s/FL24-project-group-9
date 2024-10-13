@@ -23,10 +23,18 @@ const StudentProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     if (authContext.bearerToken) {
-      StudentAPI.getStudent(authContext.bearerToken).then((response) => {
-        setStudent(response)
-        setStudentLoading(false)
-      })
+      setStudentLoading(true)
+      StudentAPI.getStudent(authContext.bearerToken)
+        .then((response) => {
+          setStudent(response)
+        })
+        .finally(() => {
+          setStudentLoading(false)
+        })
+        .catch((err) => {
+          console.error(err)
+          setStudentLoading(false)
+        })
     }
   }, [authContext])
 

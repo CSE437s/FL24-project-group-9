@@ -8,6 +8,7 @@
   --primary-beige: #faf7ef;
   --primary-black: #000000;
 
+  --secondary-red: #a51416d0;
   --secondary-yellow: #ffcc00;
   --secondary-turquoise: #2b8282;
   --secondary-blue: #005f85;
@@ -133,4 +134,9 @@ button.secondary:hover {
 
 button.secondary:focus {
   outline: none;
+}
+
+button:disabled {
+  background-color: var(--secondary-red);
+  cursor: not-allowed;
 }

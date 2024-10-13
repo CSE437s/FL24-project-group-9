@@ -22,11 +22,6 @@ export const StudentForm: React.FC<StudentFormProps> = ({
     handleSave(newStudent)
   }
 
-  console.log(
-    academicLoading,
-    programs.filter((program) => program.id === newStudent.programs[0])
-  )
-
   return (
     <form onSubmit={handleSubmit} className="student-form">
       <div className="input-wrapper">
@@ -39,7 +34,7 @@ export const StudentForm: React.FC<StudentFormProps> = ({
           <select
             id="program"
             name="program"
-            defaultValue={newStudent.programs[0]}
+            value={newStudent.programs[0]}
             onChange={(e) => {
               setNewStudent({
                 ...newStudent,
@@ -76,6 +71,7 @@ export const StudentForm: React.FC<StudentFormProps> = ({
           id="career"
           name="career"
           required
+          value={newStudent.career}
           onChange={(e) =>
             setNewStudent({ ...newStudent, career: e.target.value })
           }
@@ -87,6 +83,7 @@ export const StudentForm: React.FC<StudentFormProps> = ({
           type="text"
           id="interests"
           name="interests"
+          value={newStudent.interests}
           onChange={(e) => {
             setNewStudent({ ...newStudent, interests: e.target.value })
           }}

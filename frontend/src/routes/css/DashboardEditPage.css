@@ -6,6 +6,7 @@
 .dashboard-edit-page .course-summary {
   display: flex;
   column-gap: 5rem;
+  flex-wrap: wrap;
 }
 
 .dashboard-edit-page .course-summary h4 {
