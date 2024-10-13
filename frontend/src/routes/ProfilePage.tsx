@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { FooterBar } from '../components/FooterBar'
 import { HeaderBar } from '../components/HeaderBar'
 import { SpinnerComponent } from '../components/SpinnerComponent'
-import { useAuthContext } from '../context/useContext'
+import { useAcademicDataContext, useAuthContext } from '../context/useContext'
 import { Student } from '../models/Student'
 import StudentAPI from '../services/StudentAPI'
 
@@ -13,6 +13,7 @@ import './css/ProfilePage.css'
 export default function ProfilePage() {
   const navigate = useNavigate()
   const { bearerToken } = useAuthContext()
+  const { programs } = useAcademicDataContext()
   const [student, setStudent] = useState<Student | null>(null)
   const [loading, setLoading] = useState(true)
 
@@ -80,7 +81,8 @@ export default function ProfilePage() {
           </h4>
           <div className="academic-info">
             <p>
-              <span>Programs:</span> {student.programs[0].name}
+              <span>Programs:</span>{' '}
+              {programs.filter((p) => p.id == student.programs[0])[0]?.name}
             </p>
             <p>
               <span>Graduation:</span> {student.grad}

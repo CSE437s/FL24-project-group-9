@@ -48,8 +48,8 @@ export default function DashboardPage() {
               .map((semester) => (
                 <div key={semester.id}>
                   <TermHeader semester={semester} />
-                  {semester.planned_courses.map((course) => (
-                    <ScheduleRow key={course.id} course={course} />
+                  {semester.planned_courses.map((courseId) => (
+                    <ScheduleRow key={courseId} courseId={courseId} />
                   ))}
                 </div>
               ))}
@@ -66,8 +66,8 @@ export default function DashboardPage() {
               .map((semester) => (
                 <div key={semester.id}>
                   <TermHeader semester={semester} />
-                  {semester.planned_courses.map((course) => (
-                    <ScheduleRow key={course.id} course={course} />
+                  {semester.planned_courses.map((courseId) => (
+                    <ScheduleRow key={courseId} courseId={courseId} />
                   ))}
                 </div>
               ))}

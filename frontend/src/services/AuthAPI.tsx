@@ -49,7 +49,7 @@ async function logout(bearerToken: string): Promise<boolean> {
       Authorization: `Bearer ${bearerToken}`,
     },
   }
-  const response = await fetch(`${API_URL}/api/logout/`, options)
+  const response = await fetch(`${API_URL}/auth/logout/`, options)
   return response.ok
 }
 

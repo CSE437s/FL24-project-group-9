@@ -1,7 +1,11 @@
+import { Course } from './models/Course'
 import { Semester } from './models/Semester'
 
-const getTotalUnits = (term: Semester) => {
-  return term.planned_courses.reduce((acc, course) => acc + course.units, 0)
+const getTotalUnits = (semester: Semester, courses: Course[]) => {
+  return semester.planned_courses.reduce(
+    (acc, courseId) => acc + courses.filter((c) => c.id == courseId)[0]?.units,
+    0
+  )
 }
 
 const sortSemestersObjects = (semesters: Semester[]): Semester[] => {

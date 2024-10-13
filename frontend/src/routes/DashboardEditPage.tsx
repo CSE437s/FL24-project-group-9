@@ -6,7 +6,6 @@ import { HeaderBar } from '../components/HeaderBar'
 import { ScheduleRow } from '../components/ScheduleRow'
 import { TermHeader } from '../components/TermHeader'
 import { useAcademicDataContext } from '../context/useContext'
-import { Course } from '../models/Course'
 import { Semester } from '../models/Semester'
 
 import './css/DashboardEditPage.css'
@@ -17,39 +16,29 @@ export default function DashboardEditPage() {
   const [newCourse, setNewCourse] = useState(courses[0]?.id)
   const [newSemester, setNewSemester] = useState(semesters[0]?.id)
 
-  const handleRemoveClick = (semester: Semester, course: Course) => {
-    semester.planned_courses = semester.planned_courses.filter(
-      (c) => c.id !== course.id
-    )
-    updateSemester(semester)
+  const handleRemoveClick = (semester: Semester, courseId: number) => {
+    const curSemester = semesters.find((s) => s.id === semester.id)
+    if (curSemester) {
+      curSemester.planned_courses = curSemester.planned_courses.filter(
+        (c) => c !== courseId
+      )
+      updateSemester(curSemester)
+    }
   }
 
   const handleSave = () => {
-    navigate('/dashboard') // TODO: handle API
+    navigate('/dashboard')
   }
 
   const addCourse = () => {
-    // const semester = semesters.find((semester) => semester.id === newSemester)
-    // const course = courses.find((course) => course.id === newCourse)
-    // if (!course) {
-    //   return
-    // }
-    // if (semester) {
-    //   if (semester.planned_courses.find((c) => c.id === course.id)) {
-    //     return
-    //   }
-    //   semester.planned_courses.push(course)
-    //   setTaken([...taken])
-    // } else {
-    //   const newTerm = {
-    //     id: (
-    //       Math.max(...taken.map((term) => parseInt(term.id))) + 1
-    //     ).toString(),
-    //     term: newSemester,
-    //     courses: [course],
-    //   }
-    //   setTaken(utils.sortTermObjects([...taken, newTerm]))
-    // }
+    const curSemester = semesters.find((s) => s.id === newSemester)
+    if (curSemester) {
+      const curCourse = courses.find((c) => c.id === newCourse)
+      if (curCourse) {
+        curSemester.planned_courses.push(curCourse.id)
+        updateSemester(curSemester)
+      }
+    }
   }
 
   return (
@@ -70,12 +59,12 @@ export default function DashboardEditPage() {
               .map((semester) => (
                 <div key={semester.id}>
                   <TermHeader semester={semester} />
-                  {semester.planned_courses.map((course) => (
+                  {semester.planned_courses.map((courseId) => (
                     <ScheduleRow
-                      key={`${semester.id} ${course.id}`}
-                      course={course}
+                      key={`${semester.id} ${courseId}`}
+                      courseId={courseId}
                       handleRemoveClick={() =>
-                        handleRemoveClick(semester, course)
+                        handleRemoveClick(semester, courseId)
                       }
                     />
                   ))}
@@ -93,7 +82,7 @@ export default function DashboardEditPage() {
               >
                 {courses.map((course, index) => (
                   <option key={index} value={course.id}>
-                    {course.code} - {course.title}
+                    {course.code.substring(3)} - {course.title}
                   </option>
                 ))}
               </select>

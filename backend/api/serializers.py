@@ -15,8 +15,6 @@ class DepartmentSerializer(serializers.ModelSerializer):
 
 
 class SemesterSerializer(serializers.ModelSerializer):
-    planned_courses = CourseSerializer(many=True, read_only=True)
-
     class Meta:
         model = Semester
         fields = "__all__"
@@ -34,7 +32,6 @@ class StudentSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(required=True)
     first_name = serializers.CharField(required=True)
     last_name = serializers.CharField(required=True)
-    programs = ProgramSerializer(many=True, read_only=True)
 
     class Meta:
         model = Student

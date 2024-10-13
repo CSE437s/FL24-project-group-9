@@ -22,32 +22,32 @@
   min-width: 522px;
 }
 
-.edit-buttons {
+.dashboard-edit-page .edit-buttons {
   display: flex;
   align-items: center;
   justify-content: space-around;
   margin: 1.5rem;
 }
 
-.edit-buttons button {
+.dashboard-edit-page .edit-buttons button {
   margin: 1rem;
 }
 
-.add-course p {
+.dashboard-edit-page .add-course p {
   display: flex;
 }
 
-.add-course select {
+.dashboard-edit-page .add-course select {
   flex-grow: 1;
   box-sizing: border-box;
-  width: 20rem;
+  width: 22rem;
   font-size: var(--font-h6);
   padding: 0.25rem 0.5rem;
   overflow-x: scroll;
   font-family: inherit;
 }
 
-.add-course p>label {
+.dashboard-edit-page .add-course p>label {
   font-size: var(--font-body);
   color: var(--primary-black);
   width: 6rem;

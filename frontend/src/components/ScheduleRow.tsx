@@ -1,31 +1,31 @@
-import { Course } from '../models/Course'
+import { ClipLoader } from 'react-spinners'
+
+import { useAcademicDataContext } from '../context/useContext'
 
 import './css/ScheduleRow.css'
 
 interface ScheduleRowProps {
-  course: Course
-  handleUndoClick?: (course: Course) => void
+  courseId: number
   handleRemoveClick?: () => void
 }
 
 export const ScheduleRow: React.FC<ScheduleRowProps> = ({
-  course,
-  handleUndoClick,
+  courseId,
   handleRemoveClick,
 }) => {
+  const { courses } = useAcademicDataContext()
+  const course = courses.find((c) => c.id === courseId)
+
+  if (!course) {
+    return (
+      <div className="schedule-row">
+        <ClipLoader size={35} color={'#123abc'} />
+      </div>
+    )
+  }
+
   return (
     <div className="schedule-row">
-      {handleUndoClick && (
-        <div
-          className="undo-button"
-          onClick={() => handleUndoClick(course)}
-          title="undo"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-            <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
-          </svg>
-        </div>
-      )}
       <div className="course-code">{course.code.substring(3)}</div>
       <div className="course-title">{course.title}</div>
       <div className="course-units">{course.units} Units</div>

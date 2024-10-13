@@ -12,6 +12,7 @@ import SemestersAPI from '../services/SemestersAPI'
 import { useAuthContext } from './useContext'
 
 interface AcademicDataContextType {
+  loading: boolean
   courses: Course[]
   departments: Department[]
   programs: Program[]
@@ -29,13 +30,26 @@ const AcademicDataProvider = ({ children }: { children: ReactNode }) => {
   const [departments, setDepartments] = useState<Department[]>([])
   const [programs, setPrograms] = useState<Program[]>([])
   const [semesters, setSemesters] = useState<Semester[]>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     if (bearerToken) {
-      CoursesAPI.getAllCourses(bearerToken).then(setCourses)
-      DepartmentsAPI.getAllDepartments(bearerToken).then(setDepartments)
-      ProgramsAPI.getAllPrograms(bearerToken).then(setPrograms)
-      SemestersAPI.getAllSemesters(bearerToken).then(setSemesters)
+      const fetchData = async () => {
+        try {
+          await Promise.all([
+            CoursesAPI.getAllCourses(bearerToken).then(setCourses),
+            DepartmentsAPI.getAllDepartments(bearerToken).then(setDepartments),
+            ProgramsAPI.getAllPrograms(bearerToken).then(setPrograms),
+            SemestersAPI.getAllSemesters(bearerToken).then(setSemesters),
+          ])
+        } catch (error) {
+          console.error(error)
+        } finally {
+          setLoading(false)
+        }
+      }
+
+      fetchData()
     }
   }, [bearerToken])
 
@@ -53,7 +67,14 @@ const AcademicDataProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <AcademicDataContext.Provider
-      value={{ courses, departments, programs, semesters, updateSemester }}
+      value={{
+        loading,
+        courses,
+        departments,
+        programs,
+        semesters,
+        updateSemester,
+      }}
     >
       {children}
     </AcademicDataContext.Provider>

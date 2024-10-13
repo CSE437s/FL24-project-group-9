@@ -27,7 +27,7 @@ async function updateSemester(
     body: JSON.stringify(semester),
   }
   const response = await fetch(
-    `${API_URL}/api/semesters/${semester.id}?expand=planned_courses`,
+    `${API_URL}/api/semesters/${semester.id}/`,
     options
   )
   return await response.json()

@@ -11,9 +11,9 @@ from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.response import Response
 from rest_framework import status
-from api.serializers import StudentSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.tokens import AccessToken, TokenError
+from django.contrib.auth import logout
 
 
 class CustomTokenObtainPairView(TokenObtainPairView):
@@ -52,32 +52,9 @@ class ChangePasswordView(generics.UpdateAPIView):
 class LogoutView(APIView):
     permission_classes = (IsAuthenticated,)
 
-    def get_bearer_token(self, request):
-        auth_header = request.headers.get("Authorization")
-        if auth_header and auth_header.startswith("Bearer "):
-            return auth_header.split(" ")[1]
-        return None
-
     def post(self, request):
-        token = self.get_bearer_token(request)
-        if not token:
-            return Response(
-                {"error": "Token is required"}, status=status.HTTP_400_BAD_REQUEST
-            )
-
-        try:
-            token = RefreshToken(token)
-            token.blacklist()
-
-            return Response(
-                {"detail": "Successfully logged out."},
-                status=status.HTTP_205_RESET_CONTENT,
-            )
-        except Exception as e:
-            return Response(
-                {"detail": "An error occurred during logout: {}".format(str(e))},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
+        logout(request)
+        return Response({"message": "Successfully logged out."}, status=status.HTTP_200_OK)
 
 
 class ValidateTokenView(APIView):
