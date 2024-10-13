@@ -1,17 +1,17 @@
 import { Draggable, Droppable } from 'react-beautiful-dnd'
 
-import { Course, Term } from '../models/Course'
+import { Semester } from '../models/Semester'
 
 import { ScheduleRow } from './ScheduleRow'
 
 interface ScheduleDraggableProps {
-  term: Term
+  semester: Semester
   droppableId: string
-  handleRemoveClick: (term: Term, course: Course) => void
+  handleRemoveClick: (semester: Semester, courseId: number) => void
 }
 
 export const ScheduleDraggableV2: React.FC<ScheduleDraggableProps> = ({
-  term,
+  semester,
   droppableId,
   handleRemoveClick,
 }) => {
@@ -23,10 +23,10 @@ export const ScheduleDraggableV2: React.FC<ScheduleDraggableProps> = ({
           {...provided.droppableProps}
           className="schedule-draggable"
         >
-          {term.courses.map((course, index) => (
+          {semester.planned_courses.map((courseId, index) => (
             <Draggable
-              key={course.id}
-              draggableId={course.id.toString()}
+              key={courseId}
+              draggableId={courseId.toString()}
               index={index}
             >
               {(provided) => (
@@ -36,8 +36,10 @@ export const ScheduleDraggableV2: React.FC<ScheduleDraggableProps> = ({
                   {...provided.dragHandleProps}
                 >
                   <ScheduleRow
-                    course={course}
-                    handleRemoveClick={() => handleRemoveClick(term, course)}
+                    courseId={courseId}
+                    handleRemoveClick={() =>
+                      handleRemoveClick(semester, courseId)
+                    }
                   />
                 </div>
               )}

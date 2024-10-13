@@ -1,6 +1,8 @@
+import { Program } from '../models/Program.tsx'
+
 import { API_URL } from './config.tsx'
 
-async function getAllMinors(bearerToken: string): Promise<string[]> {
+async function getAllPrograms(bearerToken: string): Promise<Program[]> {
   const options = {
     method: 'GET',
     headers: {
@@ -8,14 +10,14 @@ async function getAllMinors(bearerToken: string): Promise<string[]> {
       Authorization: `Bearer ${bearerToken}`,
     },
   }
-  const response = await fetch(`${API_URL}/api/minors/`, options)
+  const response = await fetch(`${API_URL}/api/programs/`, options)
   return await response.json()
 }
 
-async function getMinorById(
+async function getProgramById(
   bearerToken: string,
   id: string
-): Promise<string[]> {
+): Promise<Program> {
   const options = {
     method: 'GET',
     headers: {
@@ -23,8 +25,8 @@ async function getMinorById(
       Authorization: `Bearer ${bearerToken}`,
     },
   }
-  const response = await fetch(`${API_URL}/api/minors/${id}/`, options)
+  const response = await fetch(`${API_URL}/api/programs/${id}/`, options)
   return await response.json()
 }
 
-export default { getAllMinors, getMinorById }
+export default { getAllPrograms, getProgramById }

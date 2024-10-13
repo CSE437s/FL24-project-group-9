@@ -79,7 +79,7 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS("Program Database seeded successfully."))
 
         # Seed Student Data
-        Student.objects.create(
+        student = Student.objects.create(
             first_name="John",
             last_name="Doe",
             email="john.doe@wustl.edu",
@@ -88,8 +88,10 @@ class Command(BaseCommand):
             career="Software Engineer",
             required_units=120,
             interests="Machine Learning, AI",
-            password="12345",
         )
+        student.set_password("12345678")
+        student.programs.set(Program.objects.filter(name__in=["Computer Science"]))
+        student.save()
         self.stdout.write(self.style.SUCCESS("Student Database seeded successfully."))
 
         # Seed Semester Data

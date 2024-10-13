@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { FooterBar } from '../components/FooterBar'
 import { HeaderBar } from '../components/HeaderBar'
 import { SpinnerComponent } from '../components/SpinnerComponent'
-import { useAuthContext } from '../context/useContext'
+import { useAcademicDataContext, useAuthContext } from '../context/useContext'
 import { Student } from '../models/Student'
 import StudentAPI from '../services/StudentAPI'
 
@@ -13,6 +13,7 @@ import './css/ProfilePage.css'
 export default function ProfilePage() {
   const navigate = useNavigate()
   const { bearerToken } = useAuthContext()
+  const { programs } = useAcademicDataContext()
   const [student, setStudent] = useState<Student | null>(null)
   const [loading, setLoading] = useState(true)
 
@@ -27,7 +28,7 @@ export default function ProfilePage() {
           console.error(err)
           setLoading(false)
         })
-    }, 10000)
+    }, 100) // TODO: remove this intentional delay
   }, [bearerToken])
 
   const handleEdit = () => {
@@ -64,7 +65,7 @@ export default function ProfilePage() {
           <h3>Welcome to CoursePlanner</h3>
           <div className="profile-info">
             <p>
-              <span>Name:</span> {student.firstname} {student.lastname}
+              <span>Name:</span> {student.first_name} {student.last_name}
             </p>
             <p>
               <span>Email:</span> {student.email}
@@ -80,13 +81,11 @@ export default function ProfilePage() {
           </h4>
           <div className="academic-info">
             <p>
-              <span>Major:</span> {student.major}
+              <span>Programs:</span>{' '}
+              {programs.filter((p) => p.id == student.programs[0])[0]?.name}
             </p>
             <p>
-              <span>Minor:</span> {student.minor}
-            </p>
-            <p>
-              <span>Graduation:</span> {student.year}
+              <span>Graduation:</span> {student.grad}
             </p>
             <p>
               <span>Career:</span> {student.career}

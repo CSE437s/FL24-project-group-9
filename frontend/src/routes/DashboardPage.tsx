@@ -1,29 +1,16 @@
-import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { FooterBar } from '../components/FooterBar'
 import { HeaderBar } from '../components/HeaderBar'
 import { ScheduleRow } from '../components/ScheduleRow'
-import { SpinnerComponent } from '../components/SpinnerComponent'
 import { TermHeader } from '../components/TermHeader'
-import { Term } from '../models/Course'
-import PlannerAPI from '../services/PlannerAPI'
+import { useAcademicDataContext } from '../context/useContext'
 
 import './css/DashboardPage.css'
 
 export default function DashboardPage() {
   const navigate = useNavigate()
-  const [taken, setTaken] = useState<Term[]>([])
-  const [selected, setSelected] = useState<Term[]>([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    PlannerAPI.getPlanner().then((plan) => {
-      setTaken(plan.taken)
-      setSelected(plan.selected)
-      setLoading(false)
-    })
-  }, [])
+  const { semesters } = useAcademicDataContext()
 
   const handleEdit = () => {
     navigate('/dashboard/edit')
@@ -33,15 +20,15 @@ export default function DashboardPage() {
     navigate('/planner/')
   }
 
-  if (loading) {
-    return (
-      <>
-        <HeaderBar isNavVisible={true} />
-        <SpinnerComponent messages={['Loading your schedule...']} />
-        <FooterBar />
-      </>
-    )
-  }
+  // if (loading) {
+  //   return (
+  //     <>
+  //       <HeaderBar isNavVisible={true} />
+  //       <SpinnerComponent messages={['Loading your schedule...']} />
+  //       <FooterBar />
+  //     </>
+  //   )
+  // }
 
   return (
     <>
@@ -51,20 +38,21 @@ export default function DashboardPage() {
         <div className="schedule">
           <div className="history">
             <h4>
-              History{' '}
+              History
               <button className="secondary" onClick={handleEdit}>
                 Edit History
               </button>
             </h4>
-            {taken.map((term) => (
-              <div key={term.id}>
-                <TermHeader term={term} />
-                {term.courses.map((course) => (
-                  <ScheduleRow key={course.id} course={course} />
-                ))}
-              </div>
-            ))}
-            {taken.length === 0 ? <h4>No Courses Added</h4> : <></>}
+            {semesters
+              .filter((semester) => semester.isCompleted)
+              .map((semester) => (
+                <div key={semester.id}>
+                  <TermHeader semester={semester} />
+                  {semester.planned_courses.map((courseId) => (
+                    <ScheduleRow key={courseId} courseId={courseId} />
+                  ))}
+                </div>
+              ))}
           </div>
           <div className="planned">
             <h4>
@@ -73,14 +61,16 @@ export default function DashboardPage() {
                 Generate new Schedule
               </button>
             </h4>
-            {selected.map((term) => (
-              <div key={term.id}>
-                <TermHeader term={term} />
-                {term.courses.map((course) => (
-                  <ScheduleRow key={course.id} course={course} />
-                ))}
-              </div>
-            ))}
+            {semesters
+              .filter((semester) => !semester.isCompleted)
+              .map((semester) => (
+                <div key={semester.id}>
+                  <TermHeader semester={semester} />
+                  {semester.planned_courses.map((courseId) => (
+                    <ScheduleRow key={courseId} courseId={courseId} />
+                  ))}
+                </div>
+              ))}
           </div>
         </div>
       </div>

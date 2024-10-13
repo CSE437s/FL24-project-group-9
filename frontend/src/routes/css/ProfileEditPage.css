@@ -4,7 +4,7 @@
 }
 
 .profile-edit-page input[type='text'],
-.profile-edit-page input[type='month'],
+.profile-edit-page input[type='number'],
 .profile-edit-page select {
   box-sizing: border-box;
   width: 20rem;
@@ -21,20 +21,20 @@
   gap: 1rem;
 }
 
-.interests > label,
-.academic-info p > label,
-.academic-summary p > label {
+.interests>label,
+.academic-info p>label,
+.academic-summary p>label {
   font-size: var(--font-body);
   color: var(--primary-black);
 }
 
-.academic-info p > label,
-.academic-summary p > label,
-.interests > label {
+.academic-info p>label,
+.academic-summary p>label,
+.interests>label {
   width: 6rem;
 }
 
-.academic-summary p > label {
+.academic-summary p>label {
   text-align: left;
 }
 
@@ -45,7 +45,7 @@
   font-size: 1rem;
 }
 
-.interests > label {
+.interests>label {
   align-self: flex-start;
 }
 

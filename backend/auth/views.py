@@ -11,9 +11,9 @@ from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.response import Response
 from rest_framework import status
-from api.serializers import StudentSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.tokens import AccessToken, TokenError
+from django.contrib.auth import logout
 
 
 class CustomTokenObtainPairView(TokenObtainPairView):
@@ -52,38 +52,15 @@ class ChangePasswordView(generics.UpdateAPIView):
 class LogoutView(APIView):
     permission_classes = (IsAuthenticated,)
 
-    def get_bearer_token(self, request):
-        auth_header = request.headers.get("Authorization")
-        if auth_header and auth_header.startswith("Bearer "):
-            return auth_header.split(" ")[1]
-        return None
-
     def post(self, request):
-        token = self.get_bearer_token(request)
-        if not token:
-            return Response(
-                {"error": "Token is required"}, status=status.HTTP_400_BAD_REQUEST
-            )
-
-        try:
-            token = RefreshToken(token)
-            token.blacklist()
-
-            return Response(
-                {"detail": "Successfully logged out."},
-                status=status.HTTP_205_RESET_CONTENT,
-            )
-        except Exception as e:
-            return Response(
-                {"detail": "An error occurred during logout: {}".format(str(e))},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
+        logout(request)
+        return Response({"message": "Successfully logged out."}, status=status.HTTP_200_OK)
 
 
 class ValidateTokenView(APIView):
     permission_classes = (AllowAny,)
 
-    def get(self, request):
+    def post(self, request):
         token = request.data.get("token")
         if not token:
             return Response(
@@ -91,7 +68,9 @@ class ValidateTokenView(APIView):
             )
 
         try:
-            AccessToken(token)
+            access_token = AccessToken(token)
+            user_id = access_token["user_id"]
+            Student.objects.get(id=user_id)
             return Response(
                 {"valid": True, "message": "Token is valid."}, status=status.HTTP_200_OK
             )
@@ -99,4 +78,27 @@ class ValidateTokenView(APIView):
             return Response(
                 {"valid": False, "message": "Token is invalid or has expired."},
                 status=status.HTTP_401_UNAUTHORIZED,
+            )
+
+
+class CheckUserExistView(APIView):
+    permission_classes = (AllowAny,)
+
+    def post(self, request):
+        email = request.data.get("email")
+        if not email:
+            return Response(
+                {"error": "Email is required."}, status=status.HTTP_400_BAD_REQUEST
+            )
+
+        is_user_exist = Student.objects.filter(email=email).exists()
+        if is_user_exist:
+            return Response(
+                {"exist": True, "message": "User with this email exists."},
+                status=status.HTTP_200_OK,
+            )
+        else:
+            return Response(
+                {"exist": False, "message": "User with this email does not exist."},
+                status=status.HTTP_200_OK,
             )

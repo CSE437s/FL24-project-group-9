@@ -13,5 +13,6 @@
 
 .term-units {
   color: var(--text-paragraph);
-  font-size: var(--font-h6);;
+  font-size: var(--font-h6);
+  ;
 }

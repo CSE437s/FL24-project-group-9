@@ -1,18 +1,23 @@
 import { createContext, ReactNode, useEffect, useState } from 'react'
 
 import { Course } from '../models/Course'
+import { Department } from '../models/Department'
+import { Program } from '../models/Program'
+import { Semester } from '../models/Semester'
 import CoursesAPI from '../services/CoursesAPI'
-import MajorsAPI from '../services/MajorsAPI'
-import MinorsAPI from '../services/MinorsAPI'
+import DepartmentsAPI from '../services/DepartmentsAPI'
+import ProgramsAPI from '../services/ProgramsAPI'
 import SemestersAPI from '../services/SemestersAPI'
 
 import { useAuthContext } from './useContext'
 
 interface AcademicDataContextType {
+  loading: boolean
   courses: Course[]
-  majors: string[]
-  minors: string[]
-  semesters: string[]
+  departments: Department[]
+  programs: Program[]
+  semesters: Semester[]
+  updateSemester: (semester: Semester) => void
 }
 
 const AcademicDataContext = createContext<AcademicDataContextType | undefined>(
@@ -22,22 +27,54 @@ const AcademicDataContext = createContext<AcademicDataContextType | undefined>(
 const AcademicDataProvider = ({ children }: { children: ReactNode }) => {
   const { bearerToken } = useAuthContext()
   const [courses, setCourses] = useState<Course[]>([])
-  const [majors, setMajors] = useState<string[]>([])
-  const [minors, setMinors] = useState<string[]>([])
-  const [semesters, setSemesters] = useState<string[]>([])
+  const [departments, setDepartments] = useState<Department[]>([])
+  const [programs, setPrograms] = useState<Program[]>([])
+  const [semesters, setSemesters] = useState<Semester[]>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     if (bearerToken) {
-      CoursesAPI.getAllCourses(bearerToken).then(setCourses)
-      MajorsAPI.getAllMajors(bearerToken).then(setMajors)
-      MinorsAPI.getAllMinors(bearerToken).then(setMinors)
-      SemestersAPI.getAllSemesters(bearerToken).then(setSemesters)
+      const fetchData = async () => {
+        try {
+          await Promise.all([
+            CoursesAPI.getAllCourses(bearerToken).then(setCourses),
+            DepartmentsAPI.getAllDepartments(bearerToken).then(setDepartments),
+            ProgramsAPI.getAllPrograms(bearerToken).then(setPrograms),
+            SemestersAPI.getAllSemesters(bearerToken).then(setSemesters),
+          ])
+        } catch (error) {
+          console.error(error)
+        } finally {
+          setLoading(false)
+        }
+      }
+
+      fetchData()
     }
   }, [bearerToken])
 
+  const updateSemester = (semester: Semester) => {
+    SemestersAPI.updateSemester(bearerToken, semester).then(
+      (updatedSemester) => {
+        setSemesters((prevSemesters) =>
+          prevSemesters.map((s) =>
+            s.id === updatedSemester.id ? updatedSemester : s
+          )
+        )
+      }
+    )
+  }
+
   return (
     <AcademicDataContext.Provider
-      value={{ courses, majors, minors, semesters }}
+      value={{
+        loading,
+        courses,
+        departments,
+        programs,
+        semesters,
+        updateSemester,
+      }}
     >
       {children}
     </AcademicDataContext.Provider>

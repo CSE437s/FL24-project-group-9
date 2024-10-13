@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { FooterBar } from '../components/FooterBar'
 import { HeaderBar } from '../components/HeaderBar'
@@ -9,7 +10,8 @@ import StudentAPI from '../services/StudentAPI'
 import './css/ProfileEditPage.css'
 
 export default function ProfileEditPage() {
-  const { majors, minors } = useAcademicDataContext()
+  const navigate = useNavigate()
+  const { programs } = useAcademicDataContext()
   const { bearerToken } = useAuthContext()
   const [student, setStudent] = useState<Student | null>(null)
 
@@ -21,7 +23,9 @@ export default function ProfileEditPage() {
 
   const handleSave = () => {
     if (student) {
-      StudentAPI.updateStudent(bearerToken, student)
+      StudentAPI.updateStudent(bearerToken, student).then(() => {
+        navigate('/profile')
+      })
     }
   }
 
@@ -39,31 +43,19 @@ export default function ProfileEditPage() {
             </h4>
             <div className="academic-info">
               <p>
-                <label>Major:</label>
+                <label>Program:</label>
                 <select
-                  defaultValue={student.major}
+                  defaultValue={student.programs[0]}
                   onChange={(e) =>
-                    setStudent({ ...student, major: e.target.value })
+                    setStudent({
+                      ...student,
+                      programs: [Number(e.target.value)],
+                    })
                   }
                 >
-                  {majors.map((major, index) => (
-                    <option key={index} value={major}>
-                      {major}
-                    </option>
-                  ))}
-                </select>
-              </p>
-              <p>
-                <label>Minor:</label>
-                <select
-                  defaultValue={student.minor}
-                  onChange={(e) =>
-                    setStudent({ ...student, minor: e.target.value })
-                  }
-                >
-                  {minors.map((minor, index) => (
-                    <option key={index} value={minor}>
-                      {minor}
+                  {programs.map((program, index) => (
+                    <option key={index} value={program.id}>
+                      {program.name}
                     </option>
                   ))}
                 </select>
@@ -71,10 +63,13 @@ export default function ProfileEditPage() {
               <p>
                 <label>Graduation:</label>
                 <input
-                  type="month"
-                  value={student.year}
+                  type="number"
+                  min="1900"
+                  max="2099"
+                  step="1"
+                  value={student.grad}
                   onChange={(e) =>
-                    setStudent({ ...student, year: e.target.value })
+                    setStudent({ ...student, grad: e.target.value })
                   }
                 />
               </p>
