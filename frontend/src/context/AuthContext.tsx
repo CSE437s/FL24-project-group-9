@@ -55,6 +55,9 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   }
 
   const logout = async (): Promise<boolean> => {
+    if (!bearerToken) {
+      return false
+    }
     const response = await AuthAPI.logout(bearerToken)
     if (response) {
       localStorage.removeItem('access_token')

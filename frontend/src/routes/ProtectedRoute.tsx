@@ -1,4 +1,4 @@
-import { Navigate } from 'react-router-dom'
+import { Navigate, useLocation } from 'react-router-dom'
 
 import { HeaderBar } from '../components/HeaderBar'
 import { SpinnerComponent } from '../components/SpinnerComponent'
@@ -9,6 +9,8 @@ import {
 } from '../context/useContext'
 
 const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
+  const location = useLocation()
+
   const { loading, bearerToken } = useAuthContext()
   const { studentLoading, hasStudentOnboarded } = useStudentContext()
   const { academicLoading } = useAcademicDataContext()
@@ -20,6 +22,10 @@ const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
         <SpinnerComponent messages={['Initializing Application...']} />
       </>
     )
+  }
+
+  if (!bearerToken) {
+    return <Navigate to="/login" />
   }
 
   if (studentLoading) {
@@ -40,12 +46,12 @@ const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
     )
   }
 
-  if (!hasStudentOnboarded()) {
+  if (!hasStudentOnboarded() && location.pathname !== '/onboarding') {
     return <Navigate to="/onboarding" />
   }
 
-  if (!bearerToken) {
-    return <Navigate to="/login" />
+  if (hasStudentOnboarded() && location.pathname === '/onboarding') {
+    return <Navigate to="/profile" />
   }
 
   return children

@@ -36,7 +36,7 @@ const StudentProvider = ({ children }: { children: ReactNode }) => {
           setStudentLoading(false)
         })
     }
-  }, [authContext])
+  }, [authContext.bearerToken])
 
   const getStudent = async (): Promise<Student> => {
     const response = await StudentAPI.getStudent(authContext.bearerToken)

@@ -30,7 +30,6 @@
 
 .login-body input {
   box-sizing: border-box;
-  width: 25rem;
   font-size: var(--font-h6);
   line-height: var(--font-h4);
   padding: 0.5rem;
@@ -46,6 +45,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+  width: 25rem;
 }
 
 .login-body .input-wrapper label {
@@ -56,4 +56,9 @@
   color: var(--primary-red);
   font-size: var(--font-disclaimer);
   text-align: center;
+}
+
+.login-body .input-wrapper .button-secondary {
+  width: fit-content;
+  margin-left: auto;
 }

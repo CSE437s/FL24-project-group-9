@@ -117,7 +117,8 @@ button {
   cursor: pointer;
 }
 
-button.secondary {
+button.secondary,
+.button-secondary {
   background: none;
   border: none;
   color: var(--primary-red);
@@ -125,14 +126,17 @@ button.secondary {
   font-weight: var(--font-weight-headings);
   margin-left: 1rem;
   padding: 0;
+  cursor: pointer;
 }
 
-button.secondary:hover {
+button.secondary:hover,
+.button-secondary:hover {
   text-decoration: underline;
   text-underline-offset: 0.25rem;
 }
 
-button.secondary:focus {
+button.secondary:focus,
+.button-secondary:focus {
   outline: none;
 }
 

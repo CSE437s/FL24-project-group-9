@@ -29,15 +29,31 @@ export default function LoginPage() {
   const [emailEntered, setEmailEntered] = useState(false)
   const [userExisted, setUserExisted] = useState(false)
   const [message, setMessage] = useState('')
-  const [loading, setLoading] = useState(false)
+  const [checkUserLoading, setCheckUserLoading] = useState(false)
   const [loginLoading, setLoginLoading] = useState(false)
+  const [signupLoading, setSignupLoading] = useState(false)
+  const [forgotPassword, setForgotPassword] = useState(false)
+  const [resetLoading, setResetLoading] = useState(false)
+  const [resetDelay, setResetDelay] = useState(false)
+
+  useEffect(() => {
+    if (resetDelay) {
+      setTimeout(() => {
+        setResetDelay(false)
+      }, 5000)
+    }
+  }, [resetDelay])
+
+  useEffect(() => {
+    setMessage('')
+  }, [forgotPassword])
 
   const checkUser = async () => {
-    setLoading(true)
+    setCheckUserLoading(true)
     setTimeout(() => {
       AuthAPI.userExisted(user.email).then((response) => {
         setUserExisted(response.exist)
-        setLoading(false)
+        setCheckUserLoading(false)
       })
     }, 100) // TODO: remove this intentional delay
   }
@@ -50,6 +66,7 @@ export default function LoginPage() {
 
   const handleBack = () => {
     setMessage('')
+    setUser({ ...user, password: '', firstName: '', lastName: '' })
     setEmailEntered(false)
     setUserExisted(false)
   }
@@ -75,19 +92,42 @@ export default function LoginPage() {
   const handleRegister = async (event: React.FormEvent) => {
     event.preventDefault()
     if (!user) return
-    const response = await register(
-      user.email,
-      user.password,
-      user.firstName,
-      user.lastName
-    )
-    if (response) {
-      setMessage('Please check your email to verify your account')
-      setEmailEntered(true)
-      setUserExisted(true)
-      return
-    }
-    setMessage('something went wrong, please try again')
+    setSignupLoading(true)
+    register(user.email, user.password, user.firstName, user.lastName)
+      .then((response) => {
+        setSignupLoading(false)
+        if (response) {
+          setMessage('Please check your email to verify your account')
+          setEmailEntered(true)
+          setUserExisted(true)
+          return
+        }
+        setMessage('something went wrong, please try again')
+      })
+      .finally(() => {
+        setSignupLoading(false)
+      })
+  }
+
+  const handleResetPassword = async (event: React.FormEvent) => {
+    event.preventDefault()
+    if (!user.email) return
+    setResetLoading(true)
+    AuthAPI.resetPassword(user.email)
+      .then((response) => {
+        setResetLoading(false)
+        if (response) {
+          setMessage(
+            'Check your email to reset your password, or click reset again in 5 seconds'
+          )
+          return
+        }
+        setMessage('something went wrong, please try again')
+      })
+      .finally(() => {
+        setResetLoading(false)
+        setResetDelay(true)
+      })
   }
 
   useEffect(() => {
@@ -96,6 +136,64 @@ export default function LoginPage() {
     }
   }, [bearerToken, navigate])
 
+  const emailInput = (isDisabled: boolean = false) => (
+    <div className="input-wrapper">
+      <label htmlFor="email">Enter your WUSTL email</label>
+      <input
+        type="email"
+        value={user.email}
+        pattern=".+@wustl\.edu"
+        onChange={(e) =>
+          setUser((prev) => ({ ...prev, email: e.target.value }))
+        }
+        required
+        disabled={isDisabled}
+      />
+    </div>
+  )
+
+  const passwordInput = (
+    <div className="input-wrapper">
+      <label htmlFor="password">Password</label>
+      <input
+        type="password"
+        minLength={8}
+        value={user.password}
+        required
+        onChange={(e) =>
+          setUser((prev) => ({ ...prev, password: e.target.value }))
+        }
+      />
+    </div>
+  )
+
+  const nameInput = (
+    <>
+      <div className="input-wrapper">
+        <label htmlFor="first-name">First Name</label>
+        <input
+          type="text"
+          value={user.firstName}
+          required
+          onChange={(e) =>
+            setUser((prev) => ({ ...prev, firstName: e.target.value }))
+          }
+        />
+      </div>
+      <div className="input-wrapper">
+        <label htmlFor="last-name">Last Name</label>
+        <input
+          type="text"
+          value={user.lastName}
+          required
+          onChange={(e) =>
+            setUser((prev) => ({ ...prev, lastName: e.target.value }))
+          }
+        />
+      </div>
+    </>
+  )
+
   let form
 
   if (!emailEntered) {
@@ -103,34 +201,24 @@ export default function LoginPage() {
       <div>
         <h2>Login or Create your Account</h2>
         <form onSubmit={handleEmailEntered}>
-          <div className="input-wrapper">
-            <label htmlFor="email">Enter your WUSTL email</label>
-            <input
-              type="email"
-              value={user.email}
-              pattern=".+@wustl\.edu"
-              onChange={(e) =>
-                setUser((prev) => ({ ...prev, email: e.target.value }))
-              }
-              required
-            />
+          {emailInput()}
+          <div className="action-btns">
+            <button type="submit">Continue</button>
           </div>
-          <button type="submit">Continue</button>
         </form>
       </div>
     )
-  } else if (loading) {
+  } else if (checkUserLoading) {
     form = (
       <div>
         <h2>Login or Create your Account</h2>
         <form>
-          <div className="input-wrapper">
-            <label htmlFor="email">Enter your WUSTL email</label>
-            <input type="email" value={user.email} disabled />
+          {emailInput(true)}
+          <div className="action-btns">
+            <button type="submit" disabled>
+              <ClipLoader size={'0.8rem'} color={'#ffffff'} />
+            </button>
           </div>
-          <button type="submit" disabled>
-            <ClipLoader size={'0.8rem'} color={'#ffffff'} />
-          </button>
         </form>
       </div>
     )
@@ -139,49 +227,46 @@ export default function LoginPage() {
       <div>
         <h2>Create your Account</h2>
         <form onSubmit={handleRegister}>
-          <div className="input-wrapper">
-            <label htmlFor="email">Email</label>
-            <input type="email" value={user.email} disabled />
-          </div>
-          <div className="input-wrapper">
-            <label htmlFor="password">Create a Password</label>
-            <input
-              type="password"
-              minLength={8}
-              value={user.password}
-              required
-              onChange={(e) =>
-                setUser((prev) => ({ ...prev, password: e.target.value }))
-              }
-            />
-          </div>
-          <div className="input-wrapper">
-            <label htmlFor="first-name">First Name</label>
-            <input
-              type="text"
-              value={user.firstName}
-              required
-              onChange={(e) =>
-                setUser((prev) => ({ ...prev, firstName: e.target.value }))
-              }
-            />
-          </div>
-          <div className="input-wrapper">
-            <label htmlFor="last-name">Last Name</label>
-            <input
-              type="text"
-              value={user.lastName}
-              required
-              onChange={(e) =>
-                setUser((prev) => ({ ...prev, lastName: e.target.value }))
-              }
-            />
-          </div>
+          {emailInput(true)}
+          {passwordInput}
+          {nameInput}
           <div className="action-btns">
-            <button type="button" onClick={handleBack}>
+            <button type="button" onClick={handleBack} disabled={signupLoading}>
               Back
             </button>
-            <button type="submit">Sign Up</button>
+            {signupLoading ? (
+              <button type="submit" disabled>
+                <ClipLoader size={'0.8rem'} color={'#ffffff'} />
+              </button>
+            ) : (
+              <button type="submit">Sign Up</button>
+            )}
+          </div>
+        </form>
+      </div>
+    )
+  } else if (forgotPassword) {
+    form = (
+      <div>
+        <h2>Forgot your Password?</h2>
+        <p>Send an email to reset your password</p>
+        <form onSubmit={handleResetPassword}>
+          {emailInput(true)}
+          <div className="action-btns">
+            <button
+              type="button"
+              onClick={() => setForgotPassword(false)}
+              disabled={resetLoading || resetDelay}
+            >
+              Back
+            </button>
+            <button type="submit" disabled={resetLoading || resetDelay}>
+              {resetLoading ? (
+                <ClipLoader size={'0.8rem'} color={'#ffffff'} />
+              ) : (
+                'Reset'
+              )}
+            </button>
           </div>
         </form>
       </div>
@@ -191,39 +276,29 @@ export default function LoginPage() {
       <div>
         <h2>Welcome back!</h2>
         <form onSubmit={handleLogin}>
+          {emailInput(true)}
+          {passwordInput}
           <div className="input-wrapper">
-            <label htmlFor="email">Email</label>
-            <input type="email" value={user.email} disabled />
+            <div
+              className="button-secondary"
+              onClick={() => setForgotPassword(true)}
+            >
+              Forgot your password?
+            </div>
           </div>
-          <div className="input-wrapper">
-            <label htmlFor="password">Enter your Password</label>
-            <input
-              type="password"
-              minLength={8}
-              value={user.password}
-              required
-              onChange={(e) =>
-                setUser((prev) => ({ ...prev, password: e.target.value }))
-              }
-            />
-          </div>
-          {loginLoading ? (
-            <div className="action-btns">
-              <button type="button" disabled>
-                Back
-              </button>
-              <button type="submit" disabled>
+
+          <div className="action-btns">
+            <button type="button" onClick={handleBack} disabled={loginLoading}>
+              Back
+            </button>
+            <button type="submit">
+              {loginLoading ? (
                 <ClipLoader size={'0.8rem'} color={'#ffffff'} />
-              </button>
-            </div>
-          ) : (
-            <div className="action-btns">
-              <button type="button" onClick={handleBack}>
-                Back
-              </button>
-              <button type="submit">Login</button>
-            </div>
-          )}
+              ) : (
+                'Login'
+              )}
+            </button>
+          </div>
         </form>
       </div>
     )
