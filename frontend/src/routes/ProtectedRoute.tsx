@@ -17,7 +17,7 @@ const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
     return (
       <>
         <HeaderBar isNavVisible={true} />
-        <SpinnerComponent messages={['']} />
+        <SpinnerComponent messages={['Initializing Application...']} />
       </>
     )
   }

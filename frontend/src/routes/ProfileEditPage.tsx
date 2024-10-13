@@ -24,7 +24,6 @@ export default function ProfileEditPage() {
       <>
         <HeaderBar isNavVisible={true} />
         <SpinnerComponent messages={['Loading student info...']} />
-        <FooterBar />
       </>
     )
   }

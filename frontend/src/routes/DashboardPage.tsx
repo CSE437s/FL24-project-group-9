@@ -25,7 +25,6 @@ export default function DashboardPage() {
       <>
         <HeaderBar isNavVisible={true} />
         <SpinnerComponent messages={['Loading your schedule...']} />
-        <FooterBar />
       </>
     )
   }
@@ -36,7 +35,7 @@ export default function DashboardPage() {
       <div className="dashboard-page">
         <h3>Your Schedule</h3>
         <div className="schedule">
-          {semesters.filter((semester) => semester.isCompleted).length ? (
+          {semesters.filter((s) => s.isCompleted).length ? (
             <div className="history">
               <h4>
                 History
@@ -45,7 +44,7 @@ export default function DashboardPage() {
                 </button>
               </h4>
               {semesters
-                .filter((semester) => semester.isCompleted)
+                .filter((s) => s.isCompleted)
                 .map((semester) => (
                   <ScheduleBlock key={semester.id} semester={semester} />
                 ))}
@@ -61,7 +60,7 @@ export default function DashboardPage() {
               </button>
             </h4>
             {semesters
-              .filter((semester) => !semester.isCompleted)
+              .filter((s) => !s.isCompleted)
               .map((semester) => (
                 <ScheduleBlock key={semester.id} semester={semester} />
               ))}

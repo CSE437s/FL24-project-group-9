@@ -3,53 +3,11 @@
   min-height: var(--min-height-container);
 }
 
-.dashboard-edit-page .course-summary {
+.dashboard-edit-header h4 {
   display: flex;
-  column-gap: 5rem;
-  flex-wrap: wrap;
+  width: 30rem;
 }
 
-.dashboard-edit-page .course-summary h4 {
-  display: flex;
-  width: 100%;
-}
-
-.dashboard-edit-page .course-summary h4 button.secondary {
+.dashboard-edit-header h4 button.secondary {
   margin-left: auto;
-}
-
-.dashboard-edit-page .course-history {
-  box-sizing: border-box;
-  min-width: 522px;
-}
-
-.dashboard-edit-page .edit-buttons {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  margin: 1.5rem;
-}
-
-.dashboard-edit-page .edit-buttons button {
-  margin: 1rem;
-}
-
-.dashboard-edit-page .add-course p {
-  display: flex;
-}
-
-.dashboard-edit-page .add-course select {
-  flex-grow: 1;
-  box-sizing: border-box;
-  width: 22rem;
-  font-size: var(--font-h6);
-  padding: 0.25rem 0.5rem;
-  overflow-x: scroll;
-  font-family: inherit;
-}
-
-.dashboard-edit-page .add-course p>label {
-  font-size: var(--font-body);
-  color: var(--primary-black);
-  width: 6rem;
 }

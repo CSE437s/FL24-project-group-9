@@ -40,7 +40,6 @@ export default function ProfilePage() {
       <>
         <HeaderBar isNavVisible={true} />
         <SpinnerComponent messages={['Loading student info...']} />
-        <FooterBar />
       </>
     )
   }

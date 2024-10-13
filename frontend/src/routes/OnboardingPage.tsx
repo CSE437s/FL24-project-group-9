@@ -22,9 +22,12 @@ export default function OnboardingPage() {
   if (studentLoading) {
     return (
       <>
-        <HeaderBar isNavVisible={true} />
+        <HeaderBar
+          isNavVisible={true}
+          isProfileHidden={true}
+          isDashboardHidden={true}
+        />
         <SpinnerComponent messages={['Loading student info...']} />
-        <FooterBar />
       </>
     )
   }
@@ -32,7 +35,11 @@ export default function OnboardingPage() {
   if (!student) {
     return (
       <>
-        <HeaderBar isNavVisible={true} />
+        <HeaderBar
+          isNavVisible={true}
+          isProfileHidden={true}
+          isDashboardHidden={true}
+        />
         <div className="onboarding-page">
           <h4>No info available, please try again later.</h4>
         </div>
@@ -43,7 +50,11 @@ export default function OnboardingPage() {
 
   return (
     <>
-      <HeaderBar isNavVisible={true} />
+      <HeaderBar
+        isNavVisible={true}
+        isProfileHidden={true}
+        isDashboardHidden={true}
+      />
       <div className="onboarding-page">
         <section className="onboarding-summary">
           <h3>
