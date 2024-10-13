@@ -17,3 +17,9 @@
 .dashboard-page .schedule h4 button.secondary {
   margin-left: auto;
 }
+
+.dashboard-page .history,
+.dashboard-page .planned {
+  box-sizing: border-box;
+  min-width: 522px;
+}

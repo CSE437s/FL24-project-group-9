@@ -1,10 +1,9 @@
 export type Student = {
-  id: string
-  firstname: string
-  lastname: string
+  id: number
+  first_name: string
+  last_name: string
   email: string
-  major: string
-  minor: string
-  year: string
+  programs: number[]
+  grad: string
   career?: string
 }

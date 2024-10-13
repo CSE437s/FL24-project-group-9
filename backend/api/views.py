@@ -23,8 +23,9 @@ def api_overview(request):
         "[POST  ] Refresh Token": "/auth/login/refresh",
         "[POST  ] Register": "/auth/register",
         "[PUT   ] Change Password": "/auth/change_password",
-        "[POST  ] Validate Token": "/auth/validate_token",
+        "[GET  ] Validate Token": "/auth/validate_token",
         "[POST  ] Logout": "/auth/logout",
+        "[GET  ] Check User Exists": "/auth/user_exist",
         # Student Endpoints
         "[GET   ] Get Authenticated Student Info": "/student/",
         "[PUT   ] Update Authenticated Student Info": "/student/0/",

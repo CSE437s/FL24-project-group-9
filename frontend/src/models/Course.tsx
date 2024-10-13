@@ -1,15 +1,8 @@
-export type Term = {
-  id: string
-  term: string
-  courses: Course[]
-}
-
 export type Course = {
-  id: string
+  id: number
   code: string
-  department: string
   description?: string
   title: string
-  credits: number
+  units: number
   url?: string
 }
