@@ -2,6 +2,7 @@ import { useContext } from 'react'
 
 import { AcademicDataContext } from './AcademicDataContext'
 import { AuthContext } from './AuthContext'
+import { StudentContext } from './StudentContext'
 
 const useAuthContext = () => {
   const context = useContext(AuthContext)
@@ -21,4 +22,12 @@ const useAcademicDataContext = () => {
   return context
 }
 
-export { useAcademicDataContext, useAuthContext }
+const useStudentContext = () => {
+  const context = useContext(StudentContext)
+  if (!context) {
+    throw new Error('useStudentContext must be used within a StudentProvider')
+  }
+  return context
+}
+
+export { useAcademicDataContext, useAuthContext, useStudentContext }

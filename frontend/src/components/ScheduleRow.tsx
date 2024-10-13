@@ -19,7 +19,7 @@ export const ScheduleRow: React.FC<ScheduleRowProps> = ({
   if (!course) {
     return (
       <div className="schedule-row">
-        <ClipLoader size={35} color={'#123abc'} />
+        <ClipLoader size={35} color={'#123abc'} loading={true} />
       </div>
     )
   }

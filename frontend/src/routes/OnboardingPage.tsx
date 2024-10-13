@@ -7,9 +7,9 @@ import { StudentForm } from '../components/StudentForm'
 import { useStudentContext } from '../context/useContext'
 import { Student } from '../models/Student'
 
-import './css/ProfileEditPage.css'
+import './css/OnboardingPage.css'
 
-export default function ProfileEditPage() {
+export default function OnboardingPage() {
   const navigate = useNavigate()
   const { studentLoading, student, updateStudent } = useStudentContext()
 
@@ -33,7 +33,7 @@ export default function ProfileEditPage() {
     return (
       <>
         <HeaderBar isNavVisible={true} />
-        <div className="profile-edit-page">
+        <div className="onboarding-page">
           <h4>No info available, please try again later.</h4>
         </div>
         <FooterBar />
@@ -44,11 +44,14 @@ export default function ProfileEditPage() {
   return (
     <>
       <HeaderBar isNavVisible={true} />
-      <div className="profile-edit-page">
-        <section className="profile-summary">
-          <h4>Edit your Profile</h4>
+      <div className="onboarding-page">
+        <section className="onboarding-summary">
+          <h3>
+            Welcome {student.first_name} {student.last_name}!
+          </h3>
+          <p>Please take a moment to enter the following information:</p>
         </section>
-        <section className="profile-info">
+        <section className="onboarding-info">
           <StudentForm student={student} handleSave={handleSave} />
         </section>
       </div>

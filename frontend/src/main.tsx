@@ -3,10 +3,12 @@ import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 
 import { AcademicDataProvider } from './context/AcademicDataContext'
 import { AuthProvider } from './context/AuthContext'
+import { StudentProvider } from './context/StudentContext'
 import DashboardEditPage from './routes/DashboardEditPage'
 import DashboardPage from './routes/DashboardPage'
 import HomePage from './routes/HomePage'
 import LoginPage from './routes/LoginPage'
+import OnboardingPage from './routes/OnboardingPage'
 import PlannerPageV2 from './routes/PlannerPageV2'
 import ProfileEditPage from './routes/ProfileEditPage'
 import ProfilePage from './routes/ProfilePage'
@@ -22,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element: <LoginPage />,
+  },
+  {
+    path: '/onboarding',
+    element: <OnboardingPage />,
   },
   {
     path: '/profile/edit',
@@ -72,7 +78,9 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')!).render(
   <AuthProvider>
     <AcademicDataProvider>
-      <RouterProvider router={router} />
+      <StudentProvider>
+        <RouterProvider router={router} />
+      </StudentProvider>
     </AcademicDataProvider>
   </AuthProvider>
 )
