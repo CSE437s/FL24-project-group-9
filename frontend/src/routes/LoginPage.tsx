@@ -100,6 +100,7 @@ export default function LoginPage() {
           setMessage('Please check your email to verify your account')
           setEmailEntered(true)
           setUserExisted(true)
+          setUser({ ...user, password: '' })
           return
         }
         setMessage('something went wrong, please try again')
