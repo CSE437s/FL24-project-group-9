@@ -35,4 +35,4 @@ jobs:
     - name: Seed Database
       run: |
         cd backend
-        poetry run python manage.py seed_db
+        poetry run python manage.py seed_data
