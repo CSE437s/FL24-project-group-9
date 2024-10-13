@@ -59,8 +59,12 @@ async function validateToken(token: string): Promise<boolean> {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ token }),
   }
-  const response = await fetch(`${API_URL}/auth/validate_token/`, options)
-  return response.ok
+  try {
+    const response = await fetch(`${API_URL}/auth/validate_token/`, options)
+    return response.ok
+  } catch {
+    return false
+  }
 }
 
 async function userExisted(email: string): Promise<UserExistResponse> {
@@ -73,4 +77,21 @@ async function userExisted(email: string): Promise<UserExistResponse> {
   return await response.json()
 }
 
-export default { login, register, logout, validateToken, userExisted }
+async function resetPassword(email: string): Promise<boolean> {
+  const options = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email }),
+  }
+  const response = await fetch(`${API_URL}/auth/reset_password/`, options)
+  return response.ok
+}
+
+export default {
+  login,
+  register,
+  logout,
+  validateToken,
+  userExisted,
+  resetPassword,
+}

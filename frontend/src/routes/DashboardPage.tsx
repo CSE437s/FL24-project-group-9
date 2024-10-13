@@ -2,15 +2,15 @@ import { useNavigate } from 'react-router-dom'
 
 import { FooterBar } from '../components/FooterBar'
 import { HeaderBar } from '../components/HeaderBar'
-import { ScheduleRow } from '../components/ScheduleRow'
-import { TermHeader } from '../components/TermHeader'
+import { ScheduleBlock } from '../components/ScheduleBlock'
+import { SpinnerComponent } from '../components/SpinnerComponent'
 import { useAcademicDataContext } from '../context/useContext'
 
 import './css/DashboardPage.css'
 
 export default function DashboardPage() {
   const navigate = useNavigate()
-  const { semesters } = useAcademicDataContext()
+  const { academicLoading, semesters } = useAcademicDataContext()
 
   const handleEdit = () => {
     navigate('/dashboard/edit')
@@ -20,15 +20,14 @@ export default function DashboardPage() {
     navigate('/planner/')
   }
 
-  // if (loading) {
-  //   return (
-  //     <>
-  //       <HeaderBar isNavVisible={true} />
-  //       <SpinnerComponent messages={['Loading your schedule...']} />
-  //       <FooterBar />
-  //     </>
-  //   )
-  // }
+  if (academicLoading) {
+    return (
+      <>
+        <HeaderBar isNavVisible={true} />
+        <SpinnerComponent messages={['Loading your schedule...']} />
+      </>
+    )
+  }
 
   return (
     <>
@@ -36,24 +35,23 @@ export default function DashboardPage() {
       <div className="dashboard-page">
         <h3>Your Schedule</h3>
         <div className="schedule">
-          <div className="history">
-            <h4>
-              History
-              <button className="secondary" onClick={handleEdit}>
-                Edit History
-              </button>
-            </h4>
-            {semesters
-              .filter((semester) => semester.isCompleted)
-              .map((semester) => (
-                <div key={semester.id}>
-                  <TermHeader semester={semester} />
-                  {semester.planned_courses.map((courseId) => (
-                    <ScheduleRow key={courseId} courseId={courseId} />
-                  ))}
-                </div>
-              ))}
-          </div>
+          {semesters.filter((s) => s.isCompleted).length ? (
+            <div className="history">
+              <h4>
+                History
+                <button className="secondary" onClick={handleEdit}>
+                  Edit History
+                </button>
+              </h4>
+              {semesters
+                .filter((s) => s.isCompleted)
+                .map((semester) => (
+                  <ScheduleBlock key={semester.id} semester={semester} />
+                ))}
+            </div>
+          ) : (
+            <></>
+          )}
           <div className="planned">
             <h4>
               <span>Upcoming Courses</span>
@@ -62,14 +60,9 @@ export default function DashboardPage() {
               </button>
             </h4>
             {semesters
-              .filter((semester) => !semester.isCompleted)
+              .filter((s) => !s.isCompleted)
               .map((semester) => (
-                <div key={semester.id}>
-                  <TermHeader semester={semester} />
-                  {semester.planned_courses.map((courseId) => (
-                    <ScheduleRow key={courseId} courseId={courseId} />
-                  ))}
-                </div>
+                <ScheduleBlock key={semester.id} semester={semester} />
               ))}
           </div>
         </div>

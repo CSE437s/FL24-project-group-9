@@ -6,4 +6,5 @@ export type Student = {
   programs: number[]
   grad: string
   career?: string
+  interests?: string
 }

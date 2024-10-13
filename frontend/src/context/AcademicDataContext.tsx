@@ -12,7 +12,7 @@ import SemestersAPI from '../services/SemestersAPI'
 import { useAuthContext } from './useContext'
 
 interface AcademicDataContextType {
-  loading: boolean
+  academicLoading: boolean
   courses: Course[]
   departments: Department[]
   programs: Program[]
@@ -30,7 +30,7 @@ const AcademicDataProvider = ({ children }: { children: ReactNode }) => {
   const [departments, setDepartments] = useState<Department[]>([])
   const [programs, setPrograms] = useState<Program[]>([])
   const [semesters, setSemesters] = useState<Semester[]>([])
-  const [loading, setLoading] = useState(true)
+  const [academicLoading, setAcademicLoading] = useState(true)
 
   useEffect(() => {
     if (bearerToken) {
@@ -45,7 +45,7 @@ const AcademicDataProvider = ({ children }: { children: ReactNode }) => {
         } catch (error) {
           console.error(error)
         } finally {
-          setLoading(false)
+          setAcademicLoading(false)
         }
       }
 
@@ -68,7 +68,7 @@ const AcademicDataProvider = ({ children }: { children: ReactNode }) => {
   return (
     <AcademicDataContext.Provider
       value={{
-        loading,
+        academicLoading,
         courses,
         departments,
         programs,
