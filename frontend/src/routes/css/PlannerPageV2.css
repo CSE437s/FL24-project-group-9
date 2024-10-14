@@ -1,0 +1,13 @@
+.planner-page {
+  padding: 2rem 3rem;
+  min-height: var(--min-height-container);
+}
+
+.planner-page h4 {
+  display: flex;
+  width: 30rem;
+}
+
+.planner-page h4 button.secondary {
+  margin-left: auto;
+}

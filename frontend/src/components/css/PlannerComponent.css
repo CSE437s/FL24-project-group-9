@@ -1,33 +1,26 @@
 .planner-component {
   display: flex;
-  padding: 10px;
-  justify-content: space-evenly;
+  column-gap: 6rem;
+  flex-wrap: wrap;
 }
 
-.schedule-draggable {
-  min-height: calc(5 * 41.5px);
-  max-width: 542px;
-  min-width: 522px;
-}
-
-.schedule-term {
-  padding: 0.5rem;
-}
-
-.term-header {
+.planner-component .add-course p {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 1rem 0 0.5rem;
+  width: 30rem;
 }
 
-.term-info {
+.planner-component .add-course select {
+  flex-grow: 1;
+  box-sizing: border-box;
+  font-size: var(--font-h6);
+  padding: 0.25rem 0.5rem;
+  overflow-x: scroll;
+  width: calc(100% - 6rem);
+  font-family: inherit;
+}
+
+.planner-component .add-course p>label {
   font-size: var(--font-body);
-  color: var(--primary-red);
-  font-weight: var(--font-weight-headings);
-}
-
-.term-units {
-  color: var(--text-paragraph);
-  font-size: var(--font-h6);;
+  color: var(--primary-black);
+  width: 6rem;
 }

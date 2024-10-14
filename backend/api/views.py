@@ -1,119 +1,128 @@
-from rest_framework.views import APIView
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
+from rest_framework.viewsets import ReadOnlyModelViewSet
 from rest_framework import status
-from rest_framework import generics
-from database.models import Student, Course, Department, Semester, Major, Minor
+from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.viewsets import ViewSet
+from api.models import Student, Course, Department, Semester, Program
 from .serializers import (
     StudentSerializer,
     CourseSerializer,
     DepartmentSerializer,
     SemesterSerializer,
-    MajorSerializer,
-    MinorSerializer,
+    ProgramSerializer,
 )
 
 
-# CBV for API Overview
-class ApiOverview(APIView):
-    def get(self, request):
-        api_urls = {
-            "GET Student": "/student/<str:pk>/",
-            "CREATE Student": "/student/",
-            "UPDATE Student": "/student/<str:pk>/",
-            "DELETE Student": "/student/<str:pk>/",
-            "GET All Courses": "/courses/",
-            "GET Course Detail": "/course/<str:pk>/",
-            "GET All Departments": "/departments/",
-            "GET Department Detail": "/department/<str:pk>/",
-            "GET Semesters": "/semesters/",
-            "UPDATE Semester": "/semester/<str:pk>/",
-            "GET All Majors": "/majors/",
-            "GET Major Detail": "/major/<str:pk>/",
-            "GET All Minors": "/minors/",
-            "GET Minor Detail": "/minor/<str:pk>/",
-        }
-        return Response(api_urls)
+@api_view(["GET"])
+@permission_classes([AllowAny])
+def api_overview(request):
+    api_urls = {
+        # Auth Endpoints
+        "[POST  ] Login": "/auth/login",
+        "[POST  ] Refresh Token": "/auth/login/refresh",
+        "[POST  ] Register": "/auth/register",
+        "[PUT   ] Change Password": "/auth/change_password",
+        "[GET  ] Validate Token": "/auth/validate_token",
+        "[POST  ] Logout": "/auth/logout",
+        "[GET  ] Check User Exists": "/auth/user_exist",
+        # Student Endpoints
+        "[GET   ] Get Authenticated Student Info": "/student/",
+        "[PUT   ] Update Authenticated Student Info": "/student/0/",
+        "[DELETE] Delete Student": "/student/0/",
+        # Course Endpoints
+        "[GET   ] List All Courses": "/courses/",
+        "[GET   ] Get Course Detail": "/courses/<str:pk>",
+        # Department Endpoints
+        "[GET   ] List All Departments": "/departments/",
+        "[GET   ] Get Department Detail": "/departments/<str:pk>",
+        # Semester Endpoints
+        "[GET   ] List All Semesters": "/semesters/",
+        "[PUT   ] Update Semester Detail": "/semesters/<str:pk>",
+        # Program Endpoints
+        "[GET   ] List All Programs": "/programs/",
+        "[GET   ] Program Detail": "/programs/<str:pk>",
+    }
+    return Response(api_urls)
 
 
-# Students API (List and Retrieve)
-class StudentAPI(generics.ListCreateAPIView):
-    queryset = Student.objects.all()
+class StudentViewSet(ViewSet):
     serializer_class = StudentSerializer
+    permission_classes = (IsAuthenticated,)
 
+    def get_object(self):
+        return self.request.user
 
-class StudentDetailAPI(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Student.objects.all()
-    serializer_class = StudentSerializer
-
-
-# Courses API (List and Retrieve)
-class CourseAPI(generics.ListCreateAPIView):
-    queryset = Course.objects.all()
-    serializer_class = CourseSerializer
-
-
-class CourseDetailAPI(APIView):
-    def get(self, request, pk):
-        course = Course.objects.get(pk=pk)
-        serializer = CourseSerializer(course, many=False)
+    def list(self, request, *args, **kwargs):
+        student = self.get_object()
+        serializer = StudentSerializer(student, many=False)
         return Response(serializer.data)
 
-
-# Departments API (List and Retrieve)
-class DepartmentAPI(generics.ListCreateAPIView):
-    queryset = Department.objects.all()
-    serializer_class = DepartmentSerializer
-
-
-class DepartmentDetailAPI(APIView):
-    def get(self, request, pk):
-        department = Department.objects.get(pk=pk)
-        serializer = DepartmentSerializer(department, many=False)
+    def retrieve(self, request, *args, **kwargs):
+        student = self.get_object()
+        serializer = StudentSerializer(student)
         return Response(serializer.data)
 
-
-# Semesters API (List, Retrieve, and Update)
-class SemesterAPI(generics.ListCreateAPIView):
-    queryset = Semester.objects.all()
-    serializer_class = SemesterSerializer
-
-
-class SemesterDetailAPI(APIView):
-    def get(self, request, pk):
-        semester = Semester.objects.get(pk=pk)
-        serializer = SemesterSerializer(semester, many=False)
-        return Response(serializer.data)
-
-    def put(self, request, pk):
-        semester = Semester.objects.get(pk=pk)
-        serializer = SemesterSerializer(instance=semester, data=request.data)
+    def update(self, request, *args, **kwargs):
+        student = self.get_object()
+        serializer = StudentSerializer(student, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
+            return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def destroy(self, request, *args, **kwargs):
+        student = self.get_object()
+        student.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
-# Majors API (List and Retrieve)
-class MajorAPI(generics.ListCreateAPIView):
-    queryset = Major.objects.all()
-    serializer_class = MajorSerializer
+
+class CourseViewSet(ReadOnlyModelViewSet):
+    serializer_class = CourseSerializer
+    queryset = Course.objects.all()
+    permission_classes = (IsAuthenticated,)
 
 
-class MajorDetailAPI(APIView):
-    def get(self, request, pk):
-        major = Major.objects.get(pk=pk)
-        serializer = MajorSerializer(major, many=False)
+class DepartmentViewSet(ReadOnlyModelViewSet):
+    serializer_class = DepartmentSerializer
+    queryset = Department.objects.all()
+    permission_classes = (IsAuthenticated,)
+
+
+class ProgramViewSet(ReadOnlyModelViewSet):
+    serializer_class = ProgramSerializer
+    queryset = Program.objects.all()
+    permission_classes = (IsAuthenticated,)
+
+
+class SemesterViewSet(ViewSet):
+    serializer_class = SemesterSerializer
+    queryset = Semester.objects.all()
+    permission_classes = (IsAuthenticated,)
+
+    def get_object(self):
+        return self.request.user
+
+    def list(self, request):
+        authenticated_student = self.request.user
+        semesters = self.queryset.filter(student=authenticated_student)
+
+        def semester_sorter(semester):
+            season, year = semester.name.split()
+            return (year, 0 if season == "Spring" else 1)
+
+        semesters = sorted(semesters, key=semester_sorter)
+        serializer = SemesterSerializer(
+            semesters,
+            many=True,
+        )
         return Response(serializer.data)
 
-
-# Minors API (List and Retrieve)
-class MinorAPI(generics.ListCreateAPIView):
-    queryset = Minor.objects.all()
-    serializer_class = MinorSerializer
-
-
-class MinorDetailAPI(APIView):
-    def get(self, request, pk):
-        minor = Minor.objects.get(pk=pk)
-        serializer = MinorSerializer(minor, many=False)
-        return Response(serializer.data)
+    def update(self, request, pk=None):
+        authenticated_student = self.request.user
+        semesters = self.queryset.filter(student=authenticated_student).get(pk=pk)
+        serializer = SemesterSerializer(semesters, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

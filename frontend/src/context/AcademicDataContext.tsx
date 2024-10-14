@@ -1,41 +1,84 @@
-import { createContext, useState, useEffect, ReactNode } from 'react';
-import { Course } from '../models/Course';
-import CoursesAPI from '../services/CoursesAPI';
-import MajorsAPI from '../services/MajorsAPI';
-import MinorsAPI from '../services/MinorsAPI';
-import SemestersAPI from '../services/SemestersAPI';
-import InterestsAPI from '../services/InterestsAPI';
+import { createContext, ReactNode, useEffect, useState } from 'react'
+
+import { Course } from '../models/Course'
+import { Department } from '../models/Department'
+import { Program } from '../models/Program'
+import { Semester } from '../models/Semester'
+import CoursesAPI from '../services/CoursesAPI'
+import DepartmentsAPI from '../services/DepartmentsAPI'
+import ProgramsAPI from '../services/ProgramsAPI'
+import SemestersAPI from '../services/SemestersAPI'
+
+import { useAuthContext } from './useContext'
 
 interface AcademicDataContextType {
-  courses: Course[];
-  majors: string[];
-  minors: string[];
-  semesters: string[];
-  interests: string[];
+  academicLoading: boolean
+  courses: Course[]
+  departments: Department[]
+  programs: Program[]
+  semesters: Semester[]
+  updateSemester: (semester: Semester) => void
 }
 
-const AcademicDataContext = createContext<AcademicDataContextType | undefined>(undefined);
+const AcademicDataContext = createContext<AcademicDataContextType | undefined>(
+  undefined
+)
 
 const AcademicDataProvider = ({ children }: { children: ReactNode }) => {
-  const [courses, setCourses] = useState<Course[]>([]);
-  const [majors, setMajors] = useState<string[]>([]);
-  const [minors, setMinors] = useState<string[]>([]);
-  const [semesters, setSemesters] = useState<string[]>([]);
-  const [interests, setInterests] = useState<string[]>([]);
+  const { bearerToken } = useAuthContext()
+  const [courses, setCourses] = useState<Course[]>([])
+  const [departments, setDepartments] = useState<Department[]>([])
+  const [programs, setPrograms] = useState<Program[]>([])
+  const [semesters, setSemesters] = useState<Semester[]>([])
+  const [academicLoading, setAcademicLoading] = useState(true)
 
   useEffect(() => {
-    CoursesAPI.getAllCourses().then(setCourses);
-    MajorsAPI.getAllMajors().then(setMajors);
-    MinorsAPI.getAllMinors().then(setMinors);
-    SemestersAPI.getAllSemesters().then(setSemesters);
-    InterestsAPI.getAllInterests().then(setInterests);
-  }, []);
+    if (bearerToken) {
+      const fetchData = async () => {
+        try {
+          await Promise.all([
+            CoursesAPI.getAllCourses(bearerToken).then(setCourses),
+            DepartmentsAPI.getAllDepartments(bearerToken).then(setDepartments),
+            ProgramsAPI.getAllPrograms(bearerToken).then(setPrograms),
+            SemestersAPI.getAllSemesters(bearerToken).then(setSemesters),
+          ])
+        } catch (error) {
+          console.error(error)
+        } finally {
+          setAcademicLoading(false)
+        }
+      }
+
+      fetchData()
+    }
+  }, [bearerToken])
+
+  const updateSemester = (semester: Semester) => {
+    SemestersAPI.updateSemester(bearerToken, semester).then(
+      (updatedSemester) => {
+        setSemesters((prevSemesters) =>
+          prevSemesters.map((s) =>
+            s.id === updatedSemester.id ? updatedSemester : s
+          )
+        )
+      }
+    )
+  }
 
   return (
-    <AcademicDataContext.Provider value={{ courses, majors, minors, semesters, interests }}>
+    <AcademicDataContext.Provider
+      value={{
+        academicLoading,
+        courses,
+        departments,
+        programs,
+        semesters,
+        updateSemester,
+      }}
+    >
       {children}
     </AcademicDataContext.Provider>
-  );
-};
+  )
+}
 
-export { AcademicDataContext, AcademicDataProvider };
+export { AcademicDataContext, AcademicDataProvider }

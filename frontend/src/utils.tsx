@@ -1,53 +1,35 @@
-import { Term } from "./models/Course";
+import { Course } from './models/Course'
+import { Semester } from './models/Semester'
 
-const getTotalUnits = (term: Term) => {
-  return term.courses.reduce((acc, course) => acc + course.credits, 0);
+const getTotalUnits = (semester: Semester, courses: Course[]) => {
+  return semester.planned_courses.reduce(
+    (acc, courseId) => acc + courses.filter((c) => c.id == courseId)[0]?.units,
+    0
+  )
 }
 
-const sortTerms = (terms: string[]): string[] => {
-  return terms.sort((a, b) => {
-    const [seasonA, yearA] = a.split(' ');
-    const [seasonB, yearB] = b.split(' ');
+const sortSemestersObjects = (semesters: Semester[]): Semester[] => {
+  return semesters.sort((a, b) => {
+    const [seasonA, yearA] = a.name.split(' ')
+    const [seasonB, yearB] = b.name.split(' ')
 
     if (yearA !== yearB) {
-      return parseInt(yearA) - parseInt(yearB);
+      return parseInt(yearA) - parseInt(yearB)
     }
 
     if (seasonA === 'Spring' && seasonB === 'Fall') {
-      return -1;
+      return -1
     }
 
     if (seasonA === 'Fall' && seasonB === 'Spring') {
-      return 1;
+      return 1
     }
 
-    return 0;
-  });
-};
-
-const sortTermObjects = (terms: Term[]): Term[] => {
-  return terms.sort((a, b) => {
-    const [seasonA, yearA] = a.term.split(' ');
-    const [seasonB, yearB] = b.term.split(' ');
-
-    if (yearA !== yearB) {
-      return parseInt(yearA) - parseInt(yearB);
-    }
-
-    if (seasonA === 'Spring' && seasonB === 'Fall') {
-      return -1;
-    }
-
-    if (seasonA === 'Fall' && seasonB === 'Spring') {
-      return 1;
-    }
-
-    return 0;
-  });
-};
+    return 0
+  })
+}
 
 export const utils = {
   getTotalUnits,
-  sortTerms,
-  sortTermObjects
-};
+  sortSemestersObjects,
+}

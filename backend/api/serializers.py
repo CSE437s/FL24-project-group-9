@@ -1,16 +1,5 @@
 from rest_framework import serializers
-from database.models import Student
-from database.models import Course
-from database.models import Department
-from database.models import Semester
-from database.models import Major
-from database.models import Minor
-
-
-class StudentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Student
-        fields = "__all__"
+from api.models import Student, Course, Department, Semester, Program
 
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -29,15 +18,22 @@ class SemesterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Semester
         fields = "__all__"
+        read_only_fields = ["student", "name"]
 
 
-class MajorSerializer(serializers.ModelSerializer):
+class ProgramSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Major
+        model = Program
         fields = "__all__"
 
 
-class MinorSerializer(serializers.ModelSerializer):
+class StudentSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True, required=False)
+    email = serializers.EmailField(required=True)
+    first_name = serializers.CharField(required=True)
+    last_name = serializers.CharField(required=True)
+
     class Meta:
-        model = Minor
+        model = Student
         fields = "__all__"
+        extra_kwargs = {"password": {"write_only": True}}

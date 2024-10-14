@@ -1,9 +1,8 @@
 .schedule-row {
   box-sizing: border-box;
   display: flex;
-  width: 522px;
-  gap: 5px;
-  padding: 10px;
+  gap: 0.5rem;
+  padding: 0.5rem;
   border: var(--border-size) var(--border-table) solid;
 }
 
@@ -20,18 +19,18 @@
 
 .schedule-row svg {
   cursor: pointer;
-  width: 14px;
+  width: 0.8rem;
 }
 
 .schedule-row .course-code {
-  width: 80px;
+  width: 4.5rem;
 }
 
 .schedule-row .course-title {
-  width: 350px;
+  width: 22rem;
 }
 
 .schedule-row .course-units {
-  width: 60px;
+  width: 3.75rem;
   text-align: center;
 }

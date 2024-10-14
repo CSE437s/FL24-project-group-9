@@ -1,14 +1,60 @@
-import { Navigate } from 'react-router-dom';
-import { useAuthContext } from '../context/useContext';
+import { Navigate, useLocation } from 'react-router-dom'
+
+import { HeaderBar } from '../components/HeaderBar'
+import { SpinnerComponent } from '../components/SpinnerComponent'
+import {
+  useAcademicDataContext,
+  useAuthContext,
+  useStudentContext,
+} from '../context/useContext'
 
 const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
-  const { isLoggedIn } = useAuthContext();
+  const location = useLocation()
 
-  if (!isLoggedIn) {
-    return <Navigate to="/" />;
+  const { loading, bearerToken } = useAuthContext()
+  const { studentLoading, hasStudentOnboarded } = useStudentContext()
+  const { academicLoading } = useAcademicDataContext()
+
+  if (loading) {
+    return (
+      <>
+        <HeaderBar isNavVisible={true} />
+        <SpinnerComponent messages={['Initializing Application...']} />
+      </>
+    )
   }
 
-  return children;
-};
+  if (!bearerToken) {
+    return <Navigate to="/login" />
+  }
 
-export default ProtectedRoute;
+  if (studentLoading) {
+    return (
+      <>
+        <HeaderBar isNavVisible={true} />
+        <SpinnerComponent messages={['Loading student info...']} />
+      </>
+    )
+  }
+
+  if (academicLoading) {
+    return (
+      <>
+        <HeaderBar isNavVisible={true} />
+        <SpinnerComponent messages={['Loading academic data...']} />
+      </>
+    )
+  }
+
+  if (!hasStudentOnboarded() && location.pathname !== '/onboarding') {
+    return <Navigate to="/onboarding" />
+  }
+
+  if (hasStudentOnboarded() && location.pathname === '/onboarding') {
+    return <Navigate to="/profile" />
+  }
+
+  return children
+}
+
+export default ProtectedRoute

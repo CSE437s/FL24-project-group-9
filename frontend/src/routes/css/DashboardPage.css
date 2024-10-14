@@ -1,4 +1,29 @@
 .dashboard-page {
   padding: 2rem 3rem;
-  min-height: calc(100vh - 95px - 56px - 4rem);
+  min-height: var(--min-height-container);
+}
+
+.dashboard-page .schedule {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 6rem;
+}
+
+.dashboard-page h2 {
+  text-align: center;
+}
+
+.dashboard-page .schedule h4 {
+  display: flex;
+  width: 100%;
+}
+
+.dashboard-page .schedule h4 button.secondary {
+  margin-left: auto;
+}
+
+.dashboard-page .history,
+.dashboard-page .planned {
+  box-sizing: border-box;
+  min-width: 522px;
 }
