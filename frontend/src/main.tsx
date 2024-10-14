@@ -6,6 +6,7 @@ import { AuthProvider } from './context/AuthContext'
 import { StudentProvider } from './context/StudentContext'
 import DashboardEditPage from './routes/DashboardEditPage'
 import DashboardPage from './routes/DashboardPage'
+import ForgotPasswordPage from './routes/ForgotPasswordPage'
 import HomePage from './routes/HomePage'
 import LoginPage from './routes/LoginPage'
 import OnboardingPage from './routes/OnboardingPage'
@@ -81,6 +82,10 @@ const router = createBrowserRouter([
   {
     path: '/reset_password/:uid/:token',
     element: <ResetPasswordPage />,
+  },
+  {
+    path: '/forgot_password',
+    element: <ForgotPasswordPage />,
   },
   {
     path: '*',

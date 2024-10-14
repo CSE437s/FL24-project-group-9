@@ -32,21 +32,6 @@ export default function LoginPage() {
   const [checkUserLoading, setCheckUserLoading] = useState(false)
   const [loginLoading, setLoginLoading] = useState(false)
   const [signupLoading, setSignupLoading] = useState(false)
-  const [forgotPassword, setForgotPassword] = useState(false)
-  const [resetLoading, setResetLoading] = useState(false)
-  const [resetDelay, setResetDelay] = useState(false)
-
-  useEffect(() => {
-    if (resetDelay) {
-      setTimeout(() => {
-        setResetDelay(false)
-      }, 5000)
-    }
-  }, [resetDelay])
-
-  useEffect(() => {
-    setMessage('')
-  }, [forgotPassword])
 
   const checkUser = async () => {
     setCheckUserLoading(true)
@@ -119,27 +104,6 @@ export default function LoginPage() {
       })
       .finally(() => {
         setSignupLoading(false)
-      })
-  }
-
-  const handleResetPassword = async (event: React.FormEvent) => {
-    event.preventDefault()
-    if (!user.email) return
-    setResetLoading(true)
-    AuthAPI.resetPassword(user.email)
-      .then((response) => {
-        setResetLoading(false)
-        if (response) {
-          setMessage(
-            'Check your email to reset your password, or click reset again in 5 seconds'
-          )
-          return
-        }
-        setMessage('something went wrong, please try again')
-      })
-      .finally(() => {
-        setResetLoading(false)
-        setResetDelay(true)
       })
   }
 
@@ -258,32 +222,6 @@ export default function LoginPage() {
         </form>
       </div>
     )
-  } else if (forgotPassword) {
-    form = (
-      <div>
-        <h2>Forgot your Password?</h2>
-        <p>Send an email to reset your password</p>
-        <form onSubmit={handleResetPassword}>
-          {emailInput(true)}
-          <div className="action-btns">
-            <button
-              type="button"
-              onClick={() => setForgotPassword(false)}
-              disabled={resetLoading || resetDelay}
-            >
-              Back
-            </button>
-            <button type="submit" disabled={resetLoading || resetDelay}>
-              {resetLoading ? (
-                <ClipLoader size={'0.8rem'} color={'#ffffff'} />
-              ) : (
-                'Reset'
-              )}
-            </button>
-          </div>
-        </form>
-      </div>
-    )
   } else {
     form = (
       <div>
@@ -294,12 +232,11 @@ export default function LoginPage() {
           <div className="input-wrapper">
             <div
               className="button-secondary"
-              onClick={() => setForgotPassword(true)}
+              onClick={() => navigate('/forgot_password')}
             >
               Forgot your password?
             </div>
           </div>
-
           <div className="action-btns">
             <button type="button" onClick={handleBack} disabled={loginLoading}>
               Back

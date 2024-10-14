@@ -1,4 +1,3 @@
-// ResetPasswordPage.tsx
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { ClipLoader } from 'react-spinners'
