@@ -50,8 +50,7 @@ class RegisterView(generics.CreateAPIView):
         token = default_token_generator.make_token(user)
         uid = user.pk
 
-        # Create verification URL
-        verification_url = f"http://localhost:5173/verify_email/{uid}/{token}/"
+        verification_url = f"{settings.FRONTEND_URL}/verify_email/{uid}/{token}/"
 
         send_mail(
             'Verify your email',
@@ -167,7 +166,7 @@ class ResetPasswordView(APIView):
             user = Student.objects.get(email=email)
             token = default_token_generator.make_token(user)
             uid = user.pk
-            reset_url = f"http://localhost:5173/reset_password/{uid}/{token}/"
+            reset_url = f"{settings.FRONTEND_URL}/reset_password/{uid}/{token}/"
             send_mail(
                 'Reset your password',
                 f'Please click the link to reset your password: {reset_url}',
