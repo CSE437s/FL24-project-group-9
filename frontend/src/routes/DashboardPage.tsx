@@ -69,6 +69,9 @@ export default function DashboardPage() {
           <p>
             <span>Career:</span> {student.career}
           </p>
+          <p>
+            <span>Interests:</span> {student.interests}
+          </p>
         </div>
       </section>
     </>

@@ -1,20 +1,58 @@
 .schedule-row {
   box-sizing: border-box;
+  border: var(--border-size) var(--border-table) solid;
+  width: 34rem;
+}
+
+.schedule-row-header {
+  box-sizing: border-box;
+  cursor: pointer;
   display: flex;
   gap: 0.5rem;
   padding: 0.5rem;
-  border: var(--border-size) var(--border-table) solid;
+  width: 100%;
 }
 
-.schedule-row .undo-button,
-.schedule-row .remove-button {
+.schedule-row-header:hover {
+  background-color: var(--primary-lightgrey);
+}
+
+.schedule-row-body {
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  width: 100%;
+  max-height: 0;
+}
+
+.schedule-row-body.expanded {
+  border-top: var(--border-size) var(--border-table) solid;
+  max-height: 20rem;
+  overflow-y: scroll;
+  transition: max-height 0.3s ease;
+}
+
+.schedule-row-body .content {
+  box-sizing: border-box;
+  padding: 0.5rem;
+}
+
+.schedule-row .show-button,
+.schedule-row .open-button {
   display: flex;
   align-items: center;
 }
 
-.schedule-row .undo-button:hover svg,
-.schedule-row .remove-button:hover svg {
+.schedule-row-header:hover .show-button svg,
+.schedule-row-header:hover .open-button svg {
   fill: var(--primary-red);
+}
+
+.schedule-row .show-button svg {
+  transition: transform 0.3s ease;
+}
+
+.schedule-row .show-button svg.rotated {
+  transform: rotate(180deg);
 }
 
 .schedule-row svg {
@@ -33,4 +71,15 @@
 .schedule-row .course-units {
   width: 3.75rem;
   text-align: center;
+}
+
+.schedule-row .content .action-btns {
+  display: flex;
+  justify-content: right;
+  margin: 0.5rem 0;
+}
+
+.schedule-row .content .action-btns button {
+  font-weight: var(--font-weight-default);
+  font-size: 0.9rem;
 }
