@@ -54,6 +54,17 @@ Install existing dependencies:
 poetry install
 ```
 
+Make .env file (if not existed)
+```
+cp .env.example .env
+```
+
+Add environment variables
+```
+EMAIL_HOST_USER=<your_email@gmail.com>
+EMAIL_HOST_PASSWORD=<your_password>
+```
+
 To run server:
 ```
 poetry run python3 manage.py runserver
