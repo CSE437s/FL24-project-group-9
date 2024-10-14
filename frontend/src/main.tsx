@@ -11,7 +11,6 @@ import LoginPage from './routes/LoginPage'
 import OnboardingPage from './routes/OnboardingPage'
 import PlannerPageV2 from './routes/PlannerPageV2'
 import ProfileEditPage from './routes/ProfileEditPage'
-import ProfilePage from './routes/ProfilePage'
 import ProtectedRoute from './routes/ProtectedRoute'
 
 import './index.css'
@@ -45,7 +44,7 @@ const router = createBrowserRouter([
     path: '/profile',
     element: (
       <ProtectedRoute>
-        <ProfilePage />
+        <DashboardPage />
       </ProtectedRoute>
     ),
   },

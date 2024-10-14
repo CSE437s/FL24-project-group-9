@@ -15,8 +15,12 @@ export default function ProfileEditPage() {
 
   const handleSave = (student: Student) => {
     updateStudent(student).then(() => {
-      navigate('/profile')
+      navigate('/dashboard')
     })
+  }
+
+  const handleCancel = () => {
+    navigate('/dashboard')
   }
 
   if (studentLoading) {
@@ -48,7 +52,11 @@ export default function ProfileEditPage() {
           <h4>Edit your Profile</h4>
         </section>
         <section className="profile-info">
-          <StudentForm student={student} handleSave={handleSave} />
+          <StudentForm
+            student={student}
+            handleSave={handleSave}
+            handleCancel={handleCancel}
+          />
         </section>
       </div>
       <FooterBar />
