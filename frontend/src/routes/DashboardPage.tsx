@@ -48,17 +48,9 @@ export default function DashboardPage() {
 
   const profileComponent = student ? (
     <>
-      <section className="profile-summary">
-        <h3>Welcome to CoursePlanner</h3>
-        <div className="profile-info">
-          <p>
-            <span>Name:</span> {student.first_name} {student.last_name}
-          </p>
-          <p>
-            <span>Email:</span> {student.email}
-          </p>
-        </div>
-      </section>
+      <h2>
+        Welcome to CoursePlanner {student?.first_name} {student?.last_name}!
+      </h2>
       <section className="academic-summary">
         <h4>
           Academic Summary
