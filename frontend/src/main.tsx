@@ -6,12 +6,14 @@ import { AuthProvider } from './context/AuthContext'
 import { StudentProvider } from './context/StudentContext'
 import DashboardEditPage from './routes/DashboardEditPage'
 import DashboardPage from './routes/DashboardPage'
+import ForgotPasswordPage from './routes/ForgotPasswordPage'
 import HomePage from './routes/HomePage'
 import LoginPage from './routes/LoginPage'
 import OnboardingPage from './routes/OnboardingPage'
 import PlannerPageV2 from './routes/PlannerPageV2'
 import ProfileEditPage from './routes/ProfileEditPage'
 import ProtectedRoute from './routes/ProtectedRoute'
+import ResetPasswordPage from './routes/ResetPasswordPage'
 import VerifyEmailPage from './routes/VerifyEmailPage'
 
 import './index.css'
@@ -74,8 +76,16 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: '/verify-email/:uid/:token',
+    path: '/verify_email/:uid/:token',
     element: <VerifyEmailPage />,
+  },
+  {
+    path: '/reset_password/:uid/:token',
+    element: <ResetPasswordPage />,
+  },
+  {
+    path: '/forgot_password',
+    element: <ForgotPasswordPage />,
   },
   {
     path: '*',
