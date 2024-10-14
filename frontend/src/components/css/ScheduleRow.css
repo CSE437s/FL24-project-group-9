@@ -1,20 +1,47 @@
 .schedule-row {
   box-sizing: border-box;
+  border: var(--border-size) var(--border-table) solid;
+  width: 35rem;
+}
+
+.schedule-row-header {
+  box-sizing: border-box;
+  cursor: pointer;
   display: flex;
   gap: 0.5rem;
   padding: 0.5rem;
-  border: var(--border-size) var(--border-table) solid;
+  width: 100%;
 }
 
-.schedule-row .undo-button,
+.schedule-row-header:hover {
+  background-color: var(--primary-lightgrey);
+}
+
+.schedule-row-body {
+  display: flex;
+  box-sizing: border-box;
+  border-top: var(--border-size) var(--border-table) solid;
+  padding: 0.5rem;
+  width: 100%;
+}
+
+.schedule-row .show-button,
 .schedule-row .remove-button {
   display: flex;
   align-items: center;
 }
 
-.schedule-row .undo-button:hover svg,
+.schedule-row .show-button:hover svg,
 .schedule-row .remove-button:hover svg {
   fill: var(--primary-red);
+}
+
+.schedule-row .show-button svg {
+  transition: transform 0.3s ease;
+}
+
+.schedule-row .show-button svg.rotated {
+  transform: rotate(180deg);
 }
 
 .schedule-row svg {

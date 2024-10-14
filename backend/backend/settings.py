@@ -194,7 +194,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
-DEFAULT_FROM_EMAIL = "noreply<no_reply@wustl.edu>"
+DEFAULT_FROM_EMAIL = "noreply no_reply@wustl.edu"
 
 # # ACCOUNT_AUTHENTICATION_METHOD = "email"
 # ACCOUNT_EMAIL_REQUIRED = True
