@@ -185,15 +185,15 @@ SIMPLE_JWT = {
 
 AUTH_USER_MODEL = "api.Student"
 
-#  Verification Settings
+# # Email Verification Settings
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 # EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = "vungoctram0108@gmail.com"
-EMAIL_HOST_PASSWORD = "fyml rvdq hlga tiiy"
-DEFAULT_FROM_EMAIL = "CSE437 vungoctram0108@gmail.com"
+EMAIL_HOST_USER = "your-email@gmail.com"
+EMAIL_HOST_PASSWORD = "your-email-password"
+DEFAULT_FROM_EMAIL = "your-email@gmail.com"
 
 # # ACCOUNT_AUTHENTICATION_METHOD = "email"
 # ACCOUNT_EMAIL_REQUIRED = True
