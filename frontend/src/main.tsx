@@ -12,6 +12,7 @@ import OnboardingPage from './routes/OnboardingPage'
 import PlannerPageV2 from './routes/PlannerPageV2'
 import ProfileEditPage from './routes/ProfileEditPage'
 import ProtectedRoute from './routes/ProtectedRoute'
+import ResetPasswordPage from './routes/ResetPasswordPage'
 import VerifyEmailPage from './routes/VerifyEmailPage'
 
 import './index.css'
@@ -74,8 +75,12 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: '/verify-email/:uid/:token',
+    path: '/verify_email/:uid/:token',
     element: <VerifyEmailPage />,
+  },
+  {
+    path: '/reset_password/:uid/:token',
+    element: <ResetPasswordPage />,
   },
   {
     path: '*',

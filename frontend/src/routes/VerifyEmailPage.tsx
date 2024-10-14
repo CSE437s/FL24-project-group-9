@@ -5,7 +5,7 @@ import AuthAPI from '../services/AuthAPI'
 
 export default function VerifyEmailPage() {
   const { uid, token } = useParams()
-  const [status, setStatus] = useState('Verifying...')
+  const [message, setMessage] = useState('Verifying...')
 
   useEffect(() => {
     const verifyEmail = async () => {
@@ -13,19 +13,19 @@ export default function VerifyEmailPage() {
         AuthAPI.verifyEmail(uid, token)
           .then((response) => {
             if (response) {
-              setStatus('Email verified successfully!')
+              setMessage('Email verified successfully!')
               setTimeout(() => {
                 window.location.href = '/login'
               }, 200)
             } else {
-              setStatus('Email verification failed.')
+              setMessage('Email verification failed.')
             }
           })
           .catch(() => {
-            setStatus('An error occurred during verification.')
+            setMessage('An error occurred during verification.')
           })
       } else {
-        setStatus('Invalid verification link.')
+        setMessage('Invalid verification link.')
       }
     }
 
@@ -34,7 +34,7 @@ export default function VerifyEmailPage() {
 
   return (
     <div>
-      <h1>{status}</h1>
+      <h1>{message}</h1>
     </div>
   )
 }

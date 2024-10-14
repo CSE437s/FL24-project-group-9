@@ -51,7 +51,7 @@ class RegisterView(generics.CreateAPIView):
         uid = user.pk
 
         # Create verification URL
-        verification_url = f"http://localhost:5173/verify-email/{uid}/{token}/"
+        verification_url = f"http://localhost:5173/verify_email/{uid}/{token}/"
 
         send_mail(
             'Verify your email',
@@ -153,3 +153,47 @@ class CheckUserExistView(APIView):
                 {"exist": False, "active": False, "message": "User with this email does not exist."},
                 status=status.HTTP_200_OK,
             )
+
+
+class ResetPasswordView(APIView):
+    permission_classes = (AllowAny,)
+
+    def post(self, request, *args, **kwargs):
+        email = request.data.get('email')
+        if not email:
+            return Response({"error": "Email is required"}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            user = Student.objects.get(email=email)
+            token = default_token_generator.make_token(user)
+            uid = user.pk
+            reset_url = f"http://localhost:5173/reset_password/{uid}/{token}/"
+            send_mail(
+                'Reset your password',
+                f'Please click the link to reset your password: {reset_url}',
+                settings.DEFAULT_FROM_EMAIL,
+                [user.email],
+                fail_silently=False,
+            )
+            return Response({"success": "Password reset email sent."}, status=status.HTTP_200_OK)
+        except Student.DoesNotExist:
+            return Response({"error": "User with this email does not exist."}, status=status.HTTP_400_BAD_REQUEST)
+
+class ResetPasswordConfirmView(APIView):
+    permission_classes = (AllowAny,)
+
+    def post(self, request, uid, token, *args, **kwargs):
+        password = request.data.get('password')
+        if not password:
+            return Response({"error": "Password is required."}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            user = Student.objects.get(pk=uid)
+            if default_token_generator.check_token(user, token):
+                user.set_password(password)
+                user.save()
+                return Response({"success": "Password has been reset."}, status=status.HTTP_200_OK)
+            else:
+                return Response({"error": "Invalid token."}, status=status.HTTP_400_BAD_REQUEST)
+        except Student.DoesNotExist:
+            return Response({"error": "User with this email does not exist."}, status=status.HTTP_400_BAD_REQUEST)

@@ -53,8 +53,11 @@ export default function LoginPage() {
     setTimeout(() => {
       AuthAPI.userExisted(user.email)
         .then((response) => {
-          if (response.active) {
-            setUserExisted(response.exist)
+          if (!response.exist) {
+            setUserExisted(false)
+            setMessage('')
+          } else if (response.active) {
+            setUserExisted(true)
             setMessage('')
           } else {
             setEmailEntered(false)
@@ -107,9 +110,9 @@ export default function LoginPage() {
         setSignupLoading(false)
         if (response) {
           setMessage('Please check your email to verify your account')
-          setEmailEntered(true)
+          setEmailEntered(false)
           setUserExisted(false)
-          setUser({ ...user, password: '' })
+          setUser({ ...user, password: '', firstName: '', lastName: '' })
           return
         }
         setMessage('something went wrong, please try again')
