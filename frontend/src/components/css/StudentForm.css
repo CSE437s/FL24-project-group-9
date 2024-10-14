@@ -24,3 +24,7 @@
 .student-form .input-wrapper label {
   font-weight: bold;
 }
+
+.student-form .action-btns button {
+  margin: 0 1.5rem;
+}

@@ -8,11 +8,13 @@ import './css/StudentForm.css'
 interface StudentFormProps {
   student: Student
   handleSave: (student: Student) => void
+  handleCancel?: () => void
 }
 
 export const StudentForm: React.FC<StudentFormProps> = ({
   student,
   handleSave,
+  handleCancel,
 }) => {
   const { academicLoading, programs } = useAcademicDataContext()
   const [newStudent, setNewStudent] = useState<Student>(student)
@@ -89,7 +91,12 @@ export const StudentForm: React.FC<StudentFormProps> = ({
           }}
         />
       </div>
-      <button type="submit">Save</button>
+      <div className="action-btns">
+        <button type="button" onClick={handleCancel}>
+          Cancel
+        </button>
+        <button type="submit">Save</button>
+      </div>
     </form>
   )
 }
