@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 from datetime import timedelta
 from dotenv import load_dotenv
@@ -185,15 +186,15 @@ SIMPLE_JWT = {
 
 AUTH_USER_MODEL = "api.Student"
 
-# # Email Verification Settings
-# # EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# Email Verification Settings
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 # EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-# # EMAIL_HOST = "smtp.gmail.com"
-# # EMAIL_PORT = 587
-# # EMAIL_USE_TLS = True
-# # EMAIL_HOST_USER = "your-email@gmail.com"
-# # EMAIL_HOST_PASSWORD = "your-email-password"
-# # DEFAULT_FROM_EMAIL = "your-email@gmail.com"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = "noreply<no_reply@wustl.edu>"
 
 # # ACCOUNT_AUTHENTICATION_METHOD = "email"
 # ACCOUNT_EMAIL_REQUIRED = True
