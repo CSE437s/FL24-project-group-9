@@ -14,7 +14,7 @@ interface HeaderBarProps {
 
 export const HeaderBar: React.FC<HeaderBarProps> = ({
   isNavVisible,
-  isProfileHidden,
+  isProfileHidden = true,
   isDashboardHidden,
   isLogoutHidden,
 }) => {

@@ -7,6 +7,7 @@ interface LoginResponse {
 
 interface UserExistResponse {
   exist: boolean
+  active: boolean
   message: string
 }
 
@@ -87,6 +88,35 @@ async function resetPassword(email: string): Promise<boolean> {
   return response.ok
 }
 
+async function resetPasswordConfirm(
+  uid: string,
+  token: string,
+  password: string
+): Promise<boolean> {
+  const options = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ password }),
+  }
+  const response = await fetch(
+    `${API_URL}/auth/reset_password_confirm/${uid}/${token}/`,
+    options
+  )
+  return response.ok
+}
+
+async function verifyEmail(uid: string, token: string): Promise<boolean> {
+  const options = {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  }
+  const response = await fetch(
+    `${API_URL}/auth/verify_email/${uid}/${token}/`,
+    options
+  )
+  return response.ok
+}
+
 export default {
   login,
   register,
@@ -94,4 +124,6 @@ export default {
   validateToken,
   userExisted,
   resetPassword,
+  resetPasswordConfirm,
+  verifyEmail,
 }

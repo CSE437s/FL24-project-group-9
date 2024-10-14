@@ -9,6 +9,10 @@
   column-gap: 6rem;
 }
 
+.dashboard-page h2 {
+  text-align: center;
+}
+
 .dashboard-page .schedule h4 {
   display: flex;
   width: 100%;
