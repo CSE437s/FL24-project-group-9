@@ -6,6 +6,7 @@ from auth.views import (
     CustomTokenObtainPairView,
     ValidateTokenView,
     CheckUserExistView,
+    VerifyEmailView,
 )
 from rest_framework_simplejwt.views import TokenRefreshView
 
@@ -18,4 +19,5 @@ urlpatterns = [
     path("logout/", LogoutView.as_view(), name="auth_logout"),
     path("validate_token/", ValidateTokenView.as_view(), name="auth_validate_token"),
     path("user_exist/", CheckUserExistView.as_view(), name="auth_user_exist"),
+    path('verify-email/<int:uid>/<str:token>/', VerifyEmailView.as_view(), name='verify-email'),
 ]

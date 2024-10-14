@@ -51,10 +51,19 @@ export default function LoginPage() {
   const checkUser = async () => {
     setCheckUserLoading(true)
     setTimeout(() => {
-      AuthAPI.userExisted(user.email).then((response) => {
-        setUserExisted(response.exist)
-        setCheckUserLoading(false)
-      })
+      AuthAPI.userExisted(user.email)
+        .then((response) => {
+          if (response.active) {
+            setUserExisted(response.exist)
+            setMessage('')
+          } else {
+            setEmailEntered(false)
+            setMessage('Please verify your email to continue')
+          }
+        })
+        .finally(() => {
+          setCheckUserLoading(false)
+        })
     }, 100) // TODO: remove this intentional delay
   }
 
@@ -99,7 +108,7 @@ export default function LoginPage() {
         if (response) {
           setMessage('Please check your email to verify your account')
           setEmailEntered(true)
-          setUserExisted(true)
+          setUserExisted(false)
           setUser({ ...user, password: '' })
           return
         }

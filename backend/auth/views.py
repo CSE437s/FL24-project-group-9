@@ -8,13 +8,26 @@ from auth.serializers import (
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
-from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.tokens import AccessToken, TokenError
+from rest_framework import serializers
 from django.contrib.auth import logout
+from django.core.mail import send_mail
+from django.contrib.auth.tokens import default_token_generator
+from django.conf import settings
 
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    def validate(self, attrs):
+        data = super().validate(attrs)
+        user = self.user
+
+        if not user.is_active:
+            raise serializers.ValidationError('Email not verified.')
+
+        return data
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
@@ -30,7 +43,23 @@ class RegisterView(generics.CreateAPIView):
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        serializer.save()
+        user = serializer.save()
+        user.is_active = False
+        user.save()
+
+        token = default_token_generator.make_token(user)
+        uid = user.pk
+
+        # Create verification URL
+        verification_url = f"http://localhost:5173/verify-email/{uid}/{token}/"
+
+        send_mail(
+            'Verify your email',
+            f'Please click the link to verify your email: {verification_url}',
+            settings.DEFAULT_FROM_EMAIL,
+            [user.email],
+            fail_silently=False,
+        )
 
         return Response(
             {
@@ -38,6 +67,23 @@ class RegisterView(generics.CreateAPIView):
             },
             status=status.HTTP_201_CREATED,
         )
+    
+
+class VerifyEmailView(APIView):
+    permission_classes = (AllowAny,)
+
+    def get(self, request, uid, token, *args, **kwargs):
+        try:
+            user = Student.objects.get(pk=uid)
+        except Student.DoesNotExist:
+            return Response({"error": "Invalid user ID"}, status=status.HTTP_400_BAD_REQUEST)
+
+        if default_token_generator.check_token(user, token):
+            user.is_active = True
+            user.save()
+            return Response({"success": "Email verified successfully"}, status=status.HTTP_200_OK)
+        else:
+            return Response({"error": "Invalid token"}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class ChangePasswordView(generics.UpdateAPIView):
@@ -91,14 +137,19 @@ class CheckUserExistView(APIView):
                 {"error": "Email is required."}, status=status.HTTP_400_BAD_REQUEST
             )
 
-        is_user_exist = Student.objects.filter(email=email).exists()
-        if is_user_exist:
+        try:
+            user = Student.objects.get(email=email)
+            if user.is_active:
+                return Response(
+                    {"exist": True, "active": True, "message": "User with this email exists."},
+                    status=status.HTTP_200_OK,
+                )
             return Response(
-                {"exist": True, "message": "User with this email exists."},
+                {"exist": True, "active": False, "message": "User with this email exists but inactive"},
                 status=status.HTTP_200_OK,
             )
-        else:
+        except Student.DoesNotExist:
             return Response(
-                {"exist": False, "message": "User with this email does not exist."},
+                {"exist": False, "active": False, "message": "User with this email does not exist."},
                 status=status.HTTP_200_OK,
             )
