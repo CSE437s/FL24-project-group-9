@@ -85,7 +85,6 @@ class Command(BaseCommand):
             first_name="John",
             last_name="Doe",
             email="john.doe@wustl.edu",
-            joined=2020,
             grad=2024,
             career="Software Engineer",
             required_units=120,

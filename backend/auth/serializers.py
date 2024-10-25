@@ -1,5 +1,3 @@
-from datetime import date
-
 from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
@@ -65,22 +63,6 @@ class RegisterSerializer(serializers.ModelSerializer):
             first_name=validated_data["first_name"],
             last_name=validated_data["last_name"],
         )
-        for idx in range(5):
-            if idx == 0:
-                Semester.objects.create(
-                    student=user, name=f"Fall {date.today().year + idx}"
-                )
-            elif idx == 4:
-                Semester.objects.create(
-                    student=user, name=f"Spring {date.today().year + idx}"
-                )
-            else:
-                Semester.objects.create(
-                    student=user, name=f"Spring {date.today().year + idx}"
-                )
-                Semester.objects.create(
-                    student=user, name=f"Fall {date.today().year + idx}"
-                )
 
         user.set_password(validated_data["password"])
         user.save()
