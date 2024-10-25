@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from api.models import Student, Course, Department, Semester, Program
+
+from api.models import Course, Department, Program, Semester, Student
 
 
 class CourseSerializer(serializers.ModelSerializer):

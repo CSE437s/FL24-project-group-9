@@ -76,3 +76,20 @@ To run server:
 poetry run python3 manage.py runserver
 ```
 
+#### Backend using Docker
+Switch to the backend folder
+```
+cd backend
+```
+
+Download [Docker](https://www.docker.com/get-started/)
+
+Build and Run Containers
+```
+docker-compose up --build
+```
+
+Remove Containers
+```
+docker-compose down
+```

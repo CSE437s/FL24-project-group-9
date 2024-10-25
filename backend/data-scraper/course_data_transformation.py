@@ -27,7 +27,6 @@ def extract_description(description):
 
 
 def transform_data(course):
-
     transformed_course = {
         "title": extract_course_title(course.get("title", "")),
         "code": extract_course_code(course.get("title", "")),

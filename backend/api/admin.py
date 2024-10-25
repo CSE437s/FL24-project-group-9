@@ -1,6 +1,7 @@
 from django.contrib import admin
-from .models import Department, Course, DepCourse, Program, Semester, Student
 from django.contrib.auth.models import Group
+
+from .models import Course, Department, DepCourse, Program, Semester, Student
 
 admin.site.register(Department)
 admin.site.register(Course)
