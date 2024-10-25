@@ -82,3 +82,8 @@ Build and Run Containers
 ```
 docker-compose up --build
 ```
+
+Remove Containers
+```
+docker-compose down
+```
