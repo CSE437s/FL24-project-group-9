@@ -1,23 +1,22 @@
-from rest_framework.permissions import AllowAny
-from api.models import Student
-from auth.serializers import (
-    RegisterSerializer,
-    ChangePasswordSerializer,
-    CustomTokenObtainPairSerializer,
-)
-from rest_framework import generics
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.views import APIView
+from django.conf import settings
+from django.contrib.auth import logout
+from django.contrib.auth.tokens import default_token_generator
+from django.core.mail import send_mail
+from rest_framework import generics, serializers, status
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
-from rest_framework import status
-from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework.views import APIView
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.tokens import AccessToken, TokenError
-from rest_framework import serializers
-from django.contrib.auth import logout
-from django.core.mail import send_mail
-from django.contrib.auth.tokens import default_token_generator
-from django.conf import settings
+from rest_framework_simplejwt.views import TokenObtainPairView
+
+from api.models import Student
+from auth.serializers import (
+    ChangePasswordSerializer,
+    CustomTokenObtainPairSerializer,
+    RegisterSerializer,
+)
+
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
@@ -25,9 +24,10 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         user = self.user
 
         if not user.is_active:
-            raise serializers.ValidationError('Email not verified.')
+            raise serializers.ValidationError("Email not verified.")
 
         return data
+
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
@@ -53,8 +53,8 @@ class RegisterView(generics.CreateAPIView):
         verification_url = f"{settings.FRONTEND_URL}/verify_email/{uid}/{token}/"
 
         send_mail(
-            'Verify your email',
-            f'Please click the link to verify your email: {verification_url}',
+            "Verify your email",
+            f"Please click the link to verify your email: {verification_url}",
             settings.DEFAULT_FROM_EMAIL,
             [user.email],
             fail_silently=False,
@@ -66,7 +66,7 @@ class RegisterView(generics.CreateAPIView):
             },
             status=status.HTTP_201_CREATED,
         )
-    
+
 
 class VerifyEmailView(APIView):
     permission_classes = (AllowAny,)
@@ -75,14 +75,20 @@ class VerifyEmailView(APIView):
         try:
             user = Student.objects.get(pk=uid)
         except Student.DoesNotExist:
-            return Response({"error": "Invalid user ID"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {"error": "Invalid user ID"}, status=status.HTTP_400_BAD_REQUEST
+            )
 
         if default_token_generator.check_token(user, token):
             user.is_active = True
             user.save()
-            return Response({"success": "Email verified successfully"}, status=status.HTTP_200_OK)
+            return Response(
+                {"success": "Email verified successfully"}, status=status.HTTP_200_OK
+            )
         else:
-            return Response({"error": "Invalid token"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {"error": "Invalid token"}, status=status.HTTP_400_BAD_REQUEST
+            )
 
 
 class ChangePasswordView(generics.UpdateAPIView):
@@ -99,7 +105,9 @@ class LogoutView(APIView):
 
     def post(self, request):
         logout(request)
-        return Response({"message": "Successfully logged out."}, status=status.HTTP_200_OK)
+        return Response(
+            {"message": "Successfully logged out."}, status=status.HTTP_200_OK
+        )
 
 
 class ValidateTokenView(APIView):
@@ -140,16 +148,28 @@ class CheckUserExistView(APIView):
             user = Student.objects.get(email=email)
             if user.is_active:
                 return Response(
-                    {"exist": True, "active": True, "message": "User with this email exists."},
+                    {
+                        "exist": True,
+                        "active": True,
+                        "message": "User with this email exists.",
+                    },
                     status=status.HTTP_200_OK,
                 )
             return Response(
-                {"exist": True, "active": False, "message": "User with this email exists but inactive"},
+                {
+                    "exist": True,
+                    "active": False,
+                    "message": "User with this email exists but inactive",
+                },
                 status=status.HTTP_200_OK,
             )
         except Student.DoesNotExist:
             return Response(
-                {"exist": False, "active": False, "message": "User with this email does not exist."},
+                {
+                    "exist": False,
+                    "active": False,
+                    "message": "User with this email does not exist.",
+                },
                 status=status.HTTP_200_OK,
             )
 
@@ -158,9 +178,11 @@ class ResetPasswordView(APIView):
     permission_classes = (AllowAny,)
 
     def post(self, request, *args, **kwargs):
-        email = request.data.get('email')
+        email = request.data.get("email")
         if not email:
-            return Response({"error": "Email is required"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {"error": "Email is required"}, status=status.HTTP_400_BAD_REQUEST
+            )
 
         try:
             user = Student.objects.get(email=email)
@@ -168,31 +190,46 @@ class ResetPasswordView(APIView):
             uid = user.pk
             reset_url = f"{settings.FRONTEND_URL}/reset_password/{uid}/{token}/"
             send_mail(
-                'Reset your password',
-                f'Please click the link to reset your password: {reset_url}',
+                "Reset your password",
+                f"Please click the link to reset your password: {reset_url}",
                 settings.DEFAULT_FROM_EMAIL,
                 [user.email],
                 fail_silently=False,
             )
-            return Response({"success": "Password reset email sent."}, status=status.HTTP_200_OK)
+            return Response(
+                {"success": "Password reset email sent."}, status=status.HTTP_200_OK
+            )
         except Student.DoesNotExist:
-            return Response({"error": "User with this email does not exist."}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {"error": "User with this email does not exist."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
 
 class ResetPasswordConfirmView(APIView):
     permission_classes = (AllowAny,)
 
     def post(self, request, uid, token, *args, **kwargs):
-        password = request.data.get('password')
+        password = request.data.get("password")
         if not password:
-            return Response({"error": "Password is required."}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {"error": "Password is required."}, status=status.HTTP_400_BAD_REQUEST
+            )
 
         try:
             user = Student.objects.get(pk=uid)
             if default_token_generator.check_token(user, token):
                 user.set_password(password)
                 user.save()
-                return Response({"success": "Password has been reset."}, status=status.HTTP_200_OK)
+                return Response(
+                    {"success": "Password has been reset."}, status=status.HTTP_200_OK
+                )
             else:
-                return Response({"error": "Invalid token."}, status=status.HTTP_400_BAD_REQUEST)
+                return Response(
+                    {"error": "Invalid token."}, status=status.HTTP_400_BAD_REQUEST
+                )
         except Student.DoesNotExist:
-            return Response({"error": "User with this email does not exist."}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {"error": "User with this email does not exist."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )

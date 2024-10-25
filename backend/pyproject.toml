@@ -14,7 +14,6 @@ requests = "^2.32.3"
 django-cors-headers = "^4.4.0"
 djangorestframework-simplejwt = "^5.3.1"
 django-filter = "^24.3"
-django-allauth = "^65.0.2"
 python-dotenv = "^1.0.1"
 
 [tool.poetry.group.dev.dependencies]
@@ -22,13 +21,19 @@ black = "^24.8.0"
 pylint = "^3.3.1"
 pre-commit = "^3.8.0"
 pyright = "^1.1.382.post0"
+isort = "^5.13.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
+[tool.black]
+line-length = 88
+target-version = ['py39']
+
 [tool.isort]
 profile = "black"
+line_length = 88
 
 [tool.pylint]
 extension-pkg-whitelist="pydantic" # Pylint cannot lint C extension modules https://stackoverflow.com/a/67560637

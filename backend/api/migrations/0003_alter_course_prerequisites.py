@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("api", "0002_remove_student_majors_remove_minor_required_courses_and_more"),
     ]
