@@ -18,7 +18,7 @@ export const PlannerComponent: React.FC<PlannerComponentProps> = ({
   const { courses, semesters, updateSemester } = useAcademicDataContext()
   const [newCourse, setNewCourse] = useState(courses[0]?.id)
   const [newSemester, setNewSemester] = useState(
-    semesters.filter((s) => s.isCompleted == isCompleted)[0].id
+    semesters.filter((s) => s.isCompleted == isCompleted)[0]?.id
   )
 
   const handleRemoveClick = (semester: Semester, courseId: number) => {

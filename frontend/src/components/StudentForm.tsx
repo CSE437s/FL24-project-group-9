@@ -17,7 +17,10 @@ export const StudentForm: React.FC<StudentFormProps> = ({
   handleCancel,
 }) => {
   const { academicLoading, programs } = useAcademicDataContext()
-  const [newStudent, setNewStudent] = useState<Student>(student)
+  const [newStudent, setNewStudent] = useState<Student>({
+    ...student,
+    programs: [student.programs[0] ?? programs[0].id],
+  })
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -92,9 +95,11 @@ export const StudentForm: React.FC<StudentFormProps> = ({
         />
       </div>
       <div className="action-btns">
-        <button type="button" onClick={handleCancel}>
-          Cancel
-        </button>
+        {handleCancel && (
+          <button type="button" onClick={handleCancel}>
+            Cancel
+          </button>
+        )}
         <button type="submit">Save</button>
       </div>
     </form>

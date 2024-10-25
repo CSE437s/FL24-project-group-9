@@ -18,6 +18,7 @@ interface AcademicDataContextType {
   programs: Program[]
   semesters: Semester[]
   updateSemester: (semester: Semester) => void
+  hasPreviousSemesters: () => boolean
 }
 
 const AcademicDataContext = createContext<AcademicDataContextType | undefined>(
@@ -65,6 +66,10 @@ const AcademicDataProvider = ({ children }: { children: ReactNode }) => {
     )
   }
 
+  const hasPreviousSemesters = () => {
+    return semesters.filter((s) => s.isCompleted).length > 0
+  }
+
   return (
     <AcademicDataContext.Provider
       value={{
@@ -74,6 +79,7 @@ const AcademicDataProvider = ({ children }: { children: ReactNode }) => {
         programs,
         semesters,
         updateSemester,
+        hasPreviousSemesters,
       }}
     >
       {children}

@@ -15,7 +15,7 @@ export default function OnboardingPage() {
 
   const handleSave = (student: Student) => {
     updateStudent(student).then(() => {
-      navigate('/dashboard')
+      navigate('/dashboard/edit')
     })
   }
 

@@ -13,7 +13,7 @@ const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
 
   const { loading, bearerToken } = useAuthContext()
   const { studentLoading, hasStudentOnboarded } = useStudentContext()
-  const { academicLoading } = useAcademicDataContext()
+  const { academicLoading, hasPreviousSemesters } = useAcademicDataContext()
 
   if (loading) {
     return (
@@ -51,6 +51,10 @@ const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
   }
 
   if (hasStudentOnboarded() && location.pathname === '/onboarding') {
+    return <Navigate to="/dashboard" />
+  }
+
+  if (!hasPreviousSemesters() && location.pathname === '/dashboard/edit') {
     return <Navigate to="/dashboard" />
   }
 
