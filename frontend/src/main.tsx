@@ -44,14 +44,6 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: '/profile',
-    element: (
-      <ProtectedRoute>
-        <DashboardPage />
-      </ProtectedRoute>
-    ),
-  },
-  {
     path: '/planner',
     element: (
       <ProtectedRoute>

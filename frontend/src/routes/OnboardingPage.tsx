@@ -15,18 +15,14 @@ export default function OnboardingPage() {
 
   const handleSave = (student: Student) => {
     updateStudent(student).then(() => {
-      navigate('/profile')
+      navigate('/dashboard')
     })
   }
 
   if (studentLoading) {
     return (
       <>
-        <HeaderBar
-          isNavVisible={true}
-          isProfileHidden={true}
-          isDashboardHidden={true}
-        />
+        <HeaderBar isNavVisible={true} isDashboardHidden={true} />
         <SpinnerComponent messages={['Loading student info...']} />
       </>
     )
@@ -35,11 +31,7 @@ export default function OnboardingPage() {
   if (!student) {
     return (
       <>
-        <HeaderBar
-          isNavVisible={true}
-          isProfileHidden={true}
-          isDashboardHidden={true}
-        />
+        <HeaderBar isNavVisible={true} isDashboardHidden={true} />
         <div className="onboarding-page">
           <h4>No info available, please try again later.</h4>
         </div>
@@ -50,11 +42,7 @@ export default function OnboardingPage() {
 
   return (
     <>
-      <HeaderBar
-        isNavVisible={true}
-        isProfileHidden={true}
-        isDashboardHidden={true}
-      />
+      <HeaderBar isNavVisible={true} isDashboardHidden={true} />
       <div className="onboarding-page">
         <section className="onboarding-summary">
           <h3>

@@ -51,7 +51,7 @@ const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
   }
 
   if (hasStudentOnboarded() && location.pathname === '/onboarding') {
-    return <Navigate to="/profile" />
+    return <Navigate to="/dashboard" />
   }
 
   return children

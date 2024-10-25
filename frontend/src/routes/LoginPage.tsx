@@ -76,7 +76,7 @@ export default function LoginPage() {
       .then((response) => {
         if (response) {
           setMessage('')
-          navigate('/profile')
+          navigate('/dashboard')
           return
         }
         setMessage('wrong password, please try again')
@@ -109,7 +109,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (bearerToken) {
-      navigate('/profile')
+      navigate('/dashboard')
     }
   }, [bearerToken, navigate])
 

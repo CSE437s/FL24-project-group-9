@@ -26,8 +26,7 @@
 
 .schedule-row-body.expanded {
   border-top: var(--border-size) var(--border-table) solid;
-  max-height: 20rem;
-  overflow-y: scroll;
+  max-height: 30rem;
   transition: max-height 0.3s ease;
 }
 

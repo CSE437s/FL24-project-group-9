@@ -12,7 +12,7 @@ export default function HomePage() {
 
   const handleGetStarted = () => {
     if (bearerToken) {
-      navigate('/profile')
+      navigate('/dashboard')
       return
     }
     navigate('/login')
