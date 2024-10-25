@@ -54,7 +54,7 @@ repos:
         name: Sync poetry.lock
         description: "A check that the poetry.lock has been synced with any changes in pyproject.toml."
         language: system
-        entry: cd backend && poetry lock --no-update
+        entry: poetry lock --no-update
         args: ["-C", "./backend"]
         files: ^backend/pyproject.toml$
         pass_filenames: false
