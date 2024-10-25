@@ -81,32 +81,39 @@ class StudentViewSet(ViewSet):
 
         if "grad" in request.data and int(request.data["grad"]) != student.grad:
             grad_year = int(request.data["grad"])
-            joined_year = grad_year - 4
-            Semester.objects.filter(student=student).delete()
-            for year in range(joined_year, grad_year + 1):
-                if year == joined_year:
-                    Semester.objects.create(
-                        student=student,
-                        name=f"Fall {year}",
-                        isCompleted=self.is_completed("Fall", year),
-                    )
-                elif year == grad_year:
-                    Semester.objects.create(
-                        student=student,
-                        name=f"Spring {year}",
-                        isCompleted=self.is_completed("Spring", year),
-                    )
+
+            existing_semesters = {semester.name: semester for semester in Semester.objects.filter(student=student)}
+            new_semesters = []
+
+            for year in range(grad_year - 4, grad_year):
+                fall_name = f"Fall {year}"
+                spring_name = f"Spring {year + 1}"
+
+                if fall_name in existing_semesters:
+                    fall_semester = existing_semesters[fall_name]
+                    fall_semester.isCompleted = self.is_completed("Fall", year)
                 else:
-                    Semester.objects.create(
+                    fall_semester = Semester(
                         student=student,
-                        name=f"Spring {year}",
-                        isCompleted=self.is_completed("Spring", year),
-                    )
-                    Semester.objects.create(
-                        student=student,
-                        name=f"Fall {year}",
+                        name=fall_name,
                         isCompleted=self.is_completed("Fall", year),
                     )
+                new_semesters.append(fall_semester)
+
+                if spring_name in existing_semesters:
+                    spring_semester = existing_semesters[spring_name]
+                    spring_semester.isCompleted = self.is_completed("Spring", year + 1)
+                else:
+                    spring_semester = Semester(
+                        student=student,
+                        name=spring_name,
+                        isCompleted=self.is_completed("Spring", year + 1),
+                    )
+                new_semesters.append(spring_semester)
+
+        Semester.objects.filter(student=student).exclude(name__in=[semester.name for semester in new_semesters]).delete()
+        for semester in new_semesters:
+            semester.save()
 
         if serializer.is_valid():
             serializer.save()
