@@ -4,13 +4,17 @@ import { FooterBar } from '../components/FooterBar'
 import { HeaderBar } from '../components/HeaderBar'
 import { PlannerComponent } from '../components/PlannerComponent'
 import { SpinnerComponent } from '../components/SpinnerComponent'
-import { useAcademicDataContext } from '../context/useContext'
+import {
+  useAcademicDataContext,
+  useStudentContext,
+} from '../context/useContext'
 
 import './css/PlannerPage.css'
 
 export default function PlannerPage() {
   const navigate = useNavigate()
-  const { semesters, academicLoading } = useAcademicDataContext()
+  const { academicLoading } = useAcademicDataContext()
+  const { semesters } = useStudentContext()
 
   const handleSave = () => {
     navigate('/dashboard')
@@ -29,10 +33,12 @@ export default function PlannerPage() {
     return (
       <>
         <HeaderBar isNavVisible={true} />
-        <section className="no-courses">
-          <h4>Unable to generate recommended schedule at this time</h4>
-          <p>Please try again later</p>
-        </section>
+        <div className="planner-page">
+          <section className="no-courses">
+            <h4>Unable to generate recommended schedule at this time</h4>
+            <p>Please try again later</p>
+          </section>
+        </div>
         <FooterBar />
       </>
     )

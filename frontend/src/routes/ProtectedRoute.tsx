@@ -12,8 +12,9 @@ const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
   const location = useLocation()
 
   const { loading, bearerToken } = useAuthContext()
-  const { studentLoading, hasStudentOnboarded } = useStudentContext()
-  const { academicLoading, hasPreviousSemesters } = useAcademicDataContext()
+  const { studentLoading, hasStudentOnboarded, hasPreviousSemesters } =
+    useStudentContext()
+  const { academicLoading } = useAcademicDataContext()
 
   if (loading) {
     return (

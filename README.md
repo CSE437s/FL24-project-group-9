@@ -86,10 +86,10 @@ Download [Docker](https://www.docker.com/get-started/)
 
 Build and Run Containers
 ```
-docker-compose up --build
+docker compose up --build
 ```
 
 Remove Containers
 ```
-docker-compose down
+docker compose down
 ```

@@ -4,19 +4,19 @@ import { FooterBar } from '../components/FooterBar'
 import { HeaderBar } from '../components/HeaderBar'
 import { PlannerComponent } from '../components/PlannerComponent'
 import { SpinnerComponent } from '../components/SpinnerComponent'
-import { useAcademicDataContext } from '../context/useContext'
+import { useStudentContext } from '../context/useContext'
 
 import './css/DashboardEditPage.css'
 
 export default function DashboardEditPage() {
   const navigate = useNavigate()
-  const { academicLoading, semesters } = useAcademicDataContext()
+  const { studentLoading, semesters } = useStudentContext()
 
   const handleSave = () => {
     navigate('/dashboard')
   }
 
-  if (academicLoading) {
+  if (studentLoading) {
     return (
       <>
         <HeaderBar isNavVisible={true} />

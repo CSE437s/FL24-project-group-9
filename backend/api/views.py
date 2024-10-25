@@ -79,7 +79,7 @@ class StudentViewSet(ViewSet):
         student = self.get_object()
         serializer = StudentSerializer(student, data=request.data, partial=True)
 
-        if "grad" in request.data:
+        if "grad" in request.data and int(request.data["grad"]) != student.grad:
             grad_year = int(request.data["grad"])
             joined_year = grad_year - 4
             Semester.objects.filter(student=student).delete()

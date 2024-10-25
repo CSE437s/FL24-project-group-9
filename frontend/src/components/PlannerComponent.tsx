@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import { DragDropContext, DropResult } from 'react-beautiful-dnd'
 
-import { useAcademicDataContext } from '../context/useContext'
+import {
+  useAcademicDataContext,
+  useStudentContext,
+} from '../context/useContext'
 import { Semester } from '../models/Semester'
 
 import { ScheduleDraggableV2 } from './ScheduleDraggableV2'
@@ -15,7 +18,8 @@ interface PlannerComponentProps {
 export const PlannerComponent: React.FC<PlannerComponentProps> = ({
   isCompleted = false,
 }) => {
-  const { courses, semesters, updateSemester } = useAcademicDataContext()
+  const { courses } = useAcademicDataContext()
+  const { semesters, updateSemester } = useStudentContext()
   const [newCourse, setNewCourse] = useState(courses[0]?.id)
   const [newSemester, setNewSemester] = useState(
     semesters.filter((s) => s.isCompleted == isCompleted)[0]?.id

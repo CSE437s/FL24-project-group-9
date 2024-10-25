@@ -13,8 +13,8 @@ import './css/DashboardPage.css'
 
 export default function DashboardPage() {
   const navigate = useNavigate()
-  const { programs, academicLoading, semesters } = useAcademicDataContext()
-  const { studentLoading, student } = useStudentContext()
+  const { programs, academicLoading } = useAcademicDataContext()
+  const { studentLoading, student, semesters } = useStudentContext()
 
   const handleEdit = () => {
     navigate('/dashboard/edit')
