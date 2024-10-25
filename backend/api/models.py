@@ -1,6 +1,7 @@
-from django.db import models
-from django.contrib.auth.models import AbstractUser
 from datetime import date
+
+from django.contrib.auth.models import AbstractUser
+from django.db import models
 
 
 # Create your models here.

@@ -1,6 +1,8 @@
-from django.core.management.base import BaseCommand
 import json
-from api.models import Course, Department, DepCourse, Program, Student, Semester
+
+from django.core.management.base import BaseCommand
+
+from api.models import Course, Department, DepCourse, Program, Semester, Student
 
 
 class Command(BaseCommand):
