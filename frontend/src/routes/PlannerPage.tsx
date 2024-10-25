@@ -6,9 +6,9 @@ import { PlannerComponent } from '../components/PlannerComponent'
 import { SpinnerComponent } from '../components/SpinnerComponent'
 import { useAcademicDataContext } from '../context/useContext'
 
-import './css/PlannerPageV2.css'
+import './css/PlannerPage.css'
 
-export default function PlannerPageV2() {
+export default function PlannerPage() {
   const navigate = useNavigate()
   const { semesters, academicLoading } = useAcademicDataContext()
 
