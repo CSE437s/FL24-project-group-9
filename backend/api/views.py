@@ -1,16 +1,17 @@
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.response import Response
-from rest_framework.viewsets import ReadOnlyModelViewSet
 from rest_framework import status
-from rest_framework.permissions import IsAuthenticated, AllowAny
-from rest_framework.viewsets import ViewSet
-from api.models import Student, Course, Department, Semester, Program
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.viewsets import ReadOnlyModelViewSet, ViewSet
+
+from api.models import Course, Department, Program, Semester, Student
+
 from .serializers import (
-    StudentSerializer,
     CourseSerializer,
     DepartmentSerializer,
-    SemesterSerializer,
     ProgramSerializer,
+    SemesterSerializer,
+    StudentSerializer,
 )
 
 

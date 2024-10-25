@@ -2,6 +2,7 @@
 
 import json
 import time
+
 import requests
 from bs4 import BeautifulSoup
 from course_data_transformation import transform_data

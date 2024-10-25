@@ -5,8 +5,7 @@ on:
     branches:
       - main
   pull_request:
-    branches:
-      - main
+    branches: ["*"]
 
 jobs:
   build:
@@ -14,10 +13,10 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v5
       with:
         python-version: '3.11'
 
@@ -31,8 +30,11 @@ jobs:
       run: |
         cd backend
         poetry install
-    
+
     - name: Seed Database
       run: |
         cd backend
         poetry run python manage.py seed_data
+
+    - name: Run pre-commit checks
+      run: poetry run pre-commit run -a
