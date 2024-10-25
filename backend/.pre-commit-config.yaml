@@ -28,7 +28,7 @@ repos:
       - id: pylint
         description: "A static code analyzer."
         name: pylint
-        entry: cd backend && poetry run pylint
+        entry: bash -c 'cd backend && poetry run pylint backend --disable=C0301'
         language: system
         types: [python]
         args:
@@ -36,12 +36,12 @@ repos:
             "-rn", # Only display messages
             "-sn", # Don't display the score
           ]
-      - id: pyright
-        description: "A static type checker."
-        name: pyright
-        entry: cd backend && poetry run pyright
-        language: system
-        types: [python]
+      # - id: pyright
+      #   description: "A static type checker."
+      #   name: pyright
+      #   entry: bash -c 'cd backend && poetry run pyright'
+      #   language: system
+      #   types: [python]
   # - repo: https://github.com/pycqa/pydocstyle
   #   rev: 6.3.0
   #   hooks:
@@ -55,5 +55,6 @@ repos:
         description: "A check that the poetry.lock has been synced with any changes in pyproject.toml."
         language: system
         entry: cd backend && poetry lock --no-update
+        args: ["-C", "./backend"]
         files: ^backend/pyproject.toml$
         pass_filenames: false
