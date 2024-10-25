@@ -1,3 +1,5 @@
+from datetime import date
+
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -64,9 +66,48 @@ class StudentViewSet(ViewSet):
         serializer = StudentSerializer(student)
         return Response(serializer.data)
 
+    def is_completed(self, semester, year):
+        today_year = date.today().year
+        today_month = date.today().month
+        return (
+            year < today_year
+            or (year == today_year and semester == "Fall" and today_month > 11)
+            or (year == today_year and semester == "Spring" and today_month > 4)
+        )
+
     def update(self, request, *args, **kwargs):
         student = self.get_object()
         serializer = StudentSerializer(student, data=request.data, partial=True)
+
+        if "grad" in request.data:
+            grad_year = int(request.data["grad"])
+            joined_year = grad_year - 4
+            Semester.objects.filter(student=student).delete()
+            for year in range(joined_year, grad_year + 1):
+                if year == joined_year:
+                    Semester.objects.create(
+                        student=student,
+                        name=f"Fall {year}",
+                        isCompleted=self.is_completed("Fall", year),
+                    )
+                elif year == grad_year:
+                    Semester.objects.create(
+                        student=student,
+                        name=f"Spring {year}",
+                        isCompleted=self.is_completed("Spring", year),
+                    )
+                else:
+                    Semester.objects.create(
+                        student=student,
+                        name=f"Spring {year}",
+                        isCompleted=self.is_completed("Spring", year),
+                    )
+                    Semester.objects.create(
+                        student=student,
+                        name=f"Fall {year}",
+                        isCompleted=self.is_completed("Fall", year),
+                    )
+
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)

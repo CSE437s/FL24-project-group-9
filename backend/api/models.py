@@ -1,5 +1,3 @@
-from datetime import date
-
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
@@ -50,8 +48,7 @@ class Program(models.Model):
 
 class Student(AbstractUser):
     email = models.EmailField(unique=True)
-    joined = models.IntegerField(default=date.today().year, blank=True)
-    grad = models.IntegerField(default=date.today().year + 4, blank=True)
+    grad = models.IntegerField(blank=True, null=True)
     programs = models.ManyToManyField(Program, blank=True)
     career = models.CharField(max_length=255, blank=True)
     required_units = models.PositiveIntegerField(blank=True, null=True)
