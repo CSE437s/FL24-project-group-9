@@ -37,4 +37,4 @@ jobs:
         poetry run python manage.py seed_data
 
     - name: Run pre-commit checks
-      run: poetry run pre-commit run -a
+      run: cd backend && poetry run pre-commit run -a
