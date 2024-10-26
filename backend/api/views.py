@@ -82,7 +82,10 @@ class StudentViewSet(ViewSet):
         if "grad" in request.data and int(request.data["grad"]) != student.grad:
             grad_year = int(request.data["grad"])
 
-            existing_semesters = {semester.name: semester for semester in Semester.objects.filter(student=student)}
+            existing_semesters = {
+                semester.name: semester
+                for semester in Semester.objects.filter(student=student)
+            }
             new_semesters = []
 
             for year in range(grad_year - 4, grad_year):
@@ -111,7 +114,9 @@ class StudentViewSet(ViewSet):
                     )
                 new_semesters.append(spring_semester)
 
-        Semester.objects.filter(student=student).exclude(name__in=[semester.name for semester in new_semesters]).delete()
+        Semester.objects.filter(student=student).exclude(
+            name__in=[semester.name for semester in new_semesters]
+        ).delete()
         for semester in new_semesters:
             semester.save()
 
