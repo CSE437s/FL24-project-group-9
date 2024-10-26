@@ -2,6 +2,7 @@ from datetime import date
 
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
+from rest_framework.exceptions import NotFound, ValidationError
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ReadOnlyModelViewSet, ViewSet
@@ -79,8 +80,15 @@ class StudentViewSet(ViewSet):
         student = self.get_object()
         serializer = StudentSerializer(student, data=request.data, partial=True)
 
-        if "grad" in request.data and int(request.data["grad"]) != student.grad:
-            grad_year = int(request.data["grad"])
+        if "grad" in request.data:
+            try:
+                grad_year = int(request.data["grad"])
+                if grad_year != student.grad:
+                    student.grad = grad_year
+            except ValueError:
+                raise ValidationError(
+                    {"grad": "Graduation year must be a valid integer."}
+                )
 
             existing_semesters = {
                 semester.name: semester
@@ -174,7 +182,11 @@ class SemesterViewSet(ViewSet):
 
     def update(self, request, pk=None):
         authenticated_student = self.request.user
-        semesters = self.queryset.filter(student=authenticated_student).get(pk=pk)
+        try:
+            semesters = self.queryset.filter(student=authenticated_student).get(pk=pk)
+        except Semester.DoesNotExist:
+            raise NotFound(detail="Semester matching query does not exist.")
+
         serializer = SemesterSerializer(semesters, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()

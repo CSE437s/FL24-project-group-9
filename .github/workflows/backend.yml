@@ -40,3 +40,8 @@ jobs:
       run: |
         cd backend
         poetry run pre-commit run -a
+
+    - name: Run tests
+      run: |
+        cd backend
+        poetry run python3 manage.py test
