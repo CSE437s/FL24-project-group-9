@@ -65,6 +65,12 @@ EMAIL_HOST_USER=<your_email@gmail.com>
 EMAIL_HOST_PASSWORD=<your_password>
 ```
 
+To seed data into the database:
+
+```
+poetry run python3 manage.py seed_data
+```
+
 To run server:
 ```
 poetry run python3 manage.py runserver
@@ -80,10 +86,10 @@ Download [Docker](https://www.docker.com/get-started/)
 
 Build and Run Containers
 ```
-docker-compose up --build
+docker compose up --build
 ```
 
 Remove Containers
 ```
-docker-compose down
+docker compose down
 ```

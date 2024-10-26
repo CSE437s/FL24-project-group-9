@@ -10,7 +10,7 @@ import ForgotPasswordPage from './routes/ForgotPasswordPage'
 import HomePage from './routes/HomePage'
 import LoginPage from './routes/LoginPage'
 import OnboardingPage from './routes/OnboardingPage'
-import PlannerPageV2 from './routes/PlannerPageV2'
+import PlannerPage from './routes/PlannerPage'
 import ProfileEditPage from './routes/ProfileEditPage'
 import ProtectedRoute from './routes/ProtectedRoute'
 import ResetPasswordPage from './routes/ResetPasswordPage'
@@ -44,18 +44,10 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: '/profile',
-    element: (
-      <ProtectedRoute>
-        <DashboardPage />
-      </ProtectedRoute>
-    ),
-  },
-  {
     path: '/planner',
     element: (
       <ProtectedRoute>
-        <PlannerPageV2 />
+        <PlannerPage />
       </ProtectedRoute>
     ),
   },

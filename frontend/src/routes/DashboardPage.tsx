@@ -13,8 +13,8 @@ import './css/DashboardPage.css'
 
 export default function DashboardPage() {
   const navigate = useNavigate()
-  const { programs, academicLoading, semesters } = useAcademicDataContext()
-  const { studentLoading, student } = useStudentContext()
+  const { programs, academicLoading } = useAcademicDataContext()
+  const { studentLoading, student, semesters } = useStudentContext()
 
   const handleEdit = () => {
     navigate('/dashboard/edit')
@@ -48,9 +48,7 @@ export default function DashboardPage() {
 
   const profileComponent = student ? (
     <>
-      <h2>
-        Welcome to CoursePlanner {student?.first_name} {student?.last_name}!
-      </h2>
+      <h2>Welcome to CoursePlanner {student?.first_name}!</h2>
       <section className="academic-summary">
         <h4>
           Academic Summary

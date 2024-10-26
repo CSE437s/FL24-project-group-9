@@ -7,14 +7,12 @@ import './css/HeaderBar.css'
 
 interface HeaderBarProps {
   isNavVisible?: boolean
-  isProfileHidden?: boolean
   isDashboardHidden?: boolean
   isLogoutHidden?: boolean
 }
 
 export const HeaderBar: React.FC<HeaderBarProps> = ({
   isNavVisible,
-  isProfileHidden = true,
   isDashboardHidden,
   isLogoutHidden,
 }) => {
@@ -30,9 +28,6 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
       <img src={logo} alt="Logo" className="logo" onClick={handleLogoClick} />
       {isNavVisible && (
         <nav>
-          {!isProfileHidden && (
-            <a onClick={() => navigate('/profile')}>Profile</a>
-          )}
           {!isDashboardHidden && (
             <a onClick={() => navigate('/dashboard')}>Dashboard</a>
           )}
