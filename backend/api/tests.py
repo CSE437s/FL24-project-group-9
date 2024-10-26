@@ -18,18 +18,26 @@ class BaseAPITestCase(APITestCase):
         self.token = AccessToken.for_user(self.user)
         self.client.credentials(HTTP_AUTHORIZATION=f"Bearer {str(self.token)}")
 
-
-class StudentViewSetTest(BaseAPITestCase):
-    def setUp(self):
-        super().setUp()
-
-        # Create example semesters for the student
+        # Create test semesters
         self.semester1 = Semester.objects.create(
             student=self.user, name="Fall 2023", isCompleted=False
         )
         self.semester2 = Semester.objects.create(
             student=self.user, name="Spring 2024", isCompleted=False
         )
+
+        # Create test courses
+        self.course1 = Course.objects.create(
+            title="Course 1", description="Description 1", units=3, code="CSE 123"
+        )
+        self.course2 = Course.objects.create(
+            title="Course 2", description="Description 2", units=4, code="CSE 124"
+        )
+
+
+class StudentViewSetTest(BaseAPITestCase):
+    def setUp(self):
+        super().setUp()
 
         # Define the URL for student endpoints
         self.url_list = reverse("student-list")
@@ -45,13 +53,24 @@ class StudentViewSetTest(BaseAPITestCase):
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertEqual(response.data["username"], self.user.username)
 
-    def test_update_student_info(self):
+    def test_update_student_grad(self):
         updated_data = {"grad": 2026}  # Updating graduation year
         response = self.client.put(self.url_detail, updated_data)
         self.user.refresh_from_db()  # Refresh user instance from database
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertEqual(self.user.grad, 2026)
+        # Check that the semesters are kept if possible
         self.assertTrue(Semester.objects.filter(pk=self.semester1.pk).exists())
+        self.assertTrue(Semester.objects.filter(pk=self.semester2.pk).exists())
+
+        # Check that the semesters cleared
+        updated_data = {"grad": 2050}
+        response = self.client.put(self.url_detail, updated_data)
+        self.user.refresh_from_db()
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertEqual(self.user.grad, 2050)
+        self.assertFalse(Semester.objects.filter(pk=self.semester1.pk).exists())
+        self.assertFalse(Semester.objects.filter(pk=self.semester2.pk).exists())
 
     def test_update_student_info_with_invalid_data(self):
         updated_data = {"grad": "not_a_number"}  # Invalid data
@@ -72,14 +91,6 @@ class StudentViewSetTest(BaseAPITestCase):
 class CourseViewSetTest(BaseAPITestCase):
     def setUp(self):
         super().setUp()
-
-        # Create test courses
-        self.course1 = Course.objects.create(
-            title="Course 1", description="Description 1", units=3, code="CSE 123"
-        )
-        self.course2 = Course.objects.create(
-            title="Course 2", description="Description 2", units=4, code="CSE 124"
-        )
 
         # Define the URLs
         self.url_list = reverse("course-list")
@@ -188,3 +199,57 @@ class ProgramViewSetTest(BaseAPITestCase):
         self.client.credentials()  # Clear the token
         response = self.client.get(self.url_detail)
         self.assertEqual(response.status_code, HTTPStatus.UNAUTHORIZED)
+
+
+class SemesterViewSetTests(BaseAPITestCase):
+    def setUp(self):
+        super().setUp()
+
+        # URL for listing semesters
+        self.url_list = reverse("semester-list")
+        self.url_update = reverse("semester-detail", kwargs={"pk": self.semester1.pk})
+
+    def test_list_semesters(self):
+        response = self.client.get(self.url_list)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertEqual(len(response.data), 2)
+        self.assertEqual(response.data[0]["name"], "Fall 2023")  # Check sorted
+
+    def test_add_course_to_semester(self):
+        updated_data = {"planned_courses": [self.course1.pk, self.course2.pk]}
+        response = self.client.put(self.url_update, updated_data)
+
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.semester1.refresh_from_db()
+        self.assertIn(self.course1, self.semester1.planned_courses.all())
+        self.assertIn(self.course2, self.semester1.planned_courses.all())
+
+    def test_remove_course_from_semester(self):
+        updated_data = {
+            "planned_courses": [self.course1.pk],  # Only keep course1
+        }
+        response = self.client.put(self.url_update, updated_data)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+
+        self.semester1.refresh_from_db()
+        self.assertIn(self.course1, self.semester1.planned_courses.all())
+        self.assertNotIn(self.course2, self.semester1.planned_courses.all())
+
+    def test_update_semester_with_invalid_course(self):
+        updated_data = {
+            "planned_courses": [999],  # Non-existent course
+        }
+        response = self.client.put(self.url_update, updated_data)
+        self.assertEqual(response.status_code, HTTPStatus.BAD_REQUEST)
+
+    def test_update_semester_not_found(self):
+        response = self.client.put(reverse("semester-detail", kwargs={"pk": 999}))
+        self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)
+
+    def test_update_semester_invalid_data(self):
+        url_update = reverse("semester-detail", kwargs={"pk": self.semester1.pk})
+        updated_data = {"name": "Fall 2026"}
+        response = self.client.put(url_update, updated_data)
+
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertEqual(response.data["name"], self.semester1.name)  # No change

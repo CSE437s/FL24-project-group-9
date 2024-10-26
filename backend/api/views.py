@@ -2,7 +2,7 @@ from datetime import date
 
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.exceptions import ValidationError
+from rest_framework.exceptions import NotFound, ValidationError
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ReadOnlyModelViewSet, ViewSet
@@ -182,7 +182,11 @@ class SemesterViewSet(ViewSet):
 
     def update(self, request, pk=None):
         authenticated_student = self.request.user
-        semesters = self.queryset.filter(student=authenticated_student).get(pk=pk)
+        try:
+            semesters = self.queryset.filter(student=authenticated_student).get(pk=pk)
+        except Semester.DoesNotExist:
+            raise NotFound(detail="Semester matching query does not exist.")
+
         serializer = SemesterSerializer(semesters, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
