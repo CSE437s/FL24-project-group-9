@@ -101,7 +101,7 @@ To seed data into the database:
 poetry run python3 manage.py seed_data
 ```
 
-To run unittests:
+To run unit tests:
 ```
 poetry run python3 manage.py test
 ```

@@ -26,10 +26,10 @@ urlpatterns = [
         VerifyEmailView.as_view(),
         name="verify_email",
     ),
-    path("reset_password/", ResetPasswordView.as_view(), name="password_reset"),
+    path("reset_password/", ResetPasswordView.as_view(), name="reset_password"),
     path(
         "reset_password_confirm/<int:uid>/<token>/",
         ResetPasswordConfirmView.as_view(),
-        name="password_reset_confirm",
+        name="reset_password_confirm",
     ),
 ]
