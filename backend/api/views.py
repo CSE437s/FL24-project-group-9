@@ -2,10 +2,10 @@ from datetime import date
 
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
+from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ReadOnlyModelViewSet, ViewSet
-from rest_framework.exceptions import ValidationError
 
 from api.models import Course, Department, Program, Semester, Student
 
@@ -86,7 +86,9 @@ class StudentViewSet(ViewSet):
                 if grad_year != student.grad:
                     student.grad = grad_year
             except ValueError:
-                raise ValidationError({"grad": "Graduation year must be a valid integer."})
+                raise ValidationError(
+                    {"grad": "Graduation year must be a valid integer."}
+                )
 
             existing_semesters = {
                 semester.name: semester
