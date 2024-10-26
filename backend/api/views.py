@@ -5,6 +5,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ReadOnlyModelViewSet, ViewSet
+from rest_framework.exceptions import ValidationError
 
 from api.models import Course, Department, Program, Semester, Student
 
@@ -79,8 +80,13 @@ class StudentViewSet(ViewSet):
         student = self.get_object()
         serializer = StudentSerializer(student, data=request.data, partial=True)
 
-        if "grad" in request.data and int(request.data["grad"]) != student.grad:
-            grad_year = int(request.data["grad"])
+        if "grad" in request.data:
+            try:
+                grad_year = int(request.data["grad"])
+                if grad_year != student.grad:
+                    student.grad = grad_year
+            except ValueError:
+                raise ValidationError({"grad": "Graduation year must be a valid integer."})
 
             existing_semesters = {
                 semester.name: semester
