@@ -93,7 +93,10 @@ const StudentProvider = ({ children }: { children: ReactNode }) => {
   }
 
   const hasPreviousSemesters = () => {
-    return semesters.filter((s) => s.isCompleted).length > 0
+    return (
+      (student && parseInt(student.grad) - 4 < new Date().getFullYear()) ||
+      semesters.filter((s) => s.isCompleted).length > 0
+    )
   }
 
   return (

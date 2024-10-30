@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
 import { ClipLoader } from 'react-spinners'
 
-import { useAuthContext } from '../context/useContext'
+import { useAuthContext, useStudentContext } from '../context/useContext'
 import { Review } from '../models/Review'
 import ReviewsAPI from '../services/ReviewsAPI'
 
 import { ReviewEditComponent } from './ReviewEditComponent'
-import { ReviewReadComponent } from './ReviewReadComponent'
 
 import './css/ReviewsComponent.css'
 
@@ -19,6 +18,7 @@ export const ReviewsComponent: React.FC<ReviewsComponentProps> = ({
 }) => {
   const { bearerToken } = useAuthContext()
 
+  const { student } = useStudentContext()
   const [reviews, setReviews] = useState<Review[]>([])
   const [reviewLoading, setReviewLoading] = useState(true)
   const [showCreate, setShowCreate] = useState(false)
@@ -51,16 +51,6 @@ export const ReviewsComponent: React.FC<ReviewsComponentProps> = ({
     )
   }
 
-  const createReview = (review: Review) => {
-    ReviewsAPI.createReview(bearerToken, review)
-      .then((response) => {
-        setReviews([response, ...reviews])
-      })
-      .catch((error) => {
-        console.error('Failed to create review:', error)
-      })
-  }
-
   return (
     <div className="reviews">
       <button
@@ -73,12 +63,20 @@ export const ReviewsComponent: React.FC<ReviewsComponentProps> = ({
       {showCreate && (
         <ReviewEditComponent
           courseId={courseId}
-          handleCreate={createReview}
-          handleCancel={() => setShowCreate(false)}
+          showCreate={true}
+          isEditable={true}
+          setReviews={setReviews}
+          setShowCreate={setShowCreate}
         />
       )}
       {reviews.map((review) => (
-        <ReviewReadComponent key={review.id} review={review} />
+        <ReviewEditComponent
+          key={review.id}
+          courseId={courseId}
+          review={review}
+          isEditable={student?.id === review.student}
+          setReviews={setReviews}
+        />
       ))}
     </div>
   )

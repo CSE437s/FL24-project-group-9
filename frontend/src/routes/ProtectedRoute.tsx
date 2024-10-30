@@ -51,11 +51,11 @@ const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
     return <Navigate to="/onboarding" />
   }
 
-  if (hasStudentOnboarded() && location.pathname === '/onboarding') {
+  if (!hasPreviousSemesters() && location.pathname === '/dashboard/edit') {
     return <Navigate to="/dashboard" />
   }
 
-  if (!hasPreviousSemesters() && location.pathname === '/dashboard/edit') {
+  if (hasStudentOnboarded() && location.pathname === '/onboarding') {
     return <Navigate to="/dashboard" />
   }
 

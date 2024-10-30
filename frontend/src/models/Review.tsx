@@ -3,4 +3,5 @@ export type Review = {
   course: number
   rating: number
   comments: string
+  student?: number
 }

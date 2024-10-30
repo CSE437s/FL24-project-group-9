@@ -48,14 +48,14 @@ async function updateReview(
     },
     body: JSON.stringify(review),
   }
-  const response = await fetch(`${API_URL}/api/reviews/${review.id}`, options)
+  const response = await fetch(`${API_URL}/api/reviews/${review.id}/`, options)
   return await response.json()
 }
 
 async function deleteReview(
   bearerToken: string,
   reviewId: number
-): Promise<null> {
+): Promise<boolean> {
   const options = {
     method: 'DELETE',
     headers: {
@@ -63,8 +63,8 @@ async function deleteReview(
       Authorization: `Bearer ${bearerToken}`,
     },
   }
-  const response = await fetch(`${API_URL}/api/reviews/${reviewId}`, options)
-  return await response.json()
+  const response = await fetch(`${API_URL}/api/reviews/${reviewId}/`, options)
+  return response.ok
 }
 
 export default { getAllReviews, createReview, updateReview, deleteReview }

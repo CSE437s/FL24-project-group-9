@@ -66,7 +66,7 @@
   border-radius: 0.25rem;
 }
 
-.editable-review-block .review-actions {
+.review-block .review-actions {
   display: flex;
   width: 100%;
   gap: 1rem;

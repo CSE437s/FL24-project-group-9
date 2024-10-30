@@ -1,6 +1,6 @@
 from datetime import date
 
-from rest_framework import status
+from rest_framework import permissions, status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.exceptions import NotFound, ValidationError
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -49,6 +49,7 @@ def api_overview(request):
         "[GET   ] Program Detail": "/programs/<str:pk>",
         # Review Endpoints
         "[GET   ] List All Reviews": "/reviews/?course_id=<course_id>",
+        "[GET   ] Get Review Detail": "/reviews/<str:pk>",
         "[POST  ] Create Review": "/reviews",
         "[PUT   ] Update Review Detail": "/reviews/<str:pk>",
         "[DELETE] Delete Review": "/reviews/<str:pk>",
