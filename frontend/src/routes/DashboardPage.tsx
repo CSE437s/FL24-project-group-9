@@ -59,7 +59,7 @@ export default function DashboardPage() {
         <div className="academic-info">
           <p>
             <span>Programs:</span>{' '}
-            {programs.filter((p) => p.id == student.programs[0])[0]?.name}
+            {programs.filter((p) => p.id == student.programs?.[0])?.[0]?.name}
           </p>
           <p>
             <span>Graduation:</span> {student.grad}

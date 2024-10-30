@@ -80,5 +80,5 @@
 
 .schedule-row .content .action-btns button {
   font-weight: var(--font-weight-default);
-  font-size: 0.9rem;
+  font-size: var(--font-disclaimer);
 }
