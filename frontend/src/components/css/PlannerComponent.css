@@ -24,3 +24,12 @@
   color: var(--primary-black);
   width: 6rem;
 }
+
+.planner-component select {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: var(--font-h6);
+  line-height: var(--font-h4);
+  padding: 0.5rem;
+  height: calc(var(--font-h4) + 1rem);
+}

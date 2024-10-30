@@ -59,7 +59,9 @@ export default function CoursePage() {
                 </tr>
                 <tr>
                   <td>Prerequisites</td>
-                  <td>{course.prerequisites ?? 'None'}</td>
+                  <td>
+                    {course.prerequisites ? course.prerequisites : 'None'}
+                  </td>
                 </tr>
                 <tr>
                   <td>Units</td>

@@ -30,10 +30,6 @@ table.course-info td {
   margin: 0.5rem 0;
 }
 
-.course-details .action-btns button {
-  font-weight: var(--font-weight-default);
-}
-
 .course-reviews {
   margin-top: 2rem;
 }
