@@ -19,8 +19,10 @@ export const StudentForm: React.FC<StudentFormProps> = ({
   const { academicLoading, programs } = useAcademicDataContext()
   const [newStudent, setNewStudent] = useState<Student>({
     ...student,
+    grad: student.grad ?? new Date().getFullYear(),
     programs: [student.programs[0] ?? programs[0].id],
   })
+  const [warning, setWarning] = useState('')
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -59,15 +61,23 @@ export const StudentForm: React.FC<StudentFormProps> = ({
         <label htmlFor="endYear">Graduation Year</label>
         <input
           type="number"
-          min="1900"
-          max="2099"
+          min={new Date().getFullYear()}
+          max="2040"
           step="1"
           value={newStudent.grad}
-          onChange={(e) =>
+          onChange={(e) => {
             setNewStudent({ ...newStudent, grad: e.target.value })
-          }
+            if (student.grad && e.target.value != student.grad) {
+              setWarning(
+                'Changing graduation may remove previously added courses'
+              )
+            } else {
+              setWarning('')
+            }
+          }}
           required
         />
+        {warning && <span className="warning">{warning}</span>}
       </div>
       <div className="input-wrapper">
         <label htmlFor="career">Career:</label>
