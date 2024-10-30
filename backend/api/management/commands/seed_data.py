@@ -2,7 +2,7 @@ import json
 
 from django.core.management.base import BaseCommand
 
-from api.models import Course, Department, DepCourse, Program, Semester, Student
+from api.models import Course, Department, DepCourse, Program, Review, Semester, Student
 
 
 class Command(BaseCommand):
@@ -20,9 +20,10 @@ class Command(BaseCommand):
         Program.objects.all().delete()
         Student.objects.all().delete()
         Semester.objects.all().delete()
+        Review.objects.all().delete()
         self.stdout.write(
             self.style.SUCCESS(
-                "Deleted Course, Department, DepCourse, Program, Student, Semester successfully."
+                "Deleted Course, Department, DepCourse, Program, Student, Semester, Review successfully."
             )
         )
 
@@ -111,3 +112,16 @@ class Command(BaseCommand):
             )
 
         self.stdout.write(self.style.SUCCESS("Semester Database seeded successfully."))
+
+        # Seed Review Data
+        review = {"rating": 4, "comments": "Very informative but quite challenging."}
+
+        for course in Course.objects.all():
+            Review.objects.create(
+                course=course,
+                student=student,
+                rating=review["rating"],
+                comments=review["comments"],
+            )
+
+        self.stdout.write(self.style.SUCCESS("Review Database seeded successfully."))

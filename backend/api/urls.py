@@ -21,3 +21,6 @@ router.register("reviews", ReviewViewSet, basename="review")
 urlpatterns = [
     path("", include(router.urls)),
 ]
+
+for url_pattern in urlpatterns:
+    print(url_pattern)
