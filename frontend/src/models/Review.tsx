@@ -1,6 +1,6 @@
 export type Review = {
-  id: number
-  course: string
+  id?: number
+  course: number
   rating: number
   comments: string
 }

@@ -3,7 +3,8 @@
   min-height: var(--min-height-container);
 }
 
-.course-page .course-summary {
+.course-page .course-summary,
+.course-page .course-reviews {
   max-width: 50rem;
 }
 
@@ -31,4 +32,8 @@ table.course-info td {
 
 .course-details .action-btns button {
   font-weight: var(--font-weight-default);
+}
+
+.course-reviews {
+  margin-top: 2rem;
 }

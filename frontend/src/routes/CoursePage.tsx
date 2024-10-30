@@ -80,7 +80,7 @@ export default function CoursePage() {
         {courseId && (
           <section className="course-reviews">
             <h3>Course Reviews</h3>
-            <ReviewsComponent courseId={courseId} />
+            <ReviewsComponent courseId={parseInt(courseId ?? '')} />
           </section>
         )}
       </div>

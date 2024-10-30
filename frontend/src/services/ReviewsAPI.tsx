@@ -4,7 +4,7 @@ import { API_URL } from './config.tsx'
 
 async function getAllReviews(
   bearerToken: string,
-  courseId: string
+  courseId: number
 ): Promise<Review[]> {
   const options = {
     method: 'GET',
@@ -23,9 +23,9 @@ async function getAllReviews(
 async function createReview(
   bearerToken: string,
   review: Review
-): Promise<null> {
+): Promise<Review> {
   const options = {
-    method: 'PUT',
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${bearerToken}`,
@@ -39,7 +39,7 @@ async function createReview(
 async function updateReview(
   bearerToken: string,
   review: Review
-): Promise<null> {
+): Promise<Review> {
   const options = {
     method: 'PUT',
     headers: {
@@ -54,17 +54,16 @@ async function updateReview(
 
 async function deleteReview(
   bearerToken: string,
-  review: Review
+  reviewId: number
 ): Promise<null> {
   const options = {
-    method: 'PUT',
+    method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${bearerToken}`,
     },
-    body: JSON.stringify(review),
   }
-  const response = await fetch(`${API_URL}/api/reviews/${review.id}`, options)
+  const response = await fetch(`${API_URL}/api/reviews/${reviewId}`, options)
   return await response.json()
 }
 

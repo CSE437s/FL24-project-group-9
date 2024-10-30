@@ -1,7 +1,3 @@
-.reviews {
-  max-width: 50rem;
-}
-
 .review-block {
   box-sizing: border-box;
   display: flex;
@@ -10,6 +6,7 @@
   border: 1px solid var(--border-block);
   border-radius: 0.25rem;
   font-size: var(--font-body);
+  margin: 2rem 0;
 }
 
 .review-header {
@@ -51,4 +48,28 @@
 .review-comments {
   border-top: 1px solid var(--border-block);
   padding-top: 1rem;
+}
+
+.editable-review-block textarea {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid var(--border-block);
+  border-radius: 0.25rem;
+  resize: none;
+  box-sizing: border-box;
+  height: calc(5 * var(--font-body));
+  color: var(--primary-black);
+}
+
+.editable-review-block input {
+  border: 1px solid var(--border-block);
+  border-radius: 0.25rem;
+}
+
+.editable-review-block .review-actions {
+  display: flex;
+  width: 100%;
+  gap: 1rem;
+  margin-top: 1rem;
+  justify-content: flex-end;
 }

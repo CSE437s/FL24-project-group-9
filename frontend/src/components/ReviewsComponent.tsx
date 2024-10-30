@@ -5,10 +5,13 @@ import { useAuthContext } from '../context/useContext'
 import { Review } from '../models/Review'
 import ReviewsAPI from '../services/ReviewsAPI'
 
+import { ReviewEditComponent } from './ReviewEditComponent'
+import { ReviewReadComponent } from './ReviewReadComponent'
+
 import './css/ReviewsComponent.css'
 
 interface ReviewsComponentProps {
-  courseId: string
+  courseId: number
 }
 
 export const ReviewsComponent: React.FC<ReviewsComponentProps> = ({
@@ -18,11 +21,15 @@ export const ReviewsComponent: React.FC<ReviewsComponentProps> = ({
 
   const [reviews, setReviews] = useState<Review[]>([])
   const [reviewLoading, setReviewLoading] = useState(true)
+  const [showCreate, setShowCreate] = useState(false)
 
   useEffect(() => {
     ReviewsAPI.getAllReviews(bearerToken, courseId)
-      .then((data) => {
-        setReviews(data)
+      .then((response) => {
+        const sortedReviews = response.sort(
+          (a: Review, b: Review) => (b.id ?? 0) - (a.id ?? 0)
+        )
+        setReviews(sortedReviews)
       })
       .finally(() => {
         setReviewLoading(false)
@@ -44,27 +51,34 @@ export const ReviewsComponent: React.FC<ReviewsComponentProps> = ({
     )
   }
 
-  const getColor = (rating: number) => {
-    if (rating >= 4) return 'good'
-    if (rating >= 3) return 'neutral'
-    return 'bad'
+  const createReview = (review: Review) => {
+    ReviewsAPI.createReview(bearerToken, review)
+      .then((response) => {
+        setReviews([response, ...reviews])
+      })
+      .catch((error) => {
+        console.error('Failed to create review:', error)
+      })
   }
 
   return (
     <div className="reviews">
+      <button
+        className="create-review"
+        onClick={() => setShowCreate(true)}
+        disabled={showCreate}
+      >
+        Add a Review
+      </button>
+      {showCreate && (
+        <ReviewEditComponent
+          courseId={courseId}
+          handleCreate={createReview}
+          handleCancel={() => setShowCreate(false)}
+        />
+      )}
       {reviews.map((review) => (
-        <div key={review.id} className="review-block">
-          <div className="review-header">
-            <span>Rating</span>
-            <div className={`review-rating ${getColor(review.rating)}`}>
-              {review.rating} / 5
-            </div>
-          </div>
-          <div className="review-body">
-            <span>Comment</span>{' '}
-            <div className="review-comments">{review.comments}</div>
-          </div>
-        </div>
+        <ReviewReadComponent key={review.id} review={review} />
       ))}
     </div>
   )

@@ -89,7 +89,8 @@ h6 {
   font-size: var(--font-h6);
 }
 
-p {
+p,
+textarea {
   font-size: var(--font-body);
   color: var(--text-paragraph);
 }
