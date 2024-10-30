@@ -1,39 +1,18 @@
-import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { FooterBar } from '../components/FooterBar'
 import { HeaderBar } from '../components/HeaderBar'
+import { ReviewsComponent } from '../components/ReviewsComponent'
 import { SpinnerComponent } from '../components/SpinnerComponent'
-import { useAcademicDataContext, useAuthContext } from '../context/useContext'
-import { Review } from '../models/Review'
-import ReviewsAPI from '../services/ReviewsAPI'
+import { useAcademicDataContext } from '../context/useContext'
 
 import './css/CoursePage.css'
 
 export default function CoursePage() {
   const { courseId } = useParams()
 
-  const { bearerToken } = useAuthContext()
   const { academicLoading, courses } = useAcademicDataContext()
   const course = courses.find((c) => c.id === parseInt(courseId ?? ''))
-
-  const [reviews, setReviews] = useState<Review[]>([])
-  const [reviewLoading, setReviewLoading] = useState(true)
-  console.log(bearerToken)
-  useEffect(() => {
-    if (!courseId) return
-
-    ReviewsAPI.getAllReviews(bearerToken, courseId)
-      .then((data) => {
-        setReviews(data)
-      })
-      .finally(() => {
-        setReviewLoading(false)
-      })
-      .catch((error) => {
-        console.error('Failed to load reviews:', error)
-      })
-  }, [bearerToken, courseId])
 
   if (academicLoading) {
     return (
@@ -98,25 +77,12 @@ export default function CoursePage() {
             </div>
           </div>
         </section>
-        <section className="course-actions">
-          <h3>Course Reviews</h3>
-          <div className="reviews">
-            {reviewLoading ? (
-              <SpinnerComponent messages={['Loading reviews...']} />
-            ) : reviews.length ? (
-              reviews.map((review) => (
-                <div key={review.id} className="review">
-                  <div className="review-header">
-                    <div className="rating">{review.rating}/5</div>
-                  </div>
-                  <div className="review-body">{review.comments}</div>
-                </div>
-              ))
-            ) : (
-              <div className="no-reviews">No reviews found</div>
-            )}
-          </div>
-        </section>
+        {courseId && (
+          <section className="course-reviews">
+            <h3>Course Reviews</h3>
+            <ReviewsComponent courseId={courseId} />
+          </section>
+        )}
       </div>
       <FooterBar />
     </>
