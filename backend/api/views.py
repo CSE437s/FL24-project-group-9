@@ -7,12 +7,13 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ReadOnlyModelViewSet, ViewSet
 
-from api.models import Course, Department, Program, Semester, Student
+from api.models import Course, Department, Program, Review, Semester
 
 from .serializers import (
     CourseSerializer,
     DepartmentSerializer,
     ProgramSerializer,
+    ReviewSerializer,
     SemesterSerializer,
     StudentSerializer,
 )
@@ -46,6 +47,11 @@ def api_overview(request):
         # Program Endpoints
         "[GET   ] List All Programs": "/programs/",
         "[GET   ] Program Detail": "/programs/<str:pk>",
+        # Review Endpoints
+        "[GET   ] List All Reviews": "/reviews/?course_id=<course_id>",
+        "[POST  ] Create Review": "/reviews",
+        "[PUT   ] Update Review Detail": "/reviews/<str:pk>",
+        "[DELETE] Delete Review": "/reviews/<str:pk>",
     }
     return Response(api_urls)
 
@@ -192,3 +198,18 @@ class SemesterViewSet(ViewSet):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ReviewViewSet(ViewSet):
+    serializer_class = ReviewSerializer
+    permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        queryset = Review.objects.all()
+        course_id = self.request.query_params.get("course_id")
+        if course_id is not None:
+            queryset = queryset.filter(course_id=course_id)
+        return queryset
+
+    def perform_create(self, serializer):
+        serializer.save(student=self.request.user)

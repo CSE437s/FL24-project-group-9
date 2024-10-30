@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
@@ -72,3 +73,13 @@ class Semester(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Review(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    rating = models.PositiveIntegerField()
+    comments = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return f"Review for {self.course.title} by {self.student.email}"
