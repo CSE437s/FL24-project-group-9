@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from api.models import Course, Department, Program, Semester, Student
+from api.models import Course, Department, Program, Review, Semester, Student
 
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -38,3 +38,15 @@ class StudentSerializer(serializers.ModelSerializer):
         model = Student
         fields = "__all__"
         extra_kwargs = {"password": {"write_only": True}}
+
+
+class ReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Review
+        fields = "__all__"
+        read_only_fields = ["student"]
+
+    def validate_rating(self, value):
+        if value < 1 or value > 5:
+            raise serializers.ValidationError("Rating must be between 1 and 5.")
+        return value

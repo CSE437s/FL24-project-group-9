@@ -5,6 +5,7 @@ from api.views import (
     CourseViewSet,
     DepartmentViewSet,
     ProgramViewSet,
+    ReviewViewSet,
     SemesterViewSet,
     StudentViewSet,
 )
@@ -15,7 +16,11 @@ router.register("courses", CourseViewSet, basename="course")
 router.register("departments", DepartmentViewSet, basename="department")
 router.register("semesters", SemesterViewSet, basename="semester")
 router.register("programs", ProgramViewSet, basename="program")
+router.register("reviews", ReviewViewSet, basename="review")
 
 urlpatterns = [
     path("", include(router.urls)),
 ]
+
+for url_pattern in urlpatterns:
+    print(url_pattern)

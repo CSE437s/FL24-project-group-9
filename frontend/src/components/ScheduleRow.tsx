@@ -54,7 +54,7 @@ export const ScheduleRow: React.FC<ScheduleRowProps> = ({
           <div className="action-btns">
             <button
               className="secondary"
-              onClick={() => window.open(course.url, '_blank')}
+              onClick={() => window.open(`/course/${course.id}`, '_blank')}
             >
               Details
             </button>

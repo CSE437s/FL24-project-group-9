@@ -4,6 +4,7 @@ import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 import { AcademicDataProvider } from './context/AcademicDataContext'
 import { AuthProvider } from './context/AuthContext'
 import { StudentProvider } from './context/StudentContext'
+import CoursePage from './routes/CoursePage'
 import DashboardEditPage from './routes/DashboardEditPage'
 import DashboardPage from './routes/DashboardPage'
 import ForgotPasswordPage from './routes/ForgotPasswordPage'
@@ -64,6 +65,14 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <DashboardPage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/course/:courseId',
+    element: (
+      <ProtectedRoute>
+        <CoursePage />
       </ProtectedRoute>
     ),
   },

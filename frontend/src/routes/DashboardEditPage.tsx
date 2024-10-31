@@ -29,10 +29,12 @@ export default function DashboardEditPage() {
     return (
       <>
         <HeaderBar isNavVisible={true} />
-        <section className="no-courses">
-          <h4>Unable to get course history at this time</h4>
-          <p>Please try again later</p>
-        </section>
+        <div className="dashboard-edit-page">
+          <section className="no-courses">
+            <h4>Unable to get course history at this time</h4>
+            <p>Please try again later</p>
+          </section>
+        </div>
         <FooterBar />
       </>
     )

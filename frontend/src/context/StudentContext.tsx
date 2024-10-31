@@ -33,10 +33,11 @@ const StudentProvider = ({ children }: { children: ReactNode }) => {
       StudentAPI.getStudent(bearerToken)
         .then(async (response) => {
           setStudent(response)
-          await SemestersAPI.getAllSemesters(bearerToken).then(setSemesters)
-        })
-        .finally(() => {
-          setStudentLoading(false)
+          await SemestersAPI.getAllSemesters(bearerToken)
+            .then(setSemesters)
+            .finally(() => {
+              setStudentLoading(false)
+            })
         })
         .catch((err) => {
           console.error(err)
@@ -57,10 +58,9 @@ const StudentProvider = ({ children }: { children: ReactNode }) => {
     StudentAPI.updateStudent(bearerToken, student)
       .then(async (response) => {
         setStudent(response)
-        await getAllSemesters()
-      })
-      .finally(() => {
-        setStudentLoading(false)
+        await getAllSemesters().finally(() => {
+          setStudentLoading(false)
+        })
       })
       .catch((err) => {
         console.error(err)
@@ -93,7 +93,10 @@ const StudentProvider = ({ children }: { children: ReactNode }) => {
   }
 
   const hasPreviousSemesters = () => {
-    return semesters.filter((s) => s.isCompleted).length > 0
+    return (
+      (student && parseInt(student.grad) - 4 < new Date().getFullYear()) ||
+      semesters.filter((s) => s.isCompleted).length > 0
+    )
   }
 
   return (

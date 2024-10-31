@@ -4,7 +4,7 @@ from django.urls import reverse
 from rest_framework.test import APITestCase
 from rest_framework_simplejwt.tokens import AccessToken
 
-from api.models import Course, Department, Program, Semester, Student
+from api.models import Course, Department, Program, Review, Semester, Student
 
 
 class BaseAPITestCase(APITestCase):
@@ -253,3 +253,54 @@ class SemesterViewSetTests(BaseAPITestCase):
 
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertEqual(response.data["name"], self.semester1.name)  # No change
+
+
+class ReviewViewSet(BaseAPITestCase):
+    def setUp(self):
+        super().setUp()
+
+        self.review = Review.objects.create(
+            student=self.user, course=self.course1, rating=5, comments="Great course!"
+        )
+
+        self.url_list = reverse("review-list")
+        self.url_detail = reverse("review-detail", kwargs={"pk": self.review.pk})
+
+    def test_list_reviews(self):
+        response = self.client.get(self.url_list)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertEqual(len(response.data), 1)
+        self.assertEqual(response.data[0]["comments"], self.review.comments)
+
+    def test_retrieve_review(self):
+        response = self.client.get(self.url_detail)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertEqual(response.data["comments"], self.review.comments)
+
+    def test_create_review(self):
+        data = {
+            "course": self.course1.id,
+            "rating": 4,
+            "comments": "Very informative but quite challenging.",
+        }
+        response = self.client.post(self.url_list, data, format="json")
+        self.assertEqual(response.status_code, HTTPStatus.CREATED)
+        self.assertEqual(Review.objects.count(), 2)
+        self.assertEqual(response.data["comments"], data["comments"])
+
+    def test_update_review(self):
+        data = {
+            "course": self.course1.id,
+            "rating": 3,
+            "comments": "Updated review: Good course but needs improvement.",
+        }
+        response = self.client.put(self.url_detail, data, format="json")
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.review.refresh_from_db()
+        self.assertEqual(self.review.rating, data["rating"])
+        self.assertEqual(self.review.comments, data["comments"])
+
+    def test_delete_review(self):
+        response = self.client.delete(self.url_detail)
+        self.assertEqual(response.status_code, HTTPStatus.NO_CONTENT)
+        self.assertEqual(Review.objects.count(), 0)

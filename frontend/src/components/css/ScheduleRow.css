@@ -1,7 +1,7 @@
 .schedule-row {
   box-sizing: border-box;
-  border: var(--border-size) var(--border-table) solid;
-  width: 34rem;
+  border: 1px solid var(--border-block);
+  width: 35rem;
 }
 
 .schedule-row-header {
@@ -9,8 +9,9 @@
   cursor: pointer;
   display: flex;
   gap: 0.5rem;
-  padding: 0.5rem;
+  padding: 1rem;
   width: 100%;
+  font-size: var(--font-body);
 }
 
 .schedule-row-header:hover {
@@ -32,7 +33,7 @@
 
 .schedule-row-body .content {
   box-sizing: border-box;
-  padding: 0.5rem;
+  padding: 1rem;
 }
 
 .schedule-row .show-button,
@@ -60,15 +61,15 @@
 }
 
 .schedule-row .course-code {
-  width: 4.5rem;
+  min-width: 5rem;
 }
 
 .schedule-row .course-title {
-  width: 22rem;
+  flex: 1;
 }
 
 .schedule-row .course-units {
-  width: 3.75rem;
+  min-width: 3.75rem;
   text-align: center;
 }
 
@@ -80,5 +81,5 @@
 
 .schedule-row .content .action-btns button {
   font-weight: var(--font-weight-default);
-  font-size: 0.9rem;
+  font-size: var(--font-disclaimer);
 }

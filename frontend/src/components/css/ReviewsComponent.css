@@ -1,0 +1,75 @@
+.review-block {
+  box-sizing: border-box;
+  display: flex;
+  gap: 3rem;
+  padding: 1.5rem;
+  border: 1px solid var(--border-block);
+  border-radius: 0.25rem;
+  font-size: var(--font-body);
+  margin: 2rem 0;
+}
+
+.review-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.review-rating {
+  padding: 1rem;
+  font-weight: var(--font-weight-headings);
+  font-size: var(--font-h5);
+  border-radius: 0.15rem;
+}
+
+.review-rating.good {
+  background-color: var(--secondary-turquoise);
+  color: var(--text-white);
+}
+
+.review-rating.neutral {
+  background-color: var(--secondary-yellow);
+  color: var(--primary-black);
+}
+
+.review-rating.bad {
+  background-color: var(--secondary-red);
+  color: var(--text-white);
+}
+
+.review-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.review-comments {
+  border-top: 1px solid var(--border-block);
+  padding-top: 1rem;
+}
+
+.editable-review-block textarea {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid var(--border-block);
+  border-radius: 0.25rem;
+  resize: none;
+  box-sizing: border-box;
+  height: calc(5 * var(--font-body));
+  color: var(--primary-black);
+}
+
+.editable-review-block input {
+  border: 1px solid var(--border-block);
+  border-radius: 0.25rem;
+}
+
+.review-block .review-actions {
+  display: flex;
+  width: 100%;
+  gap: 1rem;
+  margin-top: 1rem;
+  justify-content: flex-end;
+}

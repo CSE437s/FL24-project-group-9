@@ -1,0 +1,35 @@
+.course-page {
+  padding: 2rem 3rem;
+  min-height: var(--min-height-container);
+}
+
+.course-page .course-summary,
+.course-page .course-reviews {
+  max-width: 50rem;
+}
+
+table.course-info {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+table.course-info th {
+  text-align: left;
+  padding: 0.5rem 1rem;
+}
+
+table.course-info td {
+  padding: 0.5rem 1rem;
+  font-size: var(--font-body);
+}
+
+.course-details .action-btns {
+  display: flex;
+  justify-content: left;
+  margin: 0.5rem 0;
+}
+
+.course-reviews {
+  margin-top: 2rem;
+}

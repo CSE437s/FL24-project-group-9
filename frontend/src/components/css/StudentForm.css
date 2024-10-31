@@ -3,12 +3,16 @@
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
+  width: 28rem;
+  padding: 1rem;
+  box-sizing: border-box;
+  margin: 0 auto;
 }
 
 .student-form input,
 .student-form select {
+  width: 100%;
   box-sizing: border-box;
-  width: 25rem;
   font-size: var(--font-h6);
   line-height: var(--font-h4);
   padding: 0.5rem;
@@ -19,6 +23,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+  width: 100%;
 }
 
 .student-form .input-wrapper label {
@@ -27,4 +32,9 @@
 
 .student-form .action-btns button {
   margin: 0 1.5rem;
+}
+
+.student-form .warning {
+  color: var(--secondary-red);
+  font-size: var(--font-disclaimer);
 }
