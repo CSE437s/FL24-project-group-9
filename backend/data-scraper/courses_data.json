@@ -1038,5 +1038,61 @@
     "units": 6,
     "url": "https://courses.wustl.edu/CourseInfo.aspx?sch=E&dept=E81&crs=599",
     "prerequisites": "permission of adviser and submission of a research proposal form"
+  },
+  {
+    "title": "College Writing I",
+    "code": "L59 CWP 100",
+    "description": "This course teaches writing as a way of thinking and learning. Throughout the semester, students will explore writing as a creative and intellectual process. They will learn how to brainstorm, explore, and structure ideas on a page; share their writing and learn how to give and take constructive criticism; and learn how to revise their work, both for issues related to the paper's larger idea, and for issues related to grammar and style. By regularly working their way through the writing process, students will develop the habits and skills that make advanced study possible: paying close attention to the words and ideas of others; coming up with and responding to arguments of others; and refining a lucid style of prose that meets the expectations of the audience and occasion. THIS COURSE SATISFIES THE FIRST-YEAR WRITING REQUIREMENT FOR ALL DIVISIONS.",
+    "units": 3,
+    "url": "https://courses.wustl.edu/CourseInfo.aspx?sch=L&dept=L59&crs=100",
+    "prerequisites": ""
+  },
+  {
+    "title": "Technical Writing",
+    "code": "E60 Engr 310",
+    "description": "Persistent concerns of grammar and style. Analysis and discussion of clear sentence and paragraph structure and of organization in complete technical documents. Guidelines for effective layout and graphics. Examples and exercises stressing audience analysis, graphic aids, editing, and readability. Videotaped work in oral presentation of technical projects. Writing assignments include descriptions of mechanisms, process instructions, basic proposals, letters and memos, and a long formal report.",
+    "units": 3,
+    "url": "https://courses.wustl.edu/CourseInfo.aspx?sch=E&dept=E60&crs=310",
+    "prerequisites": "Satisfaction of the English composition proficiency requirement of the School and junior standing"
+  },
+  {
+    "title": "Probability and Statistics for Engineering",
+    "code": "E35 ESE 326",
+    "description": "Study of probability and statistics together with engineering applications. Probability and statistics: random variables, distribution functions, density functions, expectations, means, variances, combinatorial probability, geometric probability, normal random variables, joint distribution, independence, correlation, conditional probability, Bayes theorem, the law of large numbers, the central limit theorem. Applications: reliability, quality control, acceptance sampling, linear regression, design and analysis of experiments, estimation, hypothesis testing. Examples are taken from engineering applications.",
+    "units": 3,
+    "url": "https://courses.wustl.edu/CourseInfo.aspx?sch=E&dept=E35&crs=326",
+    "prerequisites": "Math 233 or equivalent"
+  },
+  {
+    "title": "Matrix Algebra",
+    "code": "L24 Math 309",
+    "description": "An introductory course in linear algebra that focuses on Euclidean n-space, matrices and related computations. Topics include: systems of linear equations, row reduction, matrix operations, determinants, linear independence, dimension, rank, change of basis, diagonalization, eigenvalues, eigenvectors, orthogonality, symmetric matrices, least square approximation, quadratic forms. Introduction to abstract vector spaces.",
+    "units": 3,
+    "url": "https://courses.wustl.edu/CourseInfo.aspx?sch=L&dept=L24&crs=309",
+    "prerequisites": ""
+  },
+  {
+    "title": "Calculus I",
+    "code": "L24 Math 131",
+    "description": "Derivatives of algebraic, trigonometric, and transcendental functions, techniques of differentiation and applications of the derivative. The definite integral and Fundamental Theorem of Calculus. Areas. Simpler integration techniques.",
+    "units": 3,
+    "url": "https://courses.wustl.edu/CourseInfo.aspx?sch=L&dept=L24&crs=131",
+    "prerequisites": "high school algebra and precalculus (including trigonometry)"
+  },
+  {
+    "title": "Calculus II",
+    "code": "L24 Math 132",
+    "description": "Continuation of Math 131. A brief review of the definite integral and Fundamental Theorem of Calculus. Techniques of integration, applications of the integral, sequences and series, and some material on differential equations.",
+    "units": 3,
+    "url": "https://courses.wustl.edu/CourseInfo.aspx?sch=L&dept=L24&crs=132",
+    "prerequisites": "Math 131"
+  },
+  {
+    "title": "Calculus III",
+    "code": "L24 Math 233",
+    "description": "Multivariable calculus. Topics include differential and integral calculus of functions of two or three variables: vectors and curves in space, partial derivatives, multiple integrals, line integrals, vector calculus at least through Green's Theorem.",
+    "units": 3,
+    "url": "https://courses.wustl.edu/CourseInfo.aspx?sch=L&dept=L24&crs=233",
+    "prerequisites": "Math 132"
   }
 ]

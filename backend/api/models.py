@@ -19,6 +19,7 @@ class Course(models.Model):
     units = models.PositiveIntegerField()
     url = models.URLField()
     prerequisites = models.TextField(blank=True)
+    embedding = models.JSONField(blank=True, null=True)
 
     def __str__(self):
         return self.code + " " + self.title
@@ -56,6 +57,7 @@ class Student(AbstractUser):
     interests = models.TextField(blank=True)
     password = models.CharField(max_length=128, blank=True, default="")
     username = models.CharField(max_length=150, unique=True, blank=True, null=True)
+    embedding = models.JSONField(blank=True, null=True)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
