@@ -57,13 +57,15 @@ class OpenAIUltils:
         return list(relevant_courses)
 
     @staticmethod
-    def generate_course_plan(semesters, student_profile_text, relevant_courses):
+    def generate_course_plan(
+        required_courses, semesters, student_profile_text, relevant_courses
+    ):
         completion = OpenAIUltils.CLIENT.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
                 {
                     "role": "system",
-                    "content": get_system_role(),
+                    "content": get_system_role(required_courses),
                 },
                 {
                     "role": "user",

@@ -70,9 +70,27 @@ def generate_schedule_helper(student):
         for semester in completed_semesters:
             completed_courses.extend(semester.planned_courses.all())
         completed_courses = [course.code for course in completed_courses]
-        print(completed_courses)
         relevant_courses = [
             course for course in relevant_courses if course not in completed_courses
+        ]
+        required_courses = [
+            "E81 CSE 131",
+            "E81 CSE 132",
+            "E81 CSE 240",
+            "E81 CSE 247",
+            "E81 CSE 332S",
+            "E81 CSE 347",
+            "E81 CSE 361S",
+            "L24 Math 131",
+            "L24 Math 132",
+            "L24 Math 233",
+            "L24 Math 309",
+            "E35 ESE 326",
+            "L59 CWP 100",
+            "E60 Engr 310",
+        ]
+        required_courses = [
+            course for course in required_courses if course not in completed_courses
         ]
 
         upcoming_semesters = Semester.objects.filter(student=student, isCompleted=False)
@@ -82,7 +100,10 @@ def generate_schedule_helper(student):
         student_profile_text = f"{student.interests};{student.career}"
 
         generated_courses = OpenAIUltils.generate_course_plan(
-            student_semester_text, student_profile_text, relevant_courses
+            required_courses,
+            student_semester_text,
+            student_profile_text,
+            relevant_courses,
         )
 
         generated_courses = json.loads(generated_courses)

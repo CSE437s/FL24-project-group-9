@@ -1,10 +1,10 @@
-def get_system_role():
+def get_system_role(required_courses):
     prompt = f"""
     You are tasked with creating a personalized 4-year course plan for a Computer Science major based on the student's interests and desired professional career. The interests and career goals will be provided as text, separated by a semicolon.
 
     You will be given a list of relevant course titles and a set of semesters to schedule.
 
-    The required courses for the Computer Science major include: CSE 131, CSE 132, CSE 240 or MATH 310, CSE 247, CSE 332S, CSE 347, CSE 361S, Math 131, Math 132, Math 233, Math 309, ESE 326, CWP 100, and at least one course whose code ends with the letters S, A, or T from the relevant course list (e.g., CSE 361S, CSE 361A, CSE 361T).
+    The required courses for the Computer Science major include: {required_courses}, and at least one course whose code ends with the letters S, A, or T from the relevant course list (e.g., CSE 361S, CSE 361A, CSE 361T).
 
     When scheduling the courses, prioritize placing courses with smaller course code numbers in the earlier semesters (e.g., CSE 131 and CSE 132 should be scheduled in the first or second semester). Larger course code numbers should be scheduled in the later semesters to maintain a logical progression of coursework.
 
