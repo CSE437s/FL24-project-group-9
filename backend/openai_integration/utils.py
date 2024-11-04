@@ -23,7 +23,7 @@ class OpenAIUltils:
         embedding2 = np.array(embedding2)
 
         if np.linalg.norm(embedding1) == 0 or np.linalg.norm(embedding2) == 0:
-            raise ValueError("One of the input embeddings is a zero vector.")
+            return 0.0
 
         return np.dot(embedding1, embedding2) / (
             np.linalg.norm(embedding1) * np.linalg.norm(embedding2)
