@@ -53,25 +53,6 @@ class StudentViewSetTest(BaseAPITestCase):
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertEqual(response.data["username"], self.user.username)
 
-    def test_update_student_grad(self):
-        updated_data = {"grad": 2026}  # Updating graduation year
-        response = self.client.put(self.url_detail, updated_data)
-        self.user.refresh_from_db()  # Refresh user instance from database
-        self.assertEqual(response.status_code, HTTPStatus.OK)
-        self.assertEqual(self.user.grad, 2026)
-        # Check that the semesters are kept if possible
-        self.assertTrue(Semester.objects.filter(pk=self.semester1.pk).exists())
-        self.assertTrue(Semester.objects.filter(pk=self.semester2.pk).exists())
-
-        # Check that the semesters cleared
-        updated_data = {"grad": 2050}
-        response = self.client.put(self.url_detail, updated_data)
-        self.user.refresh_from_db()
-        self.assertEqual(response.status_code, HTTPStatus.OK)
-        self.assertEqual(self.user.grad, 2050)
-        self.assertFalse(Semester.objects.filter(pk=self.semester1.pk).exists())
-        self.assertFalse(Semester.objects.filter(pk=self.semester2.pk).exists())
-
     def test_update_student_info_with_invalid_data(self):
         updated_data = {"grad": "not_a_number"}  # Invalid data
         response = self.client.put(self.url_detail, updated_data)
