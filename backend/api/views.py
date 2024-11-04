@@ -3,13 +3,13 @@ from datetime import date
 
 from django.db.models import Q
 from rest_framework import permissions, status
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import action, api_view, permission_classes
 from rest_framework.exceptions import NotFound, ValidationError
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet, ViewSet
 
-from api.models import Course, Department, Program, Review, Semester
+from api.models import Course, Department, Program, Review, Semester, Student
 from openai_integration.utils import OpenAIUltils
 
 from .serializers import (
@@ -47,6 +47,7 @@ def api_overview(request):
         # Semester Endpoints
         "[GET   ] List All Semesters": "/semesters/",
         "[PUT   ] Update Semester Detail": "/semesters/<str:pk>",
+        "[POST   ] Generate New schedule": "/semesters/generate/",
         # Program Endpoints
         "[GET   ] List All Programs": "/programs/",
         "[GET   ] Program Detail": "/programs/<str:pk>",
@@ -56,17 +57,8 @@ def api_overview(request):
         "[POST  ] Create Review": "/reviews",
         "[PUT   ] Update Review Detail": "/reviews/<str:pk>",
         "[DELETE] Delete Review": "/reviews/<str:pk>",
-        # Generate Courses
-        "[GET   ] Generate new schedule": "/generate",
     }
     return Response(api_urls)
-
-
-@api_view(["GET"])
-@permission_classes([IsAuthenticated])
-def generate_schedule(request):
-    student = request.user
-    return generate_schedule_helper(student)
 
 
 def generate_schedule_helper(student):
@@ -90,7 +82,7 @@ def generate_schedule_helper(student):
         generated_courses = OpenAIUltils.generate_course_plan(
             student_semester_text, student_profile_text, relevant_courses
         )
-        print(generated_courses)
+
         generated_courses = json.loads(generated_courses)
         for semester in upcoming_semesters:
             code_list = generated_courses.get(semester.name, [])
@@ -99,7 +91,11 @@ def generate_schedule_helper(student):
                 for code in code_list:
                     query |= Q(code__icontains=code)
                 semester.planned_courses.set(Course.objects.filter(query))
-        return Response({"message": "Schedule generated successfully"}, status=200)
+
+        generated_semesters = Semester.objects.filter(student=student)
+        serialized_semesters = SemesterSerializer(generated_semesters, many=True).data
+
+        return Response(serialized_semesters, status=200)
     except ValueError:
         return Response({"Error": "Failed to generate"}, status=400)
 
@@ -145,45 +141,24 @@ class StudentViewSet(ViewSet):
                     {"grad": "Graduation year must be a valid integer."}
                 )
 
-            existing_semesters = {
-                semester.name: semester
-                for semester in Semester.objects.filter(student=student)
-            }
-            new_semesters = []
+            Semester.objects.filter(student=student).delete()
 
             for year in range(grad_year - 4, grad_year):
                 fall_name = f"Fall {year}"
                 spring_name = f"Spring {year + 1}"
 
-                if fall_name in existing_semesters:
-                    fall_semester = existing_semesters[fall_name]
-                    fall_semester.isCompleted = self.is_completed("Fall", year)
-                else:
-                    fall_semester = Semester(
-                        student=student,
-                        name=fall_name,
-                        isCompleted=self.is_completed("Fall", year),
-                    )
-                new_semesters.append(fall_semester)
+                Semester.objects.create(
+                    student=student,
+                    name=fall_name,
+                    isCompleted=self.is_completed("Fall", year),
+                )
 
-                if spring_name in existing_semesters:
-                    spring_semester = existing_semesters[spring_name]
-                    spring_semester.isCompleted = self.is_completed("Spring", year + 1)
-                else:
-                    spring_semester = Semester(
-                        student=student,
-                        name=spring_name,
-                        isCompleted=self.is_completed("Spring", year + 1),
-                    )
-                new_semesters.append(spring_semester)
+                Semester.objects.create(
+                    student=student,
+                    name=spring_name,
+                    isCompleted=self.is_completed("Spring", year + 1),
+                )
 
-        Semester.objects.filter(student=student).exclude(
-            name__in=[semester.name for semester in new_semesters]
-        ).delete()
-        for semester in new_semesters:
-            semester.save()
-
-        # Using default schedule if intertest and career goals is empty.
         if "interests" in request.data or "career" in request.data:
             interests = request.data.get("interests", "").strip()
             career = request.data.get("career", "").strip()
@@ -194,20 +169,9 @@ class StudentViewSet(ViewSet):
                 )
                 student.embedding = student_embeding
                 student.save()
-            generate_schedule_helper(student)
-        else:
-            student_semester = Semester.objects.filter(student=student)
-            default_schedule_path = "data-scraper/default_semester.json"
-            with open(default_schedule_path, "r") as file:
-                data = json.load(file)
-
-            for semester, course in zip(student_semester, data):
-                semester.planned_courses.set(
-                    Course.objects.filter(title__in=course.get("planned_courses"))
-                )
 
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(embedding=student.embedding)
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -270,6 +234,12 @@ class SemesterViewSet(ViewSet):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @action(detail=False, methods=["post"], url_path="generate")
+    def generate_schedule(self, request):
+        authenticated_student = self.request.user
+        schedule = generate_schedule_helper(authenticated_student)
+        return schedule
 
 
 class ReviewViewSet(ModelViewSet):

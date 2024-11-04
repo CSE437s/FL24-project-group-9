@@ -33,4 +33,16 @@ async function updateSemester(
   return await response.json()
 }
 
-export default { getAllSemesters, updateSemester }
+async function generateSemesters(bearerToken: string): Promise<Semester[]> {
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${bearerToken}`,
+    },
+  }
+  const response = await fetch(`${API_URL}/api/semesters/generate/`, options)
+  return await response.json()
+}
+
+export default { getAllSemesters, updateSemester, generateSemesters }

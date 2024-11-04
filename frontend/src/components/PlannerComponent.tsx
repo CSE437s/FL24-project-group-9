@@ -19,11 +19,15 @@ export const PlannerComponent: React.FC<PlannerComponentProps> = ({
   isCompleted = false,
 }) => {
   const { courses } = useAcademicDataContext()
-  const { semesters, updateSemester } = useStudentContext()
+  const { semesters, updateSemester, generateSemesters } = useStudentContext()
   const [newCourse, setNewCourse] = useState(courses[0]?.id)
   const [newSemester, setNewSemester] = useState(
     semesters.filter((s) => s.isCompleted == isCompleted)[0]?.id
   )
+
+  const handleGenerate = () => {
+    generateSemesters()
+  }
 
   const handleRemoveClick = (semester: Semester, courseId: number) => {
     semester.planned_courses = semester.planned_courses.filter(
@@ -131,21 +135,28 @@ export const PlannerComponent: React.FC<PlannerComponentProps> = ({
           </button>
         </div>
       </div>
-      <DragDropContext onDragEnd={handleDragDrop}>
-        <div className="selected-block">
-          {semesters &&
-            semesters
-              .filter((s) => s.isCompleted === isCompleted)
-              .map((semester) => (
-                <ScheduleDraggableV2
-                  key={semester.id}
-                  droppableId={semester.id.toString()}
-                  semester={semester}
-                  handleRemoveClick={handleRemoveClick}
-                />
-              ))}
-        </div>
-      </DragDropContext>
+      <div className="planner-body">
+        {!isCompleted ? (
+          <button onClick={handleGenerate}>Generate New Schedule</button>
+        ) : (
+          <></>
+        )}
+        <DragDropContext onDragEnd={handleDragDrop}>
+          <div className="selected-block">
+            {semesters &&
+              semesters
+                .filter((s) => s.isCompleted === isCompleted)
+                .map((semester) => (
+                  <ScheduleDraggableV2
+                    key={semester.id}
+                    droppableId={semester.id.toString()}
+                    semester={semester}
+                    handleRemoveClick={handleRemoveClick}
+                  />
+                ))}
+          </div>
+        </DragDropContext>
+      </div>
     </div>
   )
 }

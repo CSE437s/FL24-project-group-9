@@ -108,7 +108,7 @@ export default function DashboardPage() {
               <h4>
                 <span>Upcoming Courses</span>
                 <button className="secondary" onClick={handleGenerate}>
-                  Generate new Schedule
+                  Edit Schedule
                 </button>
               </h4>
               {semesters
