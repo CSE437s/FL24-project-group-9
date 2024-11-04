@@ -1,3 +1,4 @@
+import json
 from datetime import date
 
 from rest_framework import permissions, status
@@ -8,6 +9,7 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet, ViewSet
 
 from api.models import Course, Department, Program, Review, Semester
+from openai_integration.utils import OpenAIUltils
 
 from .serializers import (
     CourseSerializer,
@@ -92,6 +94,7 @@ class StudentViewSet(ViewSet):
                 grad_year = int(request.data["grad"])
                 if grad_year != student.grad:
                     student.grad = grad_year
+                    student.save()
             except ValueError:
                 raise ValidationError(
                     {"grad": "Graduation year must be a valid integer."}
@@ -134,6 +137,34 @@ class StudentViewSet(ViewSet):
         ).delete()
         for semester in new_semesters:
             semester.save()
+
+        # Using default schedule if intertest and career goals is empty.
+        if "interests" in request.data or "career" in request.data:
+            interest = (
+                request.data["interests"].strip() if "interests" in request.data else ""
+            )
+            career = request.data["career"].strip() if "career" in request.data else ""
+            if interest != student.interest or career != student.career:
+                student_profile_text = interest + " " + career
+                student_embeding = OpenAIUltils.generate_student_embedding(
+                    student_profile_text
+                )
+                student.embedding = student_embeding
+                student.save()
+
+            student_embed = student.embedding
+            relevant_courses = OpenAIUltils.filter_courses_by_similarity(student_embed)
+            # TODO: Generate course
+        else:
+            student_semester = Semester.objects.filter(student=student)
+            default_schedule_path = "data-scraper/default_semester.json"
+            with open(default_schedule_path, "r") as file:
+                data = json.load(file)
+
+            for semester, course in zip(student_semester, data):
+                semester.planned_courses.set(
+                    Course.objects.filter(title__in=course.get("planned_courses"))
+                )
 
         if serializer.is_valid():
             serializer.save()

@@ -46,9 +46,14 @@ class Command(BaseCommand):
 
         # Seed Course Data and DepCourse Data (Only CS for now)
         course_path = "data-scraper/courses_data.json"
+        embedding_path = "openai_integration/course_embeddings_data.json"
         with open(course_path, "r") as file:
             data = json.load(file)
 
+        with open(embedding_path, "r") as file:
+            embed_data = json.load(file)
+
+        embedding_idx = 0
         for item in data:
             created_course = Course.objects.create(
                 title=item.get("title"),
@@ -57,7 +62,9 @@ class Command(BaseCommand):
                 units=item.get("units"),
                 url=item.get("url"),
                 prerequisites=item.get("prerequisites"),
+                embedding=embed_data[embedding_idx],
             )
+            embedding_idx += 1
 
             DepCourse.objects.create(
                 course=created_course,
@@ -65,6 +72,22 @@ class Command(BaseCommand):
                     name="Computer Science & Engineering"
                 ),
             )
+
+        course_path = "data-scraper/fixed_courses_data.json"
+        with open(course_path, "r") as file:
+            data = json.load(file)
+
+        for item in data:
+            Course.objects.create(
+                title=item.get("title"),
+                code=item.get("code"),
+                description=item.get("description"),
+                units=item.get("units"),
+                url=item.get("url"),
+                prerequisites=item.get("prerequisites"),
+                embedding=embed_data[embedding_idx],
+            )
+            embedding_idx += 1
         self.stdout.write(self.style.SUCCESS("Course Database seeded successfully."))
 
         # Seed Program Data
@@ -95,6 +118,19 @@ class Command(BaseCommand):
         student.programs.set(Program.objects.filter(name__in=["Computer Science"]))
         student.save()
         self.stdout.write(self.style.SUCCESS("Student Database seeded successfully."))
+
+        # Seed Superuser Data
+        superuser = Student(
+            email="dbadmin@wustl.edu",
+            first_name="Admin",
+            last_name="User",
+            username="dbadmin@wustl.edu",
+        )
+        superuser.set_password("admin")
+        superuser.is_superuser = True
+        superuser.is_staff = True
+        superuser.save()
+        self.stdout.write(self.style.SUCCESS(f"superuser is seeded successfully."))
 
         # Seed Semester Data
         semester_path = "data-scraper/sample_semester.json"

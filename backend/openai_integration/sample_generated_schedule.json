@@ -1,0 +1,10 @@
+{
+    "Fall 2026": ["CSE 131", "CSE 132", "Math 131", "CWP 100", "ESE 326"],
+    "Spring 2027": ["CSE 240", "CSE 247", "Math 132", "ESE 326", "CSE 332S"],
+    "Fall 2027": ["CSE 347", "Math 233", "Math 309", "CSE 361S", "E81 CSE 511A"],
+    "Spring 2028": ["CSE 361A", "CSE 361T", "CSE 332S", "E81 CSE 531A", "E81 CSE 555T"],
+    "Fall 2028": ["CSE 412A", "CSE 411A", "E81 CSE 513T", "E81 CSE 517A", "E81 CSE 527A"],
+    "Spring 2029": ["CSE 419A", "E81 CSE 561A", "CSE 417T", "E81 CSE 519T", "E81 CSE 511A"],
+    "Fall 2029": ["CSE 361S", "CSE 347", "Math 309", "E81 CSE 531A", "E81 CSE 555T"],
+    "Spring 2030": ["CSE 332S", "E81 CSE 513T", "E81 CSE 517A", "CSE 240", "ESE 326"]
+}

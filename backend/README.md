@@ -89,10 +89,11 @@ To applying the migration files (created by `makemigrations`) to the database:
 poetry run python3 manage.py migrate
 ```
 
-To access the database dashboard at `http://127.0.0.1:8000/admin/`, create superuser:
+Access the database dashboard at `http://127.0.0.1:8000/admin/`:
 
 ```
-poetry run python3 manage.py createsuperuser
+dbadmin@wustl.edu
+admin
 ```
 
 To seed data into the database:
