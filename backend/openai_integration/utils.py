@@ -6,10 +6,13 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "backend.settings")
 django.setup()
 
 import numpy as np
+from dotenv import load_dotenv
 from openai import OpenAI
 
 from api.models import Course
 from openai_integration.prompt import get_system_role, get_user_role
+
+load_dotenv()
 
 
 class OpenAIUltils:
