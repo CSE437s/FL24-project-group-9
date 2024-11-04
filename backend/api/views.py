@@ -69,6 +69,8 @@ def generate_schedule_helper(student):
         completed_courses = []
         for semester in completed_semesters:
             completed_courses.extend(semester.planned_courses.all())
+        completed_courses = [course.code for course in completed_courses]
+        print(completed_courses)
         relevant_courses = [
             course for course in relevant_courses if course not in completed_courses
         ]
@@ -136,27 +138,27 @@ class StudentViewSet(ViewSet):
                 if grad_year != student.grad:
                     student.grad = grad_year
                     student.save()
+
+                    Semester.objects.filter(student=student).delete()
+                    for year in range(grad_year - 4, grad_year):
+                        fall_name = f"Fall {year}"
+                        spring_name = f"Spring {year + 1}"
+
+                        Semester.objects.create(
+                            student=student,
+                            name=fall_name,
+                            isCompleted=self.is_completed("Fall", year),
+                        )
+
+                        Semester.objects.create(
+                            student=student,
+                            name=spring_name,
+                            isCompleted=self.is_completed("Spring", year + 1),
+                        )
+
             except ValueError:
                 raise ValidationError(
                     {"grad": "Graduation year must be a valid integer."}
-                )
-
-            Semester.objects.filter(student=student).delete()
-
-            for year in range(grad_year - 4, grad_year):
-                fall_name = f"Fall {year}"
-                spring_name = f"Spring {year + 1}"
-
-                Semester.objects.create(
-                    student=student,
-                    name=fall_name,
-                    isCompleted=self.is_completed("Fall", year),
-                )
-
-                Semester.objects.create(
-                    student=student,
-                    name=spring_name,
-                    isCompleted=self.is_completed("Spring", year + 1),
                 )
 
         if "interests" in request.data or "career" in request.data:

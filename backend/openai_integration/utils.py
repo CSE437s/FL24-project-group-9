@@ -13,7 +13,7 @@ from openai_integration.prompt import get_system_role, get_user_role
 
 
 class OpenAIUltils:
-    THRESHOLD = 0.35
+    THRESHOLD = 0.3
     COURSES = Course.objects.all()
     CLIENT = OpenAI(api_key=os.getenv("OPENAI_API_KEY", "mock_api_key"))
 
