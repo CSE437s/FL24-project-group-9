@@ -6,19 +6,16 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "backend.settings")
 django.setup()
 
 import numpy as np
-from dotenv import load_dotenv
 from openai import OpenAI
 
 from api.models import Course
 from openai_integration.prompt import get_system_role, get_user_role
 
-load_dotenv()
-
 
 class OpenAIUltils:
     THRESHOLD = 0.35
     COURSES = Course.objects.all()
-    CLIENT = OpenAI()
+    CLIENT = OpenAI(api_key=os.getenv("OPENAI_API_KEY", "mock_api_key"))
 
     @staticmethod
     def cosine_similarity(embedding1, embedding2):
