@@ -1,6 +1,7 @@
 import json
 from datetime import date
 
+from django.db.models import Q
 from rest_framework import permissions, status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.exceptions import NotFound, ValidationError
@@ -55,8 +56,52 @@ def api_overview(request):
         "[POST  ] Create Review": "/reviews",
         "[PUT   ] Update Review Detail": "/reviews/<str:pk>",
         "[DELETE] Delete Review": "/reviews/<str:pk>",
+        # Generate Courses
+        "[GET   ] Generate new schedule": "/generate",
     }
     return Response(api_urls)
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def generate_schedule(request):
+    student = request.user
+    return generate_schedule_helper(student)
+
+
+def generate_schedule_helper(student):
+    try:
+        student_embed = student.embedding
+        relevant_courses = OpenAIUltils.filter_courses_by_similarity(student_embed)
+        completed_semesters = Semester.objects.filter(student=student, isCompleted=True)
+        completed_courses = []
+        for semester in completed_semesters:
+            completed_courses.extend(semester.planned_courses.all())
+        relevant_courses = [
+            course for course in relevant_courses if course not in completed_courses
+        ]
+
+        upcoming_semesters = Semester.objects.filter(student=student, isCompleted=False)
+        student_semester_text = ",".join(
+            semester.name for semester in upcoming_semesters
+        )
+        student_profile_text = f"{student.interests};{student.career}"
+
+        generated_courses = OpenAIUltils.generate_course_plan(
+            student_semester_text, student_profile_text, relevant_courses
+        )
+        print(generated_courses)
+        generated_courses = json.loads(generated_courses)
+        for semester in upcoming_semesters:
+            code_list = generated_courses.get(semester.name, [])
+            if code_list:
+                query = Q()
+                for code in code_list:
+                    query |= Q(code__icontains=code)
+                semester.planned_courses.set(Course.objects.filter(query))
+        return Response({"message": "Schedule generated successfully"}, status=200)
+    except ValueError:
+        return Response({"Error": "Failed to generate"}, status=400)
 
 
 class StudentViewSet(ViewSet):
@@ -140,21 +185,16 @@ class StudentViewSet(ViewSet):
 
         # Using default schedule if intertest and career goals is empty.
         if "interests" in request.data or "career" in request.data:
-            interest = (
-                request.data["interests"].strip() if "interests" in request.data else ""
-            )
-            career = request.data["career"].strip() if "career" in request.data else ""
-            if interest != student.interest or career != student.career:
-                student_profile_text = interest + " " + career
+            interests = request.data.get("interests", "").strip()
+            career = request.data.get("career", "").strip()
+            if interests != student.interests or career != student.career:
+                student_profile_text = interests + " " + career
                 student_embeding = OpenAIUltils.generate_student_embedding(
                     student_profile_text
                 )
                 student.embedding = student_embeding
                 student.save()
-
-            student_embed = student.embedding
-            relevant_courses = OpenAIUltils.filter_courses_by_similarity(student_embed)
-            # TODO: Generate course
+            generate_schedule_helper(student)
         else:
             student_semester = Semester.objects.filter(student=student)
             default_schedule_path = "data-scraper/default_semester.json"
