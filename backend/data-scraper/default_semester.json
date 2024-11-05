@@ -1,0 +1,74 @@
+[
+  {
+    "planned_courses": [
+      "Introduction to Computer Science",
+      "Data Structures and Algorithms",
+      "Logic and Discrete Mathematics",
+      "Calculus I",
+      "College Writing I"
+    ]
+  },
+  {
+    "planned_courses": [
+      "Introduction to Computer Engineering",
+      "Object-Oriented Software Development Laboratory",
+      "Technical Writing",
+      "Calculus II",
+      "Introduction to Human-Centered Design"
+    ]
+  },
+  {
+    "planned_courses": [
+      "Matrix Algebra",
+      "Calculus III",
+      "Introduction to Data Science",
+      "Programming Tools and Techniques",
+      "Web Development"
+    ]
+  },
+  {
+    "planned_courses": [
+      "Introduction to Computer Security",
+      "Probability and Statistics for Engineering",
+      "Introduction to Systems Software",
+      "Data Manipulation and Management",
+      "Rapid Prototype Development and Creative Programming"
+    ]
+  },
+  {
+    "planned_courses": [
+      "Introduction to Artificial Intelligence",
+      "Calculus III",
+      "Introduction to Parallel and Concurrent Programming",
+      "Programming Systems and Languages",
+      "Database Management Systems"
+    ]
+  },
+  {
+    "planned_courses": [
+      "Analysis of Algorithms",
+      "Introduction to Quantum Computing",
+      "Operating Systems Organization",
+      "Mobile Application Development",
+      "Video Game Programming"
+    ]
+  },
+  {
+    "planned_courses": [
+      "Software Engineering Workshop",
+      "Computer Architecture",
+      "Introduction to Machine Learning",
+      "Web Privacy and Security",
+      "Data Science for Complex Networks"
+    ]
+  },
+  {
+    "planned_courses": [
+      "Introduction to Computer Networks",
+      "Software Engineering for External Clients",
+      "Multi-Paradigm Programming in C++",
+      "Reverse Engineering and Malware Analysis",
+      "Mobile Application Development II"
+    ]
+  }
+]

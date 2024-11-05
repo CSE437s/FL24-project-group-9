@@ -1,13 +1,16 @@
+import json
 from datetime import date
 
+from django.db.models import Q
 from rest_framework import permissions, status
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import action, api_view, permission_classes
 from rest_framework.exceptions import NotFound, ValidationError
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet, ViewSet
 
-from api.models import Course, Department, Program, Review, Semester
+from api.models import Course, Department, Program, Review, Semester, Student
+from openai_integration.utils import OpenAIUltils
 
 from .serializers import (
     CourseSerializer,
@@ -44,6 +47,7 @@ def api_overview(request):
         # Semester Endpoints
         "[GET   ] List All Semesters": "/semesters/",
         "[PUT   ] Update Semester Detail": "/semesters/<str:pk>",
+        "[POST   ] Generate New schedule": "/semesters/generate/",
         # Program Endpoints
         "[GET   ] List All Programs": "/programs/",
         "[GET   ] Program Detail": "/programs/<str:pk>",
@@ -55,6 +59,68 @@ def api_overview(request):
         "[DELETE] Delete Review": "/reviews/<str:pk>",
     }
     return Response(api_urls)
+
+
+def generate_schedule_helper(student):
+    try:
+        student_embed = student.embedding
+        relevant_courses = OpenAIUltils.filter_courses_by_similarity(student_embed)
+        completed_semesters = Semester.objects.filter(student=student, isCompleted=True)
+        completed_courses = []
+        for semester in completed_semesters:
+            completed_courses.extend(semester.planned_courses.all())
+        completed_courses = [course.code for course in completed_courses]
+        relevant_courses = [
+            course for course in relevant_courses if course not in completed_courses
+        ]
+        required_courses = [
+            "E81 CSE 131",
+            "E81 CSE 132",
+            "E81 CSE 240",
+            "E81 CSE 247",
+            "E81 CSE 332S",
+            "E81 CSE 347",
+            "E81 CSE 361S",
+            "L24 Math 131",
+            "L24 Math 132",
+            "L24 Math 233",
+            "L24 Math 309",
+            "E35 ESE 326",
+            "L59 CWP 100",
+            "E60 Engr 310",
+        ]
+        required_courses = [
+            course for course in required_courses if course not in completed_courses
+        ]
+
+        upcoming_semesters = Semester.objects.filter(student=student, isCompleted=False)
+        student_semester_text = ",".join(
+            semester.name for semester in upcoming_semesters
+        )
+        student_profile_text = f"{student.interests};{student.career}"
+
+        generated_courses = OpenAIUltils.generate_course_plan(
+            required_courses,
+            student_semester_text,
+            student_profile_text,
+            relevant_courses,
+        )
+
+        generated_courses = json.loads(generated_courses)
+        for semester in upcoming_semesters:
+            code_list = generated_courses.get(semester.name, [])
+            if code_list:
+                query = Q()
+                for code in code_list:
+                    query |= Q(code__icontains=code)
+                semester.planned_courses.set(Course.objects.filter(query))
+
+        generated_semesters = Semester.objects.filter(student=student)
+        serialized_semesters = SemesterSerializer(generated_semesters, many=True).data
+
+        return Response(serialized_semesters, status=200)
+    except ValueError:
+        return Response({"Error": "Failed to generate"}, status=400)
 
 
 class StudentViewSet(ViewSet):
@@ -92,51 +158,43 @@ class StudentViewSet(ViewSet):
                 grad_year = int(request.data["grad"])
                 if grad_year != student.grad:
                     student.grad = grad_year
+                    student.save()
+
+                    Semester.objects.filter(student=student).delete()
+                    for year in range(grad_year - 4, grad_year):
+                        fall_name = f"Fall {year}"
+                        spring_name = f"Spring {year + 1}"
+
+                        Semester.objects.create(
+                            student=student,
+                            name=fall_name,
+                            isCompleted=self.is_completed("Fall", year),
+                        )
+
+                        Semester.objects.create(
+                            student=student,
+                            name=spring_name,
+                            isCompleted=self.is_completed("Spring", year + 1),
+                        )
+
             except ValueError:
                 raise ValidationError(
                     {"grad": "Graduation year must be a valid integer."}
                 )
 
-            existing_semesters = {
-                semester.name: semester
-                for semester in Semester.objects.filter(student=student)
-            }
-            new_semesters = []
-
-            for year in range(grad_year - 4, grad_year):
-                fall_name = f"Fall {year}"
-                spring_name = f"Spring {year + 1}"
-
-                if fall_name in existing_semesters:
-                    fall_semester = existing_semesters[fall_name]
-                    fall_semester.isCompleted = self.is_completed("Fall", year)
-                else:
-                    fall_semester = Semester(
-                        student=student,
-                        name=fall_name,
-                        isCompleted=self.is_completed("Fall", year),
-                    )
-                new_semesters.append(fall_semester)
-
-                if spring_name in existing_semesters:
-                    spring_semester = existing_semesters[spring_name]
-                    spring_semester.isCompleted = self.is_completed("Spring", year + 1)
-                else:
-                    spring_semester = Semester(
-                        student=student,
-                        name=spring_name,
-                        isCompleted=self.is_completed("Spring", year + 1),
-                    )
-                new_semesters.append(spring_semester)
-
-        Semester.objects.filter(student=student).exclude(
-            name__in=[semester.name for semester in new_semesters]
-        ).delete()
-        for semester in new_semesters:
-            semester.save()
+        if "interests" in request.data or "career" in request.data:
+            interests = request.data.get("interests", "").strip()
+            career = request.data.get("career", "").strip()
+            if interests != student.interests or career != student.career:
+                student_profile_text = interests + " " + career
+                student_embeding = OpenAIUltils.generate_student_embedding(
+                    student_profile_text
+                )
+                student.embedding = student_embeding
+                student.save()
 
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(embedding=student.embedding)
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -199,6 +257,12 @@ class SemesterViewSet(ViewSet):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @action(detail=False, methods=["post"], url_path="generate")
+    def generate_schedule(self, request):
+        authenticated_student = self.request.user
+        schedule = generate_schedule_helper(authenticated_student)
+        return schedule
 
 
 class ReviewViewSet(ModelViewSet):

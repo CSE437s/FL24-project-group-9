@@ -16,6 +16,7 @@ interface StudentContextType {
   hasStudentOnboarded: () => boolean
   updateSemester: (semester: Semester) => void
   hasPreviousSemesters: () => boolean
+  generateSemesters: () => void
 }
 
 const StudentContext = createContext<StudentContextType | undefined>(undefined)
@@ -99,6 +100,20 @@ const StudentProvider = ({ children }: { children: ReactNode }) => {
     )
   }
 
+  const generateSemesters = async () => {
+    setStudentLoading(true)
+    SemestersAPI.generateSemesters(bearerToken)
+      .then((semesters) => {
+        setSemesters(semesters)
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+      .finally(() => {
+        setStudentLoading(false)
+      })
+  }
+
   return (
     <StudentContext.Provider
       value={{
@@ -110,6 +125,7 @@ const StudentProvider = ({ children }: { children: ReactNode }) => {
         hasStudentOnboarded,
         updateSemester,
         hasPreviousSemesters,
+        generateSemesters,
       }}
     >
       {children}

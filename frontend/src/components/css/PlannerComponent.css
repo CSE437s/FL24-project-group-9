@@ -1,6 +1,7 @@
 .planner-component {
   display: flex;
   column-gap: 6rem;
+  row-gap: 2rem;
   flex-wrap: wrap;
 }
 
