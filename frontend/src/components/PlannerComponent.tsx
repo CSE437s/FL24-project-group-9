@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { DragDropContext, DropResult } from 'react-beautiful-dnd'
+import Select from 'react-dropdown-select'
 
 import {
   useAcademicDataContext,
@@ -101,33 +102,33 @@ export const PlannerComponent: React.FC<PlannerComponentProps> = ({
         <h4>Add Course</h4>
         <p>
           <label>Course:</label>
-          <select
-            value={newCourse}
-            onChange={(e) => setNewCourse(Number(e.target.value))}
-          >
-            {courses &&
-              courses.map((course, index) => (
-                <option key={index} value={course.id}>
-                  {course.code.substring(3)} - {course.title}
-                </option>
-              ))}
-          </select>
+          <div className="select-dropdown-wrapper">
+            <Select
+              options={courses}
+              labelField="displayName"
+              searchBy="displayName"
+              valueField="id"
+              values={[courses[0]]}
+              backspaceDelete={false}
+              onChange={(values) => setNewCourse(values[0].id)}
+              color="#555"
+            />
+          </div>
         </p>
         <p>
           <label>Semester:</label>
-          <select
-            value={newSemester}
-            onChange={(e) => setNewSemester(Number(e.target.value))}
-          >
-            {semesters &&
-              semesters
-                .filter((s) => s.isCompleted === isCompleted)
-                .map((semester, index) => (
-                  <option key={index} value={semester.id}>
-                    {semester.name}
-                  </option>
-                ))}
-          </select>
+          <div className="select-dropdown-wrapper">
+            <Select
+              options={semesters.filter((s) => s.isCompleted === isCompleted)}
+              labelField="name"
+              searchBy="name"
+              valueField="id"
+              values={[semesters[0]]}
+              onChange={(values) => setNewSemester(values[0].id)}
+              backspaceDelete={false}
+              color="#555"
+            />
+          </div>
         </p>
         <div className="planner-buttons">
           <button type="button" onClick={addCourse}>

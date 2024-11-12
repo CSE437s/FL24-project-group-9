@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Select from 'react-dropdown-select'
 
 import { useAcademicDataContext } from '../context/useContext'
 import { Student } from '../models/Student'
@@ -34,27 +35,36 @@ export const StudentForm: React.FC<StudentFormProps> = ({
       <div className="input-wrapper">
         <label htmlFor="program">Program</label>
         {academicLoading || programs.length === 0 ? (
-          <select id="program" name="program" disabled>
-            <option>Loading...</option>
-          </select>
+          <div className="select-dropdown-wrapper">
+            <Select
+              options={[]}
+              values={[]}
+              // eslint-disable-next-line prettier/prettier
+              onChange={() => { }}
+              disabled
+              loading
+            />
+          </div>
         ) : (
-          <select
-            id="program"
-            name="program"
-            value={newStudent.programs[0]}
-            onChange={(e) => {
-              setNewStudent({
-                ...newStudent,
-                programs: [Number(e.target.value)],
-              })
-            }}
-          >
-            {programs.map((program) => (
-              <option key={program.id} value={program.id}>
-                {program.name}
-              </option>
-            ))}
-          </select>
+          <div className="select-dropdown-wrapper">
+            <Select
+              options={programs}
+              labelField="name"
+              searchBy="name"
+              valueField="id"
+              values={programs.filter((program) =>
+                newStudent.programs.includes(program.id)
+              )}
+              onChange={(values) =>
+                setNewStudent({
+                  ...newStudent,
+                  programs: [values[0].id],
+                })
+              }
+              backspaceDelete={false}
+              color="#555"
+            />
+          </div>
         )}
       </div>
       <div className="input-wrapper">

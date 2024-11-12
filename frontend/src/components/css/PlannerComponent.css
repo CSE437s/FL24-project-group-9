@@ -26,11 +26,22 @@
   width: 6rem;
 }
 
-.planner-component select {
-  width: 100%;
+.planner-component .react-dropdown-select {
   box-sizing: border-box;
+  width: 100%;
   font-size: var(--font-h6);
   line-height: var(--font-h4);
   padding: 0.5rem;
-  height: calc(var(--font-h4) + 1rem);
+}
+
+.planner-component .react-dropdown-select input {
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
+}
+
+.planner-component .select-dropdown-wrapper {
+  width: 100%;
+  box-sizing: border-box;
+  flex: 1;
 }
