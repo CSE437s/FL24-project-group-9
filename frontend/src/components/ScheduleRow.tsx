@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
-import { ClipLoader } from 'react-spinners'
+import { Col, Container, Row, Spinner } from 'react-bootstrap'
 
 import { useAcademicDataContext } from '../context/useContext'
 
@@ -23,7 +22,14 @@ export const ScheduleRow: React.FC<ScheduleRowProps> = ({
   if (!course) {
     return (
       <Container className="schedule-row">
-        <ClipLoader size={35} color={'#123abc'} loading={true} />
+        <Spinner
+          as="span"
+          animation="border"
+          size="sm"
+          role="status"
+          aria-hidden="true"
+          variant="light"
+        />{' '}
       </Container>
     )
   }

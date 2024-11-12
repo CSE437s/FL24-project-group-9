@@ -1,7 +1,6 @@
 import { useState } from 'react'
-import { Button, Container, Form } from 'react-bootstrap'
+import { Button, Container, Form, Spinner } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
-import { ClipLoader } from 'react-spinners'
 
 import { FooterBar } from '../components/FooterBar'
 import { HeaderBar } from '../components/HeaderBar'
@@ -59,7 +58,14 @@ export default function ResetPasswordPage() {
               <div className="action-btns">
                 {resetLoading ? (
                   <Button type="button" disabled>
-                    <ClipLoader size={'0.8rem'} color={'#ffffff'} />
+                    <Spinner
+                      as="span"
+                      animation="border"
+                      size="sm"
+                      role="status"
+                      aria-hidden="true"
+                      variant="light"
+                    />{' '}
                   </Button>
                 ) : (
                   <Button type="submit">Reset</Button>

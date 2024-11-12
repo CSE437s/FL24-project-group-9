@@ -15,7 +15,6 @@
   gap: 1.5rem;
   width: 28rem;
   padding: 1rem;
-  box-sizing: border-box;
   margin: 0 auto;
 }
 
@@ -24,8 +23,8 @@
   text-align: center;
 }
 
-.login-body input {
-  padding: 0.5rem;
+.login-body p {
+  text-align: center;
 }
 
 .login-body .action-btns {

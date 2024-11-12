@@ -22,7 +22,6 @@ export const StudentForm: React.FC<StudentFormProps> = ({
   const [newStudent, setNewStudent] = useState<Student>({
     ...student,
     grad: student.grad ?? new Date().getFullYear(),
-    programs: [student.programs[0] ?? programs[0].id],
   })
   const [warning, setWarning] = useState('')
 
@@ -60,7 +59,8 @@ export const StudentForm: React.FC<StudentFormProps> = ({
               })
             }
             backspaceDelete={false}
-            color="#555"
+            color="#a51416d0"
+            required
           />
         )}
       </Form.Group>

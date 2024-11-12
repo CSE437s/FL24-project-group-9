@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
-import { Button, Container, Form } from 'react-bootstrap'
+import { Button, Container, Form, Spinner } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
-import { ClipLoader } from 'react-spinners'
 
 import { FooterBar } from '../components/FooterBar'
 import { HeaderBar } from '../components/HeaderBar'
@@ -194,7 +193,14 @@ export default function LoginPage() {
           {emailInput(true)}
           <div className="action-btns">
             <Button type="submit" disabled>
-              <ClipLoader size={'0.8rem'} color={'#ffffff'} />
+              <Spinner
+                as="span"
+                animation="border"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+                variant="light"
+              />
             </Button>
           </div>
         </Form>
@@ -214,7 +220,14 @@ export default function LoginPage() {
             </Button>
             {signupLoading ? (
               <Button type="submit" disabled>
-                <ClipLoader size={'0.8rem'} color={'#ffffff'} />
+                <Spinner
+                  as="span"
+                  animation="border"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                  variant="light"
+                />
               </Button>
             ) : (
               <Button type="submit">Sign Up</Button>
@@ -244,7 +257,14 @@ export default function LoginPage() {
             </Button>
             <Button type="submit">
               {loginLoading ? (
-                <ClipLoader size={'0.8rem'} color={'#ffffff'} />
+                <Spinner
+                  as="span"
+                  animation="border"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                  variant="light"
+                />
               ) : (
                 'Login'
               )}

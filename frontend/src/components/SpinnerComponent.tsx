@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Container, Spinner } from 'react-bootstrap'
 
 import './css/SpinnerComponent.css'
 
@@ -33,12 +34,15 @@ export const SpinnerComponent: React.FC<SpinnerProps> = ({
   return (
     <>
       {showSpinner && (
-        <div className="spinner-container">
-          <div className="spinner">
-            <div className="spinner-inner"></div>
-          </div>
+        <Container className="spinner-container">
+          <Spinner
+            animation="border"
+            role="status"
+            className="spinner"
+            variant="primary"
+          ></Spinner>
           <p>{messages[messageIndex]}</p>
-        </div>
+        </Container>
       )}
     </>
   )
