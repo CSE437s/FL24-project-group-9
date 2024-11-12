@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Button, Form } from 'react-bootstrap'
 import Select from 'react-dropdown-select'
 
 import { useAcademicDataContext } from '../context/useContext'
@@ -31,45 +32,41 @@ export const StudentForm: React.FC<StudentFormProps> = ({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="student-form">
-      <div className="input-wrapper">
-        <label htmlFor="program">Program</label>
+    <Form onSubmit={handleSubmit} className="student-form">
+      <Form.Group controlId="program" className="input-wrapper">
+        <Form.Label htmlFor="program">Program</Form.Label>
         {academicLoading || programs.length === 0 ? (
-          <div className="select-dropdown-wrapper">
-            <Select
-              options={[]}
-              values={[]}
-              // eslint-disable-next-line prettier/prettier
-              onChange={() => { }}
-              disabled
-              loading
-            />
-          </div>
+          <Select
+            options={[]}
+            values={[]}
+            // eslint-disable-next-line prettier/prettier
+            onChange={() => { }}
+            disabled
+            loading
+          />
         ) : (
-          <div className="select-dropdown-wrapper">
-            <Select
-              options={programs}
-              labelField="name"
-              searchBy="name"
-              valueField="id"
-              values={programs.filter((program) =>
-                newStudent.programs.includes(program.id)
-              )}
-              onChange={(values) =>
-                setNewStudent({
-                  ...newStudent,
-                  programs: [values[0].id],
-                })
-              }
-              backspaceDelete={false}
-              color="#555"
-            />
-          </div>
+          <Select
+            options={programs}
+            labelField="name"
+            searchBy="name"
+            valueField="id"
+            values={programs.filter((program) =>
+              newStudent.programs.includes(program.id)
+            )}
+            onChange={(values) =>
+              setNewStudent({
+                ...newStudent,
+                programs: [values[0].id],
+              })
+            }
+            backspaceDelete={false}
+            color="#555"
+          />
         )}
-      </div>
-      <div className="input-wrapper">
-        <label htmlFor="endYear">Graduation Year</label>
-        <input
+      </Form.Group>
+      <Form.Group controlId="grad" className="input-wrapper">
+        <Form.Label htmlFor="endYear">Graduation Year</Form.Label>
+        <Form.Control
           type="number"
           min={new Date().getFullYear()}
           max="2040"
@@ -88,10 +85,10 @@ export const StudentForm: React.FC<StudentFormProps> = ({
           required
         />
         {warning && <span className="warning">{warning}</span>}
-      </div>
-      <div className="input-wrapper">
-        <label htmlFor="career">Career:</label>
-        <input
+      </Form.Group>
+      <Form.Group controlId="career" className="input-wrapper">
+        <Form.Label htmlFor="career">Career:</Form.Label>
+        <Form.Control
           type="text"
           id="career"
           name="career"
@@ -101,10 +98,10 @@ export const StudentForm: React.FC<StudentFormProps> = ({
             setNewStudent({ ...newStudent, career: e.target.value })
           }
         />
-      </div>
-      <div className="input-wrapper">
-        <label htmlFor="interests">Interests</label>
-        <input
+      </Form.Group>
+      <Form.Group controlId="interests" className="input-wrapper">
+        <Form.Label htmlFor="interests">Interests</Form.Label>
+        <Form.Control
           type="text"
           id="interests"
           name="interests"
@@ -113,15 +110,15 @@ export const StudentForm: React.FC<StudentFormProps> = ({
             setNewStudent({ ...newStudent, interests: e.target.value })
           }}
         />
-      </div>
+      </Form.Group>
       <div className="action-btns">
         {handleCancel && (
-          <button type="button" onClick={handleCancel}>
+          <Button type="button" onClick={handleCancel}>
             Cancel
-          </button>
+          </Button>
         )}
-        <button type="submit">Save</button>
+        <Button type="submit">Save</Button>
       </div>
-    </form>
+    </Form>
   )
 }
