@@ -21,6 +21,10 @@ class Course(models.Model):
     prerequisites = models.TextField(blank=True)
     embedding = models.JSONField(blank=True, null=True)
 
+    @property
+    def displayName(self):
+        return f"{self.code[3:]} - {self.title}"
+        
     def __str__(self):
         return self.code + " " + self.title
 
