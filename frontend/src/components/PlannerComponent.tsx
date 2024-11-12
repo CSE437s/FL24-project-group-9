@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { DragDropContext, DropResult } from 'react-beautiful-dnd'
+import { Button, Col, Container, Form, Row } from 'react-bootstrap'
 import Select from 'react-dropdown-select'
 
 import {
@@ -39,6 +40,7 @@ export const PlannerComponent: React.FC<PlannerComponentProps> = ({
   }
 
   const handleDragDrop = (result: DropResult) => {
+    console.log('draggin')
     const { source, destination } = result
 
     if (!destination) {
@@ -81,7 +83,9 @@ export const PlannerComponent: React.FC<PlannerComponentProps> = ({
     updateSemester(sourceSemester)
   }
 
-  const addCourses = () => {
+  const addCourses = (event: React.FormEvent) => {
+    event.preventDefault()
+
     const semester = semesters.find(
       (semester) => semester.id === newSemester.id
     )
@@ -105,68 +109,76 @@ export const PlannerComponent: React.FC<PlannerComponentProps> = ({
   }
 
   return (
-    <div className="planner-component">
-      <div className="add-course">
-        <h4>Add Course</h4>
-        <p>
-          <label>Course:</label>
-          <div className="select-dropdown-wrapper">
-            <Select
-              multi
-              options={courses}
-              labelField="displayName"
-              searchBy="displayName"
-              valueField="id"
-              values={[courses[0]]}
-              onChange={(values) => setNewCourses(values)}
-              color="#555"
-              clearable={true}
-            />
-          </div>
-        </p>
-        <p>
-          <label>Semester:</label>
-          <div className="select-dropdown-wrapper">
-            <Select
-              options={semesters.filter((s) => s.isCompleted === isCompleted)}
-              labelField="name"
-              searchBy="name"
-              valueField="id"
-              values={[newSemester]}
-              onChange={(values) => setNewSemester(values[0])}
-              backspaceDelete={false}
-              color="#555"
-            />
-          </div>
-        </p>
-        <div className="planner-buttons">
-          <button type="button" onClick={addCourses}>
-            Add Course
-          </button>
-        </div>
-      </div>
-      <div className="planner-body">
-        {!isCompleted ? (
-          <button onClick={handleGenerate}>Generate New Schedule</button>
-        ) : (
-          <></>
-        )}
-        <DragDropContext onDragEnd={handleDragDrop}>
-          <div className="selected-block">
-            {semesters &&
-              semesters
-                .filter((s) => s.isCompleted === isCompleted)
-                .map((semester) => (
-                  <ScheduleDraggableV2
-                    key={semester.id}
-                    droppableId={semester.id.toString()}
-                    semester={semester}
-                    handleRemoveClick={handleRemoveClick}
-                  />
-                ))}
-          </div>
-        </DragDropContext>
-      </div>
-    </div>
+    <Container className="planner-component">
+      <Row>
+        <Col className="add-course">
+          <h4>Add Course</h4>
+          <Form onSubmit={addCourses}>
+            <Form.Group controlId="course">
+              <Form.Label>Course:</Form.Label>
+              <Select
+                multi
+                options={courses}
+                labelField="displayName"
+                searchBy="displayName"
+                valueField="id"
+                values={[courses[0]]}
+                onChange={(values) => setNewCourses(values)}
+                color="#555"
+                clearable={true}
+                required
+              />
+            </Form.Group>
+            <Form.Group controlId="semester">
+              <Form.Label>Semester:</Form.Label>
+              <Select
+                options={semesters.filter((s) => s.isCompleted === isCompleted)}
+                labelField="name"
+                searchBy="name"
+                valueField="id"
+                values={[newSemester]}
+                onChange={(values) => setNewSemester(values[0])}
+                backspaceDelete={false}
+                color="#555"
+                required
+              />
+            </Form.Group>
+            <Container>
+              <Row>
+                <Col md="auto">
+                  <Button type="submit">Add Course</Button>
+                </Col>
+                <Col md="auto">
+                  {!isCompleted ? (
+                    <Button onClick={handleGenerate}>
+                      Generate New Schedule
+                    </Button>
+                  ) : (
+                    <></>
+                  )}
+                </Col>
+              </Row>
+            </Container>
+          </Form>
+        </Col>
+        <Col className="planner-body">
+          <DragDropContext onDragEnd={handleDragDrop}>
+            <Container className="selected-block">
+              {semesters &&
+                semesters
+                  .filter((s) => s.isCompleted === isCompleted)
+                  .map((semester) => (
+                    <ScheduleDraggableV2
+                      key={semester.id}
+                      droppableId={semester.id.toString()}
+                      semester={semester}
+                      handleRemoveClick={handleRemoveClick}
+                    />
+                  ))}
+            </Container>
+          </DragDropContext>
+        </Col>
+      </Row>
+    </Container>
   )
 }

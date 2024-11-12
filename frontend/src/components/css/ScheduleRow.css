@@ -27,7 +27,7 @@
 
 .schedule-row-body.expanded {
   border-top: var(--border-size) var(--border-table) solid;
-  max-height: 30rem;
+  max-height: 50rem;
   transition: max-height 0.3s ease;
 }
 

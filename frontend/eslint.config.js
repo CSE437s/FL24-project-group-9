@@ -42,7 +42,7 @@ export default tseslint.config(
             ['^\\u0000'], // Side effect imports
             ['^\\.\\.(?!/?$)', '^\\.\\./?$'], // Parent imports
             ['^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$'], // Other relative imports
-            ['^.+\\.css$'], // Style imports
+            ['^.+\\.(css|scss)$'], // Style imports
           ],
         },
       ],
