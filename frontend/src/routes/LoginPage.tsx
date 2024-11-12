@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Button, Container, Form } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import { ClipLoader } from 'react-spinners'
 
@@ -114,9 +115,9 @@ export default function LoginPage() {
   }, [bearerToken, navigate])
 
   const emailInput = (isDisabled: boolean = false) => (
-    <div className="input-wrapper">
-      <label htmlFor="email">Enter your WUSTL email</label>
-      <input
+    <Form.Group controlId="email" className="input-wrapper">
+      <Form.Label htmlFor="email">Enter your WUSTL email</Form.Label>
+      <Form.Control
         type="email"
         value={user.email}
         pattern=".+@wustl\.edu"
@@ -126,13 +127,13 @@ export default function LoginPage() {
         required
         disabled={isDisabled}
       />
-    </div>
+    </Form.Group>
   )
 
   const passwordInput = (
-    <div className="input-wrapper">
-      <label htmlFor="password">Password</label>
-      <input
+    <Form.Group controlId="password" className="input-wrapper">
+      <Form.Label htmlFor="password">Password</Form.Label>
+      <Form.Control
         type="password"
         minLength={8}
         value={user.password}
@@ -141,14 +142,14 @@ export default function LoginPage() {
           setUser((prev) => ({ ...prev, password: e.target.value }))
         }
       />
-    </div>
+    </Form.Group>
   )
 
   const nameInput = (
     <>
-      <div className="input-wrapper">
-        <label htmlFor="first-name">First Name</label>
-        <input
+      <Form.Group controlId="first-name" className="input-wrapper">
+        <Form.Label>First Name</Form.Label>
+        <Form.Control
           type="text"
           value={user.firstName}
           required
@@ -156,10 +157,10 @@ export default function LoginPage() {
             setUser((prev) => ({ ...prev, firstName: e.target.value }))
           }
         />
-      </div>
-      <div className="input-wrapper">
-        <label htmlFor="last-name">Last Name</label>
-        <input
+      </Form.Group>
+      <Form.Group className="input-wrapper">
+        <Form.Label htmlFor="last-name">Last Name</Form.Label>
+        <Form.Control
           type="text"
           value={user.lastName}
           required
@@ -167,7 +168,7 @@ export default function LoginPage() {
             setUser((prev) => ({ ...prev, lastName: e.target.value }))
           }
         />
-      </div>
+      </Form.Group>
     </>
   )
 
@@ -175,58 +176,58 @@ export default function LoginPage() {
 
   if (!emailEntered) {
     form = (
-      <div>
+      <Container>
         <h2>Login or Create your Account</h2>
-        <form onSubmit={handleEmailEntered}>
+        <Form onSubmit={handleEmailEntered}>
           {emailInput()}
           <div className="action-btns">
-            <button type="submit">Continue</button>
+            <Button type="submit">Continue</Button>
           </div>
-        </form>
-      </div>
+        </Form>
+      </Container>
     )
   } else if (checkUserLoading) {
     form = (
-      <div>
+      <Container>
         <h2>Login or Create your Account</h2>
-        <form>
+        <Form>
           {emailInput(true)}
           <div className="action-btns">
-            <button type="submit" disabled>
+            <Button type="submit" disabled>
               <ClipLoader size={'0.8rem'} color={'#ffffff'} />
-            </button>
+            </Button>
           </div>
-        </form>
-      </div>
+        </Form>
+      </Container>
     )
   } else if (!userExisted) {
     form = (
-      <div>
+      <Container>
         <h2>Create your Account</h2>
-        <form onSubmit={handleRegister}>
+        <Form onSubmit={handleRegister}>
           {emailInput(true)}
           {passwordInput}
           {nameInput}
           <div className="action-btns">
-            <button type="button" onClick={handleBack} disabled={signupLoading}>
+            <Button type="button" onClick={handleBack} disabled={signupLoading}>
               Back
-            </button>
+            </Button>
             {signupLoading ? (
-              <button type="submit" disabled>
+              <Button type="submit" disabled>
                 <ClipLoader size={'0.8rem'} color={'#ffffff'} />
-              </button>
+              </Button>
             ) : (
-              <button type="submit">Sign Up</button>
+              <Button type="submit">Sign Up</Button>
             )}
           </div>
-        </form>
-      </div>
+        </Form>
+      </Container>
     )
   } else {
     form = (
-      <div>
+      <Container>
         <h2>Welcome back!</h2>
-        <form onSubmit={handleLogin}>
+        <Form onSubmit={handleLogin}>
           {emailInput(true)}
           {passwordInput}
           <div className="input-wrapper">
@@ -238,29 +239,29 @@ export default function LoginPage() {
             </div>
           </div>
           <div className="action-btns">
-            <button type="button" onClick={handleBack} disabled={loginLoading}>
+            <Button type="button" onClick={handleBack} disabled={loginLoading}>
               Back
-            </button>
-            <button type="submit">
+            </Button>
+            <Button type="submit">
               {loginLoading ? (
                 <ClipLoader size={'0.8rem'} color={'#ffffff'} />
               ) : (
                 'Login'
               )}
-            </button>
+            </Button>
           </div>
-        </form>
-      </div>
+        </Form>
+      </Container>
     )
   }
 
   return (
     <>
       <HeaderBar />
-      <div className="login-page">
-        <section className="login-body">{form}</section>
+      <Container className="login-page">
+        <Container className="login-body">{form}</Container>
         <div className="login-message">{message}</div>
-      </div>
+      </Container>
       <FooterBar />
     </>
   )

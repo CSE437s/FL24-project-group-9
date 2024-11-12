@@ -114,7 +114,7 @@ export const PlannerComponent: React.FC<PlannerComponentProps> = ({
         <Col className="add-course">
           <h4>Add Course</h4>
           <Form onSubmit={addCourses}>
-            <Form.Group controlId="course">
+            <Form.Group controlId="course" className="input-wrapper">
               <Form.Label>Course:</Form.Label>
               <Select
                 multi
@@ -129,7 +129,7 @@ export const PlannerComponent: React.FC<PlannerComponentProps> = ({
                 required
               />
             </Form.Group>
-            <Form.Group controlId="semester">
+            <Form.Group controlId="semester" className="input-wrapper">
               <Form.Label>Semester:</Form.Label>
               <Select
                 options={semesters.filter((s) => s.isCompleted === isCompleted)}
@@ -161,7 +161,7 @@ export const PlannerComponent: React.FC<PlannerComponentProps> = ({
             </Container>
           </Form>
         </Col>
-        <Col className="planner-body">
+        <Col md="auto" className="planner-body">
           <DragDropContext onDragEnd={handleDragDrop}>
             <Container className="selected-block">
               {semesters &&

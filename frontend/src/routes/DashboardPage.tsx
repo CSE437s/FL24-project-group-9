@@ -1,3 +1,4 @@
+import { Col, Container, Row } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
 import { FooterBar } from '../components/FooterBar'
@@ -49,7 +50,7 @@ export default function DashboardPage() {
   const profileComponent = student ? (
     <>
       <h2>Welcome to CoursePlanner {student?.first_name}!</h2>
-      <section className="academic-summary">
+      <Container className="academic-summary">
         <h4>
           Academic Summary
           <button className="secondary" onClick={handleEditProfile}>
@@ -58,7 +59,7 @@ export default function DashboardPage() {
         </h4>
         <div className="academic-info">
           <p>
-            <span>Programs:</span>{' '}
+            <span>Programs:</span>
             {programs.filter((p) => p.id == student.programs?.[0])?.[0]?.name}
           </p>
           <p>
@@ -71,24 +72,24 @@ export default function DashboardPage() {
             <span>Interests:</span> {student.interests}
           </p>
         </div>
-      </section>
+      </Container>
     </>
   ) : (
-    <section className="profile-summary">
+    <Container className="profile-summary">
       <h4>No info available, please try again later.</h4>
-    </section>
+    </Container>
   )
 
   return (
     <>
       <HeaderBar isNavVisible={true} />
-      <div className="dashboard-page">
+      <Container className="dashboard-page">
         {profileComponent}
-        <section className="dashboard-summary">
+        <Container className="dashboard-summary">
           <h3>Your Schedule</h3>
-          <div className="schedule">
+          <Row className="schedule">
             {semesters.filter((s) => s.isCompleted).length ? (
-              <div className="history">
+              <Col className="history">
                 <h4>
                   History
                   <button className="secondary" onClick={handleEdit}>
@@ -100,11 +101,11 @@ export default function DashboardPage() {
                   .map((semester) => (
                     <ScheduleBlock key={semester.id} semester={semester} />
                   ))}
-              </div>
+              </Col>
             ) : (
               <></>
             )}
-            <div className="planned">
+            <Col className="planned">
               <h4>
                 <span>Upcoming Courses</span>
                 <button className="secondary" onClick={handleGenerate}>
@@ -116,10 +117,10 @@ export default function DashboardPage() {
                 .map((semester) => (
                   <ScheduleBlock key={semester.id} semester={semester} />
                 ))}
-            </div>
-          </div>
-        </section>
-      </div>
+            </Col>
+          </Row>
+        </Container>
+      </Container>
       <FooterBar />
     </>
   )

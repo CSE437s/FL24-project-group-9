@@ -145,3 +145,13 @@ button:disabled {
   background-color: var(--secondary-red);
   cursor: not-allowed;
 }
+
+.input-wrapper {
+  gap: 0.25rem;
+  width: 100%;
+  max-width: 25rem;
+}
+
+.input-wrapper label {
+  font-weight: bold;
+}

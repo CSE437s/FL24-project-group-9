@@ -1,7 +1,9 @@
 .schedule-row {
   box-sizing: border-box;
   border: 1px solid var(--border-block);
-  width: 35rem;
+  min-width: 35rem;
+  max-width: 40rem;
+  width: 100%;
 }
 
 .schedule-row-header {

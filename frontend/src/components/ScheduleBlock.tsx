@@ -1,3 +1,5 @@
+import { Col, Row } from 'react-bootstrap'
+
 import { useAcademicDataContext } from '../context/useContext'
 import { Semester } from '../models/Semester'
 import { utils } from '../utils'
@@ -19,13 +21,13 @@ export const ScheduleBlock: React.FC<ScheduleBlockProps> = ({
   const { courses } = useAcademicDataContext()
 
   return (
-    <div className="schedule-block">
-      <div className="schedule-header">
-        <span className="schedule-info">{semester.name}</span>
-        <span className="schedule-units">
+    <>
+      <Row className="schedule-header">
+        <Col className="schedule-info">{semester.name}</Col>
+        <Col md="auto" className="schedule-units">
           Total Units: {utils.getTotalUnits(semester, courses)}
-        </span>
-      </div>
+        </Col>
+      </Row>
       {semester.planned_courses.map((courseId) =>
         handleRemoveClick ? (
           <ScheduleRow
@@ -37,6 +39,6 @@ export const ScheduleBlock: React.FC<ScheduleBlockProps> = ({
           <ScheduleRow key={courseId} courseId={courseId} />
         )
       )}
-    </div>
+    </>
   )
 }
