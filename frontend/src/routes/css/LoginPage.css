@@ -3,14 +3,6 @@
   min-height: var(--min-height-container);
 }
 
-.login-body {
-  box-sizing: border-box;
-  padding: 1.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .login-body button {
   height: fit-content;
   width: 7.5rem;
@@ -21,6 +13,9 @@
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
+  width: 28rem;
+  padding: 1rem;
+  margin: 0 auto;
 }
 
 .login-body h2 {
@@ -28,28 +23,14 @@
   text-align: center;
 }
 
-.login-body input {
-  box-sizing: border-box;
-  font-size: var(--font-h6);
-  line-height: var(--font-h4);
-  padding: 0.5rem;
+.login-body p {
+  text-align: center;
 }
 
 .login-body .action-btns {
   width: 100%;
   display: flex;
   justify-content: space-evenly;
-}
-
-.login-body .input-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  width: 25rem;
-}
-
-.login-body .input-wrapper label {
-  font-weight: bold;
 }
 
 .login-message {

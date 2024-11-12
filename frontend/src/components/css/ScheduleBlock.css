@@ -1,10 +1,5 @@
 .schedule-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin: 1rem 0 0.5rem;
-  min-width: 35rem;
-  width: 100%;
 }
 
 .schedule-info {
@@ -15,5 +10,4 @@
 
 .schedule-units {
   color: var(--text-paragraph);
-  font-size: var(--font-body);
 }

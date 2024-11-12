@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import { DragDropContext, DropResult } from 'react-beautiful-dnd'
+import { Button, Col, Container, Form, Row } from 'react-bootstrap'
+import Select from 'react-dropdown-select'
 
 import {
   useAcademicDataContext,
   useStudentContext,
 } from '../context/useContext'
+import { Course } from '../models/Course'
 import { Semester } from '../models/Semester'
 
 import { ScheduleDraggableV2 } from './ScheduleDraggableV2'
@@ -20,9 +23,9 @@ export const PlannerComponent: React.FC<PlannerComponentProps> = ({
 }) => {
   const { courses } = useAcademicDataContext()
   const { semesters, updateSemester, generateSemesters } = useStudentContext()
-  const [newCourse, setNewCourse] = useState(courses[0]?.id)
+  const [newCourses, setNewCourses] = useState<Course[]>([])
   const [newSemester, setNewSemester] = useState(
-    semesters.filter((s) => s.isCompleted == isCompleted)[0]?.id
+    semesters.filter((s) => s.isCompleted == isCompleted)?.[0]
   )
 
   const handleGenerate = () => {
@@ -37,6 +40,7 @@ export const PlannerComponent: React.FC<PlannerComponentProps> = ({
   }
 
   const handleDragDrop = (result: DropResult) => {
+    console.log('draggin')
     const { source, destination } = result
 
     if (!destination) {
@@ -79,68 +83,84 @@ export const PlannerComponent: React.FC<PlannerComponentProps> = ({
     updateSemester(sourceSemester)
   }
 
-  const addCourse = () => {
-    const semester = semesters.find((semester) => semester.id === newSemester)
-    const course = courses.find((course) => course.id === newCourse)
+  const addCourses = (event: React.FormEvent) => {
+    event.preventDefault()
 
-    if (!course || !semester) {
+    const semester = semesters.find(
+      (semester) => semester.id === newSemester.id
+    )
+
+    if (!semester) {
       return
     }
 
-    if (semester.planned_courses.find((c) => c === course.id)) {
-      return
-    }
+    newCourses.forEach((newCourse) => {
+      const course = courses.find((course) => course.id === newCourse.id)
 
-    semester.planned_courses.push(course.id)
+      // non-existent course or course already in semester
+      if (!course || semester.planned_courses.find((c) => c === course.id)) {
+        return
+      }
+
+      semester.planned_courses.push(course.id)
+    })
+
     updateSemester(semester)
   }
 
   return (
-    <div className="planner-component">
-      <div className="add-course">
+    <Row className="planner-component">
+      <Col md={5} className="add-course">
         <h4>Add Course</h4>
-        <p>
-          <label>Course:</label>
-          <select
-            value={newCourse}
-            onChange={(e) => setNewCourse(Number(e.target.value))}
-          >
-            {courses &&
-              courses.map((course, index) => (
-                <option key={index} value={course.id}>
-                  {course.code.substring(3)} - {course.title}
-                </option>
-              ))}
-          </select>
-        </p>
-        <p>
-          <label>Semester:</label>
-          <select
-            value={newSemester}
-            onChange={(e) => setNewSemester(Number(e.target.value))}
-          >
-            {semesters &&
-              semesters
-                .filter((s) => s.isCompleted === isCompleted)
-                .map((semester, index) => (
-                  <option key={index} value={semester.id}>
-                    {semester.name}
-                  </option>
-                ))}
-          </select>
-        </p>
-        <div className="planner-buttons">
-          <button type="button" onClick={addCourse}>
-            Add Course
-          </button>
-        </div>
-      </div>
-      <div className="planner-body">
-        {!isCompleted ? (
-          <button onClick={handleGenerate}>Generate New Schedule</button>
-        ) : (
-          <></>
-        )}
+        <Form onSubmit={addCourses}>
+          <Form.Group controlId="course" className="input-wrapper">
+            <Form.Label>Course:</Form.Label>
+            <Select
+              multi
+              options={courses}
+              labelField="displayName"
+              searchBy="displayName"
+              valueField="id"
+              values={newCourses}
+              onChange={(values) => setNewCourses(values)}
+              color="#a51416d0"
+              clearable={true}
+              required
+            />
+          </Form.Group>
+          <Form.Group controlId="semester" className="input-wrapper">
+            <Form.Label>Semester:</Form.Label>
+            <Select
+              options={semesters.filter((s) => s.isCompleted === isCompleted)}
+              labelField="name"
+              searchBy="name"
+              valueField="id"
+              values={[newSemester]}
+              onChange={(values) => setNewSemester(values[0])}
+              backspaceDelete={false}
+              color="#555"
+              required
+            />
+          </Form.Group>
+          <Container>
+            <Row>
+              <Col md="auto">
+                <Button type="submit">Add Course</Button>
+              </Col>
+              <Col md="auto">
+                {!isCompleted ? (
+                  <Button onClick={handleGenerate}>
+                    Generate New Schedule
+                  </Button>
+                ) : (
+                  <></>
+                )}
+              </Col>
+            </Row>
+          </Container>
+        </Form>
+      </Col>
+      <Col md={6} className="planner-body">
         <DragDropContext onDragEnd={handleDragDrop}>
           <div className="selected-block">
             {semesters &&
@@ -156,7 +176,7 @@ export const PlannerComponent: React.FC<PlannerComponentProps> = ({
                 ))}
           </div>
         </DragDropContext>
-      </div>
-    </div>
+      </Col>
+    </Row>
   )
 }

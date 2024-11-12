@@ -17,6 +17,8 @@ import ProtectedRoute from './routes/ProtectedRoute'
 import ResetPasswordPage from './routes/ResetPasswordPage'
 import VerifyEmailPage from './routes/VerifyEmailPage'
 
+import 'bootstrap/dist/css/bootstrap.min.css'
+import './theme.scss'
 import './index.css'
 
 const router = createBrowserRouter([

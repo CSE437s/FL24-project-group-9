@@ -1,3 +1,4 @@
+import { Col, Container, Row } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
 import { FooterBar } from '../components/FooterBar'
@@ -43,18 +44,28 @@ export default function DashboardEditPage() {
   return (
     <>
       <HeaderBar isNavVisible={true} />
-      <div className="dashboard-edit-page">
-        <section className="dashboard-edit-header">
-          <h4>
-            Course History
-            <button className="secondary" onClick={handleSave}>
-              Save
-            </button>
-          </h4>
-          <p>Add or remove courses from your previous schedule</p>
-        </section>
+      <Container className="dashboard-edit-page">
+        <div className="dashboard-edit-header">
+          <Row>
+            <Col md={5}>
+              <Row>
+                <Col>
+                  <h4>Course History</h4>
+                </Col>
+                <Col md="auto">
+                  <button className="secondary" onClick={handleSave}>
+                    Save
+                  </button>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+          <Row>
+            <p>Add or remove courses from your previous schedule</p>
+          </Row>
+        </div>
         <PlannerComponent isCompleted={true} />
-      </div>
+      </Container>
       <FooterBar />
     </>
   )

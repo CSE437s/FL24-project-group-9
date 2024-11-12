@@ -3,11 +3,6 @@
   min-height: var(--min-height-container);
 }
 
-.dashboard-edit-header h4 {
-  display: flex;
-  width: 30rem;
-}
-
 .dashboard-edit-header h4 button.secondary {
   margin-left: auto;
 }

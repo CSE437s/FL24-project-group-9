@@ -4,6 +4,8 @@ from api.models import Course, Department, Program, Review, Semester, Student
 
 
 class CourseSerializer(serializers.ModelSerializer):
+    displayName = serializers.ReadOnlyField()
+
     class Meta:
         model = Course
         fields = "__all__"

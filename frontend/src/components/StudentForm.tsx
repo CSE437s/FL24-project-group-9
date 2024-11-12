@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { Button, Form } from 'react-bootstrap'
+import Select from 'react-dropdown-select'
 
 import { useAcademicDataContext } from '../context/useContext'
 import { Student } from '../models/Student'
@@ -20,7 +22,6 @@ export const StudentForm: React.FC<StudentFormProps> = ({
   const [newStudent, setNewStudent] = useState<Student>({
     ...student,
     grad: student.grad ?? new Date().getFullYear(),
-    programs: [student.programs[0] ?? programs[0].id],
   })
   const [warning, setWarning] = useState('')
 
@@ -30,36 +31,42 @@ export const StudentForm: React.FC<StudentFormProps> = ({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="student-form">
-      <div className="input-wrapper">
-        <label htmlFor="program">Program</label>
+    <Form onSubmit={handleSubmit} className="student-form">
+      <Form.Group controlId="program" className="input-wrapper">
+        <Form.Label>Program</Form.Label>
         {academicLoading || programs.length === 0 ? (
-          <select id="program" name="program" disabled>
-            <option>Loading...</option>
-          </select>
+          <Select
+            options={[]}
+            values={[]}
+            // eslint-disable-next-line prettier/prettier
+            onChange={() => { }}
+            disabled
+            loading
+          />
         ) : (
-          <select
-            id="program"
-            name="program"
-            value={newStudent.programs[0]}
-            onChange={(e) => {
+          <Select
+            options={programs}
+            labelField="name"
+            searchBy="name"
+            valueField="id"
+            values={programs.filter((program) =>
+              newStudent.programs.includes(program.id)
+            )}
+            onChange={(values) =>
               setNewStudent({
                 ...newStudent,
-                programs: [Number(e.target.value)],
+                programs: [values[0].id],
               })
-            }}
-          >
-            {programs.map((program) => (
-              <option key={program.id} value={program.id}>
-                {program.name}
-              </option>
-            ))}
-          </select>
+            }
+            backspaceDelete={false}
+            color="#a51416d0"
+            required
+          />
         )}
-      </div>
-      <div className="input-wrapper">
-        <label htmlFor="endYear">Graduation Year</label>
-        <input
+      </Form.Group>
+      <Form.Group controlId="grad" className="input-wrapper">
+        <Form.Label>Graduation Year</Form.Label>
+        <Form.Control
           type="number"
           min={new Date().getFullYear()}
           max="2040"
@@ -78,10 +85,10 @@ export const StudentForm: React.FC<StudentFormProps> = ({
           required
         />
         {warning && <span className="warning">{warning}</span>}
-      </div>
-      <div className="input-wrapper">
-        <label htmlFor="career">Career:</label>
-        <input
+      </Form.Group>
+      <Form.Group controlId="career" className="input-wrapper">
+        <Form.Label>Career:</Form.Label>
+        <Form.Control
           type="text"
           id="career"
           name="career"
@@ -91,27 +98,26 @@ export const StudentForm: React.FC<StudentFormProps> = ({
             setNewStudent({ ...newStudent, career: e.target.value })
           }
         />
-      </div>
-      <div className="input-wrapper">
-        <label htmlFor="interests">Interests</label>
-        <input
+      </Form.Group>
+      <Form.Group controlId="interests" className="input-wrapper">
+        <Form.Label>Interests</Form.Label>
+        <Form.Control
           type="text"
-          id="interests"
           name="interests"
           value={newStudent.interests}
           onChange={(e) => {
             setNewStudent({ ...newStudent, interests: e.target.value })
           }}
         />
-      </div>
+      </Form.Group>
       <div className="action-btns">
         {handleCancel && (
-          <button type="button" onClick={handleCancel}>
+          <Button type="button" onClick={handleCancel}>
             Cancel
-          </button>
+          </Button>
         )}
-        <button type="submit">Save</button>
+        <Button type="submit">Save</Button>
       </div>
-    </form>
+    </Form>
   )
 }

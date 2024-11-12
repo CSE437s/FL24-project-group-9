@@ -9,29 +9,22 @@
   margin: 0 auto;
 }
 
-.student-form input,
-.student-form select {
-  width: 100%;
-  box-sizing: border-box;
-  font-size: var(--font-h6);
-  line-height: var(--font-h4);
+.student-form input[type="text"],
+.student-form input[type="number"],
+.student-form .react-dropdown-select {
   padding: 0.5rem;
-  height: calc(var(--font-h4) + 1rem);
 }
 
-.student-form .input-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  width: 100%;
-}
-
-.student-form .input-wrapper label {
-  font-weight: bold;
+.student-form .react-dropdown-select input {
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
 }
 
 .student-form .action-btns button {
   margin: 0 1.5rem;
+  height: fit-content;
+  width: 7.5rem;
 }
 
 .student-form .warning {

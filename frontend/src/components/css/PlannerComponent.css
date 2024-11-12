@@ -1,36 +1,17 @@
-.planner-component {
+.planner-component form {
   display: flex;
-  column-gap: 6rem;
-  row-gap: 2rem;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-.planner-component .add-course p {
-  display: flex;
-  width: 30rem;
-}
-
-.planner-component .add-course select {
-  flex-grow: 1;
-  box-sizing: border-box;
-  font-size: var(--font-h6);
-  padding: 0.25rem 0.5rem;
-  overflow-x: scroll;
-  width: calc(100% - 6rem);
-  font-family: inherit;
-}
-
-.planner-component .add-course p>label {
-  font-size: var(--font-body);
-  color: var(--primary-black);
-  width: 6rem;
-}
-
-.planner-component select {
-  width: 100%;
-  box-sizing: border-box;
+.planner-component .react-dropdown-select {
   font-size: var(--font-h6);
   line-height: var(--font-h4);
   padding: 0.5rem;
-  height: calc(var(--font-h4) + 1rem);
+}
+
+.planner-component .react-dropdown-select input {
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
 }

@@ -1,3 +1,4 @@
+import { Container, Image, Nav, Navbar } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
 import logo from '../assets/logo.svg'
@@ -24,16 +25,27 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
   }
 
   return (
-    <div className="header-bar">
-      <img src={logo} alt="Logo" className="logo" onClick={handleLogoClick} />
-      {isNavVisible && (
-        <nav>
-          {!isDashboardHidden && (
-            <a onClick={() => navigate('/dashboard')}>Dashboard</a>
-          )}
-          {!isLogoutHidden && <a onClick={logout}>Logout</a>}
-        </nav>
-      )}
-    </div>
+    <Navbar expand="lg" className="header-bar">
+      <Container>
+        <Navbar.Brand href="/">
+          <Image
+            src={logo}
+            alt="Logo"
+            className="logo"
+            onClick={handleLogoClick}
+          />
+        </Navbar.Brand>
+        {isNavVisible && (
+          <Nav>
+            {!isDashboardHidden && (
+              <Nav.Link onClick={() => navigate('/dashboard')}>
+                Dashboard
+              </Nav.Link>
+            )}
+            {!isLogoutHidden && <Nav.Link onClick={logout}>Logout</Nav.Link>}
+          </Nav>
+        )}
+      </Container>
+    </Navbar>
   )
 }

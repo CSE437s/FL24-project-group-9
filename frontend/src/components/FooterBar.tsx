@@ -2,8 +2,10 @@ import './css/FooterBar.css'
 
 export const FooterBar = () => {
   return (
-    <footer>
-      <p>&copy; WashU 2024</p>
-    </footer>
+    <></>
+    // TODO: Remove temporary, will add back later
+    // <footer>
+    //   <p>&copy; WashU 2024</p>
+    // </footer>
   )
 }

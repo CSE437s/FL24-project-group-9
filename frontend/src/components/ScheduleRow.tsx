@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ClipLoader } from 'react-spinners'
+import { Col, Container, Row, Spinner } from 'react-bootstrap'
 
 import { useAcademicDataContext } from '../context/useContext'
 
@@ -21,22 +21,33 @@ export const ScheduleRow: React.FC<ScheduleRowProps> = ({
 
   if (!course) {
     return (
-      <div className="schedule-row">
-        <ClipLoader size={35} color={'#123abc'} loading={true} />
-      </div>
+      <Container className="schedule-row">
+        <Spinner
+          as="span"
+          animation="border"
+          size="sm"
+          role="status"
+          aria-hidden="true"
+          variant="light"
+        />{' '}
+      </Container>
     )
   }
 
   return (
-    <div className="schedule-row">
-      <div
+    <Container className="schedule-row">
+      <Row
         className="schedule-row-header"
         onClick={() => setDisplayDescription(!displayDescription)}
       >
-        <div className="course-code">{course.code.substring(3)}</div>
-        <div className="course-title">{course.title}</div>
-        <div className="course-units">{course.units} Units</div>
-        <div className="show-button" title="Show More">
+        <Col md="auto" className="course-code">
+          {course.code.substring(3)}
+        </Col>
+        <Col className="course-title">{course.title}</Col>
+        <Col md="auto" className="course-units">
+          {course.units} Units
+        </Col>
+        <Col md="auto" className="show-button" title="Show More">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 448 512"
@@ -44,8 +55,8 @@ export const ScheduleRow: React.FC<ScheduleRowProps> = ({
           >
             <path d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
           </svg>
-        </div>
-      </div>
+        </Col>
+      </Row>
       <div
         className={`schedule-row-body ${displayDescription ? 'expanded' : ''}`}
       >
@@ -66,6 +77,6 @@ export const ScheduleRow: React.FC<ScheduleRowProps> = ({
           </div>
         </div>
       </div>
-    </div>
+    </Container>
   )
 }
