@@ -1,3 +1,4 @@
+import { Container } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
 import { FooterBar } from '../components/FooterBar'
@@ -43,17 +44,17 @@ export default function OnboardingPage() {
   return (
     <>
       <HeaderBar isNavVisible={true} isDashboardHidden={true} />
-      <div className="onboarding-page">
-        <section className="onboarding-summary">
+      <Container className="onboarding-page">
+        <Container className="onboarding-summary">
           <h3>
             Welcome {student.first_name} {student.last_name}!
           </h3>
           <p>Please take a moment to enter the following information:</p>
-        </section>
-        <section className="onboarding-info">
+        </Container>
+        <Container className="onboarding-info">
           <StudentForm student={student} handleSave={handleSave} />
-        </section>
-      </div>
+        </Container>
+      </Container>
       <FooterBar />
     </>
   )

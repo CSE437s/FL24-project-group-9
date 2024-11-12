@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Button, Container, Form } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import { ClipLoader } from 'react-spinners'
 
@@ -49,43 +50,43 @@ export default function ForgotPasswordPage() {
   return (
     <>
       <HeaderBar />
-      <div className="login-page">
-        <section className="login-body">
-          <div>
+      <Container className="login-page">
+        <Container className="login-body">
+          <Container>
             <h2>Forgot your Password?</h2>
             <p>Send an email to reset your password</p>
-            <form onSubmit={handleResetPassword}>
-              <div className="input-wrapper">
-                <label htmlFor="email">Enter your WUSTL email</label>
-                <input
+            <Form onSubmit={handleResetPassword}>
+              <Form.Group controlId="email" className="input-wrapper">
+                <Form.Label>Enter your WUSTL email</Form.Label>
+                <Form.Control
                   type="email"
                   value={email}
                   pattern=".+@wustl\.edu"
                   onChange={(e) => setEmail(e.target.value)}
                   required
                 />
-              </div>
+              </Form.Group>
               <div className="action-btns">
-                <button
+                <Button
                   type="button"
                   onClick={handleBack}
                   disabled={resetLoading || resetDelay}
                 >
                   Back
-                </button>
-                <button type="submit" disabled={resetLoading || resetDelay}>
+                </Button>
+                <Button type="submit" disabled={resetLoading || resetDelay}>
                   {resetLoading ? (
                     <ClipLoader size={'0.8rem'} color={'#ffffff'} />
                   ) : (
                     'Reset'
                   )}
-                </button>
+                </Button>
               </div>
-            </form>
-          </div>
-        </section>
+            </Form>
+          </Container>
+        </Container>
         <div className="login-message">{message}</div>
-      </div>
+      </Container>
       <FooterBar />
     </>
   )

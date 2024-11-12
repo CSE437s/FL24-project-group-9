@@ -1,4 +1,5 @@
 import { Draggable, Droppable } from 'react-beautiful-dnd'
+import { Col, Row } from 'react-bootstrap'
 
 import { useAcademicDataContext } from '../context/useContext'
 import { Semester } from '../models/Semester'
@@ -21,12 +22,12 @@ export const ScheduleDraggableV2: React.FC<ScheduleDraggableProps> = ({
 
   return (
     <div className="schedule-block">
-      <div className="schedule-header">
-        <span className="schedule-info">{semester.name}</span>
-        <span className="schedule-units">
+      <Row className="schedule-header">
+        <Col className="schedule-info">{semester.name}</Col>
+        <Col md="auto" className="schedule-units">
           Total Units: {utils.getTotalUnits(semester, courses)}
-        </span>
-      </div>
+        </Col>
+      </Row>
       <Droppable droppableId={droppableId}>
         {(provided) => (
           <div

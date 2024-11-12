@@ -116,7 +116,7 @@ export default function LoginPage() {
 
   const emailInput = (isDisabled: boolean = false) => (
     <Form.Group controlId="email" className="input-wrapper">
-      <Form.Label htmlFor="email">Enter your WUSTL email</Form.Label>
+      <Form.Label>Enter your WUSTL email</Form.Label>
       <Form.Control
         type="email"
         value={user.email}
@@ -132,7 +132,7 @@ export default function LoginPage() {
 
   const passwordInput = (
     <Form.Group controlId="password" className="input-wrapper">
-      <Form.Label htmlFor="password">Password</Form.Label>
+      <Form.Label>Password</Form.Label>
       <Form.Control
         type="password"
         minLength={8}
@@ -159,7 +159,7 @@ export default function LoginPage() {
         />
       </Form.Group>
       <Form.Group className="input-wrapper">
-        <Form.Label htmlFor="last-name">Last Name</Form.Label>
+        <Form.Label>Last Name</Form.Label>
         <Form.Control
           type="text"
           value={user.lastName}

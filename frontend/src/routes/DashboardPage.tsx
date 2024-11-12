@@ -50,29 +50,32 @@ export default function DashboardPage() {
   const profileComponent = student ? (
     <>
       <h2>Welcome to CoursePlanner {student?.first_name}!</h2>
-      <Container className="academic-summary">
-        <h4>
+      <div>
+        <h3>
           Academic Summary
           <button className="secondary" onClick={handleEditProfile}>
             Edit
           </button>
-        </h4>
+        </h3>
         <div className="academic-info">
           <p>
-            <span>Programs:</span>
+            <span>Programs: </span>
             {programs.filter((p) => p.id == student.programs?.[0])?.[0]?.name}
           </p>
           <p>
-            <span>Graduation:</span> {student.grad}
+            <span>Graduation: </span>
+            {student.grad}
           </p>
           <p>
-            <span>Career:</span> {student.career}
+            <span>Career: </span>
+            {student.career}
           </p>
           <p>
-            <span>Interests:</span> {student.interests}
+            <span>Interests: </span>
+            {student.interests}
           </p>
         </div>
-      </Container>
+      </div>
     </>
   ) : (
     <Container className="profile-summary">
@@ -85,11 +88,11 @@ export default function DashboardPage() {
       <HeaderBar isNavVisible={true} />
       <Container className="dashboard-page">
         {profileComponent}
-        <Container className="dashboard-summary">
+        <div>
           <h3>Your Schedule</h3>
           <Row className="schedule">
             {semesters.filter((s) => s.isCompleted).length ? (
-              <Col className="history">
+              <Col md={6} className="history">
                 <h4>
                   History
                   <button className="secondary" onClick={handleEdit}>
@@ -105,7 +108,7 @@ export default function DashboardPage() {
             ) : (
               <></>
             )}
-            <Col className="planned">
+            <Col md={6} className="planned">
               <h4>
                 <span>Upcoming Courses</span>
                 <button className="secondary" onClick={handleGenerate}>
@@ -119,7 +122,7 @@ export default function DashboardPage() {
                 ))}
             </Col>
           </Row>
-        </Container>
+        </div>
       </Container>
       <FooterBar />
     </>

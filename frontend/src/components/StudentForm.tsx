@@ -34,7 +34,7 @@ export const StudentForm: React.FC<StudentFormProps> = ({
   return (
     <Form onSubmit={handleSubmit} className="student-form">
       <Form.Group controlId="program" className="input-wrapper">
-        <Form.Label htmlFor="program">Program</Form.Label>
+        <Form.Label>Program</Form.Label>
         {academicLoading || programs.length === 0 ? (
           <Select
             options={[]}
@@ -65,7 +65,7 @@ export const StudentForm: React.FC<StudentFormProps> = ({
         )}
       </Form.Group>
       <Form.Group controlId="grad" className="input-wrapper">
-        <Form.Label htmlFor="endYear">Graduation Year</Form.Label>
+        <Form.Label>Graduation Year</Form.Label>
         <Form.Control
           type="number"
           min={new Date().getFullYear()}
@@ -87,7 +87,7 @@ export const StudentForm: React.FC<StudentFormProps> = ({
         {warning && <span className="warning">{warning}</span>}
       </Form.Group>
       <Form.Group controlId="career" className="input-wrapper">
-        <Form.Label htmlFor="career">Career:</Form.Label>
+        <Form.Label>Career:</Form.Label>
         <Form.Control
           type="text"
           id="career"
@@ -100,10 +100,9 @@ export const StudentForm: React.FC<StudentFormProps> = ({
         />
       </Form.Group>
       <Form.Group controlId="interests" className="input-wrapper">
-        <Form.Label htmlFor="interests">Interests</Form.Label>
+        <Form.Label>Interests</Form.Label>
         <Form.Control
           type="text"
-          id="interests"
           name="interests"
           value={newStudent.interests}
           onChange={(e) => {

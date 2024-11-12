@@ -1,3 +1,4 @@
+import { Container } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
 import { FooterBar } from '../components/FooterBar'
@@ -47,18 +48,18 @@ export default function ProfileEditPage() {
   return (
     <>
       <HeaderBar isNavVisible={true} />
-      <div className="profile-edit-page">
-        <section className="profile-summary">
+      <Container className="profile-edit-page">
+        <Container className="profile-summary">
           <h4>Edit your Profile</h4>
-        </section>
-        <section className="profile-info">
+        </Container>
+        <Container className="profile-info">
           <StudentForm
             student={student}
             handleSave={handleSave}
             handleCancel={handleCancel}
           />
-        </section>
-      </div>
+        </Container>
+      </Container>
       <FooterBar />
     </>
   )

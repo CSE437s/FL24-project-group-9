@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Button, Container, Form } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import { ClipLoader } from 'react-spinners'
 
@@ -40,35 +41,35 @@ export default function ResetPasswordPage() {
   return (
     <>
       <HeaderBar />
-      <div className="login-page">
-        <section className="login-body">
-          <div>
+      <Container className="login-page">
+        <Container className="login-body">
+          <Container>
             <h2>Enter your New Password</h2>
-            <form onSubmit={handleSubmit}>
-              <div className="input-wrapper">
-                <label htmlFor="password">Password</label>
-                <input
+            <Form onSubmit={handleSubmit}>
+              <Form.Group controlId="password" className="input-wrapper">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
                   type="password"
                   minLength={8}
                   value={password}
                   required
                   onChange={(e) => setPassword(e.target.value)}
                 />
-              </div>
+              </Form.Group>
               <div className="action-btns">
                 {resetLoading ? (
-                  <button type="button" disabled>
+                  <Button type="button" disabled>
                     <ClipLoader size={'0.8rem'} color={'#ffffff'} />
-                  </button>
+                  </Button>
                 ) : (
-                  <button type="submit">Reset</button>
+                  <Button type="submit">Reset</Button>
                 )}
               </div>
-            </form>
-          </div>
-        </section>
+            </Form>
+          </Container>
+        </Container>
         <div className="login-message">{message}</div>
-      </div>
+      </Container>
       <FooterBar />
     </>
   )

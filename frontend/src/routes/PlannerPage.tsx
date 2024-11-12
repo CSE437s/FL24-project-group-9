@@ -1,4 +1,4 @@
-import { Button, Container } from 'react-bootstrap'
+import { Button, Col, Container, Row } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
 import { FooterBar } from '../components/FooterBar'
@@ -49,15 +49,25 @@ export default function PlannerPage() {
     <>
       <HeaderBar isNavVisible={true} />
       <Container className="planner-page">
-        <Container className="planner-header">
-          <h4>
-            Recommended Schedule
-            <Button className="secondary" onClick={handleSave}>
-              Save
-            </Button>
-          </h4>
-          <p>Add or Remove Coures from your Upcoming Schedule</p>
-        </Container>
+        <div className="planner-header">
+          <Row>
+            <Col md={5}>
+              <Row>
+                <Col>
+                  <h4>Recommended Schedule</h4>
+                </Col>
+                <Col md="auto">
+                  <Button className="secondary" onClick={handleSave}>
+                    Save
+                  </Button>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+          <Row>
+            <p>Add or Remove Coures from your Upcoming Schedule</p>
+          </Row>
+        </div>
         <PlannerComponent />
       </Container>
       <FooterBar />
