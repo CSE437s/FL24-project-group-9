@@ -24,7 +24,7 @@ class Course(models.Model):
     @property
     def displayName(self):
         return f"{self.code[3:]} - {self.title}"
-        
+
     def __str__(self):
         return self.code + " " + self.title
 
