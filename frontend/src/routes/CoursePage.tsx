@@ -1,3 +1,4 @@
+import { Container, Table } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 
 import { FooterBar } from '../components/FooterBar'
@@ -27,11 +28,11 @@ export default function CoursePage() {
     return (
       <>
         <HeaderBar isNavVisible={true} />
-        <div className="course-page">
-          <section className="course-summary">
+        <Container className="course-page">
+          <Container className="course-summary">
             <h3>Course Not Found</h3>
-          </section>
-        </div>
+          </Container>
+        </Container>
         <FooterBar />
       </>
     )
@@ -40,10 +41,10 @@ export default function CoursePage() {
   return (
     <>
       <HeaderBar isNavVisible={true} />
-      <div className="course-page">
-        <section className="course-summary">
+      <Container className="course-page">
+        <div className="course-summary">
           <div className="course-details">
-            <table className="course-info">
+            <Table className="course-info">
               <tbody>
                 <tr>
                   <td>Code</td>
@@ -68,7 +69,7 @@ export default function CoursePage() {
                   <td>{course.units}</td>
                 </tr>
               </tbody>
-            </table>
+            </Table>
             <div className="action-btns">
               <button
                 className="secondary"
@@ -78,14 +79,14 @@ export default function CoursePage() {
               </button>
             </div>
           </div>
-        </section>
+        </div>
         {courseId && (
-          <section className="course-reviews">
+          <div className="course-reviews">
             <h3>Course Reviews</h3>
             <ReviewsComponent courseId={parseInt(courseId ?? '')} />
-          </section>
+          </div>
         )}
-      </div>
+      </Container>
       <FooterBar />
     </>
   )

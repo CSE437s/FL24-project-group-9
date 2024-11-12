@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Button, Container } from 'react-bootstrap'
 import { ClipLoader } from 'react-spinners'
 
 import { useAuthContext, useStudentContext } from '../context/useContext'
@@ -45,21 +46,21 @@ export const ReviewsComponent: React.FC<ReviewsComponentProps> = ({
 
   if (!reviews.length) {
     return (
-      <div className="reviews">
+      <Container className="reviews">
         <p className="no-reviews">No reviews found</p>
-      </div>
+      </Container>
     )
   }
 
   return (
-    <div className="reviews">
-      <button
+    <Container className="reviews">
+      <Button
         className="create-review"
         onClick={() => setShowCreate(true)}
         disabled={showCreate}
       >
         Add a Review
-      </button>
+      </Button>
       {showCreate && (
         <ReviewEditComponent
           courseId={courseId}
@@ -78,6 +79,6 @@ export const ReviewsComponent: React.FC<ReviewsComponentProps> = ({
           setReviews={setReviews}
         />
       ))}
-    </div>
+    </Container>
   )
 }
