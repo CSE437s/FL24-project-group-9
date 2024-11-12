@@ -6,6 +6,7 @@ import {
   useAcademicDataContext,
   useStudentContext,
 } from '../context/useContext'
+import { Course } from '../models/Course'
 import { Semester } from '../models/Semester'
 
 import { ScheduleDraggableV2 } from './ScheduleDraggableV2'
@@ -21,9 +22,9 @@ export const PlannerComponent: React.FC<PlannerComponentProps> = ({
 }) => {
   const { courses } = useAcademicDataContext()
   const { semesters, updateSemester, generateSemesters } = useStudentContext()
-  const [newCourse, setNewCourse] = useState(courses[0]?.id)
+  const [newCourses, setNewCourses] = useState<Course[]>([])
   const [newSemester, setNewSemester] = useState(
-    semesters.filter((s) => s.isCompleted == isCompleted)[0]?.id
+    semesters.filter((s) => s.isCompleted == isCompleted)?.[0]
   )
 
   const handleGenerate = () => {
@@ -80,19 +81,26 @@ export const PlannerComponent: React.FC<PlannerComponentProps> = ({
     updateSemester(sourceSemester)
   }
 
-  const addCourse = () => {
-    const semester = semesters.find((semester) => semester.id === newSemester)
-    const course = courses.find((course) => course.id === newCourse)
+  const addCourses = () => {
+    const semester = semesters.find(
+      (semester) => semester.id === newSemester.id
+    )
 
-    if (!course || !semester) {
+    if (!semester) {
       return
     }
 
-    if (semester.planned_courses.find((c) => c === course.id)) {
-      return
-    }
+    newCourses.forEach((newCourse) => {
+      const course = courses.find((course) => course.id === newCourse.id)
 
-    semester.planned_courses.push(course.id)
+      // non-existent course or course already in semester
+      if (!course || semester.planned_courses.find((c) => c === course.id)) {
+        return
+      }
+
+      semester.planned_courses.push(course.id)
+    })
+
     updateSemester(semester)
   }
 
@@ -104,14 +112,15 @@ export const PlannerComponent: React.FC<PlannerComponentProps> = ({
           <label>Course:</label>
           <div className="select-dropdown-wrapper">
             <Select
+              multi
               options={courses}
               labelField="displayName"
               searchBy="displayName"
               valueField="id"
               values={[courses[0]]}
-              backspaceDelete={false}
-              onChange={(values) => setNewCourse(values[0].id)}
+              onChange={(values) => setNewCourses(values)}
               color="#555"
+              clearable={true}
             />
           </div>
         </p>
@@ -123,15 +132,15 @@ export const PlannerComponent: React.FC<PlannerComponentProps> = ({
               labelField="name"
               searchBy="name"
               valueField="id"
-              values={[semesters[0]]}
-              onChange={(values) => setNewSemester(values[0].id)}
+              values={[newSemester]}
+              onChange={(values) => setNewSemester(values[0])}
               backspaceDelete={false}
               color="#555"
             />
           </div>
         </p>
         <div className="planner-buttons">
-          <button type="button" onClick={addCourse}>
+          <button type="button" onClick={addCourses}>
             Add Course
           </button>
         </div>
