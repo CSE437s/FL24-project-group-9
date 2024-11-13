@@ -40,7 +40,6 @@ export const PlannerComponent: React.FC<PlannerComponentProps> = ({
   }
 
   const handleDragDrop = (result: DropResult) => {
-    console.log('draggin')
     const { source, destination } = result
 
     if (!destination) {
@@ -138,7 +137,7 @@ export const PlannerComponent: React.FC<PlannerComponentProps> = ({
               values={[newSemester]}
               onChange={(values) => setNewSemester(values[0])}
               backspaceDelete={false}
-              color="#555"
+              color="#a51416d0"
               required
             />
           </Form.Group>
