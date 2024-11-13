@@ -36,7 +36,7 @@ export const ChatbotComponent = () => {
 
   // TODO: fetch from API
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  async function fetchData(userInput: string) {
+  async function fetchData(_userInput: string) {
     try {
       // TODO: currently simulating API call, need to fetch course recommendation from API
       await new Promise((resolve) => setTimeout(resolve, 1000))
