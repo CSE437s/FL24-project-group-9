@@ -15,6 +15,7 @@ async function getRecommendedCourse(
     body: JSON.stringify({ message }),
   }
   const response = await fetch(`${API_URL}/api/chat/`, options)
+
   return await response.json()
 }
 

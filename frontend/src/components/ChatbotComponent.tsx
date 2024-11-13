@@ -1,35 +1,57 @@
 import { useState } from 'react'
 import ChatBot from 'react-chatbotify'
 
-import { useAuthContext } from '../context/useContext'
+import {
+  useAcademicDataContext,
+  useAuthContext,
+  useStudentContext,
+} from '../context/useContext'
 import { ChatResponse } from '../models/Chatbot'
 import { Course } from '../models/Course'
-import ChatAPI from '../services/ChatAPI'
 
 enum FlowStep {
-  Start = 'start',
-  FindCourse = 'findCourse',
-  GetCourse = 'getCourse',
-  RecommendedCourse = 'recommendedCourse',
-  AddCourse = 'addCourse',
-  SaveSemester = 'saveSemester',
-  NoCourse = 'noCourse',
+  Start = 'start', // initial start flow
+  FindCourse = 'findCourse', // when user enter course description
+  GetCourse = 'getCourse', // fetching course recommendation from API
+  RecommendedCourse = 'recommendedCourse', // display course recommendation
+  SelectCourse = 'selectCourse', // user decides to select course or not
+  AddCourse = 'addCourse', // choosing a semester to add course
+  SaveSemester = 'saveSemester', // saving course to semester and update API
+  NoCourse = 'noCourse', // no courses found
   End = 'end',
 }
 
 export const ChatbotComponent = () => {
-  const { bearerToken } = useAuthContext()
+  const { loading } = useAuthContext()
+  const { academicLoading, courses } = useAcademicDataContext()
+  const { studentLoading, semesters, updateSemester } = useStudentContext()
 
   const [chatResponse, setChatReponse] = useState<ChatResponse>()
   const [chosenSemester, setChosenSemester] = useState<string>()
   const [recommendedCourse, setRecommendedCourse] = useState<Course>()
 
+  if (loading || academicLoading || studentLoading) {
+    return <></>
+  }
+
+  // TODO: fetch from API
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async function fetchData(userInput: string) {
     try {
-      const response = await ChatAPI.getRecommendedCourse(
-        bearerToken,
-        userInput
-      )
+      // TODO: currently simulating API call, need to fetch course recommendation from API
+      await new Promise((resolve) => setTimeout(resolve, 1000))
+      const isError = Math.random() < 0.5
+
+      if (isError) {
+        throw new Error('Error fetching course recommendation')
+      }
+
+      const randomIndex = Math.floor(Math.random() * courses.length)
+      const randomCourse = courses[randomIndex]
+      const response = {
+        message: `Based on your input, we recommend the course: ${randomCourse.displayName}`,
+        course: randomCourse,
+      }
       setChatReponse(response)
       setRecommendedCourse(response.course)
       return FlowStep.RecommendedCourse
@@ -39,8 +61,34 @@ export const ChatbotComponent = () => {
     }
   }
 
-  const addCourseToSemester = async (course: Course, semester: string) => {
-    // TODO: Add course to semester
+  function getSemestersOptions() {
+    return semesters
+      .filter((s) => !s.isCompleted)
+      .map((s) => s.name)
+      .concat('No')
+  }
+
+  const addCourseToSemester = async (
+    newCourse: Course,
+    semesterName: string
+  ) => {
+    const semester = semesters.find(
+      (semester) => semester.name === semesterName
+    )
+
+    if (!semester) {
+      return
+    }
+
+    const course = courses.find((course) => course.id === newCourse.id)
+
+    if (!course || semester.planned_courses.find((c) => c === course.id)) {
+      return
+    }
+
+    semester.planned_courses.push(course.id)
+
+    updateSemester(semester)
   }
 
   const settings = {
@@ -50,7 +98,7 @@ export const ChatbotComponent = () => {
       secondaryColor: '#a51416d0',
     },
     chatHistory: {
-      storageKey: 'planner-chat-history',
+      disabled: true,
     },
     header: {
       title: <h5>PlannerBot</h5>,
@@ -78,22 +126,26 @@ export const ChatbotComponent = () => {
     [FlowStep.RecommendedCourse]: {
       transition: 0,
       message: `${chatResponse?.message ?? 'Description unavailable'}`,
-      path: FlowStep.AddCourse,
+      path: FlowStep.SelectCourse,
     },
-    [FlowStep.AddCourse]: {
+    [FlowStep.SelectCourse]: {
       message: 'Would you like to add this course to your schedule?',
-      options: [
-        'Add to Spring 2024',
-        'Add to Fall 2024',
-        'Add to Spring 2025',
-        'No',
-      ],
+      options: ['Yes', 'No'],
       chatDisabled: true,
       path: (params: { userInput: string }) => {
-        if (params.userInput === 'No') {
-          return FlowStep.NoCourse
-        }
-        return FlowStep.SaveSemester
+        return params.userInput === 'No'
+          ? FlowStep.NoCourse
+          : FlowStep.AddCourse
+      },
+    },
+    [FlowStep.AddCourse]: {
+      message: 'Please choose a semester to add the course to.',
+      options: getSemestersOptions(),
+      chatDisabled: true,
+      path: (params: { userInput: string }) => {
+        return params.userInput === 'No'
+          ? FlowStep.NoCourse
+          : FlowStep.SaveSemester
       },
       function: (params: { userInput: string }) =>
         setChosenSemester(params.userInput),
@@ -127,10 +179,7 @@ export const ChatbotComponent = () => {
         'Thank you for using the CoursePlanner chatbot. Do you want to find more courses?',
       options: ['Yes'],
       path: async (params: { userInput: string }) => {
-        if (params.userInput === 'Yes') {
-          return FlowStep.FindCourse
-        }
-        return FlowStep.End
+        return params.userInput === 'Yes' ? FlowStep.FindCourse : FlowStep.End
       },
       chatDisabled: true,
     },

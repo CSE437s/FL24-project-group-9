@@ -90,3 +90,8 @@ button:disabled {
 .input-wrapper label {
   font-weight: bold;
 }
+
+.form-control:focus {
+  border-color: var(--primary-red);
+  box-shadow: 0 0 0 0.25rem rgba(165, 20, 23, 0.25);
+}
