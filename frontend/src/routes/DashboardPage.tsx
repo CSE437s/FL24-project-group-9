@@ -1,6 +1,7 @@
 import { Col, Container, Row } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
+import { ChatbotComponent } from '../components/ChatbotComponent'
 import { FooterBar } from '../components/FooterBar'
 import { HeaderBar } from '../components/HeaderBar'
 import { ScheduleBlock } from '../components/ScheduleBlock'
@@ -124,6 +125,7 @@ export default function DashboardPage() {
           </Row>
         </div>
       </Container>
+      <ChatbotComponent />
       <FooterBar />
     </>
   )

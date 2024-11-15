@@ -6,4 +6,5 @@ export type Course = {
   units: number
   url?: string
   prerequisites?: string
+  displayName?: string
 }
