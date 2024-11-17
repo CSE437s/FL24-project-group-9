@@ -48,6 +48,10 @@ export default tseslint.config(
       ],
       'simple-import-sort/exports': 'error',
       'prettier/prettier': 'error',
+      '@typescript-eslint/no-unused-expressions': [
+        'error',
+        { allowShortCircuit: true },
+      ],
     },
   }
 )
