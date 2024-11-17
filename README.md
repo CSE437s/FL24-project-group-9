@@ -110,7 +110,9 @@ kind load docker-image washu_course_scheduler_backend:release
 
 Deploy your database with:
 ```
-kubectl apply -f k8s/deployment.yaml
+kubectl apply -f k8s/frontend-deployment.yaml
+kubectl apply -f k8s/backend-deployment.yaml
+kubectl apply -f k8s/ingress-deployment.yaml
 ```
 
 Check on the status of your deployment with (should show RUNNING):
