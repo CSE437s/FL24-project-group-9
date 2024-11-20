@@ -88,3 +88,41 @@ Remove Containers
 ```
 docker compose down
 ```
+
+#### Kubernetes
+
+Start the cluster with the config file with:
+```
+kind create cluster --config kind-cluster.yaml
+```
+
+Build your new image with:
+```
+docker build -t washu_course_scheduler_frontend:release -f frontend/Dockerfile frontend
+docker build -t washu_course_scheduler_backend:release -f backend/Dockerfile backend
+```
+
+Load your image into kind with:
+```
+kind load docker-image washu_course_scheduler_frontend:release
+kind load docker-image washu_course_scheduler_backend:release
+```
+
+Deploy your database with:
+```
+kubectl apply -f k8s/frontend-deployment.yaml
+kubectl apply -f k8s/backend-deployment.yaml
+kubectl apply -f k8s/ingress-deployment.yaml
+```
+
+Check on the status of your deployment with (should show RUNNING):
+```
+kubectl get pods
+```
+
+Check on the status of your service with (Should show your ports):
+```
+kubectl get services
+```
+
+Navigate to [localhost:8080](localhost:8080)
