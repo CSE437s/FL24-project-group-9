@@ -76,20 +76,20 @@ To run server:
 poetry run python3 manage.py runserver
 ```
 
-#### Running Application using Docker
+### Running Application using Docker
 Download [Docker](https://www.docker.com/get-started/)
 
 Build and Run Containers
 ```
-docker compose up --build
+docker-compose -f docker-compose.yaml up --build
 ```
 
 Remove Containers
 ```
-docker compose down
+docker-compose -f docker-compose.yaml down
 ```
 
-#### Kubernetes
+## Production
 
 Start the cluster with the config file with:
 ```
@@ -98,8 +98,7 @@ kind create cluster --config kind-cluster.yaml
 
 Build your new image with:
 ```
-docker build -t washu_course_scheduler_frontend:release -f frontend/Dockerfile frontend
-docker build -t washu_course_scheduler_backend:release -f backend/Dockerfile backend
+docker-compose -f docker-compose-release.yaml build
 ```
 
 Load your image into kind with:
@@ -108,11 +107,28 @@ kind load docker-image washu_course_scheduler_frontend:release
 kind load docker-image washu_course_scheduler_backend:release
 ```
 
-Deploy your database with:
+Create ConfigMap
 ```
+kubectl create configmap backend-env --from-env-file=backend/.env
+```
+
+View ConfigMap
+```
+kubectl get configmap backend-env -o yaml
+```
+
+Update ConfigMap from .env if needed
+```
+kubectl create configmap backend-env --from-env-file=backend/.env --dry-run=client -o yaml | kubectl apply -f -
+```
+
+Deploy your app with:
+```
+kubectl apply -f https://kind.sigs.k8s.io/examples/ingress/deploy-ingress-nginx.yaml
 kubectl apply -f k8s/frontend-deployment.yaml
+kubectl apply -f k8s/frontend-ingress-deployment.yaml
 kubectl apply -f k8s/backend-deployment.yaml
-kubectl apply -f k8s/ingress-deployment.yaml
+kubectl apply -f k8s/backend-ingress-deployment.yaml
 ```
 
 Check on the status of your deployment with (should show RUNNING):

@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend-deployment
+  labels:
+    app: frontend
 spec:
   replicas: 1
   selector:
@@ -13,14 +15,15 @@ spec:
         app: frontend
     spec:
       containers:
-      - name: frontend
-        image: washu_course_scheduler_frontend:release
-        command: ["nginx", "-g", "daemon off;"]
-        ports:
-          - containerPort: 80
-        env:
-          - name: APP_APPLICATION__HOST
-            value: 0.0.0.0
+        - name: frontend
+          image: washu_course_scheduler_frontend:release
+          imagePullPolicy: Never
+          command: ["nginx", "-g", "daemon off;"]
+          ports:
+            - containerPort: 3000
+          env:
+            - name: VITE_APP_BACKEND_ADDRESS
+              value: /backend
 
 ---
 
@@ -29,9 +32,9 @@ kind: Service
 metadata:
   name: frontend-service
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: frontend
   ports:
-    - port: 80
-      targetPort: 80
+    - port: 3000
+      targetPort: 3000

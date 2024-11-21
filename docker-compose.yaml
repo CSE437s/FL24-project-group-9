@@ -6,20 +6,23 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     container_name: washu_course_scheduler_backend
-    command: poetry run python3 manage.py runserver 0.0.0.0:8000
     volumes:
       - ./backend:/app
     ports:
       - "8000:8000"
     environment:
-      - DJANGO_SETTINGS_MODULE=backend.settings
+      - FRONTEND_ADDRESS=http://localhost:3000
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
     container_name: washu_course_scheduler_frontend
+    restart: always
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
     ports:
-      - "5173:80"
+      - "3000:3000"
     environment:
-      - NODE_ENV=production
+      - VITE_APP_BACKEND_ADDRESS=http://localhost:8000

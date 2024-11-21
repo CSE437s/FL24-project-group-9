@@ -1,5 +1,5 @@
 # Build the React App
-FROM node:18 AS build
+FROM node:20-alpine as builder
 
 # Set the working directory
 WORKDIR /app
@@ -13,20 +13,20 @@ RUN npm install
 # Copy the entire project to the container
 COPY . .
 
+# Set the environment variable
+ARG VITE_APP_BACKEND_ADDRESS
+ENV VITE_APP_BACKEND_ADDRESS $VITE_APP_BACKEND_ADDRESS
+
 # Build the React application
 RUN npm run build
 
-# Serve the Built App with Nginx
-FROM nginx:alpine
+# Use the official Nginx image from the Docker Hub
+FROM nginx:1.25.4-alpine-slim as prod
+COPY --from=builder /app/dist /usr/share/nginx/html
+COPY nginx.conf  /etc/nginx/conf.d
 
-# Copy the build output from the previous stage
-COPY --from=build /app/dist /usr/share/nginx/html
+# Expose port 3000 to serve the app
+EXPOSE 3000
 
-# Copy the Nginx configuration file
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Expose port 80 to serve the app
-EXPOSE 80
-
-# Start Nginx when the container launches
+# Run the app
 CMD ["nginx", "-g", "daemon off;"]

@@ -8,6 +8,7 @@ import {
 } from '../context/useContext'
 import { ChatResponse } from '../models/Chatbot'
 import { Course } from '../models/Course'
+import ChatAPI from '../services/ChatAPI'
 
 enum FlowStep {
   Start = 'start', // initial start flow
@@ -22,8 +23,8 @@ enum FlowStep {
 }
 
 export const ChatbotComponent = () => {
-  const { loading } = useAuthContext()
-  const { academicLoading, courses } = useAcademicDataContext()
+  const { loading, bearerToken } = useAuthContext()
+  const { academicLoading } = useAcademicDataContext()
   const { studentLoading, semesters, updateSemester } = useStudentContext()
 
   const [chatResponse, setChatReponse] = useState<ChatResponse>()
@@ -34,27 +35,19 @@ export const ChatbotComponent = () => {
     return <></>
   }
 
-  // TODO: fetch from API
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  async function fetchData(_userInput: string) {
+  async function fetchData(userInput: string) {
     try {
-      // TODO: currently simulating API call, need to fetch course recommendation from API
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-      const isError = Math.random() < 0.5
-
-      if (isError) {
-        throw new Error('Error fetching course recommendation')
-      }
-
-      const randomIndex = Math.floor(Math.random() * courses.length)
-      const randomCourse = courses[randomIndex]
-      const response = {
-        message: `Based on your input, we recommend the course: ${randomCourse.displayName}`,
-        course: randomCourse,
-      }
+      const response = await ChatAPI.getRecommendedCourse(
+        bearerToken,
+        userInput
+      )
       setChatReponse(response)
-      setRecommendedCourse(response.course)
-      return FlowStep.RecommendedCourse
+
+      if (response.course) {
+        setRecommendedCourse(response.course)
+        return FlowStep.RecommendedCourse
+      }
+      return FlowStep.NoCourse
     } catch (error) {
       console.error('Error fetching course recommendation:', error)
       return FlowStep.NoCourse
@@ -80,13 +73,14 @@ export const ChatbotComponent = () => {
       return
     }
 
-    const course = courses.find((course) => course.id === newCourse.id)
-
-    if (!course || semester.planned_courses.find((c) => c === course.id)) {
+    if (
+      !newCourse ||
+      semester.planned_courses.find((c) => c === newCourse.id)
+    ) {
       return
     }
 
-    semester.planned_courses.push(course.id)
+    semester.planned_courses.push(newCourse.id)
 
     updateSemester(semester)
   }
@@ -125,7 +119,12 @@ export const ChatbotComponent = () => {
     },
     [FlowStep.RecommendedCourse]: {
       transition: 0,
-      message: `${chatResponse?.message ?? 'Description unavailable'}`,
+      message: () => {
+        const message = chatResponse?.message ?? 'Description unavailable'
+
+        setChatReponse(undefined)
+        return message
+      },
       path: FlowStep.SelectCourse,
     },
     [FlowStep.SelectCourse]: {
@@ -170,8 +169,14 @@ export const ChatbotComponent = () => {
       path: FlowStep.End,
     },
     [FlowStep.NoCourse]: {
-      message:
-        "I'm sorry, I couldn't find any courses for you. Please try again.",
+      message: () => {
+        const message =
+          chatResponse?.message ??
+          "I'm sorry, I couldn't find any courses for you. Please try again."
+
+        setChatReponse(undefined)
+        return message
+      },
       path: FlowStep.GetCourse,
     },
     [FlowStep.End]: {

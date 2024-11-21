@@ -2,21 +2,43 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend-deployment
+  labels:
+    app: backend
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: backend
-  replicas: 1
   template:
     metadata:
       labels:
         app: backend
     spec:
       containers:
-        - image: washu_course_scheduler_backend:release
-          name: backend
+        - name: backend
+          image: washu_course_scheduler_backend:release
+          imagePullPolicy: Never
+          command: ["poetry", "run", "python", "manage.py", "runserver", "0.0.0.0:8000"]
           ports:
             - containerPort: 8000
+          env:
+            - name: FRONTEND_ADDRESS
+              value: http://localhost:8080
+            - name: OPENAI_API_KEY
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-env
+                  key: OPENAI_API_KEY
+            - name: EMAIL_HOST_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-env
+                  key: EMAIL_HOST_USER
+            - name: EMAIL_HOST_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-env
+                  key: EMAIL_HOST_PASSWORD
 
 ---
 
@@ -25,7 +47,7 @@ kind: Service
 metadata:
   name: backend-service
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: backend
   ports:

@@ -72,8 +72,9 @@ def get_chat_response(request):
         response = json.loads(response)
         message = response.get("message", "")
         course_code = response.get("course", "")
+        if not course_code:
+            return Response({"message": message}, status=200)
         course = Course.objects.filter(code__icontains=course_code).first()
-        print(CourseSerializer(course))
         return Response(
             {"message": message, "course": CourseSerializer(course).data}, status=200
         )

@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  backend-release:
+    image: washu_course_scheduler_backend:release
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: washu_course_scheduler_backend_release
+    ports:
+      - "8000:8000"
+    environment:
+      - FRONTEND_ADDRESS=http://localhost:8080
+
+  frontend-release:
+    image: washu_course_scheduler_frontend:release
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.release
+      args:
+        - VITE_APP_BACKEND_ADDRESS=/backend
+    container_name: washu_course_scheduler_frontend_release
+    restart: always
+    ports:
+      - "3000:3000"
