@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend-deployment
+  labels:
+    app: frontend
 spec:
   replicas: 1
   selector:
@@ -15,6 +17,7 @@ spec:
       containers:
         - name: frontend
           image: washu_course_scheduler_frontend:release
+          imagePullPolicy: Never
           command: ["nginx", "-g", "daemon off;"]
           ports:
             - containerPort: 3000
@@ -29,7 +32,7 @@ kind: Service
 metadata:
   name: frontend-service
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: frontend
   ports:

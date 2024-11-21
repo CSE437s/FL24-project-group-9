@@ -110,6 +110,7 @@ kind load docker-image washu_course_scheduler_backend:release
 
 Deploy your app with:
 ```
+kubectl apply -f https://kind.sigs.k8s.io/examples/ingress/deploy-ingress-nginx.yaml
 kubectl apply -f k8s/frontend-deployment.yaml
 kubectl apply -f k8s/backend-deployment.yaml
 kubectl apply -f k8s/ingress-deployment.yaml
