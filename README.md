@@ -76,7 +76,7 @@ To run server:
 poetry run python3 manage.py runserver
 ```
 
-#### Running Application using Docker
+### Running Application using Docker
 Download [Docker](https://www.docker.com/get-started/)
 
 Build and Run Containers
@@ -98,7 +98,6 @@ kind create cluster --config kind-cluster.yaml
 
 Build your new image with:
 ```
-docker-compose -f docker-compose.yaml down
 docker-compose -f docker-compose-release.yaml build
 ```
 
@@ -106,6 +105,21 @@ Load your image into kind with:
 ```
 kind load docker-image washu_course_scheduler_frontend:release
 kind load docker-image washu_course_scheduler_backend:release
+```
+
+Create ConfigMap
+```
+kubectl create configmap backend-env --from-env-file=backend/.env
+```
+
+View ConfigMap
+```
+kubectl get configmap backend-env -o yaml
+```
+
+Update ConfigMap from .env if needed
+```
+kubectl create configmap backend-env --from-env-file=backend/.env --dry-run=client -o yaml | kubectl apply -f -
 ```
 
 Deploy your app with:

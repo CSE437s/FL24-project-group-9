@@ -22,10 +22,23 @@ spec:
           ports:
             - containerPort: 8000
           env:
-            - name: APP_APPLICATION__HOST
-              value: 0.0.0.0
             - name: FRONTEND_ADDRESS
               value: http://localhost:8080
+            - name: OPENAI_API_KEY
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-env
+                  key: OPENAI_API_KEY
+            - name: EMAIL_HOST_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-env
+                  key: EMAIL_HOST_USER
+            - name: EMAIL_HOST_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-env
+                  key: EMAIL_HOST_PASSWORD
 
 ---
 
