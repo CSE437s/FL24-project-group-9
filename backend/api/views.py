@@ -35,30 +35,50 @@ def api_overview(request):
         "[POST  ] Logout": "/auth/logout",
         "[GET  ] Check User Exists": "/auth/user_exist",
         # Student Endpoints
-        "[GET   ] Get Authenticated Student Info": "/student/",
-        "[PUT   ] Update Authenticated Student Info": "/student/0/",
-        "[DELETE] Delete Student": "/student/0/",
+        "[GET   ] Get Authenticated Student Info": "/api/student/",
+        "[PUT   ] Update Authenticated Student Info": "/api/student/0/",
+        "[DELETE] Delete Student": "/api/student/0/",
         # Course Endpoints
-        "[GET   ] List All Courses": "/courses/",
-        "[GET   ] Get Course Detail": "/courses/<str:pk>",
+        "[GET   ] List All Courses": "/api/courses/",
+        "[GET   ] Get Course Detail": "/api/courses/<str:pk>",
         # Department Endpoints
-        "[GET   ] List All Departments": "/departments/",
-        "[GET   ] Get Department Detail": "/departments/<str:pk>",
+        "[GET   ] List All Departments": "/api/departments/",
+        "[GET   ] Get Department Detail": "/api/departments/<str:pk>",
         # Semester Endpoints
-        "[GET   ] List All Semesters": "/semesters/",
-        "[PUT   ] Update Semester Detail": "/semesters/<str:pk>",
-        "[POST   ] Generate New schedule": "/semesters/generate/",
+        "[GET   ] List All Semesters": "/api/semesters/",
+        "[PUT   ] Update Semester Detail": "/api/semesters/<str:pk>",
+        "[POST   ] Generate New schedule": "/api/semesters/generate/",
         # Program Endpoints
-        "[GET   ] List All Programs": "/programs/",
-        "[GET   ] Program Detail": "/programs/<str:pk>",
+        "[GET   ] List All Programs": "/api/programs/",
+        "[GET   ] Program Detail": "/api/programs/<str:pk>",
         # Review Endpoints
-        "[GET   ] List All Reviews": "/reviews/?course_id=<course_id>",
-        "[GET   ] Get Review Detail": "/reviews/<str:pk>",
-        "[POST  ] Create Review": "/reviews",
-        "[PUT   ] Update Review Detail": "/reviews/<str:pk>",
-        "[DELETE] Delete Review": "/reviews/<str:pk>",
+        "[GET   ] List All Reviews": "/api/reviews/?course_id=<course_id>",
+        "[GET   ] Get Review Detail": "/api/reviews/<str:pk>",
+        "[POST  ] Create Review": "/api/reviews",
+        "[PUT   ] Update Review Detail": "/api/reviews/<str:pk>",
+        "[DELETE] Delete Review": "/api/reviews/<str:pk>",
+        # Chatbot Endpoints
+        "[POST  ] Get Chat Response": "/api/chat/",
     }
     return Response(api_urls)
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def get_chat_response(request):
+    try:
+        message = request.data.get("message", "")
+        response = OpenAIUltils.generate_chat_response(message)
+        response = json.loads(response)
+        message = response.get("message", "")
+        course_code = response.get("course", "")
+        course = Course.objects.filter(code__icontains=course_code).first()
+        print(CourseSerializer(course))
+        return Response(
+            {"message": message, "course": CourseSerializer(course).data}, status=200
+        )
+    except ValueError:
+        return Response({"Error": "Failed to generate"}, status=400)
 
 
 def generate_schedule_helper(student):

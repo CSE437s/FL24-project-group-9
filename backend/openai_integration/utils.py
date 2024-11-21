@@ -9,12 +9,18 @@ import numpy as np
 from openai import OpenAI
 
 from api.models import Course
-from openai_integration.prompt import get_system_role, get_user_role
+from openai_integration.prompt import (
+    get_chatbot_system_role,
+    get_chatbot_user_role,
+    get_system_role,
+    get_user_role,
+)
 
 
 class OpenAIUltils:
-    THRESHOLD = 0.3
+    THRESHOLD = 0.2
     COURSES = Course.objects.all()
+    COURSES_LIST = [str(course) + "(" + course.description + ")" for course in COURSES]
     CLIENT = OpenAI(api_key=os.getenv("OPENAI_API_KEY", "mock_api_key"))
 
     @staticmethod
@@ -72,6 +78,26 @@ class OpenAIUltils:
                     "content": get_user_role(
                         semesters, student_profile_text, relevant_courses
                     ),
+                },
+            ],
+        )
+        response = completion.choices[0].message
+        if hasattr(response, "content"):
+            return response.content
+        return str(response)
+
+    @staticmethod
+    def generate_chat_response(message):
+        completion = OpenAIUltils.CLIENT.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {
+                    "role": "system",
+                    "content": get_chatbot_system_role(OpenAIUltils.COURSES_LIST),
+                },
+                {
+                    "role": "user",
+                    "content": get_chatbot_user_role(message),
                 },
             ],
         )
