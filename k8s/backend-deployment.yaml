@@ -3,20 +3,24 @@ kind: Deployment
 metadata:
   name: backend-deployment
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: backend
-  replicas: 1
   template:
     metadata:
       labels:
         app: backend
     spec:
       containers:
-        - image: washu_course_scheduler_backend:release
-          name: backend
+        - name: backend
+          image: washu_course_scheduler_backend:release
+          command: ["poetry", "run", "python", "manage.py", "runserver", "0.0.0.0:8000"]
           ports:
             - containerPort: 8000
+          env:
+            - name: FRONTEND_ADDRESS
+              value: "http://localhost:8080"
 
 ---
 
