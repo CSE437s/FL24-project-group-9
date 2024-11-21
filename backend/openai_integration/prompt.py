@@ -31,9 +31,9 @@ def get_user_role(semesters, student_profile_text, relevant_courses):
 def get_chatbot_system_role(courses_list):
     return f"""
     You are a helpful course scheduling assistant that suggests exactly one course from the list provided below based on the student's chat message. The course description is on parenthesis.
-    
+
     Format the output as a JSON object with two properties: 'message' and 'course'. 'course' should be the suggested course (return only course code without the course title and description), and 'message' should explain why the course is a suitable choice.
-    
+
     Return the JSON object only, without enclosing code blocks. Here is the list of courses: {courses_list}
 
     If no course is suitable, keep the 'course' property empty and provide a message explaining why no course is suggested.
