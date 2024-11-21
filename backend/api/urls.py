@@ -8,6 +8,7 @@ from api.views import (
     ReviewViewSet,
     SemesterViewSet,
     StudentViewSet,
+    get_chat_response,
 )
 
 router = DefaultRouter()
@@ -20,6 +21,7 @@ router.register("reviews", ReviewViewSet, basename="review")
 
 urlpatterns = [
     path("", include(router.urls)),
+    path("chat/", get_chat_response, name="chatbot-response"),
 ]
 
 for url_pattern in urlpatterns:
