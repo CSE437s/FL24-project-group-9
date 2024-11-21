@@ -18,10 +18,10 @@ services:
       context: ./frontend
       dockerfile: Dockerfile.release
       args:
-        - VITE_APP_BACKEND_ADDRESS=http://backend-service:8000
+        - VITE_APP_BACKEND_ADDRESS=/backend
     container_name: washu_course_scheduler_frontend_release
     restart: always
     ports:
       - "3000:3000"
     environment:
-      - VITE_APP_BACKEND_ADDRESS=http://backend-service:8000
+      - VITE_APP_BACKEND_ADDRESS=/backend

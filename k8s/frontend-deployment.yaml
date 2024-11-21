@@ -23,7 +23,7 @@ spec:
             - containerPort: 3000
           env:
             - name: VITE_APP_BACKEND_ADDRESS
-              value: "http://backend-service:8000"
+              value: /backend
 
 ---
 

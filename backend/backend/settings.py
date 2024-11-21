@@ -56,13 +56,12 @@ MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "corsheaders.middleware.CorsMiddleware",
-    "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-CORS_ALLOWED_ORIGINS = [os.environ.get("FRONTEND_ADDRESS", "http://localhost:3000")]
+CORS_ALLOWED_ORIGINS = [os.environ.get("FRONTEND_ADDRESS", "http://localhost:3000"), "http://localhost:8080"]
 
 FRONTEND_URL = os.environ.get("FRONTEND_ADDRESS")
 

@@ -112,8 +112,9 @@ Deploy your app with:
 ```
 kubectl apply -f https://kind.sigs.k8s.io/examples/ingress/deploy-ingress-nginx.yaml
 kubectl apply -f k8s/frontend-deployment.yaml
+kubectl apply -f k8s/frontend-ingress-deployment.yaml
 kubectl apply -f k8s/backend-deployment.yaml
-kubectl apply -f k8s/ingress-deployment.yaml
+kubectl apply -f k8s/backend-ingress-deployment.yaml
 ```
 
 Check on the status of your deployment with (should show RUNNING):

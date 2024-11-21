@@ -25,7 +25,7 @@ spec:
             - name: APP_APPLICATION__HOST
               value: 0.0.0.0
             - name: FRONTEND_ADDRESS
-              value: "http://localhost:8080"
+              value: http://localhost:8080
 
 ---
 
