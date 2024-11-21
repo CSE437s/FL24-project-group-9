@@ -1,1 +1,1 @@
-export const API_URL = 'http://backend-service:8000' // TODO: Update to the URL of backend API
+export const API_URL = import.meta.env.VITE_APP_BACKEND_ADDRESS
