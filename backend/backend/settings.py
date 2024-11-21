@@ -62,9 +62,9 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-CORS_ALLOWED_ORIGINS = ["http://localhost:8080", "http://localhost:3000"]
+CORS_ALLOWED_ORIGINS = [os.environ.get("FRONTEND_ADDRESS", "")]
 
-FRONTEND_URL = "http://localhost:8080"
+FRONTEND_URL = os.environ.get("FRONTEND_ADDRESS")
 
 ROOT_URLCONF = "backend.urls"
 

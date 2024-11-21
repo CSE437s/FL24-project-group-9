@@ -13,6 +13,7 @@ RUN npm install
 # Copy the entire project to the container
 COPY . .
 
+# Set the environment variable
 ARG VITE_APP_BACKEND_ADDRESS
 ENV VITE_APP_BACKEND_ADDRESS $VITE_APP_BACKEND_ADDRESS
 
