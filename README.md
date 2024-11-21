@@ -81,15 +81,15 @@ Download [Docker](https://www.docker.com/get-started/)
 
 Build and Run Containers
 ```
-docker compose up --build
+docker-compose -f docker-compose.yaml up --build
 ```
 
 Remove Containers
 ```
-docker compose down
+docker-compose -f docker-compose.yaml down
 ```
 
-#### Kubernetes
+## Production
 
 Start the cluster with the config file with:
 ```
@@ -98,8 +98,8 @@ kind create cluster --config kind-cluster.yaml
 
 Build your new image with:
 ```
-docker build -t washu_course_scheduler_frontend:release -f frontend/Dockerfile frontend
-docker build -t washu_course_scheduler_backend:release -f backend/Dockerfile backend
+docker-compose -f docker-compose.yaml down
+docker-compose -f docker-compose-release.yaml up --build
 ```
 
 Load your image into kind with:
@@ -108,7 +108,7 @@ kind load docker-image washu_course_scheduler_frontend:release
 kind load docker-image washu_course_scheduler_backend:release
 ```
 
-Deploy your database with:
+Deploy your app with:
 ```
 kubectl apply -f k8s/frontend-deployment.yaml
 kubectl apply -f k8s/backend-deployment.yaml
