@@ -78,7 +78,7 @@ class Student(AbstractUser):
 class Semester(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
-    planned_credits = models.PositiveIntegerField(default=15)
+    planned_credits = models.PositiveIntegerField(default=12)
     planned_courses = models.ManyToManyField(Course, blank=True)
     isCompleted = models.BooleanField(default=False)
 
