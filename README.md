@@ -99,7 +99,7 @@ kind create cluster --config kind-cluster.yaml
 Build your new image with:
 ```
 docker-compose -f docker-compose.yaml down
-docker-compose -f docker-compose-release.yaml up --build
+docker-compose -f docker-compose-release.yaml build
 ```
 
 Load your image into kind with:
