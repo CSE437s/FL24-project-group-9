@@ -18,8 +18,8 @@ class CourseScraper:
 
     Attributes
     ----------
-    text_file : str
-        the base text file containing all WashU bulletin course pages
+    base_urls : list
+        the list of URLS containing all WashU bulletin course pages
 
     Methods
     -------
