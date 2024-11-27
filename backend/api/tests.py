@@ -1,5 +1,7 @@
 from http import HTTPStatus
 
+from django.core.cache import cache
+from django.http import JsonResponse
 from django.urls import reverse
 from rest_framework.test import APITestCase
 from rest_framework_simplejwt.tokens import AccessToken
@@ -33,6 +35,16 @@ class BaseAPITestCase(APITestCase):
         self.course2 = Course.objects.create(
             title="Course 2", description="Description 2", units=4, code="CSE 124"
         )
+
+
+class RedisConnectionTest(APITestCase):
+    def test_redis_connection(self):
+        try:
+            cache.set("test_key", "test_value", timeout=10)
+            value = cache.get("test_key")
+            self.assertEqual(value, "test_value")
+        except Exception as e:
+            self.fail(f"Redis connection failed: {str(e)}")
 
 
 class StudentViewSetTest(BaseAPITestCase):
