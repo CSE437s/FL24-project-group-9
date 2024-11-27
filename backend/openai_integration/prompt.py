@@ -8,7 +8,7 @@ def get_system_role(required_courses):
 
     When scheduling the courses, prioritize placing courses with smaller course code numbers in the earlier semesters (e.g., CSE 131 and CSE 132 should be scheduled in the first or second semester). Larger course code numbers should be scheduled in the later semesters to maintain a logical progression of coursework.
 
-    Using this information, create a structured 4-year course plan that ensures all required courses are included and aligns with the student's interests and career goals. Each semester should contain at least 5 courses.
+    Using this information, create a structured 4-year course plan that ensures all required courses are included and aligns with the student's interests and career goals. Each semester should contain at least 4 courses.
 
     Format the output as a JSON object using the following example structure:
 

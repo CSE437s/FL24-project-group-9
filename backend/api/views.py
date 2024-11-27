@@ -1,6 +1,9 @@
 import json
 from datetime import date
 
+from django.conf import settings
+from django.core.cache import cache
+from django.core.cache.backends.base import DEFAULT_TIMEOUT
 from django.db.models import Q
 from rest_framework import permissions, status
 from rest_framework.decorators import action, api_view, permission_classes
@@ -20,6 +23,8 @@ from .serializers import (
     SemesterSerializer,
     StudentSerializer,
 )
+
+CACHE_TTL = getattr(settings, "CACHE_TTL", DEFAULT_TIMEOUT)
 
 
 @api_view(["GET"])
@@ -86,11 +91,28 @@ def generate_schedule_helper(student):
     try:
         student_embed = student.embedding
         relevant_courses = OpenAIUltils.filter_courses_by_similarity(student_embed)
-        completed_semesters = Semester.objects.filter(student=student, isCompleted=True)
-        completed_courses = []
-        for semester in completed_semesters:
-            completed_courses.extend(semester.planned_courses.all())
-        completed_courses = [course.code for course in completed_courses]
+
+        completed_semesters = cache.get(f"completed_semesters_{student.id}")
+        if not completed_semesters:
+            completed_semesters = Semester.objects.filter(
+                student=student, isCompleted=True
+            )
+            cache.set(
+                f"completed_semesters_{student.id}",
+                completed_semesters,
+                timeout=CACHE_TTL,
+            )
+
+        completed_courses = cache.get(f"completed_courses_{student.id}")
+        if not completed_courses:
+            completed_courses = []
+            for semester in completed_semesters:
+                completed_courses.extend(semester.planned_courses.all())
+            completed_courses = [course.code for course in completed_courses]
+            cache.set(
+                f"completed_courses_{student.id}", completed_courses, timeout=CACHE_TTL
+            )
+
         relevant_courses = [
             course for course in relevant_courses if course not in completed_courses
         ]
@@ -114,10 +136,20 @@ def generate_schedule_helper(student):
             course for course in required_courses if course not in completed_courses
         ]
 
-        upcoming_semesters = Semester.objects.filter(student=student, isCompleted=False)
+        upcoming_semesters = cache.get(f"upcoming_semesters_{student.id}")
+        if not upcoming_semesters:
+            upcoming_semesters = Semester.objects.filter(
+                student=student, isCompleted=False
+            )
+            cache.set(
+                f"upcoming_semesters_{student.id}",
+                upcoming_semesters,
+                timeout=CACHE_TTL,
+            )
         student_semester_text = ",".join(
             semester.name for semester in upcoming_semesters
         )
+
         student_profile_text = f"{student.interests};{student.career}"
 
         generated_courses = OpenAIUltils.generate_course_plan(
@@ -153,13 +185,28 @@ class StudentViewSet(ViewSet):
 
     def list(self, request, *args, **kwargs):
         student = self.get_object()
+        cached_data = cache.get(f"student_list_{student.id}")
+
+        if cached_data:
+            return Response(cached_data)
+
         serializer = StudentSerializer(student, many=False)
-        return Response(serializer.data)
+        response_data = serializer.data
+        cache.set(f"student_list_{student.id}", response_data, timeout=CACHE_TTL)
+        return Response(response_data)
 
     def retrieve(self, request, *args, **kwargs):
         student = self.get_object()
+
+        cached_data = cache.get(f"student_retrieve_{student.id}")
+
+        if cached_data:
+            return Response(cached_data)
+
         serializer = StudentSerializer(student)
-        return Response(serializer.data)
+        response_data = serializer.data
+        cache.set(f"student_retrieve_{student.id}", response_data, timeout=CACHE_TTL)
+        return Response(response_data)
 
     def is_completed(self, semester, year):
         today_year = date.today().year
@@ -227,20 +274,50 @@ class StudentViewSet(ViewSet):
 
 class CourseViewSet(ReadOnlyModelViewSet):
     serializer_class = CourseSerializer
-    queryset = Course.objects.all()
     permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        cache_key = "course_queryset"
+        cached_data = cache.get(cache_key)
+
+        if cached_data:
+            return cached_data
+
+        queryset = Course.objects.all()
+        cache.set(cache_key, queryset, timeout=CACHE_TTL)
+        return queryset
 
 
 class DepartmentViewSet(ReadOnlyModelViewSet):
     serializer_class = DepartmentSerializer
-    queryset = Department.objects.all()
     permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        cache_key = "department_queryset"
+        cached_data = cache.get(cache_key)
+
+        if cached_data:
+            return cached_data
+
+        queryset = Department.objects.all()
+        cache.set(cache_key, queryset, timeout=CACHE_TTL)
+        return queryset
 
 
 class ProgramViewSet(ReadOnlyModelViewSet):
     serializer_class = ProgramSerializer
-    queryset = Program.objects.all()
     permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        cache_key = "program_queryset"
+        cached_data = cache.get(cache_key)
+
+        if cached_data:
+            return cached_data
+
+        queryset = Program.objects.all()
+        cache.set(cache_key, queryset, timeout=CACHE_TTL)
+        return queryset
 
 
 class SemesterViewSet(ViewSet):
@@ -253,13 +330,18 @@ class SemesterViewSet(ViewSet):
 
     def list(self, request):
         authenticated_student = self.request.user
-        semesters = self.queryset.filter(student=authenticated_student)
+        cache_key = f"semesters_{authenticated_student.id}"
+        semesters = cache.get(cache_key)
+        if not semesters:
+            semesters = self.queryset.filter(student=authenticated_student)
 
-        def semester_sorter(semester):
-            season, year = semester.name.split()
-            return (year, 0 if season == "Spring" else 1)
+            def semester_sorter(semester):
+                season, year = semester.name.split()
+                return (year, 0 if season == "Spring" else 1)
 
-        semesters = sorted(semesters, key=semester_sorter)
+            semesters = sorted(semesters, key=semester_sorter)
+            cache.set(cache_key, semesters, timeout=CACHE_TTL)
+
         serializer = SemesterSerializer(
             semesters,
             many=True,
@@ -291,7 +373,13 @@ class ReviewViewSet(ModelViewSet):
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
-        queryset = Review.objects.all()
+        cache_key = "review_queryset"
+        queryset = cache.get(cache_key)
+
+        if not queryset:
+            queryset = Review.objects.all()
+            cache.set(cache_key, queryset, timeout=CACHE_TTL)
+
         course_id = self.request.query_params.get("course_id")
         if course_id is not None:
             queryset = queryset.filter(course_id=course_id)
