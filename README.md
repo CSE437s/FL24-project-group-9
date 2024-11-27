@@ -1,14 +1,20 @@
-# Project Name: WashU Course Scheduler
+<h1 align="center">
+  <a href="#"><img src="img/logo.png" alt="WashU Course Scheduler" width="300"></a>
+  <br>
+  WashU Course Scheduler
+  <br>
+  <br>
+</h1>
+
+<!-- <p align="center">
+  <a href="https://github.com/CSE437s/FL24-project-group-9/graphs/contributors" alt="Contributors">
+    <img src="https://img.shields.io/github/contributors/CSE437s/FL24-project-group-9" />
+  </a>
+</p> -->
 
 ### Team members: Duy Huynh, Tram Vu, Sam Gil
 
-### TA: <Insert Here>
-
-### Instructions/Link to access: <insert here>
-
 ## Getting Started
-
-### Installation
 
 #### Frontend
 
