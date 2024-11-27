@@ -128,13 +128,14 @@ Update ConfigMap from .env if needed
 kubectl create configmap backend-env --from-env-file=backend/.env --dry-run=client -o yaml | kubectl apply -f -
 ```
 
-Deploy your app with:
+Deploy the app with:
 ```
 kubectl apply -f https://kind.sigs.k8s.io/examples/ingress/deploy-ingress-nginx.yaml
 kubectl apply -f k8s/frontend-deployment.yaml
 kubectl apply -f k8s/frontend-ingress-deployment.yaml
 kubectl apply -f k8s/backend-deployment.yaml
 kubectl apply -f k8s/backend-ingress-deployment.yaml
+kubectl apply -f k8s/redis-deployment.yaml
 ```
 
 Check on the status of your deployment with (should show RUNNING):
