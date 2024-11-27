@@ -5,7 +5,7 @@ services:
     image: washu_course_scheduler_backend:release
     build:
       context: ./backend
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.release
     container_name: washu_course_scheduler_backend_release
     ports:
       - "8000:8000"
@@ -25,7 +25,7 @@ services:
       - "3000:3000"
 
   redis-release:
-    image: redis
+    image: redis:latest
     container_name: washu_course_scheduler_redis
     ports:
       - "6379:6379"

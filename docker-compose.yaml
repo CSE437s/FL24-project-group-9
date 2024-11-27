@@ -28,7 +28,7 @@ services:
       - VITE_APP_BACKEND_ADDRESS=http://localhost:8000
 
   redis:
-    image: redis
+    image: redis:latest
     container_name: washu_course_scheduler_redis
     ports:
       - "6379:6379"
