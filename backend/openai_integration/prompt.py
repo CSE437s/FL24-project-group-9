@@ -13,9 +13,9 @@ def get_system_role(required_courses):
     Format the output as a JSON object using the following example structure:
 
     "Fall 2020": ["E81 CSE 131", "E81 CSE 132", "L24 Math 131", "L59 CWP 100", "E35 ESE 326"],
-    "Spring 2021": ["E81 CSE 240", "E81 CSE 247", "L24 Math 132", "E35 ESE 326", "E81 CSE 332S"],
-    "Fall 2021": ["E81 CSE 347", "L24 Math 233", "L24 Math 309", "E81 CSE 361S", "E81 CSE 511A"],
-    "Spring 2022": ["E81 CSE 361A", "E81 CSE 361T", "E81 CSE 332S", "E81 CSE 347", "E35 ESE 326"],
+    "Spring 2021": ["E81 CSE 240", "E81 CSE 247", "L24 Math 132", "E81 CSE 332S"],
+    "Fall 2021": ["E81 CSE 347", "L24 Math 233", "L24 Math 309", "E81 CSE 511A"],
+    "Spring 2022": ["E81 CSE 361S", "E81 CSE 330S", "E81 CSE 437A", "E81 CSE 433S"],
     ...
 
     Schedule courses with smaller course code numbers in earlier semesters and larger numbers in later semesters, ensuring a logical distribution. Return ONLY the JSON object without enclosing code blocks.

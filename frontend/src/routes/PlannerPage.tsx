@@ -1,4 +1,4 @@
-import { Button, Col, Container, Row } from 'react-bootstrap'
+import { Col, Container, Row } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
 import { ChatbotComponent } from '../components/ChatbotComponent'
@@ -58,9 +58,9 @@ export default function PlannerPage() {
                   <h4>Recommended Schedule</h4>
                 </Col>
                 <Col md="auto">
-                  <Button className="secondary" onClick={handleSave}>
+                  <button className="secondary" onClick={handleSave}>
                     Save
-                  </Button>
+                  </button>
                 </Col>
               </Row>
             </Col>
