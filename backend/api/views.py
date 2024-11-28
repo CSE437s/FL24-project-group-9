@@ -246,6 +246,8 @@ class StudentViewSet(ViewSet):
     def update(self, request, *args, **kwargs):
         student = self.get_object()
         serializer = StudentSerializer(student, data=request.data, partial=True)
+        cache.delete(f"student_list_{student.id}")
+        cache.delete(f"student_retrieve_{student.id}")
 
         if "grad" in request.data:
             try:
@@ -270,6 +272,7 @@ class StudentViewSet(ViewSet):
                             name=spring_name,
                             isCompleted=self.is_completed("Spring", year + 1),
                         )
+                cache.delete(f"semesters_{student.id}")
 
             except ValueError:
                 raise ValidationError(
@@ -355,7 +358,7 @@ class SemesterViewSet(ViewSet):
         return self.request.user
 
     def list(self, request):
-        authenticated_student = self.request.user
+        authenticated_student = self.get_object()
         cache_key = f"semesters_{authenticated_student.id}"
         semesters = cache.get(cache_key)
         if not semesters:
@@ -375,7 +378,7 @@ class SemesterViewSet(ViewSet):
         return Response(serializer.data)
 
     def update(self, request, pk=None):
-        authenticated_student = self.request.user
+        authenticated_student = self.get_object()
         try:
             semesters = self.queryset.filter(student=authenticated_student).get(pk=pk)
         except Semester.DoesNotExist:
@@ -384,12 +387,13 @@ class SemesterViewSet(ViewSet):
         serializer = SemesterSerializer(semesters, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
+            cache.delete(f"semesters_{authenticated_student.id}")
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     @action(detail=False, methods=["post"], url_path="generate")
     def generate_schedule(self, request):
-        authenticated_student = self.request.user
+        authenticated_student = self.get_object()
         schedule = generate_schedule_helper(authenticated_student)
         return schedule
 
