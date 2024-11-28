@@ -4,7 +4,6 @@ from datetime import date
 from django.conf import settings
 from django.core.cache import cache
 from django.core.cache.backends.base import DEFAULT_TIMEOUT
-from django.db.models import Q
 from rest_framework import permissions, status
 from rest_framework.decorators import action, api_view, permission_classes
 from rest_framework.exceptions import NotFound, ValidationError
@@ -87,6 +86,35 @@ def get_chat_response(request):
         return Response({"Error": "Failed to generate"}, status=400)
 
 
+def validate_schedule_helper(generated_courses):
+    seen_course_codes = set()
+    seen_course_titles = set()
+    validated_courses = {}
+    for semester_name, course_codes in generated_courses.items():
+        validated_code = []
+        for course_code in course_codes:
+            if len(course_code.split()) != 3:
+                continue
+
+            if not Course.objects.filter(code__icontains=course_code).exists():
+                continue
+
+            if Course.objects.filter(code__icontains=course_code)[0].units == 0:
+                continue
+
+            course_title = Course.objects.filter(code__icontains=course_code)[0].title
+            if course_code in seen_course_codes or course_title in seen_course_titles:
+                continue
+
+            validated_code.append(course_code)
+            seen_course_codes.add(course_code)
+            seen_course_titles.add(course_title)
+
+        validated_courses[semester_name] = validated_code
+
+    return validated_courses
+
+
 def generate_schedule_helper(student):
     try:
         student_embed = student.embedding
@@ -160,13 +188,11 @@ def generate_schedule_helper(student):
         )
 
         generated_courses = json.loads(generated_courses)
+        validated_courses = validate_schedule_helper(generated_courses)
         for semester in upcoming_semesters:
-            code_list = generated_courses.get(semester.name, [])
+            code_list = validated_courses.get(semester.name, [])
             if code_list:
-                query = Q()
-                for code in code_list:
-                    query |= Q(code__icontains=code)
-                semester.planned_courses.set(Course.objects.filter(query))
+                semester.planned_courses.set(Course.objects.filter(code__in=code_list))
 
         generated_semesters = Semester.objects.filter(student=student)
         serialized_semesters = SemesterSerializer(generated_semesters, many=True).data
