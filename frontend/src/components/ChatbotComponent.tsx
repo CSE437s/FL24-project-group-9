@@ -103,7 +103,7 @@ export const ChatbotComponent = () => {
     [FlowStep.Start]: {
       transition: 0,
       message:
-        'Hello! Welcome to CoursePlanner. I can help you find courses that best fit your interests.',
+        'Hello! Welcome to WashU Course Scheduler. I can help you find courses that best fit your interests.',
       path: FlowStep.FindCourse,
     },
     [FlowStep.FindCourse]: {

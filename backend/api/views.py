@@ -4,7 +4,6 @@ from datetime import date
 from django.conf import settings
 from django.core.cache import cache
 from django.core.cache.backends.base import DEFAULT_TIMEOUT
-from django.db.models import Q
 from rest_framework import permissions, status
 from rest_framework.decorators import action, api_view, permission_classes
 from rest_framework.exceptions import NotFound, ValidationError
@@ -87,6 +86,35 @@ def get_chat_response(request):
         return Response({"Error": "Failed to generate"}, status=400)
 
 
+def validate_schedule_helper(generated_courses):
+    seen_course_codes = set()
+    seen_course_titles = set()
+    validated_courses = {}
+    for semester_name, course_codes in generated_courses.items():
+        validated_code = []
+        for course_code in course_codes:
+            if len(course_code.split()) != 3:
+                continue
+
+            if not Course.objects.filter(code__icontains=course_code).exists():
+                continue
+
+            if Course.objects.filter(code__icontains=course_code)[0].units == 0:
+                continue
+
+            course_title = Course.objects.filter(code__icontains=course_code)[0].title
+            if course_code in seen_course_codes or course_title in seen_course_titles:
+                continue
+
+            validated_code.append(course_code)
+            seen_course_codes.add(course_code)
+            seen_course_titles.add(course_title)
+
+        validated_courses[semester_name] = validated_code
+
+    return validated_courses
+
+
 def generate_schedule_helper(student):
     try:
         student_embed = student.embedding
@@ -132,9 +160,6 @@ def generate_schedule_helper(student):
             "L59 CWP 100",
             "E60 Engr 310",
         ]
-        required_courses = [
-            course for course in required_courses if course not in completed_courses
-        ]
 
         upcoming_semesters = cache.get(f"upcoming_semesters_{student.id}")
         if not upcoming_semesters:
@@ -157,16 +182,15 @@ def generate_schedule_helper(student):
             student_semester_text,
             student_profile_text,
             relevant_courses,
+            completed_courses,
         )
 
         generated_courses = json.loads(generated_courses)
+        validated_courses = validate_schedule_helper(generated_courses)
         for semester in upcoming_semesters:
-            code_list = generated_courses.get(semester.name, [])
+            code_list = validated_courses.get(semester.name, [])
             if code_list:
-                query = Q()
-                for code in code_list:
-                    query |= Q(code__icontains=code)
-                semester.planned_courses.set(Course.objects.filter(query))
+                semester.planned_courses.set(Course.objects.filter(code__in=code_list))
 
         generated_semesters = Semester.objects.filter(student=student)
         serialized_semesters = SemesterSerializer(generated_semesters, many=True).data
@@ -220,6 +244,8 @@ class StudentViewSet(ViewSet):
     def update(self, request, *args, **kwargs):
         student = self.get_object()
         serializer = StudentSerializer(student, data=request.data, partial=True)
+        cache.delete(f"student_list_{student.id}")
+        cache.delete(f"student_retrieve_{student.id}")
 
         if "grad" in request.data:
             try:
@@ -244,6 +270,10 @@ class StudentViewSet(ViewSet):
                             name=spring_name,
                             isCompleted=self.is_completed("Spring", year + 1),
                         )
+                cache.delete(f"semesters_{student.id}")
+                cache.delete(f"completed_semesters_{student.id}")
+                cache.delete(f"completed_courses_{student.id}")
+                cache.delete(f"upcoming_semesters_{student.id}")
 
             except ValueError:
                 raise ValidationError(
@@ -329,7 +359,7 @@ class SemesterViewSet(ViewSet):
         return self.request.user
 
     def list(self, request):
-        authenticated_student = self.request.user
+        authenticated_student = self.get_object()
         cache_key = f"semesters_{authenticated_student.id}"
         semesters = cache.get(cache_key)
         if not semesters:
@@ -349,7 +379,7 @@ class SemesterViewSet(ViewSet):
         return Response(serializer.data)
 
     def update(self, request, pk=None):
-        authenticated_student = self.request.user
+        authenticated_student = self.get_object()
         try:
             semesters = self.queryset.filter(student=authenticated_student).get(pk=pk)
         except Semester.DoesNotExist:
@@ -358,12 +388,16 @@ class SemesterViewSet(ViewSet):
         serializer = SemesterSerializer(semesters, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
+            cache.delete(f"semesters_{authenticated_student.id}")
+            cache.delete(f"completed_semesters_{authenticated_student.id}")
+            cache.delete(f"completed_courses_{authenticated_student.id}")
+            cache.delete(f"upcoming_semesters_{authenticated_student.id}")
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     @action(detail=False, methods=["post"], url_path="generate")
     def generate_schedule(self, request):
-        authenticated_student = self.request.user
+        authenticated_student = self.get_object()
         schedule = generate_schedule_helper(authenticated_student)
         return schedule
 

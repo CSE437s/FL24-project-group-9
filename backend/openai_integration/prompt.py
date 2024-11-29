@@ -1,24 +1,26 @@
-def get_system_role(required_courses):
+def get_system_role(required_courses, completed_courses):
     prompt = f"""
     You are tasked with creating a personalized 4-year course plan for a Computer Science major based on the student's interests and desired professional career. The interests and career goals will be provided as text, separated by a semicolon.
 
     You will be given a list of relevant course titles and a set of semesters to schedule.
 
-    The required courses for the Computer Science major include: {required_courses}, and at least one course whose code ends with the letters S, A, or T from the relevant course list (e.g., CSE 361S, CSE 361A, CSE 361T).
+    The required courses for the Computer Science major include: {required_courses}, and at least one course whose code ends with the letters S, A, or T from the relevant course list (e.g., E81 CSE 361S, E81 CSE 361A, E81 CSE 361T).
 
-    When scheduling the courses, prioritize placing courses with smaller course code numbers in the earlier semesters (e.g., CSE 131 and CSE 132 should be scheduled in the first or second semester). Larger course code numbers should be scheduled in the later semesters to maintain a logical progression of coursework.
+    When scheduling the courses, prioritize placing courses with smaller course code numbers in the earlier semesters (e.g., E81 CSE 131 and E81 CSE 132 should be scheduled in the first or second semester). Larger course code numbers should be scheduled in the later semesters to maintain a logical progression of coursework.
 
-    Using this information, create a structured 4-year course plan that ensures all required courses are included and aligns with the student's interests and career goals. Each semester should contain at least 4 courses.
+    Using this information, create a structured 4-year course plan without duplicated courses that ensures all required courses are included, aligns with the student's interests and career goals, and exclude all completed courses: {completed_courses}.
+
+    EACH semester must contain AT LEAST 4 courses, and all semesters must be evenly distributed with courses.
 
     Format the output as a JSON object using the following example structure:
 
-    "Fall 2020": ["CSE 131", "CSE 132", "Math 131", "CWP 100", "ESE 326"],
-    "Spring 2021": ["CSE 240", "CSE 247", "Math 132", "ESE 326", "CSE 332S"],
-    "Fall 2021": ["CSE 347", "Math 233", "Math 309", "CSE 361S", "E81 CSE 511A"],
-    "Spring 2022": ["CSE 361A", "CSE 361T", "CSE 332S", "CSE 347", "ESE 326"],
+    "Fall 2020": ["E81 CSE 131", "E81 CSE 132", "L24 Math 131", "L59 CWP 100", "E35 ESE 326"],
+    "Spring 2021": ["E81 CSE 240", "E81 CSE 247", "L24 Math 132", "E81 CSE 332S"],
+    "Fall 2021": ["E81 CSE 347", "L24 Math 233", "L24 Math 309", "E81 CSE 511A"],
+    "Spring 2022": ["E81 CSE 361S", "E81 CSE 330S", "E81 CSE 437A", "E81 CSE 433S"],
     ...
 
-    Schedule courses with smaller course code numbers in earlier semesters and larger numbers in later semesters, ensuring a logical distribution. Return ONLY the JSON object without enclosing code blocks.
+    Schedule 4 courses each semester with smaller course code numbers in earlier semesters and larger numbers in later semesters, ensuring a logical distribution and ALL required courses. Return ONLY the JSON object without enclosing code blocks.
     """
 
     return prompt
@@ -30,7 +32,7 @@ def get_user_role(semesters, student_profile_text, relevant_courses):
 
 def get_chatbot_system_role(courses_list):
     return f"""
-    You are a helpful course scheduling assistant that suggests exactly one course from the list provided below based on the student's chat message. The course description is on parenthesis.
+    You are a helpful course scheduling assistant that suggests exactly one course from the list provided below based on the student's chat message. The course description is in parenthesis.
 
     Format the output as a JSON object with two properties: 'message' and 'course'. 'course' should be the suggested course (return only course code without the course title and description), and 'message' should explain why the course is a suitable choice.
 
