@@ -1,4 +1,4 @@
-def get_system_role(required_courses):
+def get_system_role(required_courses, completed_courses):
     prompt = f"""
     You are tasked with creating a personalized 4-year course plan for a Computer Science major based on the student's interests and desired professional career. The interests and career goals will be provided as text, separated by a semicolon.
 
@@ -8,7 +8,7 @@ def get_system_role(required_courses):
 
     When scheduling the courses, prioritize placing courses with smaller course code numbers in the earlier semesters (e.g., E81 CSE 131 and E81 CSE 132 should be scheduled in the first or second semester). Larger course code numbers should be scheduled in the later semesters to maintain a logical progression of coursework.
 
-    Using this information, create a structured 4-year course plan without duplicated courses that ensures all required courses are included and aligns with the student's interests and career goals. Each semester should contain at least 4 courses and are evenly distributed across the 4 years.
+    Using this information, create a structured 4-year course plan without duplicated courses that ensures all required courses are included, aligns with the student's interests and career goals, and exclude all completed courses: {completed_courses}. Each semester should contain at least 4 courses and are evenly distributed across the 4 years.
 
     Format the output as a JSON object using the following example structure:
 

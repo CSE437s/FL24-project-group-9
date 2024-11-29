@@ -160,9 +160,6 @@ def generate_schedule_helper(student):
             "L59 CWP 100",
             "E60 Engr 310",
         ]
-        required_courses = [
-            course for course in required_courses if course not in completed_courses
-        ]
 
         upcoming_semesters = cache.get(f"upcoming_semesters_{student.id}")
         if not upcoming_semesters:
@@ -185,6 +182,7 @@ def generate_schedule_helper(student):
             student_semester_text,
             student_profile_text,
             relevant_courses,
+            completed_courses,
         )
 
         generated_courses = json.loads(generated_courses)

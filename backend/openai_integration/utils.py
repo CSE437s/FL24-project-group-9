@@ -18,8 +18,9 @@ from openai_integration.prompt import (
 
 
 class OpenAIUltils:
-    THRESHOLD = 0.2
+    THRESHOLD = 0.1
     COURSES = Course.objects.all()
+    MODEL_NAME = "gpt-4o"
     COURSES_LIST = [str(course) + "(" + course.description + ")" for course in COURSES]
     CLIENT = OpenAI(api_key=os.getenv("OPENAI_API_KEY", "mock_api_key"))
 
@@ -64,14 +65,18 @@ class OpenAIUltils:
 
     @staticmethod
     def generate_course_plan(
-        required_courses, semesters, student_profile_text, relevant_courses
+        required_courses,
+        semesters,
+        student_profile_text,
+        relevant_courses,
+        completed_courses,
     ):
         completion = OpenAIUltils.CLIENT.chat.completions.create(
-            model="gpt-4o-mini",
+            model=OpenAIUltils.MODEL_NAME,
             messages=[
                 {
                     "role": "system",
-                    "content": get_system_role(required_courses),
+                    "content": get_system_role(required_courses, completed_courses),
                 },
                 {
                     "role": "user",
