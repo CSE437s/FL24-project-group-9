@@ -273,6 +273,9 @@ class StudentViewSet(ViewSet):
                             isCompleted=self.is_completed("Spring", year + 1),
                         )
                 cache.delete(f"semesters_{student.id}")
+                cache.delete(f"completed_semesters_{student.id}")
+                cache.delete(f"completed_courses_{student.id}")
+                cache.delete(f"upcoming_semesters_{student.id}")
 
             except ValueError:
                 raise ValidationError(

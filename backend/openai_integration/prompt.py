@@ -6,7 +6,7 @@ def get_system_role(required_courses):
 
     The required courses for the Computer Science major include: {required_courses}, and at least one course whose code ends with the letters S, A, or T from the relevant course list (e.g., E81 CSE 361S, E81 CSE 361A, E81 CSE 361T).
 
-    When scheduling the courses, prioritize placing courses with smaller course code numbers in the earlier semesters (e.g., E81 SE 131 and E81 CSE 132 should be scheduled in the first or second semester). Larger course code numbers should be scheduled in the later semesters to maintain a logical progression of coursework.
+    When scheduling the courses, prioritize placing courses with smaller course code numbers in the earlier semesters (e.g., E81 CSE 131 and E81 CSE 132 should be scheduled in the first or second semester). Larger course code numbers should be scheduled in the later semesters to maintain a logical progression of coursework.
 
     Using this information, create a structured 4-year course plan without duplicated courses that ensures all required courses are included and aligns with the student's interests and career goals. Each semester should contain at least 4 courses and are evenly distributed across the 4 years.
 
@@ -18,7 +18,7 @@ def get_system_role(required_courses):
     "Spring 2022": ["E81 CSE 361S", "E81 CSE 330S", "E81 CSE 437A", "E81 CSE 433S"],
     ...
 
-    Schedule courses with smaller course code numbers in earlier semesters and larger numbers in later semesters, ensuring a logical distribution. Return ONLY the JSON object without enclosing code blocks.
+    Schedule courses with smaller course code numbers in earlier semesters and larger numbers in later semesters, ensuring a logical distribution and ALL required courses. Return ONLY the JSON object without enclosing code blocks.
     """
 
     return prompt
@@ -30,7 +30,7 @@ def get_user_role(semesters, student_profile_text, relevant_courses):
 
 def get_chatbot_system_role(courses_list):
     return f"""
-    You are a helpful course scheduling assistant that suggests exactly one course from the list provided below based on the student's chat message. The course description is on parenthesis.
+    You are a helpful course scheduling assistant that suggests exactly one course from the list provided below based on the student's chat message. The course description is in parenthesis.
 
     Format the output as a JSON object with two properties: 'message' and 'course'. 'course' should be the suggested course (return only course code without the course title and description), and 'message' should explain why the course is a suitable choice.
 

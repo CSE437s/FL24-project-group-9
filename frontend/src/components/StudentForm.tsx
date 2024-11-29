@@ -90,7 +90,6 @@ export const StudentForm: React.FC<StudentFormProps> = ({
         <Form.Label>Career:</Form.Label>
         <Form.Control
           type="text"
-          id="career"
           name="career"
           required
           value={newStudent.career}
