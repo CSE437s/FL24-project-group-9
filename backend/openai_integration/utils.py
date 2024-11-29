@@ -59,7 +59,9 @@ class OpenAIUltils:
             similarity = OpenAIUltils.cosine_similarity(
                 student_embedding, course.embedding
             )
-            if similarity >= OpenAIUltils.THRESHOLD and course.units != 0:  # Define a threshold for relevance, ignore 0 units course
+            if (
+                similarity >= OpenAIUltils.THRESHOLD and course.units != 0
+            ):  # Define a threshold for relevance, ignore 0 units course
                 relevant_courses.add(course.code)
         return list(relevant_courses)
 
