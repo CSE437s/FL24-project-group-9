@@ -389,6 +389,9 @@ class SemesterViewSet(ViewSet):
         if serializer.is_valid():
             serializer.save()
             cache.delete(f"semesters_{authenticated_student.id}")
+            cache.delete(f"completed_semesters_{authenticated_student.id}")
+            cache.delete(f"completed_courses_{authenticated_student.id}")
+            cache.delete(f"upcoming_semesters_{authenticated_student.id}")
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
