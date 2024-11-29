@@ -60,7 +60,7 @@ Install existing dependencies:
 poetry install
 ```
 
-Make .env file (if not existed)
+Make .env file (if not existed), make sure no quotes around variables
 ```
 cp .env.example .env
 ```

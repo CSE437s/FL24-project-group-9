@@ -24,8 +24,8 @@ export default function HomePage() {
       <HeaderBar />
       <Container className="home-page">
         <Container>
-          <h1>Welcome to CoursePlanner</h1>
-          <p>CoursePlanner is a tool to help you plan your college courses.</p>
+          <h1>Welcome to WashU Course Scheduler</h1>
+          <p>This is a tool to help you plan your college courses.</p>
         </Container>
         <Container className="home-body">
           <Button onClick={handleGetStarted}>Get Started</Button>
