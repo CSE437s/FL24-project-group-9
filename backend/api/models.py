@@ -21,7 +21,6 @@ class Course(models.Model):
     url = models.URLField()
     prerequisites = models.TextField(blank=True)
     attributes = models.CharField(max_length=255, blank=True)
-    department = models.CharField(max_length=255)
     embedding = models.JSONField(blank=True, null=True)
 
     @property
