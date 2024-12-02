@@ -1,11 +1,7 @@
 """The scraper script to crawl courses data from WashU website."""
 
 import json
-<<<<<<< Updated upstream
 import time
-=======
-import time 
->>>>>>> Stashed changes
 import requests
 from bs4 import BeautifulSoup
 from course_data_transformation import transform_data
@@ -25,7 +21,7 @@ class CourseScraper:
     -------
     export_data(courses_list):
         Export data to json file.
-    create_courses_list() -> list:
+    create_courses_list() -> set:
         Return the list of courses from the page.
     """
     
@@ -43,12 +39,12 @@ class CourseScraper:
             output_file.write(json.dumps(courses_list, indent=4))
             print(f"{len(courses_list)} courses exported to file")
 
-    def create_courses_list(self) -> list:
+    def create_courses_set(self) -> list:
         """Return the list of courses from the page."""
         print("Creating courses list...")
 
-        
-        courses_list = []
+        courses_set = []
+        courses_list = []    
         for url in self.url_list:
             print(url)
             page = requests.get(url)
@@ -56,7 +52,9 @@ class CourseScraper:
 
             soup = BeautifulSoup(page.text, "html.parser")
            
-
+            #dept = url.split("/", 7)[5]
+            department_title = soup.find("h1", class_="page-title")
+            dept = department_title.text.strip()
             # Find the course listings in the HTML structure
             courses_div = soup.find_all("div", class_="courseblock")
             for course in courses_div:
@@ -66,9 +64,12 @@ class CourseScraper:
                 course_credits = course.find("p", class_="noindent")
                 course_link = None
                 link_tag = course.find("a", string="View Sections")
+                course_attrib = None
+                attrib_span = course.find("span", class_="crs_attrstr")
+                course_info["department"] = dept
                 if link_tag:
                     course_link = link_tag["href"]
-
+                
                 if course_title:
                     course_info["title"] = course_title.text.strip().replace("\u00a0", " ")
                 if course_description:
@@ -81,11 +82,25 @@ class CourseScraper:
                     course_info["credits"] = course_credits.text.strip().replace(
                         "\u00a0", " "
                     )
-            
+                if attrib_span:
+                    attrib_dept_tag = attrib_span.find("a")
+                    attrib_dept_tag = attrib_dept_tag["href"]
+                    attrib_dept_tag = attrib_dept_tag.strip().replace("\u00a0", " ")
+                    attrib_tag = attrib_span.text.strip().replace("\u00a0", " ")
+                    course_attrib = attrib_dept_tag + attrib_tag
+                    course_attrib = course_attrib.split("/search/", 1)[1].strip()
+                    course_info["attributes"] = course_attrib.strip().replace("\u00a0", " ")
+                    
                 transformed_course_info = transform_data(course_info)
                 courses_list.append(transformed_course_info)
-
-        return courses_list
+        
+        for c in courses_list:
+            if c in courses_set:
+                pass
+            else:
+                courses_set.append(c)
+        
+        return courses_set
 
 
 
@@ -94,7 +109,6 @@ page_links = [
     "https://bulletin.wustl.edu/undergrad/engineering/energy-environmental-chemical/#courses",
     "https://bulletin.wustl.edu/undergrad/engineering/biomedical/#courses",
     "https://bulletin.wustl.edu/undergrad/engineering/electrical-and-systems/#courses",
-    "https://bulletin.wustl.edu/undergrad/engineering/energy-environmental-chemical/#courses",
     "https://bulletin.wustl.edu/undergrad/engineering/umsl-wustl-joint-program/#courses",
     "https://bulletin.wustl.edu/undergrad/architecture/#courses",
     "https://bulletin.wustl.edu/undergrad/art/#courses",
@@ -173,6 +187,7 @@ page_links = [
     "https://bulletin.wustl.edu/grad/artsci/statisticsanddatascience/#courses",
     "https://bulletin.wustl.edu/grad/artsci/womengenderandsexualitystudies/#courses"
     ]
+
 scraper = CourseScraper(page_links)
-data_list = scraper.create_courses_list()
+data_list = scraper.create_courses_set()
 scraper.export_data(data_list)

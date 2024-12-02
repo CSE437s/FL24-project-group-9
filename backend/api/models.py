@@ -7,6 +7,7 @@ from django.db import models
 class Department(models.Model):
     name = models.CharField(max_length=255)
     url = models.URLField()
+    #tag = models.CharField(max_length=255)
 
     def __str__(self):
         return self.name
@@ -19,6 +20,8 @@ class Course(models.Model):
     units = models.PositiveIntegerField()
     url = models.URLField()
     prerequisites = models.TextField(blank=True)
+    attributes = models.CharField(max_length=255)
+    department = models.CharField(max_length=255)
     embedding = models.JSONField(blank=True, null=True)
 
     @property
