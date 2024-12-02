@@ -1,14 +1,20 @@
-# Project Name: WashU Course Scheduler
+<h1 align="center">
+  <a href="#"><img src="img/logo.png" alt="WashU Course Scheduler" width="300"></a>
+  <br>
+  WashU Course Scheduler
+  <br>
+  <br>
+</h1>
+
+<!-- <p align="center">
+  <a href="https://github.com/CSE437s/FL24-project-group-9/graphs/contributors" alt="Contributors">
+    <img src="https://img.shields.io/github/contributors/CSE437s/FL24-project-group-9" />
+  </a>
+</p> -->
 
 ### Team members: Duy Huynh, Tram Vu, Sam Gil
 
-### TA: <Insert Here>
-
-### Instructions/Link to access: <insert here>
-
 ## Getting Started
-
-### Installation
 
 #### Frontend
 
@@ -54,7 +60,7 @@ Install existing dependencies:
 poetry install
 ```
 
-Make .env file (if not existed)
+Make .env file (if not existed), make sure no quotes around variables
 ```
 cp .env.example .env
 ```
@@ -122,13 +128,14 @@ Update ConfigMap from .env if needed
 kubectl create configmap backend-env --from-env-file=backend/.env --dry-run=client -o yaml | kubectl apply -f -
 ```
 
-Deploy your app with:
+Deploy the app with:
 ```
 kubectl apply -f https://kind.sigs.k8s.io/examples/ingress/deploy-ingress-nginx.yaml
 kubectl apply -f k8s/frontend-deployment.yaml
 kubectl apply -f k8s/frontend-ingress-deployment.yaml
 kubectl apply -f k8s/backend-deployment.yaml
 kubectl apply -f k8s/backend-ingress-deployment.yaml
+kubectl apply -f k8s/redis-deployment.yaml
 ```
 
 Check on the status of your deployment with (should show RUNNING):

@@ -105,6 +105,7 @@ export const PlannerComponent: React.FC<PlannerComponentProps> = ({
     })
 
     updateSemester(semester)
+    setNewCourses([])
   }
 
   return (

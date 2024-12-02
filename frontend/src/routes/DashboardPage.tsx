@@ -50,7 +50,7 @@ export default function DashboardPage() {
 
   const profileComponent = student ? (
     <>
-      <h2>Welcome to CoursePlanner {student?.first_name}!</h2>
+      <h2>Welcome to WashU Course Scheduler, {student?.first_name}!</h2>
       <div>
         <h3>
           Academic Summary

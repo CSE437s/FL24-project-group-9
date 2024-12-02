@@ -1,5 +1,6 @@
 .schedule-header {
-  margin: 1rem 0 0.5rem;
+  margin: 0 0.5rem;
+  padding-top: 0.75rem;
 }
 
 .schedule-info {
@@ -10,4 +11,6 @@
 
 .schedule-units {
   color: var(--text-paragraph);
+  display: flex;
+  align-items: flex-end;
 }
