@@ -2,11 +2,9 @@
 
 import json
 import time
-
 import requests
 from bs4 import BeautifulSoup
 from course_data_transformation import transform_data
-
 
 class CourseScraper:
     """
@@ -16,20 +14,20 @@ class CourseScraper:
 
     Attributes
     ----------
-    url : str
-        the base url to the WashU courses page
+    base_urls : list
+        the list of URLS containing all WashU bulletin course pages
 
     Methods
     -------
     export_data(courses_list):
         Export data to json file.
-    create_courses_list() -> list:
+    create_courses_list() -> set:
         Return the list of courses from the page.
     """
-
-    def __init__(self, base_url: str):
+    
+    def __init__(self, base_urls: list):
         """Initialize attributes of class."""
-        self.url = base_url
+        self.url_list = base_urls
 
     def export_data(self, courses_list: list):
         """Export data to json file."""
@@ -41,47 +39,120 @@ class CourseScraper:
             output_file.write(json.dumps(courses_list, indent=4))
             print(f"{len(courses_list)} courses exported to file")
 
-    def create_courses_list(self) -> list:
+    def create_courses_set(self) -> list:
         """Return the list of courses from the page."""
         print("Creating courses list...")
-        page = requests.get(self.url)
-        time.sleep(2)  # Wait for the page to load
 
-        soup = BeautifulSoup(page.text, "html.parser")
-        courses_list = []
+        courses_set = []
+        courses_list = []    
+        for url in self.url_list:
+            print(url)
+            page = requests.get(url)
+            time.sleep(2)  # Wait for the page to load
 
-        # Find the course listings in the HTML structure
-        courses_div = soup.find_all("div", class_="courseblock")
-        for course in courses_div:
-            course_info = {}
-            course_title = course.find("p", class_="courseblocktitle").find("strong")
-            course_description = course.find("p", class_="courseblockdesc")
-            course_credits = course.find("p", class_="noindent")
-            course_link = None
-            link_tag = course.find("a", string="View Sections")
-            if link_tag:
-                course_link = link_tag["href"]
+            soup = BeautifulSoup(page.text, "html.parser")
+           
+            
+            department_title = soup.find("h1", class_="page-title")
+            dept = department_title.text.strip()
+            # Find the course listings in the HTML structure
+            courses_div = soup.find_all("div", class_="courseblock")
+            for course in courses_div:
+                course_info = {}
+                course_title = course.find("p", class_="courseblocktitle").find("strong")
+                course_description = course.find("p", class_="courseblockdesc")
+                course_credits = course.find("p", class_="noindent")
+                course_link = None
+                link_tag = course.find("a", string="View Sections")
+                course_attrib = None
+                attrib_span = course.find("span", class_="crs_attrstr")
+                course_info["department"] = dept
+                if link_tag:
+                    course_link = link_tag["href"]
+                
+                if course_title:
+                    course_info["title"] = course_title.text.strip().replace("\u00a0", " ")
+                if course_description:
+                    course_info["description"] = course_description.text.strip().replace(
+                        "\u00a0", " "
+                    )
+                if course_link:
+                    course_info["link"] = course_link.strip().replace("\u00a0", " ")
+                if course_credits:
+                    course_info["credits"] = course_credits.text.strip().replace(
+                        "\u00a0", " "
+                    )
+                if attrib_span:
+                    attrib_dept_tag = attrib_span.find("a")
+                    attrib_dept_tag = attrib_dept_tag["href"]
+                    attrib_dept_tag = attrib_dept_tag.strip().replace("\u00a0", " ")
+                    attrib_tag = attrib_span.text.strip().replace("\u00a0", " ")
+                    course_attrib = attrib_dept_tag + attrib_tag
+                    course_attrib = course_attrib.split("/search/", 1)[1].strip()
+                    course_info["attributes"] = course_attrib.strip().replace("\u00a0", " ")
+                
+                transformed_course_info = transform_data(course_info)
+                courses_list.append(transformed_course_info)
+        
+        for c in courses_list:
+            if c not in courses_set:
+                courses_set.append(c)
+        
+        return courses_set
 
-            if course_title:
-                course_info["title"] = course_title.text.strip().replace("\u00a0", " ")
-            if course_description:
-                course_info["description"] = course_description.text.strip().replace(
-                    "\u00a0", " "
-                )
-            if course_link:
-                course_info["link"] = course_link.strip().replace("\u00a0", " ")
-            if course_credits:
-                course_info["credits"] = course_credits.text.strip().replace(
-                    "\u00a0", " "
-                )
-            transformed_course_info = transform_data(course_info)
-            courses_list.append(transformed_course_info)
-
-        return courses_list
 
 
-URL = "https://bulletin.wustl.edu/undergrad/engineering/computerscience/#courses"
+page_links = [
+    "https://bulletin.wustl.edu/undergrad/engineering/computerscience/#courses",
+    "https://bulletin.wustl.edu/undergrad/engineering/energy-environmental-chemical/#courses",
+    "https://bulletin.wustl.edu/undergrad/engineering/biomedical/#courses",
+    "https://bulletin.wustl.edu/undergrad/engineering/electrical-and-systems/#courses",
+    "https://bulletin.wustl.edu/undergrad/engineering/umsl-wustl-joint-program/#courses",
+    "https://bulletin.wustl.edu/undergrad/architecture/#courses",
+    "https://bulletin.wustl.edu/undergrad/art/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/africanandafricanamericanstudies/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/americanculturestudies/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/classics/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/anthropology/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/appliedlinguistics/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/mathematics/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/economics/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/jimes/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/arthistoryandarchaeology/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/americanculturestudies/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/physics/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/biology/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/chemistry/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/english/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/eastasianlanguagesandcultures/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/psychologicalandbrainsciences/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/comparativeliteratureandthought/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/performingarts/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/statisticsanddatascience/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/eeps/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/education/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/environmentalstudies/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/politicalscience/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/filmandmediastudies/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/romancelanguagesandliteratures/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/globalstudies/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/history/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/music/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/latinamericanstudies/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/linguistics/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/philosophy/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/philosophyneurosciencepsychology/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/publichealthandsociety/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/religionandpolitics/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/religiousstudies/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/russianlanguageandliterature/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/sociology/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/speechandhearing/#courses",
+    "https://bulletin.wustl.edu/undergrad/artsci/womengenderandsexualitystudies/#courses",
+    "https://bulletin.wustl.edu/undergrad/business/#courses",
+    "https://bulletin.wustl.edu/undergrad/beyondboundaries/#courses"
+    ]
 
-scraper = CourseScraper(URL)
-data_list = scraper.create_courses_list()
+scraper = CourseScraper(page_links)
+data_list = scraper.create_courses_set()
 scraper.export_data(data_list)

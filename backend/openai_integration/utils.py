@@ -19,7 +19,7 @@ from openai_integration.prompt import (
 
 class OpenAIUltils:
     THRESHOLD = 0.1
-    COURSES = Course.objects.all()
+    COURSES = Course.objects.only('code', 'embedding', 'units', 'title', 'description')
     MODEL_NAME = "gpt-4o"
     COURSES_LIST = [str(course) + "(" + course.description + ")" for course in COURSES]
     CLIENT = OpenAI(api_key=os.getenv("OPENAI_API_KEY", "mock_api_key"))

@@ -37,7 +37,7 @@ class Command(BaseCommand):
 
         for item in data:
             Department.objects.create(
-                name=item.get("department"),
+                name=item.get("name"),
                 url=item.get("url"),
             )
         self.stdout.write(
@@ -62,6 +62,8 @@ class Command(BaseCommand):
                 units=item.get("units"),
                 url=item.get("url"),
                 prerequisites=item.get("prerequisites"),
+                attributes=item.get("attributes"),
+                department=item.get("department"),
                 embedding=embed_data[embedding_idx],
             )
             embedding_idx += 1
@@ -69,7 +71,7 @@ class Command(BaseCommand):
             DepCourse.objects.create(
                 course=created_course,
                 department=Department.objects.get(
-                    name="Computer Science & Engineering"
+                    name=created_course.objects.get("department")
                 ),
             )
 
@@ -85,6 +87,7 @@ class Command(BaseCommand):
                 units=item.get("units"),
                 url=item.get("url"),
                 prerequisites=item.get("prerequisites"),
+                attributes=item.get("attributes"),
                 embedding=embed_data[embedding_idx],
             )
             embedding_idx += 1
